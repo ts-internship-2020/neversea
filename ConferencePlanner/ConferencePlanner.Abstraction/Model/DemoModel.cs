@@ -6,6 +6,7 @@ namespace ConferencePlanner.Abstraction.Model
 {
     public class DemoModel
     {
+        //demo
         public int Id { get; set; }
         public string Name { get; set; }
     }
