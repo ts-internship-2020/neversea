@@ -1,11 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.Repository.Ef.Entities;
+using ConferencePlanner.Repository.Ef.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace ConferencePlanner.API
+
+namespace ConferencePlanner.Api
 {
     public class Startup
     {
@@ -20,11 +29,17 @@ namespace ConferencePlanner.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<neverseaContext>((serviceProvider, options) =>
+                {
+                    var configuration = serviceProvider.GetService<IConfiguration>();
+                    var connectionString = configuration.GetConnectionString("DbConnection");
+
+                    options.UseSqlServer(connectionString, a => a.EnableRetryOnFailure())
+                    .UseInternalServiceProvider(serviceProvider);
+                });
+
+            services.AddScoped<IGetDemoRepository, GetDemoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,35 +51,19 @@ namespace ConferencePlanner.API
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
-            });
-
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

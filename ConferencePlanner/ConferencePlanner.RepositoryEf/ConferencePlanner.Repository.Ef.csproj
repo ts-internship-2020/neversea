@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ConferencePlanner.Abstraction\ConferencePlanner.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>
