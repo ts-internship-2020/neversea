@@ -17,19 +17,19 @@ namespace ConferencePlanner.Repository.Ado.Repository
             _sqlConnection = sqlConnection;
         }
 
-        public List<Demo> GetDemo(string name)
+        public List<DemoModel> GetDemo(string name)
         {
             SqlCommand sqlCommand = _sqlConnection.CreateCommand();
             sqlCommand.CommandText = "select * from Demo";
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-            List<Demo> demos = new List<Demo>();
+            List<DemoModel> demos = new List<DemoModel>();
 
             if (sqlDataReader.HasRows)
             {
                 while (sqlDataReader.Read())
                 {
-                    demos.Add(new Demo() { Id = sqlDataReader.GetInt32("Id"), Name = sqlDataReader.GetString("Name") });
+                    demos.Add(new DemoModel() { Id = sqlDataReader.GetInt32("Id"), Name = sqlDataReader.GetString("Name") });
                 }
             }
 
