@@ -41,6 +41,8 @@ namespace ConferencePlanner.WinUi
                 return sqlConnection;
             });
             ServiceProvider = services.BuildServiceProvider();
+
+            //buna
         }
     }
 }
