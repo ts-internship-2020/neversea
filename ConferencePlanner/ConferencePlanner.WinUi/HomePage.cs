@@ -28,6 +28,9 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        public MainPage()
+        {
+        }
 
 
         public HomePage()
