@@ -29,11 +29,14 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        public MainPage()
+        {
+        }
 
         private void MainPage_Load(object sender, EventArgs e)
         {
             //  var conferences = this.Conferences;
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("");
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Starts";
             dgvConferences.Columns[2].HeaderText = "Ends";
@@ -43,17 +46,9 @@ namespace ConferencePlanner.WinUi
             dgvConferences.Columns[6].HeaderText = "Address";
             dgvConferences.Columns[7].HeaderText = "Speaker";
 
-            dataGridView1.DataSource = _getConferenceRepository.GetConference("organizer");
-            dataGridView1.Columns[0].HeaderText = "Title";
-            dataGridView1.Columns[1].HeaderText = "Starts";
-            dataGridView1.Columns[2].HeaderText = "Ends";
-            dataGridView1.Columns[3].HeaderText = "Duration";
-            dataGridView1.Columns[4].HeaderText = "Type";
-            dataGridView1.Columns[5].HeaderText = "Category";
-            dataGridView1.Columns[6].HeaderText = "Address";
-            dataGridView1.Columns[7].HeaderText = "Speaker";
-
         }
+
+     
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -193,9 +188,6 @@ namespace ConferencePlanner.WinUi
 
         }
 
-        private void MainPageTab_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+   
     }
 }
