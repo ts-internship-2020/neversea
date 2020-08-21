@@ -37,11 +37,11 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Email = "";
                 Properties.Settings.Default.Save();
             }
-            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                    @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
-            MainPage mainPage = new MainPage();
+            HomePage homePage = new HomePage(conferenceRepository);
             if (Regex.IsMatch(tb_email.Text, pattern)){
-                mainPage.Show();
+                homePage.Show();
             }
             //var x = _getDemoRepository.GetDemo("hello");
 
