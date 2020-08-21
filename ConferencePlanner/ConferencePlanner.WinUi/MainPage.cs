@@ -37,11 +37,6 @@ namespace ConferencePlanner.WinUi
             dgvConferences.DataSource = GetConferenceRepository.GetConference("");
         }
 
-        private void MainPage_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -93,6 +88,25 @@ namespace ConferencePlanner.WinUi
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+                    }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
