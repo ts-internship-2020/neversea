@@ -26,9 +26,9 @@ namespace ConferencePlanner.WinUi
         {
              var x = _getDemoRepository.GetDemo("hello");
 
-             label1.Text = x.FirstOrDefault().Name;
+         /*    label1.Text = x.FirstOrDefault().Name;
              listBox1.DataSource = x;
-             listBox1.DisplayMember = "Name";
+             listBox1.DisplayMember = "Name"; */
 
         }
 
