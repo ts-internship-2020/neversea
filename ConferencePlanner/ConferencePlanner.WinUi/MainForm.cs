@@ -22,15 +22,26 @@ namespace ConferencePlanner.WinUi
           
             InitializeComponent();
         
-        this.tb_email.Enter += new EventHandler(tb_email_Enter);
-        this.tb_email.Leave += new EventHandler(tb_email_Leave);
-        tb_email_SetText();
-        
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            if (chkb_email.Checked)
+            {
+                Properties.Settings.Default.Email = tb_email.Text;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.Email = "";
+                Properties.Settings.Default.Save();
+            }
+            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+            Form1 f = new Form1();
+            if (Regex.IsMatch(tb_email.Text, pattern)){
+                f.Show();
+            }
             //var x = _getDemoRepository.GetDemo("hello");
 
             //lb_hello.Text = x.FirstOrDefault().Name;
@@ -40,14 +51,13 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
+            if(Properties.Settings.Default.Email!=string.Empty)
+            {
+                tb_email.Text = Properties.Settings.Default.Email;
+            }
+            this.tb_email.Enter += new EventHandler(tb_email_Enter);
+            this.tb_email.Leave += new EventHandler(tb_email_Leave);
+            tb_email_SetText();
         }
 
         private void tb_email_Leave(object sender, EventArgs e)
@@ -87,6 +97,5 @@ namespace ConferencePlanner.WinUi
             tb_email.Text = "";
             tb_email.ForeColor = Color.Black;
         }
-
     }
 }
