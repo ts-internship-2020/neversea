@@ -79,10 +79,6 @@ namespace ConferencePlanner.WinUi
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
         
         protected void tb_email_SetText()
         {

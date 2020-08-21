@@ -85,7 +85,6 @@
             this.lb_email.Size = new System.Drawing.Size(83, 15);
             this.lb_email.TabIndex = 5;
             this.lb_email.Text = "Email Address";
-            this.lb_email.Click += new System.EventHandler(this.label1_Click);
             // 
             // chkb_email
             // 
@@ -125,6 +124,5 @@
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.Label lb_email;
         private System.Windows.Forms.CheckBox chkb_email;
-
     }
 }
