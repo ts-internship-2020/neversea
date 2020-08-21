@@ -28,49 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.components = new System.ComponentModel.Container();
+            this.btn_enterEmail = new System.Windows.Forms.Button();
+            this.lb_hello = new System.Windows.Forms.Label();
+            this.tb_email = new System.Windows.Forms.TextBox();
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lb_email = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_enterEmail
             // 
-            this.button1.Location = new System.Drawing.Point(158, 207);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_enterEmail.Location = new System.Drawing.Point(328, 309);
+            this.btn_enterEmail.Name = "btn_enterEmail";
+            this.btn_enterEmail.Size = new System.Drawing.Size(132, 31);
+            this.btn_enterEmail.TabIndex = 0;
+            this.btn_enterEmail.Text = "COME IN";
+            this.btn_enterEmail.UseVisualStyleBackColor = true;
+            this.btn_enterEmail.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // lb_hello
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(241, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.lb_hello.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_hello.AutoSize = true;
+            this.lb_hello.BackColor = System.Drawing.Color.LightBlue;
+            this.lb_hello.Location = new System.Drawing.Point(358, 57);
+            this.lb_hello.Name = "lb_hello";
+            this.lb_hello.Size = new System.Drawing.Size(70, 15);
+            this.lb_hello.TabIndex = 3;
+            this.lb_hello.Text = "Hello World";
+            this.lb_hello.Click += new System.EventHandler(this.label1_Click_1);
             // 
-            // listBox1
+            // tb_email
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(346, 123);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(343, 94);
-            this.listBox1.TabIndex = 2;
+            this.tb_email.BackColor = System.Drawing.SystemColors.Window;
+            this.tb_email.Location = new System.Drawing.Point(286, 171);
+            this.tb_email.Name = "tb_email";
+            this.tb_email.Size = new System.Drawing.Size(233, 23);
+            this.tb_email.TabIndex = 4;
+            this.tb_email.Enter += new System.EventHandler(this.tb_email_Enter);
+            this.tb_email.Leave += new System.EventHandler(this.tb_email_Leave);
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // lb_email
+            // 
+            this.lb_email.AutoSize = true;
+            this.lb_email.Location = new System.Drawing.Point(199, 174);
+            this.lb_email.Name = "lb_email";
+            this.lb_email.Size = new System.Drawing.Size(81, 15);
+            this.lb_email.TabIndex = 5;
+            this.lb_email.Text = "Email Address";
+            this.lb_email.Click += new System.EventHandler(this.label1_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.BackColor = System.Drawing.Color.LightBlue;
+            this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.lb_email);
+            this.Controls.Add(this.tb_email);
+            this.Controls.Add(this.lb_hello);
+            this.Controls.Add(this.btn_enterEmail);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,8 +107,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btn_enterEmail;
+        private System.Windows.Forms.Label lb_hello;
+        private System.Windows.Forms.TextBox tb_email;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.Label lb_email;
     }
 }
