@@ -1,4 +1,5 @@
 ﻿using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.Repository.Ado.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,11 @@ namespace ConferencePlanner.WinUi
 {
     public partial class MainForm : Form
     {
-        private readonly IGetDemoRepository _getDemoRepository;
+        private readonly IConferenceRepository conferenceRepository;
 
-        public MainForm(IGetDemoRepository getDemoRepository)
+        public MainForm(IConferenceRepository ConferenceRepository)
         {
-            _getDemoRepository = getDemoRepository;
+            conferenceRepository = ConferenceRepository;
           
             InitializeComponent();
         
@@ -38,9 +39,9 @@ namespace ConferencePlanner.WinUi
             }
             string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                    @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
-            Form1 f = new Form1();
+            MainPage mainPage = new MainPage();
             if (Regex.IsMatch(tb_email.Text, pattern)){
-                f.Show();
+                mainPage.Show();
             }
             //var x = _getDemoRepository.GetDemo("hello");
 
@@ -95,5 +96,9 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

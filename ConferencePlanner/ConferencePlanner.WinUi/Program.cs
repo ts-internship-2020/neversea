@@ -22,7 +22,7 @@ namespace ConferencePlanner.WinUi
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ConfigureServices();
-            Application.Run(ServiceProvider.GetService<MainPage>()); 
+            Application.Run(ServiceProvider.GetService<MainForm>()); 
         }
 
 
