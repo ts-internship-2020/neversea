@@ -70,11 +70,13 @@
             // 
             this.MainPageTab.Controls.Add(this.SpectatorTab);
             this.MainPageTab.Controls.Add(this.OrganizerTab);
-            this.MainPageTab.Location = new System.Drawing.Point(3, 12);
+            this.MainPageTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPageTab.Location = new System.Drawing.Point(0, 0);
             this.MainPageTab.Name = "MainPageTab";
             this.MainPageTab.SelectedIndex = 0;
-            this.MainPageTab.Size = new System.Drawing.Size(794, 436);
+            this.MainPageTab.Size = new System.Drawing.Size(800, 450);
             this.MainPageTab.TabIndex = 0;
+            this.MainPageTab.SelectedIndexChanged += new System.EventHandler(this.MainPageTab_SelectedIndexChanged);
             // 
             // SpectatorTab
             // 
@@ -82,7 +84,7 @@
             this.SpectatorTab.Location = new System.Drawing.Point(4, 24);
             this.SpectatorTab.Name = "SpectatorTab";
             this.SpectatorTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SpectatorTab.Size = new System.Drawing.Size(786, 408);
+            this.SpectatorTab.Size = new System.Drawing.Size(792, 422);
             this.SpectatorTab.TabIndex = 0;
             this.SpectatorTab.Text = "Spectator";
             this.SpectatorTab.UseVisualStyleBackColor = true;
@@ -102,7 +104,7 @@
             this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
             this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tlpSpectator.Size = new System.Drawing.Size(780, 402);
+            this.tlpSpectator.Size = new System.Drawing.Size(786, 416);
             this.tlpSpectator.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -123,14 +125,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(641, 42);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(646, 43);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblEnd
             // 
             this.lblEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEnd.AutoSize = true;
-            this.lblEnd.Location = new System.Drawing.Point(323, 13);
+            this.lblEnd.Location = new System.Drawing.Point(325, 13);
             this.lblEnd.Name = "lblEnd";
             this.lblEnd.Size = new System.Drawing.Size(90, 15);
             this.lblEnd.TabIndex = 1;
@@ -142,15 +144,15 @@
             this.dtpStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpStart.Location = new System.Drawing.Point(99, 9);
             this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(218, 23);
+            this.dtpStart.Size = new System.Drawing.Size(220, 23);
             this.dtpStart.TabIndex = 0;
             // 
             // dtpEnd
             // 
             this.dtpEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpEnd.Location = new System.Drawing.Point(419, 9);
+            this.dtpEnd.Location = new System.Drawing.Point(421, 9);
             this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(219, 23);
+            this.dtpEnd.Size = new System.Drawing.Size(222, 23);
             this.dtpEnd.TabIndex = 1;
             // 
             // lblStart
@@ -168,9 +170,9 @@
             // 
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvConferences.Location = new System.Drawing.Point(69, 51);
+            this.dgvConferences.Location = new System.Drawing.Point(69, 52);
             this.dgvConferences.Name = "dgvConferences";
-            this.dgvConferences.Size = new System.Drawing.Size(641, 315);
+            this.dgvConferences.Size = new System.Drawing.Size(646, 326);
             this.dgvConferences.TabIndex = 1;
             this.dgvConferences.Text = "dataGridView1";
             // 
@@ -287,6 +289,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(641, 286);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Text = "dataGridView1";
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
@@ -349,5 +352,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dgvOrganizer;
     }
 }
