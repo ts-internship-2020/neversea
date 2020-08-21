@@ -45,7 +45,10 @@ namespace ConferencePlanner.WinUi
 
         }
 
-     
+        private void MainPage_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -101,7 +104,20 @@ namespace ConferencePlanner.WinUi
         {
 
         }
+        private void label3_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, EventArgs e)
+        {
+
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
