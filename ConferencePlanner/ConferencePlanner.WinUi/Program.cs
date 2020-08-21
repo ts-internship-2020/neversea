@@ -22,8 +22,7 @@ namespace ConferencePlanner.WinUi
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ConfigureServices();
-
-            Application.Run(ServiceProvider.GetService<MainForm>());
+            Application.Run(ServiceProvider.GetService<MainPage>()); 
         }
 
 
@@ -32,8 +31,10 @@ namespace ConferencePlanner.WinUi
         static void ConfigureServices()
         {
             var services = new ServiceCollection();
+            services.AddScoped<MainPage>();
             services.AddScoped<MainForm>();
             services.AddScoped<IGetDemoRepository, GetDemoRepository>();
+            services.AddScoped<IConferenceRepository, GetConferenceRepository>();
             services.AddSingleton<SqlConnection>(a =>
             {
                 SqlConnection sqlConnection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
