@@ -66,8 +66,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     "                     INNER JOIN Location l ON c.LocationId = l.LocationId";
             }
 
-            if (name == "organizer") {
-
+            if (name == "organiser") {
                 sqlCommand.CommandText = "SELECT c.ConferenceName, c.StartDate, c.EndDate,'', dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, l.LocationAddress, s.DictionarySpeakerName" +
                     "                     FROM DictionarySpeaker s" +
                     "                     INNER JOIN ConferenceXSpeaker cxs ON s.DictionarySpeakerId = cxs.DictionarySpeakerId AND cxs.IsMain = 1" +
