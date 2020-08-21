@@ -52,7 +52,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvOrganiser = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.MainPageTab.SuspendLayout();
             this.SpectatorTab.SuspendLayout();
@@ -63,7 +63,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrganiser)).BeginInit();
             this.SuspendLayout();
             // 
             // MainPageTab
@@ -269,7 +269,7 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.dataGridView1, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.dgvOrganiser, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.button1, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(66, 57);
@@ -280,8 +280,16 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(652, 356);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvOrganiser
             // 
+            this.dgvOrganiser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrganiser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrganiser.Location = new System.Drawing.Point(3, 3);
+            this.dgvOrganiser.Name = "dgvOrganiser";
+            this.dgvOrganiser.Size = new System.Drawing.Size(646, 296);
+            this.dgvOrganiser.TabIndex = 0;
+            this.dgvOrganiser.Text = "dataGridView1";
+            this.dgvOrganiser.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
@@ -321,7 +329,7 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrganiser)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -350,7 +358,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvOrganiser;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvOrganizer;
     }
