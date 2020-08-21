@@ -103,7 +103,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(658, 427);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.chkb_email);
             this.Controls.Add(this.lb_hello);
             this.Controls.Add(this.lb_email);
@@ -118,9 +118,7 @@
             this.PerformLayout();
 
         }
-
         #endregion
-
         private System.Windows.Forms.Button btn_enterEmail;
         private System.Windows.Forms.Label lb_hello;
         private System.Windows.Forms.TextBox tb_email;
