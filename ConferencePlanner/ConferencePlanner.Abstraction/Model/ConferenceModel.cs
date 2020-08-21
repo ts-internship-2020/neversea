@@ -12,7 +12,7 @@ namespace ConferencePlanner.Abstraction.Model
 
         public String conferenceType { get; set; }
 
-        public String conferencePeriod { get; set; }
+        public int conferencePeriod { get; set; }
         public String conferenceCategory { get; set; }
         public String conferenceAddress { get; set; }
         public String conferenceMainSpeaker { get; set; }
