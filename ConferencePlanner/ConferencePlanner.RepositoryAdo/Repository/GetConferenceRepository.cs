@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ConferencePlanner.Repository.Ado.Repository
 {
-    public class GetConferenceRepository : IGetConferenceRepository
+    public class GetConferenceRepository : IConferenceRepository
     {
         private readonly SqlConnection _sqlConnection;
 
@@ -20,11 +20,12 @@ namespace ConferencePlanner.Repository.Ado.Repository
         public List<ConferenceModel> GetConference(string name)
         {
             SqlCommand sqlCommand = _sqlConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT c.ConferenceName, c.StartDate, c.EndDate, dcp.DictionaryConferenceTypeName, dcp.DictionaryConferenceCategoryName, l.LocationAddress" +
+            sqlCommand.CommandText = "SELECT c.ConferenceName, c.StartDate, c.EndDate,'', dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, l.LocationAddress, s.DictionarySpeakerName" +
                 "                     FROM DictionarySpeaker s" +
                 "                     INNER JOIN ConferenceXSpeaker cxs ON s.DictionarySpeakerId = cxs.DictionarySpeakerId AND cxs.IsMain = 1" +                                           
                 "                     INNER JOIN Conference c ON cxs.ConferenceId = c.ConferenceId" +
-                "                     INNER JOIN DictionaryConferenceType dcp ON c.DictionaryConferenceTypeId = dcp.DictionaryConferenceTypeId" +
+                "                     INNER JOIN DictionaryConferenceType dct ON c.DictionaryConferenceTypeId = dct.DictionaryConferenceTypeId" +
+                "                     INNER JOIN DictionaryConferenceCategory dcc ON c.DictionaryConferenceCategoryId = dcc.DictionaryConferenceCategoryId" +
                 "                     INNER JOIN Location l ON c.LocationId = l.LocationId";
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 

@@ -11,3 +11,5 @@ namespace ConferencePlanner.Abstraction.Model
         public string Name { get; set; }
     }
 }
+
+

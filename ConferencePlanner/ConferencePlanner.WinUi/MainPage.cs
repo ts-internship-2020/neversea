@@ -15,15 +15,14 @@ namespace ConferencePlanner.WinUi
     public partial class MainPage : Form
 
     {
-        private readonly IGetConferenceRepository _getConferenceRepository;
+        private readonly IConferenceRepository _getConferenceRepository;
         public List<ConferenceModel> Conferences { get; set; }
     
-        public GetConferenceRepository GetConferenceRepository { get; set; }
 
-        public MainPage(IGetConferenceRepository getConferenceRepository, GetConferenceRepository gcf, List<ConferenceModel> listuta)
+        public MainPage(IConferenceRepository getConferenceRepository/*, GetConferenceRepository gcf, List<ConferenceModel> listuta*/)
         {
-            GetConferenceRepository = gcf;
-            Conferences = listuta;
+            /*GetConferenceRepository = gcf;
+            Conferences = listuta;*/
             _getConferenceRepository = getConferenceRepository;
 
             InitializeComponent();
@@ -34,7 +33,21 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {
             //  var conferences = this.Conferences;
-            dgvConferences.DataSource = GetConferenceRepository.GetConference("");
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("");
+            dgvConferences.Columns[0].HeaderText = "Title";
+            dgvConferences.Columns[1].HeaderText = "Starts";
+            dgvConferences.Columns[2].HeaderText = "Ends";
+            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[4].HeaderText = "Type";
+            dgvConferences.Columns[5].HeaderText = "Category";
+            dgvConferences.Columns[6].HeaderText = "Address";
+            dgvConferences.Columns[7].HeaderText = "Speaker";
+
+        }
+
+        private void MainPage_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -92,21 +105,72 @@ namespace ConferencePlanner.WinUi
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-                    }
-
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void label2_Click_1(object sender, EventArgs e)
+        public void update()
         {
+            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
+
+            buttonJoinColumn.HeaderText = "Join";
+            buttonJoinColumn.Name = "buttonJoinColumn";
+            buttonJoinColumn.UseColumnTextForButtonValue = true;
+
+            dgvConferences.Columns.Add(buttonJoinColumn);
+
+
+
+            DataGridViewButtonColumn buttonAttendColumn = new DataGridViewButtonColumn();
+
+            buttonJoinColumn.HeaderText = "Attend";
+            buttonJoinColumn.Name = "buttonAttendColumn";
+            buttonJoinColumn.UseColumnTextForButtonValue = true;
+
+            dgvConferences.Columns.Add(buttonAttendColumn);
+
+
+
+            DataGridViewButtonColumn buttonWithdrawColumn = new DataGridViewButtonColumn();
+
+            buttonJoinColumn.HeaderText = "Withdraw";
+            buttonJoinColumn.Name = "buttonWithdrawColumn";
+            buttonJoinColumn.UseColumnTextForButtonValue = true;
+
+            dgvConferences.Columns.Add(buttonWithdrawColumn);
+
+
+
+
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
+
+
+
+
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+            {
+                
+            }
+
+            else if(dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+            {
+
+            }
+
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+            {
+
+            }
+
+        }
+
+        private void OrganizerTab_Click(object sender, EventArgs e)
         {
 
         }
