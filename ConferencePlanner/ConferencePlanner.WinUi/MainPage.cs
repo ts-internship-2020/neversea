@@ -29,6 +29,9 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        public MainPage()
+        {
+        }
 
         private void MainPage_Load(object sender, EventArgs e)
         {
