@@ -31,7 +31,6 @@ namespace ConferencePlanner.WinUi
      
 
 
-
         public HomePage()
         {
             InitializeComponent();
