@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace ConferencePlanner.Abstraction.Repository
 {
-    public interface IGetConferenceRepository
+    public interface IConferenceRepository
     {
         List<ConferenceModel> GetConference(string name);
     }

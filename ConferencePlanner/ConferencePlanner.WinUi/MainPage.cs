@@ -15,15 +15,14 @@ namespace ConferencePlanner.WinUi
     public partial class MainPage : Form
 
     {
-        private readonly IGetConferenceRepository _getConferenceRepository;
+        private readonly IConferenceRepository _getConferenceRepository;
         public List<ConferenceModel> Conferences { get; set; }
     
-        public GetConferenceRepository GetConferenceRepository { get; set; }
 
-        public MainPage(IGetConferenceRepository getConferenceRepository, GetConferenceRepository gcf, List<ConferenceModel> listuta)
+        public MainPage(IConferenceRepository getConferenceRepository/*, GetConferenceRepository gcf, List<ConferenceModel> listuta*/)
         {
-            GetConferenceRepository = gcf;
-            Conferences = listuta;
+            /*GetConferenceRepository = gcf;
+            Conferences = listuta;*/
             _getConferenceRepository = getConferenceRepository;
 
             InitializeComponent();
@@ -34,7 +33,7 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {
             //  var conferences = this.Conferences;
-            dgvConferences.DataSource = GetConferenceRepository.GetConference("");
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("");
         }
     }
 }
