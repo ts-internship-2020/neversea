@@ -37,10 +37,7 @@ namespace ConferencePlanner.WinUi
             dgvConferences.DataSource = GetConferenceRepository.GetConference("");
         }
 
-        private void MainPage_Load(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -110,7 +107,7 @@ namespace ConferencePlanner.WinUi
             buttonJoinColumn.Name = "buttonJoinColumn";
             buttonJoinColumn.UseColumnTextForButtonValue = true;
 
-            dgvOrganizerEvents.Columns.Add(buttonJoinColumn);
+            dgvConferences.Columns.Add(buttonJoinColumn);
 
 
 
@@ -120,7 +117,7 @@ namespace ConferencePlanner.WinUi
             buttonJoinColumn.Name = "buttonAttendColumn";
             buttonJoinColumn.UseColumnTextForButtonValue = true;
 
-            dgvOrganizerEvents.Columns.Add(buttonAttendColumn);
+            dgvConferences.Columns.Add(buttonAttendColumn);
 
 
 
@@ -130,7 +127,7 @@ namespace ConferencePlanner.WinUi
             buttonJoinColumn.Name = "buttonWithdrawColumn";
             buttonJoinColumn.UseColumnTextForButtonValue = true;
 
-            dgvOrganizerEvents.Columns.Add(buttonWithdrawColumn);
+            dgvConferences.Columns.Add(buttonWithdrawColumn);
 
 
 
@@ -145,17 +142,17 @@ namespace ConferencePlanner.WinUi
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvOrganizerEvents.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
             {
                 
             }
 
-            else if(dgvOrganizerEvents.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+            else if(dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
             {
 
             }
 
-            else if (dgvOrganizerEvents.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
             {
 
             }
