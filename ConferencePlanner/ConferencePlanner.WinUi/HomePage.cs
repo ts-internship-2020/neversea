@@ -39,7 +39,7 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {
             //  var conferences = this.Conferences;
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("");
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Starts";
             dgvConferences.Columns[2].HeaderText = "Ends";
