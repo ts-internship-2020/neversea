@@ -34,6 +34,15 @@ namespace ConferencePlanner.WinUi
         {
             //  var conferences = this.Conferences;
             dgvConferences.DataSource = _getConferenceRepository.GetConference("");
+            dgvConferences.Columns[0].HeaderText = "Title";
+            dgvConferences.Columns[1].HeaderText = "Starts";
+            dgvConferences.Columns[2].HeaderText = "Ends";
+            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[4].HeaderText = "Type";
+            dgvConferences.Columns[5].HeaderText = "Category";
+            dgvConferences.Columns[6].HeaderText = "Address";
+            dgvConferences.Columns[7].HeaderText = "Speaker";
+
         }
 
 
