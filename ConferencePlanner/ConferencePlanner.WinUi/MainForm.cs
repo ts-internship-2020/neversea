@@ -24,11 +24,17 @@ namespace ConferencePlanner.WinUi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var x = _getDemoRepository.GetDemo("hello");
+             var x = _getDemoRepository.GetDemo("hello");
 
-            label1.Text = x.FirstOrDefault().Name;
-            listBox1.DataSource = x;
-            listBox1.DisplayMember = "Name";
+             label1.Text = x.FirstOrDefault().Name;
+             listBox1.DataSource = x;
+             listBox1.DisplayMember = "Name";
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
