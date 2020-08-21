@@ -80,7 +80,6 @@ namespace ConferencePlanner.WinUi
             }
         }
 
-        
         protected void tb_email_SetText()
         {
             this.tb_email.Text = "Type an email...";

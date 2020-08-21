@@ -76,7 +76,7 @@
             this.MainPageTab.SelectedIndex = 0;
             this.MainPageTab.Size = new System.Drawing.Size(800, 450);
             this.MainPageTab.TabIndex = 0;
-            this.MainPageTab.SelectedIndexChanged += new System.EventHandler(this.MainPageTab_SelectedIndexChanged);
+          //  this.MainPageTab.SelectedIndexChanged += new System.EventHandler(this.MainPageTab_SelectedIndexChanged);
             // 
             // SpectatorTab
             // 

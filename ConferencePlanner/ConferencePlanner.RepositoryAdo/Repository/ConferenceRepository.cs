@@ -89,7 +89,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
-        public List<ConferenceModel> GetConference(string name)
+        public List<ConferenceModel> _GetConference(string name)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             if (name == "spectator")
