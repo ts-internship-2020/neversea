@@ -21,6 +21,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         }
 
+
+
+
         public void InsertParticipant(string conferenceName, string spectatorEmail)
         {
             SqlParameter[] parameters = new SqlParameter[2];   
@@ -32,6 +35,18 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
+        public void ModifySpectatorStatusAttend(string conferenceName, string spectatorEmail)
+        {
+            SqlParameter[] parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@Name", conferenceName);
+            parameters[1] = new SqlParameter("@Email", spectatorEmail);
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 2 where ParticipantEmailAddress = '@Email' and ConferenceId = (SELECT c.ConferenceId from Conference c where c.ConferenceName like '@Name')";
+            sqlCommand.ExecuteNonQuery();
+        }
+
+
         public void ModifySpectatorStatusJoin(string spectatorEmail, string conferenceName)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
@@ -40,6 +55,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
         }
 
       
+
+
+
         public void ModifySpectatorStatusWithdraw(string spectatorEmail, string conferenceName)
         {
 
@@ -51,6 +69,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 3 where ParticipantEmailAddress = '@Email' and ConferenceId = (SELECT c.ConferenceId from Conference c where c.ConferenceName like '@Name')";
             sqlCommand.ExecuteNonQuery();
         }
+
+
+
+
 
         public List<ConferenceModel> GetConference(string name)
         {
