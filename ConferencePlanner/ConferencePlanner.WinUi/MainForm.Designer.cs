@@ -42,7 +42,7 @@
             // 
             this.btn_enterEmail.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_enterEmail.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btn_enterEmail.Location = new System.Drawing.Point(270, 302);
+            this.btn_enterEmail.Location = new System.Drawing.Point(269, 300);
             this.btn_enterEmail.Name = "btn_enterEmail";
             this.btn_enterEmail.Size = new System.Drawing.Size(132, 31);
             this.btn_enterEmail.TabIndex = 0;
@@ -56,7 +56,7 @@
             this.lb_hello.AutoSize = true;
             this.lb_hello.BackColor = System.Drawing.SystemColors.Window;
             this.lb_hello.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_hello.Location = new System.Drawing.Point(270, 41);
+            this.lb_hello.Location = new System.Drawing.Point(269, 48);
             this.lb_hello.Name = "lb_hello";
             this.lb_hello.Size = new System.Drawing.Size(150, 31);
             this.lb_hello.TabIndex = 3;
@@ -103,7 +103,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(640, 450);
             this.Controls.Add(this.chkb_email);
             this.Controls.Add(this.lb_hello);
             this.Controls.Add(this.lb_email);
@@ -125,5 +125,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.Label lb_email;
         private System.Windows.Forms.CheckBox chkb_email;
+
     }
 }

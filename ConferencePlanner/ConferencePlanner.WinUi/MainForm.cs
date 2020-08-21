@@ -95,7 +95,9 @@ namespace ConferencePlanner.WinUi
             if (tb_email.ForeColor == Color.Black)
                 return;
             tb_email.Text = "";
-            tb_email.ForeColor = Color.Black;
+            tb_email.ForeColor = Color.Black; 
+
         }
+
     }
 }
