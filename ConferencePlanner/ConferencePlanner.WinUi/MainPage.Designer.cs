@@ -31,7 +31,10 @@
             this.MainPageTab = new System.Windows.Forms.TabControl();
             this.SpectatorTab = new System.Windows.Forms.TabPage();
             this.OrganizerTab = new System.Windows.Forms.TabPage();
+            this.dgvOrganizerEvents = new System.Windows.Forms.DataGridView();
             this.MainPageTab.SuspendLayout();
+            this.OrganizerTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrganizerEvents)).BeginInit();
             this.SuspendLayout();
             // 
             // MainPageTab
@@ -56,6 +59,7 @@
             // 
             // OrganizerTab
             // 
+            this.OrganizerTab.Controls.Add(this.dgvOrganizerEvents);
             this.OrganizerTab.Location = new System.Drawing.Point(4, 24);
             this.OrganizerTab.Name = "OrganizerTab";
             this.OrganizerTab.Padding = new System.Windows.Forms.Padding(3);
@@ -63,6 +67,17 @@
             this.OrganizerTab.TabIndex = 1;
             this.OrganizerTab.Text = "Organizer";
             this.OrganizerTab.UseVisualStyleBackColor = true;
+            this.OrganizerTab.Click += new System.EventHandler(this.OrganizerTab_Click);
+            // 
+            // dgvOrganizerEvents
+            // 
+            this.dgvOrganizerEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrganizerEvents.Location = new System.Drawing.Point(76, 35);
+            this.dgvOrganizerEvents.Name = "dgvOrganizerEvents";
+            this.dgvOrganizerEvents.Size = new System.Drawing.Size(558, 254);
+            this.dgvOrganizerEvents.TabIndex = 0;
+            this.dgvOrganizerEvents.Text = "dataGridView2";
+            this.dgvOrganizerEvents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // MainPage
             // 
@@ -73,6 +88,8 @@
             this.Name = "MainPage";
             this.Text = "MainPage";
             this.MainPageTab.ResumeLayout(false);
+            this.OrganizerTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrganizerEvents)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -82,5 +99,6 @@
         private System.Windows.Forms.TabControl MainPageTab;
         private System.Windows.Forms.TabPage SpectatorTab;
         private System.Windows.Forms.TabPage OrganizerTab;
+        private System.Windows.Forms.DataGridView dgvOrganizerEvents;
     }
 }
