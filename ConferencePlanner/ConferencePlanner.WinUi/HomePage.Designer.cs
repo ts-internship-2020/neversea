@@ -1,6 +1,6 @@
 ﻿namespace ConferencePlanner.WinUi
 {
-    partial class MainPage
+    partial class HomePage
     {
 
         /// <summary>

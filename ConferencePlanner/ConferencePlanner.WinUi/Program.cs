@@ -31,7 +31,7 @@ namespace ConferencePlanner.WinUi
         static void ConfigureServices()
         {
             var services = new ServiceCollection();
-            services.AddScoped<MainPage>();
+            services.AddScoped<HomePage>();
             services.AddScoped<MainForm>();
             services.AddScoped<IGetDemoRepository, GetDemoRepository>();
             services.AddScoped<IConferenceRepository, ConferenceRepository>();
