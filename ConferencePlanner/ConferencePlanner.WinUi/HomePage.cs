@@ -47,6 +47,16 @@ namespace ConferencePlanner.WinUi
             dgvConferences.Columns[6].HeaderText = "Address";
             dgvConferences.Columns[7].HeaderText = "Speaker";
 
+            dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
+            dgvOrganiser.Columns[0].HeaderText = "Title";
+            dgvOrganiser.Columns[1].HeaderText = "Starts";
+            dgvOrganiser.Columns[2].HeaderText = "Ends";
+            dgvOrganiser.Columns[3].HeaderText = "Duration";
+            dgvOrganiser.Columns[4].HeaderText = "Type";
+            dgvOrganiser.Columns[5].HeaderText = "Category";
+            dgvOrganiser.Columns[6].HeaderText = "Address";
+            dgvOrganiser.Columns[7].HeaderText = "Speaker";
+
             DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
 
             buttonJoinColumn.HeaderText = "Join";
@@ -54,8 +64,6 @@ namespace ConferencePlanner.WinUi
             buttonJoinColumn.UseColumnTextForButtonValue = true;
 
             dgvConferences.Columns.Add(buttonJoinColumn);
-
-
 
             DataGridViewButtonColumn buttonAttendColumn = new DataGridViewButtonColumn();
 

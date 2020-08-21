@@ -52,7 +52,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvOrganiser = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.MainPageTab.SuspendLayout();
             this.SpectatorTab.SuspendLayout();
@@ -63,16 +63,14 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrganiser)).BeginInit();
             this.SuspendLayout();
             // 
             // MainPageTab
             // 
-            this.MainPageTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPageTab.Controls.Add(this.SpectatorTab);
             this.MainPageTab.Controls.Add(this.OrganizerTab);
+            this.MainPageTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageTab.Location = new System.Drawing.Point(0, 0);
             this.MainPageTab.Name = "MainPageTab";
             this.MainPageTab.SelectedIndex = 0;
@@ -93,9 +91,9 @@
             // tlpSpectator
             // 
             this.tlpSpectator.ColumnCount = 3;
-            this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.653061F));
-            this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.69388F));
-            this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.653061F));
+            this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.5F));
+            this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83F));
+            this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.5F));
             this.tlpSpectator.Controls.Add(this.tableLayoutPanel1, 1, 0);
             this.tlpSpectator.Controls.Add(this.dgvConferences, 1, 1);
             this.tlpSpectator.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -120,22 +118,22 @@
             this.tableLayoutPanel1.Controls.Add(this.dtpEnd, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblStart, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(63, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(69, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(659, 43);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(646, 43);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblEnd
             // 
             this.lblEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEnd.AutoSize = true;
-            this.lblEnd.Location = new System.Drawing.Point(331, 13);
+            this.lblEnd.Location = new System.Drawing.Point(325, 13);
             this.lblEnd.Name = "lblEnd";
-            this.lblEnd.Size = new System.Drawing.Size(92, 15);
+            this.lblEnd.Size = new System.Drawing.Size(90, 15);
             this.lblEnd.TabIndex = 1;
             this.lblEnd.Text = "to";
             this.lblEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -143,17 +141,17 @@
             // dtpStart
             // 
             this.dtpStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpStart.Location = new System.Drawing.Point(101, 9);
+            this.dtpStart.Location = new System.Drawing.Point(99, 9);
             this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(224, 23);
+            this.dtpStart.Size = new System.Drawing.Size(220, 23);
             this.dtpStart.TabIndex = 0;
             // 
             // dtpEnd
             // 
             this.dtpEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpEnd.Location = new System.Drawing.Point(429, 9);
+            this.dtpEnd.Location = new System.Drawing.Point(421, 9);
             this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(227, 23);
+            this.dtpEnd.Size = new System.Drawing.Size(222, 23);
             this.dtpEnd.TabIndex = 1;
             // 
             // lblStart
@@ -162,7 +160,7 @@
             this.lblStart.AutoSize = true;
             this.lblStart.Location = new System.Drawing.Point(3, 13);
             this.lblStart.Name = "lblStart";
-            this.lblStart.Size = new System.Drawing.Size(92, 15);
+            this.lblStart.Size = new System.Drawing.Size(90, 15);
             this.lblStart.TabIndex = 1;
             this.lblStart.Text = "from";
             this.lblStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -171,9 +169,9 @@
             // 
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvConferences.Location = new System.Drawing.Point(63, 52);
+            this.dgvConferences.Location = new System.Drawing.Point(69, 52);
             this.dgvConferences.Name = "dgvConferences";
-            this.dgvConferences.Size = new System.Drawing.Size(659, 326);
+            this.dgvConferences.Size = new System.Drawing.Size(646, 326);
             this.dgvConferences.TabIndex = 1;
             this.dgvConferences.Text = "dataGridView1";
             // 
@@ -270,7 +268,7 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.dataGridView1, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.dgvOrganiser, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.button1, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(66, 57);
@@ -281,16 +279,16 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(652, 356);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvOrganiser
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(646, 296);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.Text = "dataGridView1";
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvOrganiser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrganiser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrganiser.Location = new System.Drawing.Point(3, 3);
+            this.dgvOrganiser.Name = "dgvOrganiser";
+            this.dgvOrganiser.Size = new System.Drawing.Size(646, 296);
+            this.dgvOrganiser.TabIndex = 0;
+            this.dgvOrganiser.Text = "dataGridView1";
+            this.dgvOrganiser.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
@@ -322,7 +320,7 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrganiser)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -351,7 +349,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvOrganiser;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvOrganizer;
     }
