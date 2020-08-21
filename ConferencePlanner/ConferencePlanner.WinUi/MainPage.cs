@@ -19,16 +19,18 @@ namespace ConferencePlanner.WinUi
         public List<ConferenceModel> Conferences { get; set; }
     
 
-        public MainPage(IConferenceRepository getConferenceRepository/*, GetConferenceRepository gcf, List<ConferenceModel> listuta*/)
+        public MainPage(IConferenceRepository getConferenceRepository)
         {
-            /*GetConferenceRepository = gcf;
-            Conferences = listuta;*/
+          
             _getConferenceRepository = getConferenceRepository;
 
             InitializeComponent();
 
         }
 
+        public MainPage()
+        {
+        }
 
         private void MainPage_Load(object sender, EventArgs e)
         {
