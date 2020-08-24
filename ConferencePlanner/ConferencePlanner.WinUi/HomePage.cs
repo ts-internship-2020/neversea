@@ -167,6 +167,22 @@ namespace ConferencePlanner.WinUi
             }
    
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Form2 addConferinceForm = new Form2();
+            addConferinceForm.ShowDialog();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 
