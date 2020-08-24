@@ -185,8 +185,8 @@
             // 
             // dgvConferences
             // 
-            this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvConferences.BackgroundColor = System.Drawing.Color.White;
+            this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvConferences.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConferences.GridColor = System.Drawing.Color.White;
