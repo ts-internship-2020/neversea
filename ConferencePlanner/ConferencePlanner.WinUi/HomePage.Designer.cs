@@ -133,9 +133,11 @@
             // 
             this.lblEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEnd.AutoSize = true;
-            this.lblEnd.Location = new System.Drawing.Point(328, 17);
+            this.lblEnd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblEnd.ForeColor = System.Drawing.Color.Black;
+            this.lblEnd.Location = new System.Drawing.Point(328, 14);
             this.lblEnd.Name = "lblEnd";
-            this.lblEnd.Size = new System.Drawing.Size(91, 15);
+            this.lblEnd.Size = new System.Drawing.Size(91, 21);
             this.lblEnd.TabIndex = 1;
             this.lblEnd.Text = "To";
             this.lblEnd.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -143,22 +145,27 @@
             // dtpStart
             // 
             this.dtpStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpStart.Location = new System.Drawing.Point(100, 13);
-            this.dtpStart.MaximumSize = new System.Drawing.Size(200, 30);
+            this.dtpStart.CalendarForeColor = System.Drawing.Color.CornflowerBlue;
+            this.dtpStart.CalendarTitleForeColor = System.Drawing.Color.CornflowerBlue;
+            this.dtpStart.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpStart.Location = new System.Drawing.Point(100, 11);
+            this.dtpStart.MaximumSize = new System.Drawing.Size(400, 30);
             this.dtpStart.MinimumSize = new System.Drawing.Size(50, 20);
             this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(200, 23);
+            this.dtpStart.Size = new System.Drawing.Size(222, 27);
             this.dtpStart.TabIndex = 0;
             this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // dtpEnd
             // 
             this.dtpEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpEnd.Location = new System.Drawing.Point(425, 13);
-            this.dtpEnd.MaximumSize = new System.Drawing.Size(200, 30);
+            this.dtpEnd.CalendarFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpEnd.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpEnd.Location = new System.Drawing.Point(425, 11);
+            this.dtpEnd.MaximumSize = new System.Drawing.Size(350, 30);
             this.dtpEnd.MinimumSize = new System.Drawing.Size(50, 20);
             this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(200, 23);
+            this.dtpEnd.Size = new System.Drawing.Size(224, 27);
             this.dtpEnd.TabIndex = 1;
             this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
             // 
@@ -166,9 +173,11 @@
             // 
             this.lblStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStart.AutoSize = true;
-            this.lblStart.Location = new System.Drawing.Point(3, 17);
+            this.lblStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblStart.ForeColor = System.Drawing.Color.Black;
+            this.lblStart.Location = new System.Drawing.Point(3, 14);
             this.lblStart.Name = "lblStart";
-            this.lblStart.Size = new System.Drawing.Size(91, 15);
+            this.lblStart.Size = new System.Drawing.Size(91, 21);
             this.lblStart.TabIndex = 0;
             this.lblStart.Text = "From";
             this.lblStart.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -182,6 +191,7 @@
             this.dgvConferences.GridColor = System.Drawing.Color.White;
             this.dgvConferences.Location = new System.Drawing.Point(66, 57);
             this.dgvConferences.Name = "dgvConferences";
+            this.dgvConferences.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvConferences.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvConferences.Size = new System.Drawing.Size(652, 356);
             this.dgvConferences.TabIndex = 1;
@@ -241,9 +251,10 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 16);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(3, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 15);
+            this.label2.Size = new System.Drawing.Size(91, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "From";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -252,9 +263,10 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(328, 16);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(328, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 15);
+            this.label3.Size = new System.Drawing.Size(91, 20);
             this.label3.TabIndex = 1;
             this.label3.Text = "To";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -262,21 +274,23 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(100, 12);
-            this.dateTimePicker1.MaximumSize = new System.Drawing.Size(200, 30);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dateTimePicker1.Location = new System.Drawing.Point(100, 10);
+            this.dateTimePicker1.MaximumSize = new System.Drawing.Size(350, 30);
             this.dateTimePicker1.MinimumSize = new System.Drawing.Size(50, 20);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(222, 27);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(425, 12);
-            this.dateTimePicker2.MaximumSize = new System.Drawing.Size(200, 30);
+            this.dateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dateTimePicker2.Location = new System.Drawing.Point(425, 10);
+            this.dateTimePicker2.MaximumSize = new System.Drawing.Size(350, 30);
             this.dateTimePicker2.MinimumSize = new System.Drawing.Size(50, 20);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker2.Size = new System.Drawing.Size(224, 27);
             this.dateTimePicker2.TabIndex = 3;
             // 
             // tableLayoutPanel4
