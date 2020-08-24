@@ -16,7 +16,6 @@ namespace ConferencePlanner.WinUi
 
     {
         private readonly IConferenceRepository _getConferenceRepository;
-        public List<ConferenceModel> Conferences { get; set; }
 
 
         public HomePage(IConferenceRepository getConferenceRepository)
@@ -36,7 +35,6 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            //  var conferences = this.Conferences;
             dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Starts";
@@ -199,7 +197,21 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Form2 addConferinceForm = new Form2();
+            addConferinceForm.ShowDialog();
+        }
 
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

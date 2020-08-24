@@ -174,6 +174,7 @@
             this.dgvConferences.Size = new System.Drawing.Size(646, 326);
             this.dgvConferences.TabIndex = 1;
             this.dgvConferences.Text = "dataGridView1";
+            this.dgvConferences.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferences_CellContentClick);
             // 
             // OrganizerTab
             // 
@@ -202,6 +203,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(786, 416);
             this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // tableLayoutPanel3
             // 
@@ -281,14 +283,11 @@
             // 
             // dgvOrganiser
             // 
-            this.dgvOrganiser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrganiser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOrganiser.Location = new System.Drawing.Point(3, 3);
             this.dgvOrganiser.Name = "dgvOrganiser";
             this.dgvOrganiser.Size = new System.Drawing.Size(646, 296);
             this.dgvOrganiser.TabIndex = 0;
-            this.dgvOrganiser.Text = "dataGridView1";
-            this.dgvOrganiser.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
@@ -299,6 +298,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Add Conference";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // HomePage
             // 
@@ -324,13 +324,7 @@
             this.ResumeLayout(false);
 
         }
-
-
-
         #endregion
-
-
-
         private System.Windows.Forms.TabControl MainPageTab;
         private System.Windows.Forms.TabPage SpectatorTab;
         private System.Windows.Forms.TabPage OrganizerTab;
@@ -351,6 +345,5 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.DataGridView dgvOrganiser;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dgvOrganizer;
     }
 }

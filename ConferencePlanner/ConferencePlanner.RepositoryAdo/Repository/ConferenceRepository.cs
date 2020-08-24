@@ -23,7 +23,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         public void InsertParticipant(string conferenceName, string spectatorEmail)
         {
-            SqlParameter[] parameters = new SqlParameter[2];   
+            SqlParameter[] parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@Name", conferenceName);
             parameters[1] = new SqlParameter("@Email", spectatorEmail);
 
@@ -39,7 +39,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
-      
+
         public void ModifySpectatorStatusWithdraw(string spectatorEmail, string conferenceName)
         {
 
@@ -66,7 +66,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     "                     INNER JOIN Location l ON c.LocationId = l.LocationId";
             }
 
-            if (name == "organiser") {
+            if (name == "organiser")
+            {
                 sqlCommand.CommandText = "SELECT c.ConferenceName, c.StartDate, c.EndDate,'', dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, l.LocationAddress, s.DictionarySpeakerName" +
                     "                     FROM DictionarySpeaker s" +
                     "                     INNER JOIN ConferenceXSpeaker cxs ON s.DictionarySpeakerId = cxs.DictionarySpeakerId AND cxs.IsMain = 1" +
@@ -100,6 +101,29 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlDataReader.Close();
 
             return conferences;
+        }
+
+        public List<string> GetCountry(string name)
+        {
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            if (name == "add")
+            {
+                sqlCommand.CommandText = "SELECT DictionaryCountryName" +
+                    "                     FROM DictionaryCountry";
+            }
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            List<string> countries = new List<string>();
+
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    countries.Add(new string(sqlDataReader.GetString("DictioanryCountryName")));
+                }
+
+            }
+            sqlDataReader.Close();
+            return countries;
         }
     }
 }

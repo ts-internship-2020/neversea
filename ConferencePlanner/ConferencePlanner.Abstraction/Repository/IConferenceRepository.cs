@@ -11,5 +11,7 @@ namespace ConferencePlanner.Abstraction.Repository
         void ModifySpectatorStatusWithdraw(string spectatorEmail, string conferenceName);
         void ModifySpectatorStatusJoin(string spectatorEmail, string conferenceName);
         public List<ConferenceModel> GetConference(string name);
+
+        public List<string> GetCountry(string name);
     }
 }
