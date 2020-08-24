@@ -179,5 +179,28 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             return conferences;
         }
+
+        public List<string> GetCountry(string name)
+        {
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            if (name == "add")
+            {
+                sqlCommand.CommandText = "SELECT DictionaryCountryName" +
+                    "                     FROM DictionaryCountry";
+            }
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            List<string> countries = new List<string>();
+
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    countries.Add(new string(sqlDataReader.GetString("DictioanryCountryName")));
+                }
+
+            }
+            sqlDataReader.Close();
+            return countries;
+        }
     }
 }
