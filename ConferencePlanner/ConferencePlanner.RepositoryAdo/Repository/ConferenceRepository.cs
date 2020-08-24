@@ -143,5 +143,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             return conferences;
         }
+        public void SelectSpeakerDetail(int SpeakerId)
+        {
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@Id", SpeakerId);
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = $"SELECT DictionarySpeakerName from DictionarySpeaker where DictionarySpeakerId=@Id";
+            sqlCommand.ExecuteNonQuery();
+        }
     }
 }
