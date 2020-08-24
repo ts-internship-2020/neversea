@@ -36,16 +36,16 @@
             this.txtBoxName = new System.Windows.Forms.TextBox();
             this.txtBoxNationality = new System.Windows.Forms.TextBox();
             this.txtBoxRating = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.picBoxLike1 = new System.Windows.Forms.PictureBox();
+            this.picBoxLike2 = new System.Windows.Forms.PictureBox();
+            this.picBoxLike3 = new System.Windows.Forms.PictureBox();
+            this.picBoxLike4 = new System.Windows.Forms.PictureBox();
+            this.picBoxLike5 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike5)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -113,61 +113,61 @@
             this.txtBoxRating.TabIndex = 4;
             this.txtBoxRating.TextChanged += new System.EventHandler(this.txtBoxName_TextChanged);
             // 
-            // pictureBox1
+            // picBoxLike1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(231, 250);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 23);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.picBoxLike1.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike1.Image")));
+            this.picBoxLike1.Location = new System.Drawing.Point(231, 250);
+            this.picBoxLike1.Name = "picBoxLike1";
+            this.picBoxLike1.Size = new System.Drawing.Size(28, 23);
+            this.picBoxLike1.TabIndex = 5;
+            this.picBoxLike1.TabStop = false;
             // 
-            // pictureBox2
+            // picBoxLike2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(265, 250);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(28, 23);
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
+            this.picBoxLike2.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike2.Image")));
+            this.picBoxLike2.Location = new System.Drawing.Point(265, 250);
+            this.picBoxLike2.Name = "picBoxLike2";
+            this.picBoxLike2.Size = new System.Drawing.Size(28, 23);
+            this.picBoxLike2.TabIndex = 5;
+            this.picBoxLike2.TabStop = false;
             // 
-            // pictureBox3
+            // picBoxLike3
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(299, 250);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(28, 23);
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
+            this.picBoxLike3.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike3.Image")));
+            this.picBoxLike3.Location = new System.Drawing.Point(299, 250);
+            this.picBoxLike3.Name = "picBoxLike3";
+            this.picBoxLike3.Size = new System.Drawing.Size(28, 23);
+            this.picBoxLike3.TabIndex = 5;
+            this.picBoxLike3.TabStop = false;
             // 
-            // pictureBox4
+            // picBoxLike4
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(333, 250);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(28, 23);
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
+            this.picBoxLike4.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike4.Image")));
+            this.picBoxLike4.Location = new System.Drawing.Point(333, 250);
+            this.picBoxLike4.Name = "picBoxLike4";
+            this.picBoxLike4.Size = new System.Drawing.Size(28, 23);
+            this.picBoxLike4.TabIndex = 5;
+            this.picBoxLike4.TabStop = false;
             // 
-            // pictureBox5
+            // picBoxLike5
             // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(367, 250);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(28, 23);
-            this.pictureBox5.TabIndex = 5;
-            this.pictureBox5.TabStop = false;
+            this.picBoxLike5.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike5.Image")));
+            this.picBoxLike5.Location = new System.Drawing.Point(367, 250);
+            this.picBoxLike5.Name = "picBoxLike5";
+            this.picBoxLike5.Size = new System.Drawing.Size(28, 23);
+            this.picBoxLike5.TabIndex = 5;
+            this.picBoxLike5.TabStop = false;
             // 
             // FormSpeakerDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 411);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picBoxLike5);
+            this.Controls.Add(this.picBoxLike4);
+            this.Controls.Add(this.picBoxLike3);
+            this.Controls.Add(this.picBoxLike2);
+            this.Controls.Add(this.picBoxLike1);
             this.Controls.Add(this.txtBoxRating);
             this.Controls.Add(this.txtBoxNationality);
             this.Controls.Add(this.txtBoxName);
@@ -177,11 +177,11 @@
             this.Controls.Add(this.label1);
             this.Name = "FormSpeakerDetails";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLike5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,10 +196,10 @@
         private System.Windows.Forms.TextBox txtBoxName;
         private System.Windows.Forms.TextBox txtBoxNationality;
         private System.Windows.Forms.TextBox txtBoxRating;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox picBoxLike1;
+        private System.Windows.Forms.PictureBox picBoxLike2;
+        private System.Windows.Forms.PictureBox picBoxLike3;
+        private System.Windows.Forms.PictureBox picBoxLike4;
+        private System.Windows.Forms.PictureBox picBoxLike5;
     }
 }
