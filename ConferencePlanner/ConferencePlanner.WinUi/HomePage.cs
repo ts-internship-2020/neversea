@@ -178,11 +178,6 @@ namespace ConferencePlanner.WinUi
         {
 
         }
-
-        private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
 
