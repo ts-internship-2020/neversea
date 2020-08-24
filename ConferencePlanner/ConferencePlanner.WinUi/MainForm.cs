@@ -20,14 +20,21 @@ namespace ConferencePlanner.WinUi
         public MainForm(IConferenceRepository ConferenceRepository)
         {
             conferenceRepository = ConferenceRepository;
-          
-            InitializeComponent();
-        
-        }
 
+            InitializeComponent();
+
+        }
+        public void Alert(string msg)
+        {
+            FormAlert frm = new FormAlert();
+            frm.showAlert(msg);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (chkb_email.Checked)
+            
+            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+            if ((chkb_email.Checked) && (Regex.IsMatch(tb_email.Text, pattern)))
             {
                 Properties.Settings.Default.Email = tb_email.Text;
                 Properties.Settings.Default.Save();
@@ -37,22 +44,24 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Email = "";
                 Properties.Settings.Default.Save();
             }
-                string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
             HomePage homePage = new HomePage(conferenceRepository);
-            if (Regex.IsMatch(tb_email.Text, pattern)){
+            if (Regex.IsMatch(tb_email.Text, pattern))
+            {
+                string emailCopy = this.tb_email.Text;
+                HomePage homepage = new HomePage(emailCopy);
                 homePage.Show();
+                this.Hide();
             }
-            //var x = _getDemoRepository.GetDemo("hello");
-
-            //lb_hello.Text = x.FirstOrDefault().Name;
-            //listBox1.DataSource = x;
-            //listBox1.DisplayMember = "Name";
+            if (tb_email.Text=="")
+            {
+                this.Alert("Email is empty");
+            }
+           
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if(Properties.Settings.Default.Email!=string.Empty)
+            if (Properties.Settings.Default.Email != string.Empty)
             {
                 tb_email.Text = Properties.Settings.Default.Email;
             }
@@ -91,12 +100,7 @@ namespace ConferencePlanner.WinUi
             if (tb_email.ForeColor == Color.Black)
                 return;
             tb_email.Text = "";
-            tb_email.ForeColor = Color.Black; 
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            tb_email.ForeColor = Color.Black;
 
         }
     }
