@@ -44,13 +44,11 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Email = "";
                 Properties.Settings.Default.Save();
             }
+            string emailCopy = this.tb_email.Text;
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy);
             if (Regex.IsMatch(tb_email.Text, pattern))
-            {          
-                string emailCopy = this.tb_email.Text;
-                HomePage homePage = new HomePage(conferenceRepository, emailCopy);
-
+            {
                 
-               // HomePage homepage = new HomePage(emailCopy);
                 homePage.Show();
                 this.Hide();
             }
