@@ -35,6 +35,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             this.MainPageTab = new System.Windows.Forms.TabControl();
             this.SpectatorTab = new System.Windows.Forms.TabPage();
             this.tlpSpectator = new System.Windows.Forms.TableLayoutPanel();
@@ -169,8 +170,11 @@
             // 
             // dgvConferences
             // 
-            this.dgvConferences.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvConferences.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvConferences.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConferences.Location = new System.Drawing.Point(69, 52);
             this.dgvConferences.Name = "dgvConferences";
@@ -307,6 +311,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.MainPageTab);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomePage";
             this.Text = "MainPage";
             this.Load += new System.EventHandler(this.MainPage_Load);

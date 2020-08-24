@@ -14,5 +14,6 @@ namespace ConferencePlanner.Abstraction.Repository
         void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId);
         public List<ConferenceModel> GetConference(string name);
         public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate);
+        
     }
 }
