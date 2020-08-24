@@ -32,7 +32,7 @@ namespace ConferencePlanner.WinUi
 
         private void txtBoxName_TextChanged(object sender, EventArgs e)
         {
-            _getConferenceRepository.SelectSpeakerDetail(1);
+            //_getConferenceRepository.SelectSpeakerDetail(1);
         }
 
     }
