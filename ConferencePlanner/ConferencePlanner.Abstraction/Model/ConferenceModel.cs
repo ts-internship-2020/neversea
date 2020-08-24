@@ -6,7 +6,10 @@ namespace ConferencePlanner.Abstraction.Model
 {
    public class ConferenceModel
     {
+
         public String conferenceName { get; set; }
+
+        public int conferenceId { get; set; }
 
         public String conferenceType { get; set; }
 
