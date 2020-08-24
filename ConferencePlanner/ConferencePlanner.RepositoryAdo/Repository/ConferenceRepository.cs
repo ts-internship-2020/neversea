@@ -117,8 +117,16 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
 
-            sqlCommand.CommandText = "EXEC spConferences_GetByEmailOrdByStatus @Email='aaaaaaaa@gmail.com', @StartDate = '20200820', @EndDate = '20200825'";
-            
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@Email", "aaaaaaaa@gmail.com"));
+
+            sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
+            sqlCommand.Parameters.Add(new SqlParameter("@EndDate", endDate));
+
+            sqlCommand.CommandText = "spConferences_GetByEmailOrdByStatus";
+
+
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             List<ConferenceModel> conferences = new List<ConferenceModel>();
 

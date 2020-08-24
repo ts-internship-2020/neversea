@@ -26,19 +26,16 @@ namespace ConferencePlanner.WinUi
 
             InitializeComponent();
 
-            /*
-             * URMEAZA SA IMPLEMENTEZ, NU STERGETI PLS
+
             DateTime now = DateTime.Now;
+
             dtpStart.Value = now.AddMonths(-1);
             dtpEnd.Value = now.AddMonths(1);
-            */
 
 
         }
 
      
-
-
         public HomePage()
         {
             InitializeComponent();
@@ -46,17 +43,7 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
-            //           dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
-            this.dgvConferences.Columns[1].Visible = false;
-
-            dgvConferences.Columns[0].HeaderText = "Title";
-            dgvConferences.Columns[1].HeaderText = "Id";
-            dgvConferences.Columns[2].HeaderText = "Type";
-            dgvConferences.Columns[3].HeaderText = "Duration";
-            dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Address";
-            dgvConferences.Columns[6].HeaderText = "Speaker";
+            WireUpSpectator();
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
@@ -100,92 +87,18 @@ namespace ConferencePlanner.WinUi
         }
 
 
-
-        private void label1_Click(object sender, EventArgs e)
+        private void dtpStart_ValueChanged(Object sender, EventArgs e)
         {
-
+            dtpEnd.MinDate = dtpStart.Value;
+            WireUpSpectator();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void dtpEnd_ValueChanged(Object sender, EventArgs e)
         {
-
+            WireUpSpectator();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel3_Paint(object sender, EventArgs e)
-        {
-
-        }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-     
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        
-
-        }
-
-        private void OrganizerTab_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -203,6 +116,21 @@ namespace ConferencePlanner.WinUi
             {
 
             }
+        }
+
+        private void WireUpSpectator()
+        {
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+
+            this.dgvConferences.Columns[1].Visible = false;
+
+            dgvConferences.Columns[0].HeaderText = "Title";
+            dgvConferences.Columns[1].HeaderText = "Id";
+            dgvConferences.Columns[2].HeaderText = "Type";
+            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[4].HeaderText = "Category";
+            dgvConferences.Columns[5].HeaderText = "Address";
+            dgvConferences.Columns[6].HeaderText = "Speaker";
         }
     }
 }
