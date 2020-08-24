@@ -2,6 +2,7 @@
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
 using Microsoft.Toolkit.Forms.UI.Controls;
+using Microsoft.Toolkit.Win32.UI.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,17 +19,19 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         public List<ConferenceModel> Conferences { get; set; }
+        public string emailCopyFromMainForm;
 
-        public HomePage(String emailCopy)
+
+        public HomePage()
         {
             InitializeComponent();
-            string emailCopyFromMainForm;
+            
         }
-        public HomePage(IConferenceRepository getConferenceRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy)
         {
 
             _getConferenceRepository = getConferenceRepository;
-
+            emailCopyFromMainForm = emailCopy;
             InitializeComponent();
 
             /*
@@ -44,15 +47,12 @@ namespace ConferencePlanner.WinUi
      
 
 
-        public HomePage()
-        {
-            InitializeComponent();
-        }
+        
 
         private void MainPage_Load(object sender, EventArgs e)
         {
             dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
-            //           dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
+               // dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             this.dgvConferences.Columns[1].Visible = false;
 
             dgvConferences.Columns[0].HeaderText = "Title";
@@ -197,23 +197,26 @@ namespace ConferencePlanner.WinUi
 
             string email = "Andrei.Stancescu@totalsoft.ro";
             string confName;
+            int confId;
 
             if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
-                    WebView webView = new WebView();
-                    webView.Show();
-                    webView.Navigate(new Uri(@"www.google.com"));
+
+                    WebViewForm webViewForm = new WebViewForm();
+                    webViewForm.Show();
 
                 }
 
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
                 {
                     dgvConferences.CurrentRow.Selected = true;
-                    confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
-                    _getConferenceRepository.InsertParticipant(confName, email);
-                    _getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
+                    confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
+                    //confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                    _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+                    //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
+
 
 
                 }
@@ -221,8 +224,9 @@ namespace ConferencePlanner.WinUi
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
                 {
                     dgvConferences.CurrentRow.Selected = true;
-                    confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
-                    _getConferenceRepository.ModifySpectatorStatusWithdraw(confName, email);
+                    confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
+                   // confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                    _getConferenceRepository.ModifySpectatorStatusWithdraw( emailCopyFromMainForm,confId);
                 }
             }
         }
