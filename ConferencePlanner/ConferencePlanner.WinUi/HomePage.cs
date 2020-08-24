@@ -110,23 +110,7 @@ namespace ConferencePlanner.WinUi
 
 
 
-        private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
-            {
-
-            }
-
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
-            {
-               
-            }
-
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
-            {
-
-            }
-        }
+      
 
         private void WireUpSpectator()
         {
@@ -134,45 +118,14 @@ namespace ConferencePlanner.WinUi
 
             this.dgvConferences.Columns[1].Visible = false;
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel3_Paint(object sender, EventArgs e)
-        {
-
-        }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-     
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        
-
-        }
-
-        private void OrganizerTab_Click(object sender, EventArgs e)
-        {
-
+            dgvConferences.Columns[0].HeaderText = "Title";
+            dgvConferences.Columns[1].HeaderText = "Id";
+            dgvConferences.Columns[2].HeaderText = "Type";
+            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[4].HeaderText = "Category";
+            dgvConferences.Columns[5].HeaderText = "Address";
+            dgvConferences.Columns[6].HeaderText = "Speaker";
         }
 
         private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -212,13 +165,7 @@ namespace ConferencePlanner.WinUi
                     _getConferenceRepository.ModifySpectatorStatusWithdraw( emailCopyFromMainForm,confId);
                 }
             }
-            dgvConferences.Columns[0].HeaderText = "Title";
-            dgvConferences.Columns[1].HeaderText = "Id";
-            dgvConferences.Columns[2].HeaderText = "Type";
-            dgvConferences.Columns[3].HeaderText = "Duration";
-            dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Address";
-            dgvConferences.Columns[6].HeaderText = "Speaker";
+   
         }
     }
 }
