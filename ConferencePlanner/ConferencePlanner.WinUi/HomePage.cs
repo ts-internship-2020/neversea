@@ -19,7 +19,11 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceRepository _getConferenceRepository;
         public List<ConferenceModel> Conferences { get; set; }
 
-
+        public HomePage(String emailCopy)
+        {
+            InitializeComponent();
+            string emailCopyFromMainForm;
+        }
         public HomePage(IConferenceRepository getConferenceRepository)
         {
 
