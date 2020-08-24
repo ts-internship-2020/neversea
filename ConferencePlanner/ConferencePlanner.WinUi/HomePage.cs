@@ -26,6 +26,14 @@ namespace ConferencePlanner.WinUi
 
             InitializeComponent();
 
+            /*
+             * URMEAZA SA IMPLEMENTEZ, NU STERGETI PLS
+            DateTime now = DateTime.Now;
+            dtpStart.Value = now.AddMonths(-1);
+            dtpEnd.Value = now.AddMonths(1);
+            */
+
+
         }
 
 
@@ -36,7 +44,8 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+ //           dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Type";
             dgvConferences.Columns[2].HeaderText = "Duration";
