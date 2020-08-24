@@ -47,13 +47,16 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {
             dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
- //           dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
+            //           dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
+            this.dgvConferences.Columns[1].Visible = false;
+
             dgvConferences.Columns[0].HeaderText = "Title";
-            dgvConferences.Columns[1].HeaderText = "Type";
-            dgvConferences.Columns[2].HeaderText = "Duration";
-            dgvConferences.Columns[3].HeaderText = "Category";
-            dgvConferences.Columns[4].HeaderText = "Address";
-            dgvConferences.Columns[5].HeaderText = "Speaker";
+            dgvConferences.Columns[1].HeaderText = "Id";
+            dgvConferences.Columns[2].HeaderText = "Type";
+            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[4].HeaderText = "Category";
+            dgvConferences.Columns[5].HeaderText = "Address";
+            dgvConferences.Columns[6].HeaderText = "Speaker";
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
@@ -63,7 +66,7 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[4].HeaderText = "Address";
             dgvOrganiser.Columns[5].HeaderText = "Speaker";
 
-            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
+//            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
             DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn
             {
                 HeaderText = "Join",
