@@ -86,8 +86,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     conferences.Add(new ConferenceModel()
                     {
                         conferenceName = sqlDataReader.GetString("ConferenceName"),
-                        conferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
-                        conferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
+ //                       conferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
+ //                       conferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
                         conferencePeriod = ((TimeSpan)(sqlDataReader.GetDateTime("EndDate") - sqlDataReader.GetDateTime("StartDate"))).Days,
                         conferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
                         conferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),

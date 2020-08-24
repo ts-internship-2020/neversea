@@ -36,26 +36,21 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            //  var conferences = this.Conferences;
             dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             dgvConferences.Columns[0].HeaderText = "Title";
-            dgvConferences.Columns[1].HeaderText = "Starts";
-            dgvConferences.Columns[2].HeaderText = "Ends";
-            dgvConferences.Columns[3].HeaderText = "Duration";
-            dgvConferences.Columns[4].HeaderText = "Type";
-            dgvConferences.Columns[5].HeaderText = "Category";
-            dgvConferences.Columns[6].HeaderText = "Address";
-            dgvConferences.Columns[7].HeaderText = "Speaker";
+            dgvConferences.Columns[1].HeaderText = "Type";
+            dgvConferences.Columns[2].HeaderText = "Duration";
+            dgvConferences.Columns[3].HeaderText = "Category";
+            dgvConferences.Columns[4].HeaderText = "Address";
+            dgvConferences.Columns[5].HeaderText = "Speaker";
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
-            dgvOrganiser.Columns[1].HeaderText = "Starts";
-            dgvOrganiser.Columns[2].HeaderText = "Ends";
-            dgvOrganiser.Columns[3].HeaderText = "Duration";
-            dgvOrganiser.Columns[4].HeaderText = "Type";
-            dgvOrganiser.Columns[5].HeaderText = "Category";
-            dgvOrganiser.Columns[6].HeaderText = "Address";
-            dgvOrganiser.Columns[7].HeaderText = "Speaker";
+            dgvOrganiser.Columns[1].HeaderText = "Type";
+            dgvOrganiser.Columns[2].HeaderText = "Duration";
+            dgvOrganiser.Columns[3].HeaderText = "Category";
+            dgvOrganiser.Columns[4].HeaderText = "Address";
+            dgvOrganiser.Columns[5].HeaderText = "Speaker";
 
             DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
 
