@@ -34,12 +34,11 @@ namespace ConferencePlanner.WinUi
             emailCopyFromMainForm = emailCopy;
             InitializeComponent();
 
-            /*
-             * URMEAZA SA IMPLEMENTEZ, NU STERGETI PLS
+
             DateTime now = DateTime.Now;
+
             dtpStart.Value = now.AddMonths(-1);
             dtpEnd.Value = now.AddMonths(1);
-            */
 
 
         }
@@ -51,17 +50,10 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {
+            WireUpSpectator();
             dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
                // dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             this.dgvConferences.Columns[1].Visible = false;
-
-            dgvConferences.Columns[0].HeaderText = "Title";
-            dgvConferences.Columns[1].HeaderText = "Id";
-            dgvConferences.Columns[2].HeaderText = "Type";
-            dgvConferences.Columns[3].HeaderText = "Duration";
-            dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Address";
-            dgvConferences.Columns[6].HeaderText = "Speaker";
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
@@ -105,51 +97,42 @@ namespace ConferencePlanner.WinUi
         }
 
 
-
-        private void label1_Click(object sender, EventArgs e)
+        private void dtpStart_ValueChanged(Object sender, EventArgs e)
         {
-
+            dtpEnd.MinDate = dtpStart.Value;
+            WireUpSpectator();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void dtpEnd_ValueChanged(Object sender, EventArgs e)
         {
-
+            WireUpSpectator();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
 
+
+        private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+            {
+
+            }
+
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+            {
+               
+            }
+
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+            {
+
+            }
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void WireUpSpectator()
         {
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
 
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+            this.dgvConferences.Columns[1].Visible = false;
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -229,6 +212,13 @@ namespace ConferencePlanner.WinUi
                     _getConferenceRepository.ModifySpectatorStatusWithdraw( emailCopyFromMainForm,confId);
                 }
             }
+            dgvConferences.Columns[0].HeaderText = "Title";
+            dgvConferences.Columns[1].HeaderText = "Id";
+            dgvConferences.Columns[2].HeaderText = "Type";
+            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[4].HeaderText = "Category";
+            dgvConferences.Columns[5].HeaderText = "Address";
+            dgvConferences.Columns[6].HeaderText = "Speaker";
         }
     }
 }
