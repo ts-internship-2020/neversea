@@ -1,6 +1,7 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
+using Microsoft.Toolkit.Forms.UI.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,7 +41,7 @@ namespace ConferencePlanner.WinUi
         {
             //  var conferences = this.Conferences;
             dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
-            dgvConferences.Columns[0].HeaderText = "Title";
+            dgvConferences.Columns[0].HeaderText = "Title"; 
             dgvConferences.Columns[1].HeaderText = "Starts";
             dgvConferences.Columns[2].HeaderText = "Ends";
             dgvConferences.Columns[3].HeaderText = "Duration";
@@ -59,7 +60,7 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[6].HeaderText = "Address";
             dgvOrganiser.Columns[7].HeaderText = "Speaker";
 
-            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
+
             DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn
             {
                 HeaderText = "Join",
@@ -182,19 +183,36 @@ namespace ConferencePlanner.WinUi
 
         private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+
+            string email = "Andrei.Stancescu@totalsoft.ro";
+            string confName;
+
+            if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
+                if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+                {
+                    WebView webView = new WebView();
+                    webView.Show();
+                    webView.Navigate(new Uri(@"www.google.com"));
 
-            }
+                }
 
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
-            {
-               
-            }
+                else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+                {
+                    dgvConferences.CurrentRow.Selected = true;
+                    confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                    _getConferenceRepository.InsertParticipant(confName, email);
+                    _getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
 
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
-            {
 
+                }
+
+                else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+                {
+                    dgvConferences.CurrentRow.Selected = true;
+                    confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                    _getConferenceRepository.ModifySpectatorStatusWithdraw(confName, email);
+                }
             }
         }
     }

@@ -41,6 +41,7 @@
             // btn_enterEmail
             // 
             this.btn_enterEmail.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_enterEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_enterEmail.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_enterEmail.Location = new System.Drawing.Point(269, 300);
             this.btn_enterEmail.Name = "btn_enterEmail";
@@ -103,11 +104,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(640, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.chkb_email);
             this.Controls.Add(this.lb_hello);
             this.Controls.Add(this.lb_email);
             this.Controls.Add(this.tb_email);
             this.Controls.Add(this.btn_enterEmail);
+            this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";

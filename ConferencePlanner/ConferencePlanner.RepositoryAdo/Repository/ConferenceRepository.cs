@@ -24,16 +24,16 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
 
-        public void InsertParticipant(string conferenceName, string spectatorEmail)
+        public void InsertParticipant(string conferenceId, string spectatorEmail)
         {
             SqlParameter[] parameters = new SqlParameter[2];   
-            parameters[0] = new SqlParameter("@Name", conferenceName);
+            parameters[0] = new SqlParameter("@Id", conferenceId);
             parameters[1] = new SqlParameter("@Email", spectatorEmail);
 
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"insert into ConferenceAttendance values((select c.ConferenceId from Conference c where c.ConferenceName like '@Name'), '@Email', 2, NULL)";
+            sqlCommand.CommandText = $"insert into ConferenceAttendance values(@Id, '@Emsail', 2, NULL)";
             sqlCommand.ExecuteNonQuery();
-        }
+                }
 
         public void ModifySpectatorStatusAttend(string conferenceName, string spectatorEmail)
         {
@@ -90,7 +90,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             if (name == "organiser") {
 
-                sqlCommand.CommandText = "SELECT c.ConferenceName, c.StartDate, c.EndDate,'', dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, l.LocationAddress, s.DictionarySpeakerName" +
+                sqlCommand.CommandText = "SELECT c.StartDate, c.EndDate,'', dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, l.LocationAddress, s.DictionarySpeakerName" +
                     "                     FROM DictionarySpeaker s" +
                     "                     INNER JOIN ConferenceXSpeaker cxs ON s.DictionarySpeakerId = cxs.DictionarySpeakerId AND cxs.IsMain = 1" +
                     "                     INNER JOIN Conference c ON cxs.ConferenceId = c.ConferenceId" +
@@ -108,6 +108,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 {
                     conferences.Add(new ConferenceModel()
                     {
+                      //  conferenceID = sqlDataReader.GetInt32("ConferenceId"),
                         conferenceName = sqlDataReader.GetString("ConferenceName"),
                         conferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
                         conferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
@@ -116,7 +117,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                         conferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
                         conferenceAddress = sqlDataReader.GetString("LocationAddress"),
                         conferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
-                    });
+                    }); ;
                 }
             }
 
