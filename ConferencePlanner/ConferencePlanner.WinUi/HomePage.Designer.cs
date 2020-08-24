@@ -145,6 +145,7 @@
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(220, 23);
             this.dtpStart.TabIndex = 0;
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // dtpEnd
             // 
@@ -153,6 +154,7 @@
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(222, 23);
             this.dtpEnd.TabIndex = 1;
+            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
             // 
             // lblStart
             // 
@@ -167,10 +169,12 @@
             // 
             // dgvConferences
             // 
+            this.dgvConferences.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConferences.Location = new System.Drawing.Point(69, 52);
             this.dgvConferences.Name = "dgvConferences";
+            this.dgvConferences.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvConferences.Size = new System.Drawing.Size(646, 326);
             this.dgvConferences.TabIndex = 1;
             this.dgvConferences.Text = "dataGridView1";
@@ -225,7 +229,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 48);
             this.tableLayoutPanel3.TabIndex = 0;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // label2
             // 
@@ -236,7 +239,6 @@
             this.label2.Size = new System.Drawing.Size(91, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "From";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // label3
             // 
@@ -247,7 +249,6 @@
             this.label3.Size = new System.Drawing.Size(91, 15);
             this.label3.TabIndex = 1;
             this.label3.Text = "To";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // dateTimePicker1
             // 
@@ -288,6 +289,7 @@
             this.dgvOrganiser.Name = "dgvOrganiser";
             this.dgvOrganiser.Size = new System.Drawing.Size(646, 296);
             this.dgvOrganiser.TabIndex = 0;
+            this.dgvOrganiser.Text = "dataGridView1";
             // 
             // button1
             // 

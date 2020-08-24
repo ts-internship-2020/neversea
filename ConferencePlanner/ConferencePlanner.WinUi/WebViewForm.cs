@@ -8,16 +8,12 @@ using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi
 {
-    public partial class Form1 : Form
+    public partial class WebViewForm : Form
     {
-        public Form1()
+        public WebViewForm()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            webView1.Navigate("https://google.ro");
         }
     }
 }
