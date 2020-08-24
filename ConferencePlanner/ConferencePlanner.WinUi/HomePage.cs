@@ -30,7 +30,17 @@ namespace ConferencePlanner.WinUi
 
             InitializeComponent();
 
+            /*
+             * URMEAZA SA IMPLEMENTEZ, NU STERGETI PLS
+            DateTime now = DateTime.Now;
+            dtpStart.Value = now.AddMonths(-1);
+            dtpEnd.Value = now.AddMonths(1);
+            */
+
+
         }
+
+     
 
 
         public HomePage()
@@ -40,40 +50,40 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            //  var conferences = this.Conferences;
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
+            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+ //           dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             dgvConferences.Columns[0].HeaderText = "Title";
-            dgvConferences.Columns[1].HeaderText = "Starts";
-            dgvConferences.Columns[2].HeaderText = "Ends";
-            dgvConferences.Columns[3].HeaderText = "Duration";
-            dgvConferences.Columns[4].HeaderText = "Type";
-            dgvConferences.Columns[5].HeaderText = "Category";
-            dgvConferences.Columns[6].HeaderText = "Address";
-            dgvConferences.Columns[7].HeaderText = "Speaker";
+            dgvConferences.Columns[1].HeaderText = "Type";
+            dgvConferences.Columns[2].HeaderText = "Duration";
+            dgvConferences.Columns[3].HeaderText = "Category";
+            dgvConferences.Columns[4].HeaderText = "Address";
+            dgvConferences.Columns[5].HeaderText = "Speaker";
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
-            dgvOrganiser.Columns[1].HeaderText = "Starts";
-            dgvOrganiser.Columns[2].HeaderText = "Ends";
-            dgvOrganiser.Columns[3].HeaderText = "Duration";
-            dgvOrganiser.Columns[4].HeaderText = "Type";
-            dgvOrganiser.Columns[5].HeaderText = "Category";
-            dgvOrganiser.Columns[6].HeaderText = "Address";
-            dgvOrganiser.Columns[7].HeaderText = "Speaker";
+            dgvOrganiser.Columns[1].HeaderText = "Type";
+            dgvOrganiser.Columns[2].HeaderText = "Duration";
+            dgvOrganiser.Columns[3].HeaderText = "Category";
+            dgvOrganiser.Columns[4].HeaderText = "Address";
+            dgvOrganiser.Columns[5].HeaderText = "Speaker";
 
             DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
-
-            buttonJoinColumn.HeaderText = "Join";
-            buttonJoinColumn.Name = "buttonJoinColumn";
-            buttonJoinColumn.UseColumnTextForButtonValue = true;
+            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn
+            {
+                HeaderText = "Join",
+                Name = "buttonJoinColumn",
+                Text = "Join",
+                UseColumnTextForButtonValue = true
+            };
 
             dgvConferences.Columns.Add(buttonJoinColumn);
 
             DataGridViewButtonColumn buttonAttendColumn = new DataGridViewButtonColumn();
 
-            buttonJoinColumn.HeaderText = "Attend";
-            buttonJoinColumn.Name = "buttonAttendColumn";
-            buttonJoinColumn.UseColumnTextForButtonValue = true;
+            buttonAttendColumn.HeaderText = "Attend";
+            buttonAttendColumn.Name = "buttonAttendColumn";
+            buttonAttendColumn.Text = "Attend";
+            buttonAttendColumn.UseColumnTextForButtonValue = true;
 
             dgvConferences.Columns.Add(buttonAttendColumn);
 
@@ -81,9 +91,10 @@ namespace ConferencePlanner.WinUi
 
             DataGridViewButtonColumn buttonWithdrawColumn = new DataGridViewButtonColumn();
 
-            buttonJoinColumn.HeaderText = "Withdraw";
-            buttonJoinColumn.Name = "buttonWithdrawColumn";
-            buttonJoinColumn.UseColumnTextForButtonValue = true;
+            buttonWithdrawColumn.HeaderText = "Withdraw";
+            buttonWithdrawColumn.Name = "buttonWithdrawColumn";
+            buttonWithdrawColumn.Text = "Withdraw";
+            buttonWithdrawColumn.UseColumnTextForButtonValue = true;
 
             dgvConferences.Columns.Add(buttonWithdrawColumn);
 
@@ -164,37 +175,11 @@ namespace ConferencePlanner.WinUi
 
         }
 
-        public void update()
-        {
-         
-
-
-
-
-
-        }
-
-
-
-
-
+     
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
-            {
-
-            }
-
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
-            {
-
-            }
-
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
-            {
-
-            }
+        
 
         }
 
@@ -203,7 +188,23 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+            {
 
+            }
+
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+            {
+               
+            }
+
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+            {
+
+            }
+        }
     }
 }
 

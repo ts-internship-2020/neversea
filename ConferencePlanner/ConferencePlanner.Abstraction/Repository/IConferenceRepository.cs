@@ -8,8 +8,11 @@ namespace ConferencePlanner.Abstraction.Repository
    public interface IConferenceRepository
     {
         void InsertParticipant(string conferenceName, string spectatorEmail);
+        void ModifySpectatorStatusAttend(string conferenceName, string spectatorEmail);
+
         void ModifySpectatorStatusWithdraw(string spectatorEmail, string conferenceName);
         void ModifySpectatorStatusJoin(string spectatorEmail, string conferenceName);
         public List<ConferenceModel> GetConference(string name);
+        public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate);
     }
 }
