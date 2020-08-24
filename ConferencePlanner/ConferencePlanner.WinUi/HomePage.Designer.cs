@@ -176,6 +176,7 @@
             this.dgvConferences.Size = new System.Drawing.Size(646, 326);
             this.dgvConferences.TabIndex = 1;
             this.dgvConferences.Text = "dataGridView1";
+            this.dgvConferences.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferences_CellContentClick);
             // 
             // OrganizerTab
             // 
@@ -291,6 +292,14 @@
             this.dgvOrganiser.TabIndex = 0;
             this.dgvOrganiser.Text = "dataGridView1";
             this.dgvOrganiser.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(646, 296);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Text = "dataGridView1";
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 

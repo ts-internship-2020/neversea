@@ -36,6 +36,8 @@ namespace ConferencePlanner.WinUi
 
         }
 
+     
+
 
         public HomePage()
         {
@@ -62,18 +64,22 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[5].HeaderText = "Speaker";
 
             DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn();
-
-            buttonJoinColumn.HeaderText = "Join";
-            buttonJoinColumn.Name = "buttonJoinColumn";
-            buttonJoinColumn.UseColumnTextForButtonValue = true;
+            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn
+            {
+                HeaderText = "Join",
+                Name = "buttonJoinColumn",
+                Text = "Join",
+                UseColumnTextForButtonValue = true
+            };
 
             dgvConferences.Columns.Add(buttonJoinColumn);
 
             DataGridViewButtonColumn buttonAttendColumn = new DataGridViewButtonColumn();
 
-            buttonJoinColumn.HeaderText = "Attend";
-            buttonJoinColumn.Name = "buttonAttendColumn";
-            buttonJoinColumn.UseColumnTextForButtonValue = true;
+            buttonAttendColumn.HeaderText = "Attend";
+            buttonAttendColumn.Name = "buttonAttendColumn";
+            buttonAttendColumn.Text = "Attend";
+            buttonAttendColumn.UseColumnTextForButtonValue = true;
 
             dgvConferences.Columns.Add(buttonAttendColumn);
 
@@ -81,9 +87,10 @@ namespace ConferencePlanner.WinUi
 
             DataGridViewButtonColumn buttonWithdrawColumn = new DataGridViewButtonColumn();
 
-            buttonJoinColumn.HeaderText = "Withdraw";
-            buttonJoinColumn.Name = "buttonWithdrawColumn";
-            buttonJoinColumn.UseColumnTextForButtonValue = true;
+            buttonWithdrawColumn.HeaderText = "Withdraw";
+            buttonWithdrawColumn.Name = "buttonWithdrawColumn";
+            buttonWithdrawColumn.Text = "Withdraw";
+            buttonWithdrawColumn.UseColumnTextForButtonValue = true;
 
             dgvConferences.Columns.Add(buttonWithdrawColumn);
 
@@ -164,37 +171,11 @@ namespace ConferencePlanner.WinUi
 
         }
 
-        public void update()
-        {
-         
-
-
-
-
-
-        }
-
-
-
-
-
+     
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
-            {
-
-            }
-
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
-            {
-
-            }
-
-            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
-            {
-
-            }
+        
 
         }
 
@@ -203,7 +184,23 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+            {
 
+            }
+
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+            {
+               
+            }
+
+            else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+            {
+
+            }
+        }
     }
 }
 
