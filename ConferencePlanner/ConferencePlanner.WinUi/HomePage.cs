@@ -148,10 +148,10 @@ namespace ConferencePlanner.WinUi
 
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Id";
-            dgvConferences.Columns[2].HeaderText = "Type";
-            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[2].HeaderText = "Starts";
+            dgvConferences.Columns[3].HeaderText = "Ends";
             dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Address";
+            dgvConferences.Columns[5].HeaderText = "Location";
             dgvConferences.Columns[6].HeaderText = "Speaker";
         }
 
