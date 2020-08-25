@@ -187,6 +187,7 @@
             this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvConferences.BackgroundColor = System.Drawing.Color.White;
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConferences.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConferences.GridColor = System.Drawing.Color.White;
             this.dgvConferences.Location = new System.Drawing.Point(66, 57);
@@ -194,7 +195,7 @@
             this.dgvConferences.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvConferences.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvConferences.Size = new System.Drawing.Size(652, 356);
-            this.dgvConferences.TabIndex = 1;
+            this.dgvConferences.TabIndex = 0;
             this.dgvConferences.Text = "dataGridView1";
             this.dgvConferences.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferences_CellContentClick);
             // 
@@ -308,6 +309,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(652, 356);
             this.tableLayoutPanel4.TabIndex = 1;
+            this.tableLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
             // 
             // dgvOrganiser
             // 

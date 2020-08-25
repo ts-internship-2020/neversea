@@ -202,14 +202,58 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlDataReader.Close();
             return countries;
         }
-        public void SelectSpeakerDetail(int SpeakerId)
+
+        public SpeakerModel SelectSpeakerDetails(int speakerId)
         {
             SqlParameter[] parameters = new SqlParameter[1];
-            parameters[0] = new SqlParameter("@Id", SpeakerId);
+            parameters[0] = new SqlParameter("@Id", speakerId);
+            
+            
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = $"SELECT DictionarySpeakerName,DictionarySpeakerRating " +
+                                     $"from DictionarySpeaker where DictionarySpeakerId = @Id";
+            sqlCommand.Parameters.Add(parameters[0]);
+        
+        SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            SpeakerModel speaker = new SpeakerModel();
+            if (sqlDataReader.HasRows)
+            {
+                speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
+                //speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionarySpeakerCountry"));
+                //speaker.DictionarySpeakerRating = new float.Parse(sqlDataReader.GetString("DictionarySpeakerRating"));
+            }
+            return speaker;
+        }
+        public int getSpeakerId(string speakerName)
+        {
+
+            //SqlParameter[] parameters = new SqlParameter[2];
+            //parameters[0] = new SqlParameter("@Id", conferenceId);
+            //parameters[1] = new SqlParameter("@Email", spectatorEmail);
+
+
+
+            //SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            //sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 3 where ParticipantEmailAddress = @Email and ConferenceId = @Id";
+            //sqlCommand.Parameters.Add(parameters[0]);
+            //sqlCommand.Parameters.Add(parameters[1]);
+            int id=0;
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@Name", speakerName);
+
 
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"SELECT DictionarySpeakerName from DictionarySpeaker where DictionarySpeakerId=@Id";
-            sqlCommand.ExecuteNonQuery();
+            sqlCommand.CommandText = $"SELECT DictionarySpeakerId " +
+                                     $"from DictionarySpeaker where DictionarySpeakerName = '@Name'";
+
+            sqlCommand.Parameters.Add(parameters[0]);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            if (sqlDataReader.HasRows)
+            { 
+            id = sqlDataReader.GetInt32("DictionarySpeakerId");
+            }
+            return id;
         }
+        
     }
-}
+ };

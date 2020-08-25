@@ -43,16 +43,16 @@ namespace ConferencePlanner.WinUi
 
         }
 
-     
 
 
-        
+
+
 
         private void MainPage_Load(object sender, EventArgs e)
         {
             WireUpSpectator();
             dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
-               // dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
+            // dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
             this.dgvConferences.Columns[1].Visible = false;
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
@@ -62,7 +62,7 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[3].HeaderText = "Category";
             dgvOrganiser.Columns[4].HeaderText = "Address";
             dgvOrganiser.Columns[5].HeaderText = "Speaker";
-
+        
 
             DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn
             {
@@ -83,8 +83,8 @@ namespace ConferencePlanner.WinUi
 
             dgvConferences.Columns.Add(buttonAttendColumn);
 
-
-
+            
+          
             DataGridViewButtonColumn buttonWithdrawColumn = new DataGridViewButtonColumn();
 
             buttonWithdrawColumn.HeaderText = "Withdraw";
@@ -137,7 +137,14 @@ namespace ConferencePlanner.WinUi
 
             if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+                if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                {
+                    string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
+                    int speakerId = _getConferenceRepository.getSpeakerId(speakerName);
+                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository, speakerId);
+                    formSpeakerDetail.Show();
+                }
+                    if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
 
                     WebViewForm webViewForm = new WebViewForm();
@@ -154,7 +161,6 @@ namespace ConferencePlanner.WinUi
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
 
 
-
                 }
 
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
@@ -168,13 +174,25 @@ namespace ConferencePlanner.WinUi
    
         }
 
-        private void button1_Click(object sender, EventArgs e)
+       
+                private void button1_Click(object sender, EventArgs e)
         {
             Form2 addConferinceForm = new Form2();
             addConferinceForm.ShowDialog();
+  
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
         {
 
         }

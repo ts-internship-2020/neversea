@@ -1,4 +1,5 @@
-﻿using ConferencePlanner.Abstraction.Repository;
+﻿using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,10 +13,12 @@ namespace ConferencePlanner.WinUi
 
     public partial class FormSpeakerDetails : Form
     {
+        int SpeakerId;
+        SpeakerModel speaker = new SpeakerModel();
         private readonly IConferenceRepository _getConferenceRepository;
-        public FormSpeakerDetails(IConferenceRepository getConferenceRepository)
+        public FormSpeakerDetails(IConferenceRepository getConferenceRepository, int speakerId)
         {
-
+            SpeakerId = speakerId;
             _getConferenceRepository = getConferenceRepository;
 
             InitializeComponent();
@@ -29,11 +32,12 @@ namespace ConferencePlanner.WinUi
         {
 
         }
-
-        private void txtBoxName_TextChanged(object sender, EventArgs e)
+        
+        private void FormSpeakerDetails_Load(object sender, EventArgs e)
         {
-            //_getConferenceRepository.SelectSpeakerDetail(1);
+            speaker = _getConferenceRepository.SelectSpeakerDetails(SpeakerId);
+            lblName.Text = speaker.DictionarySpeakerName.ToString();
+            lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
         }
-
     }
 }
