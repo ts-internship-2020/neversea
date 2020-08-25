@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -20,6 +21,8 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceRepository _getConferenceRepository;
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
+        int pageSize = 20;
+        int pageNumber = 1;
 
 
         public HomePage()
@@ -51,9 +54,6 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {
             WireUpSpectator();
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
-               // dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
-            this.dgvConferences.Columns[1].Visible = false;
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
@@ -108,13 +108,21 @@ namespace ConferencePlanner.WinUi
             WireUpSpectator();
         }
 
-
-
       
 
         private void WireUpSpectator()
         {
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+            List<ConferenceModel> conferences = new List<ConferenceModel>();
+            conferences = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+
+            int pageCount = (int)Math.Ceiling((double)(conferences.Count / pageSize + 1));
+
+            if (pageNumber >= 1 && pageNumber <= pageCount)
+            {
+                IEnumerable<ConferenceModel> conferencesDisplayed = conferences.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                dgvConferences.DataSource = conferencesDisplayed;
+            }
+
 
             this.dgvConferences.Columns[1].Visible = false;
 
@@ -177,6 +185,35 @@ namespace ConferencePlanner.WinUi
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            pageNumber++;
+
+            btnBack.Enabled = true;
+
+            WireUpSpectator();
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            pageNumber--;
+
+            if (pageNumber < 0)
+            {
+                pageNumber = 0;
+                btnBack.Enabled = false;
+            }
+
+            WireUpSpectator();
+            
         }
     }
 }
