@@ -42,6 +42,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
         }
 
 
+ 
 
         public void ModifySpectatorStatusAttend(string conferenceName, string spectatorEmail)
         {
@@ -227,6 +228,37 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return speaker;
         }
+        public SpeakerModel getSelectSpeakerDetails(int speakerId)
+        {
+            SqlParameter[] parameters = new SqlParameter[1];
+            parameters[0] = new SqlParameter("@Id", speakerId);
+
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
+
+
+            sqlCommand.CommandText = $"SELECT DictionarySpeakerName,DictionarySpeakerRating " +
+                                     $"from DictionarySpeaker where DictionarySpeakerId = @Id";
+
+
+
+            sqlCommand.Parameters.Add(parameters[0]);
+
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            SpeakerModel speaker = new SpeakerModel();
+
+
+
+            if (sqlDataReader.HasRows)
+            {
+                speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
+                //speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionarySpeakerCountry"));
+                //speaker.DictionarySpeakerRating = new float.Parse(sqlDataReader.GetString("DictionarySpeakerRating"));
+            }
+            return speaker;
+        }
+
         public int getSpeakerId(string speakerName)
         {
 

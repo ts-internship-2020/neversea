@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi
 {
-
     public partial class FormSpeakerDetails : Form
     {
         int SpeakerId;
@@ -21,6 +20,8 @@ namespace ConferencePlanner.WinUi
             SpeakerId = speakerId;
             _getConferenceRepository = getConferenceRepository;
 
+
+
             InitializeComponent();
         }
         public FormSpeakerDetails()
@@ -28,16 +29,21 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
         }
 
+
+
         private void label4_Click(object sender, EventArgs e)
         {
 
+
+
         }
-        
+
         private void FormSpeakerDetails_Load(object sender, EventArgs e)
         {
-            speaker = _getConferenceRepository.SelectSpeakerDetails(SpeakerId);
+
+            speaker = _getConferenceRepository.getSelectSpeakerDetails(SpeakerId);
             lblName.Text = speaker.DictionarySpeakerName.ToString();
-            lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
+            //lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
         }
     }
 }
