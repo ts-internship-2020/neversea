@@ -49,10 +49,10 @@ namespace ConferencePlanner.WinUi
 
         }
 
-     
 
 
-        
+
+
 
         private void MainPage_Load(object sender, EventArgs e)
         {
@@ -65,7 +65,7 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[3].HeaderText = "Category";
             dgvOrganiser.Columns[4].HeaderText = "Address";
             dgvOrganiser.Columns[5].HeaderText = "Speaker";
-
+        
 
             DataGridViewImageColumn buttonJoinColumn = new DataGridViewImageColumn
             {
@@ -164,7 +164,14 @@ namespace ConferencePlanner.WinUi
 
             if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+                if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                {
+                    string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
+                    int speakerId = _getConferenceRepository.getSpeakerId(speakerName);
+                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository, speakerId);
+                    formSpeakerDetail.Show();
+                }
+                    if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
 
                     WebViewForm webViewForm = new WebViewForm();
@@ -179,7 +186,6 @@ namespace ConferencePlanner.WinUi
                     //confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                     _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
-
 
 
                 }

@@ -105,5 +105,13 @@ namespace ConferencePlanner.WinUi
             tb_email.ForeColor = Color.Black;
 
         }
+
+        private void tb_email_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+            {
+                btn_enterEmail.PerformClick();
+            }
+        }
     }
 }
