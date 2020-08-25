@@ -70,7 +70,7 @@ namespace ConferencePlanner.WinUi
                 Name = "buttonJoinColumn",
                 //Text = "Join",
                 // UseColumnTextForButtonValue = true
-                Image = Properties.Resources.icons8_add_user_group_man_man_20
+               // Image = Properties.Resources.icons8_add_user_group_man_man_20
             };
 
             //DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
@@ -89,7 +89,7 @@ namespace ConferencePlanner.WinUi
             {
                 HeaderText = "Attend",
                 Name = "buttonAttendColumn",
-                Image = Properties.Resources.icons8_event_accepted_20
+                //Image = Properties.Resources.icons8_event_accepted_20
             };
             // buttonAttendColumn.Text = "Attend";
             //buttonAttendColumn.UseColumnTextForButtonValue = true;
@@ -103,7 +103,7 @@ namespace ConferencePlanner.WinUi
             {
                 HeaderText = "Withdraw",
                 Name = "buttonWithdrawColumn",
-                Image = Properties.Resources.icons8_xbox_x_20
+               // Image = Properties.Resources.icons8_xbox_x_20
             };
             //   buttonWithdrawColumn.Text = "Withdraw";
             // buttonWithdrawColumn.UseColumnTextForButtonValue = true;
@@ -141,6 +141,7 @@ namespace ConferencePlanner.WinUi
 
 
             this.dgvConferences.Columns[1].Visible = false;
+            this.dgvConferences.Columns[7].Visible = false;
 
 
             dgvConferences.Columns[0].HeaderText = "Title";
@@ -150,6 +151,7 @@ namespace ConferencePlanner.WinUi
             dgvConferences.Columns[4].HeaderText = "Category";
             dgvConferences.Columns[5].HeaderText = "Address";
             dgvConferences.Columns[6].HeaderText = "Speaker";
+            dgvConferences.Columns[7].HeaderText = "SpeakerId";
         }
 
         private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -197,7 +199,6 @@ namespace ConferencePlanner.WinUi
             }
    
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Form2 addConferinceForm = new Form2();

@@ -35,9 +35,10 @@ namespace ConferencePlanner.WinUi
         
         private void FormSpeakerDetails_Load(object sender, EventArgs e)
         {
-            speaker = _getConferenceRepository.SelectSpeakerDetails(SpeakerId);
+
+            speaker = _getConferenceRepository.getSelectSpeakerDetails(SpeakerId);
             lblName.Text = speaker.DictionarySpeakerName.ToString();
-            lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
+            //lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
         }
     }
 }

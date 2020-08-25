@@ -31,8 +31,8 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {   
 
-            dgvCountry.DataSource = _getConferenceRepository.GetCountry("add");
-            dgvCountry.Columns[0].HeaderText = "Country Name";
+            //dgvCountry.DataSource = _getConferenceRepository.GetCountry("add");
+            //dgvCountry.Columns[0].HeaderText = "Country Name";
 
 
         }

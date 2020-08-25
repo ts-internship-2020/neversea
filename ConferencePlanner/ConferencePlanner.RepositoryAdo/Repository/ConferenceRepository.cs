@@ -174,7 +174,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
                         conferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
                         conferenceAddress = sqlDataReader.GetString("LocationAddress"),
                         conferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
-                    }); 
+                        //conferenceMainSpeakerId = SqlDataReader.GetInt32("DictionarySpeakerId")
+                    }) ; 
                 }
             }
 
@@ -206,19 +207,23 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return countries;
         }
 
-        public SpeakerModel SelectSpeakerDetails(int speakerId)
+        
+        public SpeakerModel getSelectSpeakerDetails(int speakerId)
         {
             SqlParameter[] parameters = new SqlParameter[1];
             parameters[0] = new SqlParameter("@Id", speakerId);
             
             
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
             sqlCommand.CommandText = $"SELECT DictionarySpeakerName,DictionarySpeakerRating " +
                                      $"from DictionarySpeaker where DictionarySpeakerId = @Id";
+
             sqlCommand.Parameters.Add(parameters[0]);
         
         SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             SpeakerModel speaker = new SpeakerModel();
+
             if (sqlDataReader.HasRows)
             {
                 speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
@@ -227,19 +232,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return speaker;
         }
+
+
         public int getSpeakerId(string speakerName)
         {
-
-            //SqlParameter[] parameters = new SqlParameter[2];
-            //parameters[0] = new SqlParameter("@Id", conferenceId);
-            //parameters[1] = new SqlParameter("@Email", spectatorEmail);
-
-
-
-            //SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            //sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 3 where ParticipantEmailAddress = @Email and ConferenceId = @Id";
-            //sqlCommand.Parameters.Add(parameters[0]);
-            //sqlCommand.Parameters.Add(parameters[1]);
             int id=0;
             SqlParameter[] parameters = new SqlParameter[1];
             parameters[0] = new SqlParameter("@Name", speakerName);
@@ -251,12 +247,12 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             sqlCommand.Parameters.Add(parameters[0]);
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
             if (sqlDataReader.HasRows)
             { 
             id = sqlDataReader.GetInt32("DictionarySpeakerId");
             }
             return id;
         }
-        
     }
  };
