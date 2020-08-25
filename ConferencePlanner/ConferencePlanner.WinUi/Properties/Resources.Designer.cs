@@ -73,6 +73,16 @@ namespace ConferencePlanner.WinUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_user_group_man_man_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_add_user_group_man_man_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_cancel_32px {
             get {
                 object obj = ResourceManager.GetObject("icons8_cancel_32px", resourceCulture);
@@ -86,6 +96,36 @@ namespace ConferencePlanner.WinUi.Properties {
         internal static System.Drawing.Bitmap icons8_close_sign_48px {
             get {
                 object obj = ResourceManager.GetObject("icons8_close_sign_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_event_accepted_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_event_accepted_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_event_accepted_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_event_accepted_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_xbox_x_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_xbox_x_20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
