@@ -64,34 +64,50 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[5].HeaderText = "Speaker";
 
 
-            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn
+            DataGridViewImageColumn buttonJoinColumn = new DataGridViewImageColumn
             {
                 HeaderText = "Join",
                 Name = "buttonJoinColumn",
-                Text = "Join",
-                UseColumnTextForButtonValue = true
+                //Text = "Join",
+                // UseColumnTextForButtonValue = true
+                Image = Properties.Resources.icons8_add_user_group_man_man_20
             };
+
+            //DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
+            //{
+            //    HeaderText = "Hey",
+            //    Name = "Imag",
+            //    Image = Properties.Resources.icons8_cancel_32px
+
+            //};
+
+         //   dgvConferences.Columns.Add(imageColumn);
 
             dgvConferences.Columns.Add(buttonJoinColumn);
 
-            DataGridViewButtonColumn buttonAttendColumn = new DataGridViewButtonColumn();
+            DataGridViewImageColumn buttonAttendColumn = new DataGridViewImageColumn
+            {
+                HeaderText = "Attend",
+                Name = "buttonAttendColumn",
+                Image = Properties.Resources.icons8_event_accepted_20
+            };
+            // buttonAttendColumn.Text = "Attend";
+            //buttonAttendColumn.UseColumnTextForButtonValue = true;
 
-            buttonAttendColumn.HeaderText = "Attend";
-            buttonAttendColumn.Name = "buttonAttendColumn";
-            buttonAttendColumn.Text = "Attend";
-            buttonAttendColumn.UseColumnTextForButtonValue = true;
 
             dgvConferences.Columns.Add(buttonAttendColumn);
 
 
 
-            DataGridViewButtonColumn buttonWithdrawColumn = new DataGridViewButtonColumn();
-
-            buttonWithdrawColumn.HeaderText = "Withdraw";
-            buttonWithdrawColumn.Name = "buttonWithdrawColumn";
-            buttonWithdrawColumn.Text = "Withdraw";
-            buttonWithdrawColumn.UseColumnTextForButtonValue = true;
-
+            DataGridViewImageColumn buttonWithdrawColumn = new DataGridViewImageColumn
+            {
+                HeaderText = "Withdraw",
+                Name = "buttonWithdrawColumn",
+                Image = Properties.Resources.icons8_xbox_x_20
+            };
+            //   buttonWithdrawColumn.Text = "Withdraw";
+            // buttonWithdrawColumn.UseColumnTextForButtonValue = true;
+          
             dgvConferences.Columns.Add(buttonWithdrawColumn);
 
         }
