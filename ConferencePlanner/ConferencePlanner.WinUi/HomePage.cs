@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -20,6 +21,8 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceRepository _getConferenceRepository;
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
+        int pageSize = 20;
+        int pageNumber = 1;
 
 
         public HomePage()
@@ -51,9 +54,6 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {
             WireUpSpectator();
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
-            // dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
-            this.dgvConferences.Columns[1].Visible = false;
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
@@ -64,34 +64,50 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[5].HeaderText = "Speaker";
         
 
-            DataGridViewButtonColumn buttonJoinColumn = new DataGridViewButtonColumn
+            DataGridViewImageColumn buttonJoinColumn = new DataGridViewImageColumn
             {
                 HeaderText = "Join",
                 Name = "buttonJoinColumn",
-                Text = "Join",
-                UseColumnTextForButtonValue = true
+                //Text = "Join",
+                // UseColumnTextForButtonValue = true
+                Image = Properties.Resources.icons8_add_user_group_man_man_20
             };
+
+            //DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
+            //{
+            //    HeaderText = "Hey",
+            //    Name = "Imag",
+            //    Image = Properties.Resources.icons8_cancel_32px
+
+            //};
+
+         //   dgvConferences.Columns.Add(imageColumn);
 
             dgvConferences.Columns.Add(buttonJoinColumn);
 
-            DataGridViewButtonColumn buttonAttendColumn = new DataGridViewButtonColumn();
+            DataGridViewImageColumn buttonAttendColumn = new DataGridViewImageColumn
+            {
+                HeaderText = "Attend",
+                Name = "buttonAttendColumn",
+                Image = Properties.Resources.icons8_event_accepted_20
+            };
+            // buttonAttendColumn.Text = "Attend";
+            //buttonAttendColumn.UseColumnTextForButtonValue = true;
 
-            buttonAttendColumn.HeaderText = "Attend";
-            buttonAttendColumn.Name = "buttonAttendColumn";
-            buttonAttendColumn.Text = "Attend";
-            buttonAttendColumn.UseColumnTextForButtonValue = true;
 
             dgvConferences.Columns.Add(buttonAttendColumn);
 
-            
+
+
+            DataGridViewImageColumn buttonWithdrawColumn = new DataGridViewImageColumn
+            {
+                HeaderText = "Withdraw",
+                Name = "buttonWithdrawColumn",
+                Image = Properties.Resources.icons8_xbox_x_20
+            };
+            //   buttonWithdrawColumn.Text = "Withdraw";
+            // buttonWithdrawColumn.UseColumnTextForButtonValue = true;
           
-            DataGridViewButtonColumn buttonWithdrawColumn = new DataGridViewButtonColumn();
-
-            buttonWithdrawColumn.HeaderText = "Withdraw";
-            buttonWithdrawColumn.Name = "buttonWithdrawColumn";
-            buttonWithdrawColumn.Text = "Withdraw";
-            buttonWithdrawColumn.UseColumnTextForButtonValue = true;
-
             dgvConferences.Columns.Add(buttonWithdrawColumn);
 
         }
@@ -108,13 +124,21 @@ namespace ConferencePlanner.WinUi
             WireUpSpectator();
         }
 
-
-
       
 
         private void WireUpSpectator()
         {
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+            List<ConferenceModel> conferences = new List<ConferenceModel>();
+            conferences = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+
+            int pageCount = (int)Math.Ceiling((double)(conferences.Count / pageSize + 1));
+
+            if (pageNumber >= 1 && pageNumber <= pageCount)
+            {
+                IEnumerable<ConferenceModel> conferencesDisplayed = conferences.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                dgvConferences.DataSource = conferencesDisplayed;
+            }
+
 
             this.dgvConferences.Columns[1].Visible = false;
 
@@ -174,8 +198,7 @@ namespace ConferencePlanner.WinUi
    
         }
 
-       
-                private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             Form2 addConferinceForm = new Form2();
             addConferinceForm.ShowDialog();
@@ -192,9 +215,28 @@ namespace ConferencePlanner.WinUi
 
         }
 
-        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        private void btnNext_Click(object sender, EventArgs e)
         {
+            pageNumber++;
 
+            btnBack.Enabled = true;
+
+            WireUpSpectator();
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            pageNumber--;
+
+            if (pageNumber < 0)
+            {
+                pageNumber = 0;
+                btnBack.Enabled = false;
+            }
+
+            WireUpSpectator();
+            
         }
     }
 }

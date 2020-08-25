@@ -52,7 +52,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 2 where ParticipantEmailAddress = '@Email' and ConferenceId = (SELECT c.ConferenceId from Conference c where c.ConferenceName like '@Name')";
+            sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 2" +
+                $" where ParticipantEmailAddress = '@Email' and ConferenceId = (SELECT c.ConferenceId from Conference c where c.ConferenceName like '@Name')";
             sqlCommand.ExecuteNonQuery();
         }
 
@@ -165,13 +166,15 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 {
                     conferences.Add(new ConferenceModel()
                     {
+
                         conferenceName = sqlDataReader.GetString("ConferenceName"),
+                        conferenceId = sqlDataReader.GetInt32("ConferenceId"),
                         conferencePeriod = ((TimeSpan)(sqlDataReader.GetDateTime("EndDate") - sqlDataReader.GetDateTime("StartDate"))).Days,
                         conferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
                         conferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
                         conferenceAddress = sqlDataReader.GetString("LocationAddress"),
                         conferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
-                    });
+                    }); 
                 }
             }
 

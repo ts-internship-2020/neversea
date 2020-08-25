@@ -38,12 +38,15 @@
             this.MainPageTab = new System.Windows.Forms.TabControl();
             this.SpectatorTab = new System.Windows.Forms.TabPage();
             this.tlpSpectator = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblEnd = new System.Windows.Forms.Label();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
-            this.lblStart = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.dgvConferences = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblStart = new System.Windows.Forms.Label();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
+            this.lblEnd = new System.Windows.Forms.Label();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.OrganizerTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,8 +60,9 @@
             this.MainPageTab.SuspendLayout();
             this.SpectatorTab.SuspendLayout();
             this.tlpSpectator.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConferences)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.OrganizerTab.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -95,17 +99,75 @@
             this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.08F));
             this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.84F));
             this.tlpSpectator.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.08F));
-            this.tlpSpectator.Controls.Add(this.tableLayoutPanel1, 1, 0);
+            this.tlpSpectator.Controls.Add(this.tableLayoutPanel5, 1, 2);
             this.tlpSpectator.Controls.Add(this.dgvConferences, 1, 1);
+            this.tlpSpectator.Controls.Add(this.tableLayoutPanel1, 1, 0);
             this.tlpSpectator.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpSpectator.Location = new System.Drawing.Point(3, 3);
             this.tlpSpectator.Name = "tlpSpectator";
-            this.tlpSpectator.RowCount = 2;
+            this.tlpSpectator.RowCount = 3;
             this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87F));
-            this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74F));
+            this.tlpSpectator.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
             this.tlpSpectator.Size = new System.Drawing.Size(786, 416);
             this.tlpSpectator.TabIndex = 0;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 4;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.Controls.Add(this.btnBack, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnNext, 3, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(66, 364);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(652, 49);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBack.Enabled = false;
+            this.btnBack.Location = new System.Drawing.Point(3, 12);
+            this.btnBack.MinimumSize = new System.Drawing.Size(20, 20);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(59, 23);
+            this.btnBack.TabIndex = 0;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.Location = new System.Drawing.Point(588, 12);
+            this.btnNext.MinimumSize = new System.Drawing.Size(20, 20);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(61, 23);
+            this.btnNext.TabIndex = 1;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // dgvConferences
+            // 
+            this.dgvConferences.BackgroundColor = System.Drawing.Color.White;
+            this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvConferences.GridColor = System.Drawing.Color.White;
+            this.dgvConferences.Location = new System.Drawing.Point(66, 57);
+            this.dgvConferences.Name = "dgvConferences";
+            this.dgvConferences.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dgvConferences.Size = new System.Drawing.Size(652, 301);
+            this.dgvConferences.TabIndex = 2;
+            this.dgvConferences.Text = "dataGridView1";
             // 
             // tableLayoutPanel1
             // 
@@ -114,10 +176,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.Controls.Add(this.lblEnd, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dtpStart, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dtpEnd, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblStart, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dtpStart, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblEnd, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dtpEnd, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(66, 3);
             this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(100, 50);
@@ -129,18 +191,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(652, 50);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lblEnd
+            // lblStart
             // 
-            this.lblEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEnd.AutoSize = true;
-            this.lblEnd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblEnd.ForeColor = System.Drawing.Color.Black;
-            this.lblEnd.Location = new System.Drawing.Point(328, 14);
-            this.lblEnd.Name = "lblEnd";
-            this.lblEnd.Size = new System.Drawing.Size(91, 21);
-            this.lblEnd.TabIndex = 1;
-            this.lblEnd.Text = "To";
-            this.lblEnd.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStart.AutoSize = true;
+            this.lblStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblStart.ForeColor = System.Drawing.Color.Black;
+            this.lblStart.Location = new System.Drawing.Point(3, 14);
+            this.lblStart.Name = "lblStart";
+            this.lblStart.Size = new System.Drawing.Size(91, 21);
+            this.lblStart.TabIndex = 0;
+            this.lblStart.Text = "From";
+            this.lblStart.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // dtpStart
             // 
@@ -155,6 +217,19 @@
             this.dtpStart.Size = new System.Drawing.Size(222, 27);
             this.dtpStart.TabIndex = 0;
             this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
+            // 
+            // lblEnd
+            // 
+            this.lblEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEnd.AutoSize = true;
+            this.lblEnd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblEnd.ForeColor = System.Drawing.Color.Black;
+            this.lblEnd.Location = new System.Drawing.Point(328, 14);
+            this.lblEnd.Name = "lblEnd";
+            this.lblEnd.Size = new System.Drawing.Size(91, 21);
+            this.lblEnd.TabIndex = 1;
+            this.lblEnd.Text = "To";
+            this.lblEnd.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // dtpEnd
             // 
@@ -187,7 +262,6 @@
             this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvConferences.BackgroundColor = System.Drawing.Color.White;
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConferences.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConferences.GridColor = System.Drawing.Color.White;
             this.dgvConferences.Location = new System.Drawing.Point(66, 57);
@@ -195,7 +269,7 @@
             this.dgvConferences.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvConferences.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvConferences.Size = new System.Drawing.Size(652, 356);
-            this.dgvConferences.TabIndex = 0;
+            this.dgvConferences.TabIndex = 1;
             this.dgvConferences.Text = "dataGridView1";
             this.dgvConferences.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferences_CellContentClick);
             // 
@@ -296,6 +370,7 @@
             // 
             // tableLayoutPanel4
             // 
+            this.tableLayoutPanel4.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -348,9 +423,10 @@
             this.MainPageTab.ResumeLayout(false);
             this.SpectatorTab.ResumeLayout(false);
             this.tlpSpectator.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConferences)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvConferences)).EndInit();
             this.OrganizerTab.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -370,13 +446,6 @@
         private System.Windows.Forms.TabControl MainPageTab;
         private System.Windows.Forms.TabPage SpectatorTab;
         private System.Windows.Forms.TabPage OrganizerTab;
-        private System.Windows.Forms.TableLayoutPanel tlpSpectator;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DateTimePicker dtpStart;
-        private System.Windows.Forms.DateTimePicker dtpEnd;
-        private System.Windows.Forms.Label lblStart;
-        private System.Windows.Forms.Label lblEnd;
-        private System.Windows.Forms.DataGridView dgvConferences;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -388,5 +457,15 @@
         private System.Windows.Forms.DataGridView dgvOrganiser;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvOrganizer;
+        private System.Windows.Forms.TableLayoutPanel tlpSpectator;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.DataGridView dgvConferences;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lblStart;
+        private System.Windows.Forms.DateTimePicker dtpStart;
+        private System.Windows.Forms.Label lblEnd;
+        private System.Windows.Forms.DateTimePicker dtpEnd;
     }
 }
