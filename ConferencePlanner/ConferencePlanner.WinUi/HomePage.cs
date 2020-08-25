@@ -19,6 +19,8 @@ namespace ConferencePlanner.WinUi
 
     {
         private readonly IConferenceRepository _getConferenceRepository;
+        private readonly ICountryRepository _countryRepository;
+
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
         int pageSize = 20;
@@ -30,10 +32,11 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
             
         }
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, ICountryRepository countryRepository)
         {
 
             _getConferenceRepository = getConferenceRepository;
+            _countryRepository = countryRepository;
             emailCopyFromMainForm = emailCopy;
             InitializeComponent();
 
@@ -201,9 +204,8 @@ namespace ConferencePlanner.WinUi
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 addConferinceForm = new Form2();
-            addConferinceForm.ShowDialog();
-  
+            Form2 addConferenceForm = new Form2(_countryRepository);
+            addConferenceForm.ShowDialog();
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)

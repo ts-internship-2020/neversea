@@ -13,6 +13,7 @@ namespace ConferencePlanner.WinUi
     public partial class Form2 : Form
     {
         private readonly IConferenceRepository _getConferenceRepository;
+        private readonly ICountryRepository _getCountryRepository;
 
         List<TabPage> tabPanel = new List<TabPage>();
         int tabIndex = 0; 
@@ -21,19 +22,24 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
         }
 
+        public Form2(ICountryRepository getCountryRepository)
+        {
+
+            _getCountryRepository = getCountryRepository;
+            InitializeComponent();
+            LoadCountries();
+        }
+
         public Form2(IConferenceRepository getConferenceRepository)
         {
 
             _getConferenceRepository = getConferenceRepository;
             InitializeComponent();
+            LoadCountries();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
         {   
-
-            //dgvCountry.DataSource = _getConferenceRepository.GetCountry("add");
-            //dgvCountry.Columns[0].HeaderText = "Country Name";
-
 
         }
 
@@ -65,10 +71,6 @@ namespace ConferencePlanner.WinUi
             progressBar1.Value -= 20;
         }
 
-        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -122,6 +124,11 @@ namespace ConferencePlanner.WinUi
         private void lblAddNewCountry_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoadCountries()
+        {
+            dgvCountries.DataSource = _getCountryRepository.GetCountry();
         }
     }
 }
