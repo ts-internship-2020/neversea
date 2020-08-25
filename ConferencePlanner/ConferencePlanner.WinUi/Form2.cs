@@ -56,11 +56,11 @@ namespace ConferencePlanner.WinUi
             tabControl1.SelectedIndex = tabIndex;
             if(tabIndex == 0)
             {
-                button1.Enabled = false;
+                lblBackCountry.Enabled = false;
             }
-            if(button2.Text == "Save")
+            if(lblNextCountry.Text == "Save")
             {
-                button2.Text = "Next";
+                lblNextCountry.Text = "Next";
             }
             progressBar1.Value -= 20;
         }
@@ -80,11 +80,11 @@ namespace ConferencePlanner.WinUi
                 progressBar1.Value += 20;
             }
             tabControl1.SelectedIndex = tabIndex;
-            button1.Enabled = true;
+            lblBackCountry.Enabled = true;
 
             if(tabIndex == 5)
             {
-                button2.Text = "Save";
+                lblNextCountry.Text = "Save";
             }
         }
         //private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,6 +110,16 @@ namespace ConferencePlanner.WinUi
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblAddNewCountry_Click(object sender, EventArgs e)
         {
 
         }

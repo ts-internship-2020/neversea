@@ -437,6 +437,5 @@
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.Label lblEnd;
         private System.Windows.Forms.DateTimePicker dtpEnd;
-        private Syncfusion.Windows.Forms.Tools.GradientPanel gradientPanel1;
     }
 }
