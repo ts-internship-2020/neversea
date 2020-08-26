@@ -94,25 +94,28 @@
             // picBoxLike1
             // 
             this.picBoxLike1.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike1.Image")));
-            this.picBoxLike1.Location = new System.Drawing.Point(203, 203);
+            this.picBoxLike1.Location = new System.Drawing.Point(226, 203);
             this.picBoxLike1.Name = "picBoxLike1";
             this.picBoxLike1.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike1.TabIndex = 5;
             this.picBoxLike1.TabStop = false;
+            this.picBoxLike1.Click += new System.EventHandler(this.picBoxLike1_Click);
             // 
             // picBoxLike2
             // 
             this.picBoxLike2.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike2.Image")));
-            this.picBoxLike2.Location = new System.Drawing.Point(237, 203);
+            this.picBoxLike2.InitialImage = null;
+            this.picBoxLike2.Location = new System.Drawing.Point(260, 203);
             this.picBoxLike2.Name = "picBoxLike2";
             this.picBoxLike2.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike2.TabIndex = 5;
             this.picBoxLike2.TabStop = false;
+            this.picBoxLike2.Click += new System.EventHandler(this.picBoxLike2_Click);
             // 
             // picBoxLike3
             // 
             this.picBoxLike3.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike3.Image")));
-            this.picBoxLike3.Location = new System.Drawing.Point(271, 203);
+            this.picBoxLike3.Location = new System.Drawing.Point(294, 203);
             this.picBoxLike3.Name = "picBoxLike3";
             this.picBoxLike3.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike3.TabIndex = 5;
@@ -121,7 +124,7 @@
             // picBoxLike4
             // 
             this.picBoxLike4.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike4.Image")));
-            this.picBoxLike4.Location = new System.Drawing.Point(305, 203);
+            this.picBoxLike4.Location = new System.Drawing.Point(328, 203);
             this.picBoxLike4.Name = "picBoxLike4";
             this.picBoxLike4.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike4.TabIndex = 5;
@@ -130,7 +133,7 @@
             // picBoxLike5
             // 
             this.picBoxLike5.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike5.Image")));
-            this.picBoxLike5.Location = new System.Drawing.Point(339, 203);
+            this.picBoxLike5.Location = new System.Drawing.Point(362, 203);
             this.picBoxLike5.Name = "picBoxLike5";
             this.picBoxLike5.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike5.TabIndex = 5;
@@ -153,7 +156,7 @@
             this.lblName.Size = new System.Drawing.Size(49, 19);
             this.lblName.TabIndex = 7;
             this.lblName.Text = "label5";
-            this.lblName.Click += new System.EventHandler(this.lblName_Click);
+
             // 
             // lblNationality
             // 
@@ -179,6 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(543, 257);
             this.Controls.Add(this.lblRating);
             this.Controls.Add(this.lblNationality);

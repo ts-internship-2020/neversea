@@ -14,11 +14,15 @@ namespace ConferencePlanner.WinUi
     public partial class Form2 : Form
     {
         private readonly IConferenceRepository _getConferenceRepository;
+        private readonly IConferenceCategoryRepository _getConferenceCategoryRepository;
         private readonly ICountryRepository _getCountryRepository;
         private BindingSource bsCountries = new BindingSource();
+        private BindingSource bsCategories = new BindingSource();
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
+        public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
+
         List<TabPage> tabPanel = new List<TabPage>();
         ConferenceModel model;
         int tabIndex = 0;
@@ -35,6 +39,7 @@ namespace ConferencePlanner.WinUi
             _getCountryRepository = getCountryRepository;
             
             InitializeComponent();
+            LoadConferenceCategories();
             LoadCountries();
         }
 
@@ -42,7 +47,10 @@ namespace ConferencePlanner.WinUi
         {
             _getConferenceRepository = getConferenceRepository;
             model = conference;
-            InitializeComponent();
+           
+            InitializeComponent(); 
+            LoadConferenceCategories();
+            LoadCountries();
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
@@ -51,8 +59,10 @@ namespace ConferencePlanner.WinUi
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
+            _getConferenceCategoryRepository = conferenceCategoryRepository;
             emailCopyFromMainForm = email;
             InitializeComponent();
+            LoadConferenceCategories();
             LoadCountries();
         }
 
@@ -140,6 +150,8 @@ namespace ConferencePlanner.WinUi
             
 
 
+
+
         }
 
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -191,6 +203,23 @@ namespace ConferencePlanner.WinUi
             {
                 this.txtSearchCountry.Text = keyword.Remove(keyword.Length - 1);
             }
+        }
+
+        private void LoadConferenceCategories()
+        {
+            List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
+            conferenceCategories = _getConferenceCategoryRepository.GetConferenceCategories();
+            bsCategories.AllowNew = true;
+            bsCategories.DataSource = null;
+            bsCategories.DataSource = conferenceCategories;
+
+            //dgvConferenceCategory.DataSource = bsCategories;
+
+            
+            //dgvConferenceCategory.Columns[0].HeaderText = "Name";
+           // dgvConferenceCategory.Columns[1].HeaderText = "Id";
+
+
         }
 
         private void LoadCountries()

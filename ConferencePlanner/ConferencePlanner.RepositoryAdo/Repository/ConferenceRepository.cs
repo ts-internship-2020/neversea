@@ -154,12 +154,13 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     {
                         ConferenceName = sqlDataReader.GetString("ConferenceName"),
                         ConferenceId = sqlDataReader.GetInt32("ConferenceId"),
-                        ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
                         ConferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
                         ConferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
                         ConferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
+                        ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
+                        ConferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName"), 
+                        SpeakerId = sqlDataReader.GetInt32("DictionarySpeakerId"),
                         ConferenceLocation = sqlDataReader.GetString("ConferenceLocation"),
-                        ConferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
                     }); 
                 }
             }
@@ -192,27 +193,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return countries;
         }
 
-        public SpeakerModel SelectSpeakerDetails(int speakerId)
-        {
-            SqlParameter[] parameters = new SqlParameter[1];
-            parameters[0] = new SqlParameter("@Id", speakerId);
-            
-            
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"SELECT DictionarySpeakerName,DictionarySpeakerRating " +
-                                     $"from DictionarySpeaker where DictionarySpeakerId = @Id";
-            sqlCommand.Parameters.Add(parameters[0]);
-        
-        SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            SpeakerModel speaker = new SpeakerModel();
-            if (sqlDataReader.HasRows)
-            {
-                speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
-                //speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionarySpeakerCountry"));
-                //speaker.DictionarySpeakerRating = new float.Parse(sqlDataReader.GetString("DictionarySpeakerRating"));
-            }
-            return speaker;
-        }
+       
         public SpeakerModel getSelectSpeakerDetails(int speakerId)
         {
             SqlParameter[] parameters = new SqlParameter[1];
@@ -223,8 +204,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
 
-            sqlCommand.CommandText = $"SELECT DictionarySpeakerName,DictionarySpeakerRating " +
-                                     $"from DictionarySpeaker where DictionarySpeakerId = @Id";
+            sqlCommand.CommandText = $"SELECT ds.DictionarySpeakerName,ds.DictionarySpeakerRating, dc.DictionaryCountryNationality "+
+ "from DictionarySpeaker ds join ConferenceXSpeaker cs on cs.DictionarySpeakerId = ds.DictionarySpeakerId"+
+ " join Conference c on cs.ConferenceId = c.ConferenceId"+
+ " join Location l on l.LocationId = c.LocationId"+
+ " join DictionaryCity dci on dci.DictionaryCityId = l.DictionaryCityId"+
+ " join DictionaryDistrict dd on dd.DictionaryDistrictId = dci.DictionaryDistrictId"+
+ " join DictionaryCountry dc on dc.DictionaryCountryId = dd.DictionaryCountryId"+
+ " where ds.DictionarySpeakerId = 1";
 
 
 
@@ -237,9 +224,13 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             if (sqlDataReader.HasRows)
             {
-                speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
-                //speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionarySpeakerCountry"));
-                //speaker.DictionarySpeakerRating = new float.Parse(sqlDataReader.GetString("DictionarySpeakerRating"));
+                while (sqlDataReader.Read())
+                {
+                    speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
+                    speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionaryCountryNationality"));
+                    speaker.DictionarySpeakerRating =  (float)sqlDataReader.GetDouble("DictionarySpeakerRating");
+                }
+                
             }
             return speaker;
         }

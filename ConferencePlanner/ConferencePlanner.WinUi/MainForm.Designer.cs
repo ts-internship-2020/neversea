@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btn_enterEmail = new System.Windows.Forms.Button();
             this.lb_welcome = new System.Windows.Forms.Label();
             this.tb_email = new System.Windows.Forms.TextBox();
@@ -78,8 +79,7 @@
             this.tb_email.Name = "tb_email";
             this.tb_email.Size = new System.Drawing.Size(161, 23);
             this.tb_email.TabIndex = 4;
-            this.tb_email.Text = "paul.popescu@gmail.com";
-            this.tb_email.TextChanged += new System.EventHandler(this.tb_email_TextChanged);
+            this.tb_email.Text = "admin@admin.com";
             this.tb_email.Enter += new System.EventHandler(this.tb_email_Enter);
             this.tb_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             this.tb_email.Leave += new System.EventHandler(this.tb_email_Leave);
@@ -125,10 +125,11 @@
             this.Controls.Add(this.lb_email);
             this.Controls.Add(this.tb_email);
             this.Controls.Add(this.btn_enterEmail);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(480, 370);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "dasda";
+            this.Text = "Neversea";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);

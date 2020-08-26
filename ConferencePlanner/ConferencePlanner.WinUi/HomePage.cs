@@ -20,7 +20,7 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
-      
+        private readonly IConferenceCategoryRepository conferenceCategoryRepository;
 
 
         private readonly ICountryRepository _countryRepository;
@@ -39,11 +39,12 @@ namespace ConferencePlanner.WinUi
         {
             InitializeComponent();
         }
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository)
         {
            _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
             _countryRepository = countryRepository;
+            conferenceCategoryRepository = _conferenceCategoryRepository;
             emailCopyFromMainForm = emailCopy;
             InitializeComponent();
 
@@ -178,6 +179,7 @@ namespace ConferencePlanner.WinUi
 
         private void WireUpSpectator()
         {
+
             List<ConferenceModel> conferences = new List<ConferenceModel>();
             conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
 
@@ -197,8 +199,13 @@ namespace ConferencePlanner.WinUi
             dgvConferences.Columns[2].HeaderText = "Starts";
             dgvConferences.Columns[3].HeaderText = "Ends";
             dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Location";
-            dgvConferences.Columns[6].HeaderText = "Speaker";
+            dgvConferences.Columns[5].HeaderText = "Speaker";
+            dgvConferences.Columns[6].HeaderText = "SpeakerId";
+            dgvConferences.Columns[7].HeaderText = "Location";
+
+//            dgvConferences.Columns[6].Visible = false;
+
+            dgvConferences.Columns[6].Name = "conferenceMainSpeaker";
         }
 
         private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -211,11 +218,11 @@ namespace ConferencePlanner.WinUi
                 if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
                 {
                     string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
-                    int speakerId = _getConferenceRepository.getSpeakerId(speakerName);
-                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository, speakerId);
+                    int speakerId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
+                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository,speakerId);
                     formSpeakerDetail.Show();
                 }
-                    if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+                   else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
 
 
@@ -242,7 +249,6 @@ namespace ConferencePlanner.WinUi
                 }
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             AddConference();
