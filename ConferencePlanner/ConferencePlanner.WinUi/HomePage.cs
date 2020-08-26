@@ -132,7 +132,7 @@ namespace ConferencePlanner.WinUi
         private void WireUpSpectator()
         {
             List<ConferenceModel> conferences = new List<ConferenceModel>();
-            conferences = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+            conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
 
             int pageCount = (int)Math.Ceiling((double)(conferences.Count / pageSize + 1));
 
@@ -149,10 +149,10 @@ namespace ConferencePlanner.WinUi
 
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Id";
-            dgvConferences.Columns[2].HeaderText = "Type";
-            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[2].HeaderText = "Starts";
+            dgvConferences.Columns[3].HeaderText = "Ends";
             dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Address";
+            dgvConferences.Columns[5].HeaderText = "Location";
             dgvConferences.Columns[6].HeaderText = "Speaker";
             dgvConferences.Columns[7].HeaderText = "SpeakerId";
         }
