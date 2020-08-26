@@ -71,8 +71,8 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            tb_email.Text = "admin@admin.com";
-            player.Play();
+            //tb_email.Text = "admin@admin.com";
+           // player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {
                 tb_email.Text = Properties.Settings.Default.Email;

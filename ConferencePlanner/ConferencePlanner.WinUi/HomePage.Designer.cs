@@ -449,7 +449,7 @@ namespace ConferencePlanner.WinUi
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomePage";
             this.Text = "Neversea";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomePage_FormClosed);
+           // this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomePage_FormClosed);
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.MainPageTab.ResumeLayout(false);
             this.SpectatorTab.ResumeLayout(false);

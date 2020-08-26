@@ -866,6 +866,5 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridView dgvConferenceVategory;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
     }
 }

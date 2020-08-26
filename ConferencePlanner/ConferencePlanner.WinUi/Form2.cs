@@ -211,11 +211,11 @@ namespace ConferencePlanner.WinUi
             bsCategories.DataSource = null;
             bsCategories.DataSource = conferenceCategories;
 
-            dgvConferenceCategory.DataSource = bsCategories;
+            //dgvConferenceCategory.DataSource = bsCategories;
 
             
-            dgvConferenceCategory.Columns[0].HeaderText = "Name";
-            dgvConferenceCategory.Columns[1].HeaderText = "Id";
+            //dgvConferenceCategory.Columns[0].HeaderText = "Name";
+           // dgvConferenceCategory.Columns[1].HeaderText = "Id";
 
 
         }
