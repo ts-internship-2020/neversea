@@ -89,7 +89,7 @@ namespace ConferencePlanner.WinUi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tabIndex < 5) 
+            if (tabIndex < tabControl1.TabCount - 1) 
             {
                 tabControl1.TabPages[tabIndex].Enabled = false;
                 tabIndex += 1;
@@ -99,19 +99,11 @@ namespace ConferencePlanner.WinUi
             tabControl1.SelectedIndex = tabIndex;
             lblBackCountry.Enabled = true;
 
-            if(tabIndex == 5)
+            if(tabIndex == tabControl1.TabCount)
             {
                 lblNextCountry.Text = "Save";
             }
         }
-        //private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (tabControl1.SelectedTab.Enabled == false)
-        //    {
-        //        tabControl1.SelectedTab = tabPage1;
-        //        MessageBox.Show("You don't have permission !!", "Meera Academy");
-        //    }
-        //}
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -244,5 +236,6 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
         }
+
     }
 }
