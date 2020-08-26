@@ -21,14 +21,16 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceRepository conferenceRepository;
         private readonly ICountryRepository countryRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
+        private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
 
-        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository)
+
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
             conferenceRepository = ConferenceRepository;
             countryRepository = CountryRepository;
-
+            _conferenceCategoryRepository = conferenceCategoryRepository;
             InitializeComponent();
 
         }
@@ -53,7 +55,7 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository);
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 
@@ -69,8 +71,8 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-            //player.Play();
+            tb_email.Text = "admin@admin.com";
+            player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {
                 tb_email.Text = Properties.Settings.Default.Email;
