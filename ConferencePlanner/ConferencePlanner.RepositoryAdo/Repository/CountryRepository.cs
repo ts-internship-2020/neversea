@@ -26,7 +26,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
         public List<CountryModel> GetCountry()
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT DictionaryCountryName, DictionaryCountryId, DictionaryCountryCode " +
+            sqlCommand.CommandText = "SELECT DictionaryCountryName, DictionaryCountryId, DictionaryCountryCode, " +
+                                     "DictionaryCountryNationality " +
                                      "FROM DictionaryCountry";
 
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
@@ -41,7 +42,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     {
                         CountryName = sqlDataReader.GetString("DictionaryCountryName"),
                         CountryId = sqlDataReader.GetInt32("DictionaryCountryId"),
-                        CountryCode = sqlDataReader.GetString("DictionaryCountryCode")
+                        CountryCode = sqlDataReader.GetString("DictionaryCountryCode"), 
+                        CountryNationality = sqlDataReader.GetString("DictionaryCountryNationality")
                     });
                 }
             }
@@ -54,8 +56,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
         public List<CountryModel> GetCountry(string keyword)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
             sqlCommand.CommandText = $"EXEC spCountries_GetByKeyword " +
-                                     $"@Keyword={keyword}";
+                                     $"@Keyword='{keyword}'";
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             List<CountryModel> countries = new List<CountryModel>();
 
@@ -67,7 +70,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     {
                         CountryName = sqlDataReader.GetString("DictionaryCountryName"),
                         CountryId = sqlDataReader.GetInt32("DictionaryCountryId"),
-                        CountryCode = sqlDataReader.GetString("DictionaryCountryCode")
+                        CountryCode = sqlDataReader.GetString("DictionaryCountryCode"),
+                        CountryNationality = sqlDataReader.GetString("DictionaryCountryNationality")
                     });
                 }
             }

@@ -1,4 +1,5 @@
-﻿using ConferencePlanner.Abstraction.Repository;
+﻿using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +15,15 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly ICountryRepository _getCountryRepository;
+        private BindingSource bsCountries = new BindingSource();
+        private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IDistrictRepository _getDistrictRepository;
 
+        public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         List<TabPage> tabPanel = new List<TabPage>();
+        ConferenceModel model;
         int tabIndex = 0; 
+
         public Form2()
         {
             InitializeComponent();
@@ -30,6 +36,8 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
             LoadCountries();
         }
+
+        public Form2(IConferenceRepository getConferenceRepository, ConferenceModel conference)
         public Form2(IDistrictRepository getDistrictRepository)
         {
             _getDistrictRepository = getDistrictRepository;
@@ -40,8 +48,17 @@ namespace ConferencePlanner.WinUi
 
         public Form2(IConferenceRepository getConferenceRepository)
         {
-
             _getConferenceRepository = getConferenceRepository;
+            model = conference;
+            InitializeComponent();
+        }
+
+     //   public Form2(IConferenceRepository getConferenceRepository) { }
+        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
+        {
+            _getCountryRepository = getCountryRepository;
+            _getConferenceRepository = getConferenceRepository;
+            _conferenceTypeRepository = conferenceTypeRepository;
             InitializeComponent();
             LoadCountries();
         }
@@ -124,6 +141,53 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        private void tabControl1_Enter(object sender, EventArgs e)
+        {
+
+          //  var myBindingSource = new SortedBindingList<ConferenceTypeModel>(conferenceTypeModels);
+           // myBindingSource.ApplySort(propertyName, ListSortDirection.Ascending);
+          //  var bindingSource = new BindingSource();
+            conferenceTypeModels = _conferenceTypeRepository.getConferenceTypes();
+         //   dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.DataSource = conferenceTypeModels;
+           // dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.Columns[0].HeaderText = "Conference Type Name";
+            dgvConferenceType.Columns[1].HeaderText = "Conference Type Id";
+            
+
+
+        }
+
+        private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+           int counter = 1;
+
+            //dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Descending);
+
+
+            if (counter == 1)
+            {
+               
+                dgvConferenceType.DataSource = null; 
+                conferenceTypeModels.Sort();
+                dgvConferenceType.DataSource = conferenceTypeModels;
+                dgvConferenceType.Refresh();
+                counter++;
+            }
+            else
+            {
+                dgvConferenceType.DataSource = null;
+                conferenceTypeModels.Reverse();
+                dgvConferenceType.DataSource = conferenceTypeModels;
+                dgvConferenceType.Refresh();
+
+
+            }
+
+
+        }
+
         private void tableLayoutPanel6_Paint(object sender, PaintEventArgs e)
         {
 
@@ -133,6 +197,18 @@ namespace ConferencePlanner.WinUi
         {
 
         }
+
+        private void txtSearchCountry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string keyword = txtSearchCountry.Text;
+
+
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                this.txtSearchCountry.Text = keyword.Remove(keyword.Length - 1);
+            }
+        }
+        }
         private void LoadDistricts()
         {
             dgvDistricts.DataSource = _getDistrictRepository.GetDistrict();
@@ -140,7 +216,48 @@ namespace ConferencePlanner.WinUi
 
         private void LoadCountries()
         {
-            dgvCountries.DataSource = _getCountryRepository.GetCountry();
+            List<CountryModel> countries = new List<CountryModel>();
+            countries = _getCountryRepository.GetCountry();
+
+            bsCountries.AllowNew = true;
+            bsCountries.DataSource = null;
+            bsCountries.DataSource = countries; 
+
+            dgvCountries.DataSource = bsCountries;
+
+            this.dgvCountries.Columns[1].Visible = false;
+
+
+            dgvCountries.Columns[0].HeaderText = "Name";
+            dgvCountries.Columns[1].HeaderText = "Id";
+            dgvCountries.Columns[2].HeaderText = "Code";
+            dgvCountries.Columns[3].HeaderText = "Nationality";
+        }
+
+        private void txtSearchCountry_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearchCountry.Text;
+            LoadCountries(keyword);
+        }
+
+        private void LoadCountries(string keyword)
+        {
+            List<CountryModel> countries = new List<CountryModel>();
+            countries = _getCountryRepository.GetCountry(keyword);
+
+            bsCountries.AllowNew = true;
+            bsCountries.DataSource = null;
+            bsCountries.DataSource = countries;
+
+            dgvCountries.DataSource = bsCountries;
+
+            this.dgvCountries.Columns[1].Visible = false;
+
+
+            dgvCountries.Columns[0].HeaderText = "Name";
+            dgvCountries.Columns[1].HeaderText = "Id";
+            dgvCountries.Columns[2].HeaderText = "Code";
+            dgvCountries.Columns[3].HeaderText = "Nationality";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

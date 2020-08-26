@@ -11,15 +11,21 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+
+
 namespace ConferencePlanner.WinUi
 {
     public partial class MainForm : Form
     {
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         private readonly IConferenceRepository conferenceRepository;
         private readonly ICountryRepository countryRepository;
+        private readonly IConferenceTypeRepository _conferenceTypeRepository;
 
-        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository)
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository)
         {
+            player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
+            _conferenceTypeRepository = conferenceTypeRepository;
             conferenceRepository = ConferenceRepository;
             countryRepository = CountryRepository;
 
@@ -47,7 +53,7 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy, countryRepository);
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 
@@ -63,6 +69,8 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+            //player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {
                 tb_email.Text = Properties.Settings.Default.Email;
@@ -112,6 +120,11 @@ namespace ConferencePlanner.WinUi
             {
                 btn_enterEmail.PerformClick();
             }
+        }
+
+        private void tb_email_TextChanged(object sender, EventArgs e)
+        {
+            tb_email.Text = "paul.popescu@gmail.com";
         }
     }
 }

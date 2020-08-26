@@ -78,6 +78,8 @@
             this.tb_email.Name = "tb_email";
             this.tb_email.Size = new System.Drawing.Size(161, 23);
             this.tb_email.TabIndex = 4;
+            this.tb_email.Text = "paul.popescu@gmail.com";
+            this.tb_email.TextChanged += new System.EventHandler(this.tb_email_TextChanged);
             this.tb_email.Enter += new System.EventHandler(this.tb_email_Enter);
             this.tb_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             this.tb_email.Leave += new System.EventHandler(this.tb_email_Leave);
