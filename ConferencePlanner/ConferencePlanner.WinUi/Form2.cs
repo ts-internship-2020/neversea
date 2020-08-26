@@ -21,7 +21,8 @@ namespace ConferencePlanner.WinUi
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         List<TabPage> tabPanel = new List<TabPage>();
         ConferenceModel model;
-        int tabIndex = 0; 
+        int tabIndex = 0;
+        public string emailCopyFromMainForm;
 
         public Form2()
         {
@@ -32,6 +33,7 @@ namespace ConferencePlanner.WinUi
         {
 
             _getCountryRepository = getCountryRepository;
+            
             InitializeComponent();
             LoadCountries();
         }
@@ -44,18 +46,18 @@ namespace ConferencePlanner.WinUi
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
+            emailCopyFromMainForm = email;
             InitializeComponent();
             LoadCountries();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
-        {   
-
+        {
         }
 
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
@@ -236,6 +238,21 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
         }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
 
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "City")
+            {
+                Console.WriteLine("Am intrat in tabul city");
+                if (emailCopyFromMainForm != "paul.popescu@gmail.com")
+                {
+                    button2.Visible = false;
+                }
+            }
+        }
     }
 }

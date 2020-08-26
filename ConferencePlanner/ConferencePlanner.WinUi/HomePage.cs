@@ -257,8 +257,8 @@ namespace ConferencePlanner.WinUi
                 string confName;
                 
                 dgvOrganiser.CurrentRow.Selected = true;
-                confId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                confName = dgvOrganiser.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                confId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceId"].FormattedValue.ToString());
+                confName = dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceName"].FormattedValue.ToString();
                 //confStartDate = dgvOrganiser.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToDate();
                 //confEndDate = dgvOrganiser.Rows[e.RowIndex].Cells["EndDate"].FormattedValue.ToDate();
                 Console.WriteLine(confId);
@@ -285,7 +285,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
-            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository);
+            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository);
             addConferenceForm.ShowDialog();
         }
 
