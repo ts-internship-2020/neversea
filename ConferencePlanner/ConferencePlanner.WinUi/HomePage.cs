@@ -137,14 +137,14 @@ namespace ConferencePlanner.WinUi
                 }
                 else
                 {
-                        dgvOrganiser.Rows.Add(Conferences[i].conferenceId,
-                                    Conferences[i].conferenceName,
-                                    Conferences[i].conferenceStartDate,
-                                    Conferences[i].conferenceEndDate,
-                                    Conferences[i].conferenceType,
-                                    Conferences[i].conferenceCategory,
-                                    Conferences[i].conferenceAddress,
-                                    Conferences[i].conferenceMainSpeaker);
+                        dgvOrganiser.Rows.Add(Conferences[i].ConferenceId,
+                                    Conferences[i].ConferenceName,
+                                    Conferences[i].ConferenceStartDate,
+                                    Conferences[i].ConferenceEndDate,
+                                    Conferences[i].ConferenceType,
+                                    Conferences[i].ConferenceCategory,
+                                    Conferences[i].ConferenceLocation,
+                                    Conferences[i].ConferenceMainSpeaker);
                 }
 
                 if (Conferences.Count <= (int)comboBox1.SelectedItem)
@@ -344,35 +344,6 @@ namespace ConferencePlanner.WinUi
         private void pageSizeLabel_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            pageNumber++;
-
-            btnBack.Enabled = true;
-
-            WireUpSpectator();
-
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            pageNumber--;
-
-            if (pageNumber < 0)
-            {
-                pageNumber = 0;
-                btnBack.Enabled = false;
-            }
-
-            WireUpSpectator();
-            
         }
     }
 }

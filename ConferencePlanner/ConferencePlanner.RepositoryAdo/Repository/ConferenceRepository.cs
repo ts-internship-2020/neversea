@@ -119,14 +119,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 {
                     conferences.Add(new ConferenceModel()
                     {
-                        conferenceId = sqlDataReader.GetInt32("ConferenceId"),
-                        conferenceName = sqlDataReader.GetString("ConferenceName"),
-                        conferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
-                        conferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
-                        conferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
-                        conferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
-                        conferenceAddress = sqlDataReader.GetString("LocationAddress"),
-                        conferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
+                        ConferenceId = sqlDataReader.GetInt32("ConferenceId"),
+                        ConferenceName = sqlDataReader.GetString("ConferenceName"),
+                        ConferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
+                        ConferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
+                        ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
+                        ConferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
+                        ConferenceLocation = sqlDataReader.GetString("LocationAddress"),
+                        ConferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
                     });
                 }
             }
