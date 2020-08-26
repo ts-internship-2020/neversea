@@ -70,7 +70,7 @@ namespace ConferencePlanner.WinUi
         private void MainForm_Load(object sender, EventArgs e)
         {
 
-            player.Play();
+            //player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {
                 tb_email.Text = Properties.Settings.Default.Email;
@@ -120,6 +120,11 @@ namespace ConferencePlanner.WinUi
             {
                 btn_enterEmail.PerformClick();
             }
+        }
+
+        private void tb_email_TextChanged(object sender, EventArgs e)
+        {
+            tb_email.Text = "paul.popescu@gmail.com";
         }
     }
 }

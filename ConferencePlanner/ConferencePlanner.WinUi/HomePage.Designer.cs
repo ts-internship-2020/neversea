@@ -374,6 +374,8 @@ namespace ConferencePlanner.WinUi
             // 
             // dgvOrganiser
             // 
+            this.dgvOrganiser.AllowUserToAddRows = false;
+            this.dgvOrganiser.AllowUserToDeleteRows = false;
             this.dgvOrganiser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrganiser.BackgroundColor = System.Drawing.Color.White;
             this.dgvOrganiser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

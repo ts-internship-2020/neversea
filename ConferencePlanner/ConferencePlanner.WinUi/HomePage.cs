@@ -61,6 +61,7 @@ namespace ConferencePlanner.WinUi
             DateTime initialStart = DateTime.Parse("01.01.1900 00:00:00");
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
+            
             maxrange = Conferences.Count;
             button2.Enabled = false;
             dgvOrganiser.ColumnCount = 8;
@@ -159,6 +160,7 @@ namespace ConferencePlanner.WinUi
                 {
                     button3.Enabled = true;
                 }
+                //d/*gvOrganiser.Rows.RemoveAt(dgvOrganiser.Rows.Count - 1);*/
             }
         }
         private void dtpStart_ValueChanged(Object sender, EventArgs e)
