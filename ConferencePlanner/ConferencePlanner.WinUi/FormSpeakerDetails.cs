@@ -46,5 +46,10 @@ namespace ConferencePlanner.WinUi
 
             //lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
         }
+
+        private void lblName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

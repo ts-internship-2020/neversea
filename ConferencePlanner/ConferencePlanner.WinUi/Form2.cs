@@ -19,6 +19,7 @@ namespace ConferencePlanner.WinUi
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         List<TabPage> tabPanel = new List<TabPage>();
+        ConferenceModel model;
         int tabIndex = 0; 
 
         public Form2()
@@ -34,6 +35,14 @@ namespace ConferencePlanner.WinUi
             LoadCountries();
         }
 
+        public Form2(IConferenceRepository getConferenceRepository, ConferenceModel conference)
+        {
+            _getConferenceRepository = getConferenceRepository;
+            model = conference;
+            InitializeComponent();
+        }
+
+        public Form2(IConferenceRepository getConferenceRepository)
         public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
         {
             _getCountryRepository = getCountryRepository;
