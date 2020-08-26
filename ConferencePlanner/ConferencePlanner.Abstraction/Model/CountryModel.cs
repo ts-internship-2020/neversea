@@ -9,5 +9,6 @@ namespace ConferencePlanner.Abstraction.Model
         public string CountryName { get; set; }
         public int CountryId { get; set; }
         public string CountryCode { get; set; }
+        public string CountryNationality { get; set; }
     }
 }

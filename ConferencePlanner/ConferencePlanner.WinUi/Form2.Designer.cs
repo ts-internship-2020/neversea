@@ -60,6 +60,7 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.txtSearchCountry = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCountries = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -88,9 +89,8 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.pnlAddCountry.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -317,18 +317,16 @@
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel6.Controls.Add(this.pnlAddCountry, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel11, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.dgvCountries, 1, 1);
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel12, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(646, 291);
             this.tableLayoutPanel6.TabIndex = 0;
             this.tableLayoutPanel6.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel6_Paint);
@@ -455,43 +453,59 @@
             this.tableLayoutPanel11.Controls.Add(this.txtSearchCountry, 2, 0);
             this.tableLayoutPanel11.Controls.Add(this.lblSearch, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(293, 3);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(350, 28);
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(640, 66);
             this.tableLayoutPanel11.TabIndex = 3;
             // 
             // txtSearchCountry
             // 
             this.txtSearchCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearchCountry.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearchCountry.Location = new System.Drawing.Point(213, 3);
+            this.txtSearchCountry.Location = new System.Drawing.Point(387, 21);
             this.txtSearchCountry.Name = "txtSearchCountry";
-            this.txtSearchCountry.Size = new System.Drawing.Size(134, 23);
+            this.txtSearchCountry.Size = new System.Drawing.Size(250, 23);
             this.txtSearchCountry.TabIndex = 0;
+            this.txtSearchCountry.TextChanged += new System.EventHandler(this.txtSearchCountry_TextChanged);
             // 
             // lblSearch
             // 
             this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSearch.Location = new System.Drawing.Point(73, 6);
+            this.lblSearch.Location = new System.Drawing.Point(131, 25);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(134, 15);
+            this.lblSearch.Size = new System.Drawing.Size(250, 15);
             this.lblSearch.TabIndex = 1;
             this.lblSearch.Text = "Country Name or ID";
             this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 3;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel12.Controls.Add(this.dgvCountries, 1, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 75);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 1;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(640, 213);
+            this.tableLayoutPanel12.TabIndex = 4;
             // 
             // dgvCountries
             // 
             this.dgvCountries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCountries.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCountries.Location = new System.Drawing.Point(293, 37);
+            this.dgvCountries.Location = new System.Drawing.Point(99, 3);
             this.dgvCountries.Name = "dgvCountries";
-            this.dgvCountries.Size = new System.Drawing.Size(350, 251);
-            this.dgvCountries.TabIndex = 4;
+            this.dgvCountries.Size = new System.Drawing.Size(442, 207);
+            this.dgvCountries.TabIndex = 0;
             this.dgvCountries.Text = "dataGridView3";
             // 
             // tabPage3
@@ -751,11 +765,9 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
-            this.pnlAddCountry.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -815,18 +827,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel pnlAddCountry;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label lblAddNewCountry;
-        private System.Windows.Forms.Label lblCountryId;
-        private System.Windows.Forms.Label lblCountryName;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.TextBox txtSearchCountry;
         private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.Panel pnl;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.DataGridView dgvCountries;
         private System.Windows.Forms.Panel pnl;
         private System.Windows.Forms.Label lblNationality;

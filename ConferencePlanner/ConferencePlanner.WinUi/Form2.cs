@@ -15,6 +15,7 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly ICountryRepository _getCountryRepository;
+        private BindingSource bsCountries = new BindingSource();
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
@@ -187,9 +188,61 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        private void txtSearchCountry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string keyword = txtSearchCountry.Text;
+
+
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                this.txtSearchCountry.Text = keyword.Remove(keyword.Length - 1);
+            }
+        }
+
         private void LoadCountries()
         {
-            dgvCountries.DataSource = _getCountryRepository.GetCountry();
+            List<CountryModel> countries = new List<CountryModel>();
+            countries = _getCountryRepository.GetCountry();
+
+            bsCountries.AllowNew = true;
+            bsCountries.DataSource = null;
+            bsCountries.DataSource = countries; 
+
+            dgvCountries.DataSource = bsCountries;
+
+            this.dgvCountries.Columns[1].Visible = false;
+
+
+            dgvCountries.Columns[0].HeaderText = "Name";
+            dgvCountries.Columns[1].HeaderText = "Id";
+            dgvCountries.Columns[2].HeaderText = "Code";
+            dgvCountries.Columns[3].HeaderText = "Nationality";
+        }
+
+        private void txtSearchCountry_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearchCountry.Text;
+            LoadCountries(keyword);
+        }
+
+        private void LoadCountries(string keyword)
+        {
+            List<CountryModel> countries = new List<CountryModel>();
+            countries = _getCountryRepository.GetCountry(keyword);
+
+            bsCountries.AllowNew = true;
+            bsCountries.DataSource = null;
+            bsCountries.DataSource = countries;
+
+            dgvCountries.DataSource = bsCountries;
+
+            this.dgvCountries.Columns[1].Visible = false;
+
+
+            dgvCountries.Columns[0].HeaderText = "Name";
+            dgvCountries.Columns[1].HeaderText = "Id";
+            dgvCountries.Columns[2].HeaderText = "Code";
+            dgvCountries.Columns[3].HeaderText = "Nationality";
         }
     }
 }
