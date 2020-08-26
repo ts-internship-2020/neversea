@@ -46,18 +46,10 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlAddCountry = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.lblCountryId = new System.Windows.Forms.Label();
-            this.lblCountryName = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.lblAddNewCountry = new System.Windows.Forms.Label();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.txtSearchCountry = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCountries = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -77,8 +69,6 @@
             this.lblBackCountry = new System.Windows.Forms.Button();
             this.lblNextCountry = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.lblNationality = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -87,9 +77,8 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.pnlAddCountry.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -314,115 +303,19 @@
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel6.Controls.Add(this.pnlAddCountry, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel11, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.dgvCountries, 1, 1);
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel11, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel12, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(646, 291);
             this.tableLayoutPanel6.TabIndex = 0;
             this.tableLayoutPanel6.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel6_Paint);
-            // 
-            // pnlAddCountry
-            // 
-            this.pnlAddCountry.Controls.Add(this.panel1);
-            this.pnlAddCountry.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlAddCountry.Location = new System.Drawing.Point(3, 37);
-            this.pnlAddCountry.Name = "pnlAddCountry";
-            this.pnlAddCountry.Size = new System.Drawing.Size(284, 251);
-            this.pnlAddCountry.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lblNationality);
-            this.panel1.Controls.Add(this.textBox6);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.lblCountryId);
-            this.panel1.Controls.Add(this.lblCountryName);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.lblAddNewCountry);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(284, 251);
-            this.panel1.TabIndex = 1;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox5.Location = new System.Drawing.Point(124, 62);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(128, 29);
-            this.textBox5.TabIndex = 1;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox4.Location = new System.Drawing.Point(124, 111);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(128, 29);
-            this.textBox4.TabIndex = 1;
-            // 
-            // lblCountryId
-            // 
-            this.lblCountryId.AutoSize = true;
-            this.lblCountryId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCountryId.Location = new System.Drawing.Point(27, 66);
-            this.lblCountryId.Name = "lblCountryId";
-            this.lblCountryId.Size = new System.Drawing.Size(23, 21);
-            this.lblCountryId.TabIndex = 0;
-            this.lblCountryId.Text = "Id";
-            this.lblCountryId.Click += new System.EventHandler(this.lblAddNewCountry_Click);
-            // 
-            // lblCountryName
-            // 
-            this.lblCountryName.AutoSize = true;
-            this.lblCountryName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCountryName.Location = new System.Drawing.Point(27, 113);
-            this.lblCountryName.Name = "lblCountryName";
-            this.lblCountryName.Size = new System.Drawing.Size(52, 21);
-            this.lblCountryName.TabIndex = 0;
-            this.lblCountryName.Text = "Name";
-            this.lblCountryName.Click += new System.EventHandler(this.lblAddNewCountry_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(27, 160);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 21);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Code";
-            this.label8.Click += new System.EventHandler(this.lblAddNewCountry_Click);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(124, 158);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(128, 29);
-            this.textBox3.TabIndex = 1;
-            // 
-            // lblAddNewCountry
-            // 
-            this.lblAddNewCountry.AutoSize = true;
-            this.lblAddNewCountry.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAddNewCountry.Location = new System.Drawing.Point(64, 18);
-            this.lblAddNewCountry.Name = "lblAddNewCountry";
-            this.lblAddNewCountry.Size = new System.Drawing.Size(157, 25);
-            this.lblAddNewCountry.TabIndex = 0;
-            this.lblAddNewCountry.Text = "Add New Country";
-            this.lblAddNewCountry.Click += new System.EventHandler(this.lblAddNewCountry_Click);
             // 
             // tableLayoutPanel11
             // 
@@ -433,43 +326,59 @@
             this.tableLayoutPanel11.Controls.Add(this.txtSearchCountry, 2, 0);
             this.tableLayoutPanel11.Controls.Add(this.lblSearch, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(293, 3);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(350, 28);
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(640, 66);
             this.tableLayoutPanel11.TabIndex = 3;
             // 
             // txtSearchCountry
             // 
             this.txtSearchCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearchCountry.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearchCountry.Location = new System.Drawing.Point(213, 3);
+            this.txtSearchCountry.Location = new System.Drawing.Point(387, 21);
             this.txtSearchCountry.Name = "txtSearchCountry";
-            this.txtSearchCountry.Size = new System.Drawing.Size(134, 23);
+            this.txtSearchCountry.Size = new System.Drawing.Size(250, 23);
             this.txtSearchCountry.TabIndex = 0;
+            this.txtSearchCountry.TextChanged += new System.EventHandler(this.txtSearchCountry_TextChanged);
             // 
             // lblSearch
             // 
             this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSearch.Location = new System.Drawing.Point(73, 6);
+            this.lblSearch.Location = new System.Drawing.Point(131, 25);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(134, 15);
+            this.lblSearch.Size = new System.Drawing.Size(250, 15);
             this.lblSearch.TabIndex = 1;
             this.lblSearch.Text = "Country Name or ID";
             this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 3;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel12.Controls.Add(this.dgvCountries, 1, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 75);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 1;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(640, 213);
+            this.tableLayoutPanel12.TabIndex = 4;
             // 
             // dgvCountries
             // 
             this.dgvCountries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCountries.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCountries.Location = new System.Drawing.Point(293, 37);
+            this.dgvCountries.Location = new System.Drawing.Point(99, 3);
             this.dgvCountries.Name = "dgvCountries";
-            this.dgvCountries.Size = new System.Drawing.Size(350, 251);
-            this.dgvCountries.TabIndex = 4;
+            this.dgvCountries.Size = new System.Drawing.Size(442, 207);
+            this.dgvCountries.TabIndex = 0;
             this.dgvCountries.Text = "dataGridView3";
             // 
             // tabPage3
@@ -693,25 +602,6 @@
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox6.Location = new System.Drawing.Point(125, 205);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(128, 29);
-            this.textBox6.TabIndex = 1;
-            // 
-            // lblNationality
-            // 
-            this.lblNationality.AutoSize = true;
-            this.lblNationality.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblNationality.Location = new System.Drawing.Point(28, 207);
-            this.lblNationality.Name = "lblNationality";
-            this.lblNationality.Size = new System.Drawing.Size(86, 21);
-            this.lblNationality.TabIndex = 0;
-            this.lblNationality.Text = "Nationality";
-            this.lblNationality.Click += new System.EventHandler(this.lblAddNewCountry_Click);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -731,11 +621,9 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
-            this.pnlAddCountry.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -794,21 +682,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel pnlAddCountry;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label lblAddNewCountry;
-        private System.Windows.Forms.Label lblCountryId;
-        private System.Windows.Forms.Label lblCountryName;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.TextBox txtSearchCountry;
         private System.Windows.Forms.Label lblSearch;
-        private System.Windows.Forms.DataGridView dgvCountries;
         private System.Windows.Forms.Panel pnl;
-        private System.Windows.Forms.Label lblNationality;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.DataGridView dgvCountries;
     }
 }

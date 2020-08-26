@@ -152,7 +152,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             SqlCommand sqlCommand = new SqlCommand("spConferences_GetByEmailOrdByStatus", sqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.Add(new SqlParameter("@Email", "Andrei.Stancescu@totalsoft.ro"));
+            sqlCommand.Parameters.Add(new SqlParameter("@Email", spectatorEmail));
             sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
             sqlCommand.Parameters.Add(new SqlParameter("@EndDate", endDate));
 
