@@ -20,8 +20,7 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
-        private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
-
+      
 
 
         private readonly ICountryRepository _countryRepository;
@@ -40,12 +39,11 @@ namespace ConferencePlanner.WinUi
         {
             InitializeComponent();
         }
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository conferenceCategoryRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository)
         {
            _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
             _countryRepository = countryRepository;
-            _conferenceCategoryRepository = conferenceCategoryRepository;
             emailCopyFromMainForm = emailCopy;
             InitializeComponent();
 
@@ -259,8 +257,8 @@ namespace ConferencePlanner.WinUi
                 string confName;
                 
                 dgvOrganiser.CurrentRow.Selected = true;
-                confId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                confName = dgvOrganiser.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                confId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceId"].FormattedValue.ToString());
+                confName = dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceName"].FormattedValue.ToString();
                 //confStartDate = dgvOrganiser.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToDate();
                 //confEndDate = dgvOrganiser.Rows[e.RowIndex].Cells["EndDate"].FormattedValue.ToDate();
                 Console.WriteLine(confId);
@@ -287,7 +285,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
-            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository, _conferenceCategoryRepository);
+            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository);
             addConferenceForm.ShowDialog();
         }
 
@@ -355,11 +353,6 @@ namespace ConferencePlanner.WinUi
         private void pageSizeLabel_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }
