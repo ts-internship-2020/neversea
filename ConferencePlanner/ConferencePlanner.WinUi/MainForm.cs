@@ -16,10 +16,12 @@ namespace ConferencePlanner.WinUi
     public partial class MainForm : Form
     {
         private readonly IConferenceRepository conferenceRepository;
+        private readonly ICountryRepository countryRepository;
 
-        public MainForm(IConferenceRepository ConferenceRepository)
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository)
         {
             conferenceRepository = ConferenceRepository;
+            countryRepository = CountryRepository;
 
             InitializeComponent();
 
@@ -45,7 +47,7 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy);
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, countryRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 
@@ -102,6 +104,14 @@ namespace ConferencePlanner.WinUi
             tb_email.Text = "";
             tb_email.ForeColor = Color.Black;
 
+        }
+
+        private void tb_email_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+            {
+                btn_enterEmail.PerformClick();
+            }
         }
     }
 }

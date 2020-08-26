@@ -79,6 +79,7 @@
             this.tb_email.Size = new System.Drawing.Size(161, 23);
             this.tb_email.TabIndex = 4;
             this.tb_email.Enter += new System.EventHandler(this.tb_email_Enter);
+            this.tb_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             this.tb_email.Leave += new System.EventHandler(this.tb_email_Leave);
             // 
             // errorProvider2
@@ -125,7 +126,7 @@
             this.MinimumSize = new System.Drawing.Size(480, 370);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "dasda";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);

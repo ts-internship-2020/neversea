@@ -14,11 +14,22 @@ namespace ConferencePlanner.WinUi
     public partial class Form2 : Form
     {
         private readonly IConferenceRepository _getConferenceRepository;
+        private readonly ICountryRepository _getCountryRepository;
+
+        List<TabPage> tabPanel = new List<TabPage>();
         ConferenceModel model;
         int tabIndex = 0; 
         public Form2()
         {
             InitializeComponent();
+        }
+
+        public Form2(ICountryRepository getCountryRepository)
+        {
+
+            _getCountryRepository = getCountryRepository;
+            InitializeComponent();
+            LoadCountries();
         }
 
         public Form2(IConferenceRepository getConferenceRepository, ConferenceModel conference)
@@ -33,14 +44,11 @@ namespace ConferencePlanner.WinUi
 
             _getConferenceRepository = getConferenceRepository;
             InitializeComponent();
+            LoadCountries();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
         {   
-
-            //dgvCountry.DataSource = _getConferenceRepository.GetCountry("add");
-            //dgvCountry.Columns[0].HeaderText = "Country Name";
-
 
         }
 
@@ -63,19 +71,15 @@ namespace ConferencePlanner.WinUi
             tabControl1.SelectedIndex = tabIndex;
             if(tabIndex == 0)
             {
-                button1.Enabled = false;
+                lblBackCountry.Enabled = false;
             }
-            if(button2.Text == "Save")
+            if(lblNextCountry.Text == "Save")
             {
-                button2.Text = "Next";
+                lblNextCountry.Text = "Next";
             }
             progressBar1.Value -= 20;
         }
 
-        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -87,11 +91,11 @@ namespace ConferencePlanner.WinUi
                 progressBar1.Value += 20;
             }
             tabControl1.SelectedIndex = tabIndex;
-            button1.Enabled = true;
+            lblBackCountry.Enabled = true;
 
             if(tabIndex == 5)
             {
-                button2.Text = "Save";
+                lblNextCountry.Text = "Save";
             }
         }
         //private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,6 +123,21 @@ namespace ConferencePlanner.WinUi
         private void progressBar1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tableLayoutPanel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblAddNewCountry_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadCountries()
+        {
+            dgvCountries.DataSource = _getCountryRepository.GetCountry();
         }
     }
 }
