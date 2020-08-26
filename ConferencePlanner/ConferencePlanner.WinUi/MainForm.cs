@@ -16,9 +16,11 @@ namespace ConferencePlanner.WinUi
     public partial class MainForm : Form
     {
         private readonly IConferenceRepository conferenceRepository;
+        private readonly IConferenceTypeRepository _conferenceTypeRepository;
 
-        public MainForm(IConferenceRepository ConferenceRepository)
+        public MainForm(IConferenceRepository ConferenceRepository, IConferenceTypeRepository conferenceTypeRepository)
         {
+            _conferenceTypeRepository = conferenceTypeRepository;
             conferenceRepository = ConferenceRepository;
 
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy);
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 

@@ -62,6 +62,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
+            this.dgvConferenceType = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
             this.tableLayoutPanel9.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceType)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -147,8 +149,8 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(660, 325);
             this.tabControl1.TabIndex = 1;
-           // this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
+            this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
             // tabPage1
             // 
@@ -289,6 +291,7 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel6);
+            this.tabPage2.Enabled = false;
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -296,7 +299,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Country";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Enabled = false;
             // 
             // tableLayoutPanel6
             // 
@@ -338,6 +340,7 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.tableLayoutPanel7);
+            this.tabPage3.Enabled = false;
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -345,7 +348,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "District";
             this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Enabled = false;
             // 
             // tableLayoutPanel7
             // 
@@ -386,12 +388,12 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.tableLayoutPanel8);
+            this.tabPage4.Enabled = false;
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(652, 297);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "City";
-            this.tabPage4.Enabled = false;
             // 
             // tableLayoutPanel8
             // 
@@ -433,12 +435,12 @@
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.tableLayoutPanel9);
+            this.tabPage5.Enabled = false;
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(652, 297);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Category";
-            this.tabPage5.Enabled = false;
             // 
             // tableLayoutPanel9
             // 
@@ -469,12 +471,12 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.tableLayoutPanel10);
+            this.tabPage6.Enabled = false;
             this.tabPage6.Location = new System.Drawing.Point(4, 24);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(652, 297);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Type";
-            this.tabPage6.Enabled = false;
             // 
             // tableLayoutPanel10
             // 
@@ -482,6 +484,7 @@
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel10.Controls.Add(this.label11, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.dgvConferenceType, 0, 1);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -501,6 +504,21 @@
             this.label11.TabIndex = 1;
             this.label11.Text = "Conference Type";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvConferenceType
+            // 
+            this.dgvConferenceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvConferenceType.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvConferenceType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConferenceType.Location = new System.Drawing.Point(3, 38);
+            this.dgvConferenceType.Name = "dgvConferenceType";
+            this.dgvConferenceType.ReadOnly = true;
+            this.dgvConferenceType.Size = new System.Drawing.Size(646, 256);
+            this.dgvConferenceType.TabIndex = 2;
+            this.dgvConferenceType.Text = "dataGridView3";
+            this.dgvConferenceType.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvConferenceType_ColumnHeaderMouseClick);
             // 
             // tableLayoutPanel3
             // 
@@ -591,6 +609,7 @@
             this.tabPage6.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceType)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -636,5 +655,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridView dgvConferenceType;
     }
 }

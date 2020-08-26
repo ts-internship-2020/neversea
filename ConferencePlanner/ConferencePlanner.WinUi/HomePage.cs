@@ -18,6 +18,10 @@ namespace ConferencePlanner.WinUi
 
     {
         private readonly IConferenceRepository _getConferenceRepository;
+        private readonly IConferenceTypeRepository _conferenceTypeRepository;
+      
+
+
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
 
@@ -27,9 +31,9 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
             
         }
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository)
         {
-
+           _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
             emailCopyFromMainForm = emailCopy;
             InitializeComponent();
@@ -68,20 +72,14 @@ namespace ConferencePlanner.WinUi
             {
                 HeaderText = "Join",
                 Name = "buttonJoinColumn",
+                ToolTipText = "Join Conference",
                 //Text = "Join",
                 // UseColumnTextForButtonValue = true
                 Image = Properties.Resources.icons8_add_user_group_man_man_20
+                
             };
 
-            //DataGridViewImageColumn imageColumn = new DataGridViewImageColumn
-            //{
-            //    HeaderText = "Hey",
-            //    Name = "Imag",
-            //    Image = Properties.Resources.icons8_cancel_32px
-
-            //};
-
-         //   dgvConferences.Columns.Add(imageColumn);
+         
 
             dgvConferences.Columns.Add(buttonJoinColumn);
 
@@ -89,6 +87,7 @@ namespace ConferencePlanner.WinUi
             {
                 HeaderText = "Attend",
                 Name = "buttonAttendColumn",
+                ToolTipText = "Attend Conference",
                 Image = Properties.Resources.icons8_event_accepted_20
             };
             // buttonAttendColumn.Text = "Attend";
@@ -103,7 +102,11 @@ namespace ConferencePlanner.WinUi
             {
                 HeaderText = "Withdraw",
                 Name = "buttonWithdrawColumn",
+                ToolTipText = "Withdraw from conference",
+                DividerWidth = 0,
                 Image = Properties.Resources.icons8_xbox_x_20
+
+               
             };
             //   buttonWithdrawColumn.Text = "Withdraw";
             // buttonWithdrawColumn.UseColumnTextForButtonValue = true;
@@ -156,6 +159,7 @@ namespace ConferencePlanner.WinUi
                 if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
 
+
                     WebViewForm webViewForm = new WebViewForm();
                     webViewForm.Show();
 
@@ -168,10 +172,7 @@ namespace ConferencePlanner.WinUi
                     //confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                     _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
-
-
-
-                }
+                       }
 
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
                 {
@@ -186,7 +187,7 @@ namespace ConferencePlanner.WinUi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 addConferinceForm = new Form2();
+            Form2 addConferinceForm = new Form2(_getConferenceRepository, _conferenceTypeRepository);
             addConferinceForm.ShowDialog();
         }
 

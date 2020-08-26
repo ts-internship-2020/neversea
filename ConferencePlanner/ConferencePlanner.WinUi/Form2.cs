@@ -1,4 +1,5 @@
-﻿using ConferencePlanner.Abstraction.Repository;
+﻿using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +14,22 @@ namespace ConferencePlanner.WinUi
     public partial class Form2 : Form
     {
         private readonly IConferenceRepository _getConferenceRepository;
+        private readonly IConferenceTypeRepository _conferenceTypeRepository;
 
+        public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         List<TabPage> tabPanel = new List<TabPage>();
         int tabIndex = 0; 
+
         public Form2()
         {
             InitializeComponent();
         }
 
-        public Form2(IConferenceRepository getConferenceRepository)
+        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository)
         {
 
             _getConferenceRepository = getConferenceRepository;
+            _conferenceTypeRepository = conferenceTypeRepository;
             InitializeComponent();
         }
 
@@ -111,6 +116,39 @@ namespace ConferencePlanner.WinUi
 
         private void progressBar1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void tabControl1_Enter(object sender, EventArgs e)
+        {
+            dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.Columns[0].HeaderText = "Conference Type Id";
+            dgvConferenceType.Columns[1].HeaderText = "Conference Type Name";
+            
+
+
+        }
+
+        private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           int counter = 1;
+           // dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Ascending);
+           // counter++;
+            if (counter != 1)
+            {
+                if (counter % 2 == 0)
+                {
+                           dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Descending);
+
+                }
+                else
+                { 
+                    dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Ascending);
+
+                }
+
+
+            }
 
         }
     }
