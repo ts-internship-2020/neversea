@@ -43,7 +43,7 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
         }
 
-        public Form2(IConferenceRepository getConferenceRepository)
+     //   public Form2(IConferenceRepository getConferenceRepository) { }
         public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
         {
             _getCountryRepository = getCountryRepository;

@@ -281,7 +281,7 @@ namespace ConferencePlanner.WinUi
 
         private void AddConference()
         {
-            Form2 addConferenceForm = new Form2(_countryRepository);
+         //   Form2 addConferenceForm = new Form2(_countryRepository);
         
             Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository);
             addConferenceForm.ShowDialog();
