@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace ConferencePlanner.Repository.Ado.Repository
@@ -144,7 +145,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             sqlDataReader.Close();*/
 
-            return conferences;
+            return conferences.GroupBy(x => x.ConferenceId).Where(x => x.Count() == 1).Select(grp => grp.First()).ToList();
         }
 
         public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
@@ -178,7 +179,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             sqlDataReader.Close();
 
-            return conferences;
+            return conferences.GroupBy(x => x.ConferenceId).Select(grp => grp.First()).ToList();
         }
 
         public List<string> GetCountry(string name)
