@@ -153,6 +153,7 @@
             this.lblName.Size = new System.Drawing.Size(49, 19);
             this.lblName.TabIndex = 7;
             this.lblName.Text = "label5";
+            this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // lblNationality
             // 

@@ -19,7 +19,6 @@ namespace ConferencePlanner.Repository.Ado.Repository
         public ConferenceRepository(SqlConnection SqlConnection)
         {
             sqlConnection = SqlConnection;
-
         }
 
 
@@ -80,72 +79,60 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
-
-
         public void ModifySpectatorStatusWithdraw(string spectatorEmail, int conferenceId)
         {
-
-
 
             SqlParameter[] parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@Id", conferenceId);
             parameters[1] = new SqlParameter("@Email", spectatorEmail);
-
-
 
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 3 where ParticipantEmailAddress = @Email and ConferenceId = @Id";
             sqlCommand.Parameters.Add(parameters[0]);
             sqlCommand.Parameters.Add(parameters[1]);
 
-
-
             sqlCommand.ExecuteNonQuery();
         }
 
-
-
-
-
-        public List<ConferenceModel> GetConference(string name)
+        public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
         {
-            /*SqlCommand sqlCommand = sqlConnection.CreateCommand();
-
-            if (name == "organiser") {
-
-                sqlCommand.CommandText = "SELECT c.ConferenceName, c.ConferenceId, c.StartDate, c.EndDate, dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, l.LocationAddress, s.DictionarySpeakerName" +
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            string sqlStartDate = startDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            string sqlEndDate = endDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            sqlCommand.CommandText = "SELECT c.ConferenceId, c.ConferenceName, c.StartDate, c.EndDate,'', dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, l.LocationAddress, s.DictionarySpeakerName" +
                     "                     FROM DictionarySpeaker s" +
                     "                     INNER JOIN ConferenceXSpeaker cxs ON s.DictionarySpeakerId = cxs.DictionarySpeakerId AND cxs.IsMain = 1" +
                     "                     INNER JOIN Conference c ON cxs.ConferenceId = c.ConferenceId" +
                     "                     INNER JOIN DictionaryConferenceType dct ON c.DictionaryConferenceTypeId = dct.DictionaryConferenceTypeId" +
                     "                     INNER JOIN DictionaryConferenceCategory dcc ON c.DictionaryConferenceCategoryId = dcc.DictionaryConferenceCategoryId" +
                     "                     INNER JOIN Location l ON c.LocationId = l.LocationId" +
-                    "                     WHERE C.OrganiserEmail = 'paul.popescu@gmail.com' ";
-            }
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();*/
+                    "                     WHERE c.StartDate  > '" + sqlStartDate + "' and c.EndDate < '" + sqlEndDate + "' " +
+                    "                     AND c.OrganiserEmail = '" + emailOrganiser +"';";
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             List<ConferenceModel> conferences = new List<ConferenceModel>();
-
-            /*if (sqlDataReader.HasRows)
+            Console.WriteLine(startDate);
+            Console.WriteLine(endDate);
+            Console.WriteLine(sqlDataReader.HasRows); //False
+            if (sqlDataReader.HasRows)
             {
                 while (sqlDataReader.Read())
                 {
                     conferences.Add(new ConferenceModel()
                     {
-                        ConferenceName = sqlDataReader.GetString("ConferenceName"),
                         ConferenceId = sqlDataReader.GetInt32("ConferenceId"),
-                        ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
+                        ConferenceName = sqlDataReader.GetString("ConferenceName"),
                         ConferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
                         ConferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
+                        ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
                         ConferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
-                        ConferenceLocation = sqlDataReader.GetString("ConferenceLocation"),
+                        ConferenceLocation = sqlDataReader.GetString("LocationAddress"),
                         ConferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
                     });
                 }
             }
 
-            sqlDataReader.Close();*/
-
-            return conferences.GroupBy(x => x.ConferenceId).Where(x => x.Count() == 1).Select(grp => grp.First()).ToList();
+            sqlDataReader.Close();
+            return conferences;
         }
 
         public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
