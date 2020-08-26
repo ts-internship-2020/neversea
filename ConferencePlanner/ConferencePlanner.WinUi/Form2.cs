@@ -1,4 +1,5 @@
-﻿using ConferencePlanner.Abstraction.Repository;
+﻿using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +14,17 @@ namespace ConferencePlanner.WinUi
     public partial class Form2 : Form
     {
         private readonly IConferenceRepository _getConferenceRepository;
-
-        List<TabPage> tabPanel = new List<TabPage>();
+        ConferenceModel model;
         int tabIndex = 0; 
         public Form2()
         {
+            InitializeComponent();
+        }
+
+        public Form2(IConferenceRepository getConferenceRepository, ConferenceModel conference)
+        {
+            _getConferenceRepository = getConferenceRepository;
+            model = conference;
             InitializeComponent();
         }
 
@@ -31,8 +38,8 @@ namespace ConferencePlanner.WinUi
         private void MainPage_Load(object sender, EventArgs e)
         {   
 
-            dgvCountry.DataSource = _getConferenceRepository.GetCountry("add");
-            dgvCountry.Columns[0].HeaderText = "Country Name";
+            //dgvCountry.DataSource = _getConferenceRepository.GetCountry("add");
+            //dgvCountry.Columns[0].HeaderText = "Country Name";
 
 
         }
