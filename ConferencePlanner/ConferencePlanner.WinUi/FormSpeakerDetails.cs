@@ -43,6 +43,7 @@ namespace ConferencePlanner.WinUi
 
             speaker = _getConferenceRepository.getSelectSpeakerDetails(SpeakerId);
             lblName.Text = speaker.DictionarySpeakerName.ToString();
+
             //lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
         }
     }

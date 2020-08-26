@@ -34,10 +34,9 @@ namespace ConferencePlanner.WinUi
             LoadCountries();
         }
 
-        public Form2(IConferenceRepository getConferenceRepository)
-        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository)
+        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
         {
-
+            _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
             InitializeComponent();
@@ -124,9 +123,16 @@ namespace ConferencePlanner.WinUi
 
         private void tabControl1_Enter(object sender, EventArgs e)
         {
-            dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
-            dgvConferenceType.Columns[0].HeaderText = "Conference Type Id";
-            dgvConferenceType.Columns[1].HeaderText = "Conference Type Name";
+
+          //  var myBindingSource = new SortedBindingList<ConferenceTypeModel>(conferenceTypeModels);
+           // myBindingSource.ApplySort(propertyName, ListSortDirection.Ascending);
+          //  var bindingSource = new BindingSource();
+            conferenceTypeModels = _conferenceTypeRepository.getConferenceTypes();
+         //   dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.DataSource = conferenceTypeModels;
+           // dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.Columns[0].HeaderText = "Conference Type Name";
+            dgvConferenceType.Columns[1].HeaderText = "Conference Type Id";
             
 
 
@@ -134,24 +140,31 @@ namespace ConferencePlanner.WinUi
 
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            
            int counter = 1;
-           // dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Ascending);
-           // counter++;
-            if (counter != 1)
+
+            //dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Descending);
+
+
+            if (counter == 1)
             {
-                if (counter % 2 == 0)
-                {
-                           dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Descending);
-
-                }
-                else
-                { 
-                    dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Ascending);
-
-                }
+               
+                dgvConferenceType.DataSource = null; 
+                conferenceTypeModels.Sort();
+                dgvConferenceType.DataSource = conferenceTypeModels;
+                dgvConferenceType.Refresh();
+                counter++;
+            }
+            else
+            {
+                dgvConferenceType.DataSource = null;
+                conferenceTypeModels.Reverse();
+                dgvConferenceType.DataSource = conferenceTypeModels;
+                dgvConferenceType.Refresh();
 
 
             }
+
 
         }
 

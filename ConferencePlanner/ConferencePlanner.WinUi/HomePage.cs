@@ -36,8 +36,7 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
             
         }
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository)
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, ICountryRepository countryRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository)
         {
            _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
@@ -208,9 +207,8 @@ namespace ConferencePlanner.WinUi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 addConferinceForm = new Form2(_getConferenceRepository, _conferenceTypeRepository);
-            addConferinceForm.ShowDialog();
-            Form2 addConferenceForm = new Form2(_countryRepository);
+        
+            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository);
             addConferenceForm.ShowDialog();
         }
 

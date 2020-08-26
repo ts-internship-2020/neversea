@@ -48,6 +48,8 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlAddCountry = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblNationality = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.lblCountryId = new System.Windows.Forms.Label();
@@ -78,8 +80,6 @@
             this.lblBackCountry = new System.Windows.Forms.Button();
             this.lblNextCountry = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.lblNationality = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -358,6 +358,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 251);
             this.panel1.TabIndex = 1;
+            // 
+            // lblNationality
+            // 
+            this.lblNationality.AutoSize = true;
+            this.lblNationality.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblNationality.Location = new System.Drawing.Point(28, 207);
+            this.lblNationality.Name = "lblNationality";
+            this.lblNationality.Size = new System.Drawing.Size(86, 21);
+            this.lblNationality.TabIndex = 0;
+            this.lblNationality.Text = "Nationality";
+            this.lblNationality.Click += new System.EventHandler(this.lblAddNewCountry_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox6.Location = new System.Drawing.Point(125, 205);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(128, 29);
+            this.textBox6.TabIndex = 1;
             // 
             // textBox5
             // 
@@ -648,6 +667,7 @@
             this.dgvConferenceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvConferenceType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvConferenceType.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvConferenceType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConferenceType.Location = new System.Drawing.Point(3, 38);
@@ -711,25 +731,6 @@
             this.progressBar1.Size = new System.Drawing.Size(376, 23);
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox6.Location = new System.Drawing.Point(125, 205);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(128, 29);
-            this.textBox6.TabIndex = 1;
-            // 
-            // lblNationality
-            // 
-            this.lblNationality.AutoSize = true;
-            this.lblNationality.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblNationality.Location = new System.Drawing.Point(28, 207);
-            this.lblNationality.Name = "lblNationality";
-            this.lblNationality.Size = new System.Drawing.Size(86, 21);
-            this.lblNationality.TabIndex = 0;
-            this.lblNationality.Text = "Nationality";
-            this.lblNationality.Click += new System.EventHandler(this.lblAddNewCountry_Click);
             // 
             // Form2
             // 
