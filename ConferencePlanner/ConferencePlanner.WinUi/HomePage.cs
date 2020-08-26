@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -22,8 +23,12 @@ namespace ConferencePlanner.WinUi
       
 
 
+        private readonly ICountryRepository _countryRepository;
+
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
+        int pageSize = 20;
+        int pageNumber = 1;
 
 
         public HomePage()
@@ -32,9 +37,11 @@ namespace ConferencePlanner.WinUi
             
         }
         public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, ICountryRepository countryRepository)
         {
            _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
+            _countryRepository = countryRepository;
             emailCopyFromMainForm = emailCopy;
             InitializeComponent();
 
@@ -47,17 +54,14 @@ namespace ConferencePlanner.WinUi
 
         }
 
-     
 
 
-        
+
+
 
         private void MainPage_Load(object sender, EventArgs e)
         {
             WireUpSpectator();
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
-               // dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator");
-            this.dgvConferences.Columns[1].Visible = false;
 
             dgvOrganiser.DataSource = _getConferenceRepository.GetConference("organiser");
             dgvOrganiser.Columns[0].HeaderText = "Title";
@@ -66,7 +70,7 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Columns[3].HeaderText = "Category";
             dgvOrganiser.Columns[4].HeaderText = "Address";
             dgvOrganiser.Columns[5].HeaderText = "Speaker";
-
+        
 
             DataGridViewImageColumn buttonJoinColumn = new DataGridViewImageColumn
             {
@@ -127,23 +131,31 @@ namespace ConferencePlanner.WinUi
             WireUpSpectator();
         }
 
-
-
       
 
         private void WireUpSpectator()
         {
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+            List<ConferenceModel> conferences = new List<ConferenceModel>();
+            conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
+
+            int pageCount = (int)Math.Ceiling((double)(conferences.Count / pageSize + 1));
+
+            if (pageNumber >= 1 && pageNumber <= pageCount)
+            {
+                IEnumerable<ConferenceModel> conferencesDisplayed = conferences.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                dgvConferences.DataSource = conferencesDisplayed;
+            }
+
 
             this.dgvConferences.Columns[1].Visible = false;
 
 
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Id";
-            dgvConferences.Columns[2].HeaderText = "Type";
-            dgvConferences.Columns[3].HeaderText = "Duration";
+            dgvConferences.Columns[2].HeaderText = "Starts";
+            dgvConferences.Columns[3].HeaderText = "Ends";
             dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Address";
+            dgvConferences.Columns[5].HeaderText = "Location";
             dgvConferences.Columns[6].HeaderText = "Speaker";
         }
 
@@ -156,7 +168,14 @@ namespace ConferencePlanner.WinUi
 
             if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+                if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                {
+                    string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
+                    int speakerId = _getConferenceRepository.getSpeakerId(speakerName);
+                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository, speakerId);
+                    formSpeakerDetail.Show();
+                }
+                    if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
 
 
@@ -172,7 +191,9 @@ namespace ConferencePlanner.WinUi
                     //confName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                     _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
-                       }
+
+
+                }
 
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
                 {
@@ -189,11 +210,42 @@ namespace ConferencePlanner.WinUi
         {
             Form2 addConferinceForm = new Form2(_getConferenceRepository, _conferenceTypeRepository);
             addConferinceForm.ShowDialog();
+            Form2 addConferenceForm = new Form2(_countryRepository);
+            addConferenceForm.ShowDialog();
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            pageNumber++;
+
+            btnBack.Enabled = true;
+
+            WireUpSpectator();
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            pageNumber--;
+
+            if (pageNumber < 0)
+            {
+                pageNumber = 0;
+                btnBack.Enabled = false;
+            }
+
+            WireUpSpectator();
+            
         }
     }
 }

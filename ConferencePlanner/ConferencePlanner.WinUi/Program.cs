@@ -33,8 +33,10 @@ namespace ConferencePlanner.WinUi
             var services = new ServiceCollection();
             services.AddScoped<HomePage>();
             services.AddScoped<MainForm>();
+            services.AddScoped<Form2>();
             services.AddScoped<IGetDemoRepository, GetDemoRepository>();
             services.AddScoped<IConferenceRepository, ConferenceRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>(); 
             services.AddSingleton<SqlConnection>(a =>
             {
