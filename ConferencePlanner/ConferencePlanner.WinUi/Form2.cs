@@ -14,6 +14,7 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly ICountryRepository _getCountryRepository;
+        private readonly IDistrictRepository _getDistrictRepository;
 
         List<TabPage> tabPanel = new List<TabPage>();
         int tabIndex = 0; 
@@ -28,6 +29,13 @@ namespace ConferencePlanner.WinUi
             _getCountryRepository = getCountryRepository;
             InitializeComponent();
             LoadCountries();
+        }
+        public Form2(IDistrictRepository getDistrictRepository)
+        {
+            _getDistrictRepository = getDistrictRepository;
+            InitializeComponent();
+            LoadDistricts();
+            
         }
 
         public Form2(IConferenceRepository getConferenceRepository)
@@ -125,10 +133,29 @@ namespace ConferencePlanner.WinUi
         {
 
         }
+        private void LoadDistricts()
+        {
+            dgvDistricts.DataSource = _getDistrictRepository.GetDistrict();
+        }
 
         private void LoadCountries()
         {
             dgvCountries.DataSource = _getCountryRepository.GetCountry();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

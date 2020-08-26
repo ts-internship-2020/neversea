@@ -158,16 +158,19 @@
             // 
             // dgvConferences
             // 
+            this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvConferences.BackgroundColor = System.Drawing.Color.White;
             this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvConferences.GridColor = System.Drawing.Color.White;
             this.dgvConferences.Location = new System.Drawing.Point(66, 57);
             this.dgvConferences.Name = "dgvConferences";
+            this.dgvConferences.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvConferences.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvConferences.Size = new System.Drawing.Size(652, 301);
-            this.dgvConferences.TabIndex = 2;
+            this.dgvConferences.TabIndex = 1;
             this.dgvConferences.Text = "dataGridView1";
+            this.dgvConferences.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferences_CellContentClick);
             // 
             // tableLayoutPanel1
             // 
@@ -243,35 +246,6 @@
             this.dtpEnd.Size = new System.Drawing.Size(224, 27);
             this.dtpEnd.TabIndex = 1;
             this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
-            // 
-            // lblStart
-            // 
-            this.lblStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStart.AutoSize = true;
-            this.lblStart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblStart.ForeColor = System.Drawing.Color.Black;
-            this.lblStart.Location = new System.Drawing.Point(3, 14);
-            this.lblStart.Name = "lblStart";
-            this.lblStart.Size = new System.Drawing.Size(91, 21);
-            this.lblStart.TabIndex = 0;
-            this.lblStart.Text = "From";
-            this.lblStart.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // dgvConferences
-            // 
-            this.dgvConferences.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvConferences.BackgroundColor = System.Drawing.Color.White;
-            this.dgvConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConferences.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvConferences.GridColor = System.Drawing.Color.White;
-            this.dgvConferences.Location = new System.Drawing.Point(66, 57);
-            this.dgvConferences.Name = "dgvConferences";
-            this.dgvConferences.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvConferences.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dgvConferences.Size = new System.Drawing.Size(652, 356);
-            this.dgvConferences.TabIndex = 1;
-            this.dgvConferences.Text = "dataGridView1";
-            this.dgvConferences.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferences_CellContentClick);
             // 
             // OrganizerTab
             // 
@@ -384,7 +358,6 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(652, 356);
             this.tableLayoutPanel4.TabIndex = 1;
-//            this.tableLayoutPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel4_Paint);
             // 
             // dgvOrganiser
             // 
