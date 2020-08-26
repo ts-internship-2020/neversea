@@ -22,7 +22,7 @@ namespace ConferencePlanner.WinUi
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         List<TabPage> tabPanel = new List<TabPage>();
         ConferenceModel model;
-        int tabIndex = 0; 
+        int tabIndex = 0;
 
         public Form2()
         {
@@ -38,22 +38,13 @@ namespace ConferencePlanner.WinUi
         }
 
         public Form2(IConferenceRepository getConferenceRepository, ConferenceModel conference)
-        public Form2(IDistrictRepository getDistrictRepository)
-        {
-            _getDistrictRepository = getDistrictRepository;
-            InitializeComponent();
-            LoadDistricts();
-            
-        }
-
-        public Form2(IConferenceRepository getConferenceRepository)
         {
             _getConferenceRepository = getConferenceRepository;
             model = conference;
             InitializeComponent();
         }
 
-     //   public Form2(IConferenceRepository getConferenceRepository) { }
+        //   public Form2(IConferenceRepository getConferenceRepository) { }
         public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
         {
             _getCountryRepository = getCountryRepository;
@@ -64,7 +55,7 @@ namespace ConferencePlanner.WinUi
         }
 
         private void MainPage_Load(object sender, EventArgs e)
-        {   
+        {
 
         }
 
@@ -85,11 +76,11 @@ namespace ConferencePlanner.WinUi
             tabControl1.TabPages[tabIndex].Enabled = true;
 
             tabControl1.SelectedIndex = tabIndex;
-            if(tabIndex == 0)
+            if (tabIndex == 0)
             {
                 lblBackCountry.Enabled = false;
             }
-            if(lblNextCountry.Text == "Save")
+            if (lblNextCountry.Text == "Save")
             {
                 lblNextCountry.Text = "Next";
             }
@@ -99,7 +90,7 @@ namespace ConferencePlanner.WinUi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tabIndex < 5) 
+            if (tabIndex < 5)
             {
                 tabControl1.TabPages[tabIndex].Enabled = false;
                 tabIndex += 1;
@@ -109,7 +100,7 @@ namespace ConferencePlanner.WinUi
             tabControl1.SelectedIndex = tabIndex;
             lblBackCountry.Enabled = true;
 
-            if(tabIndex == 5)
+            if (tabIndex == 5)
             {
                 lblNextCountry.Text = "Save";
             }
@@ -144,32 +135,32 @@ namespace ConferencePlanner.WinUi
         private void tabControl1_Enter(object sender, EventArgs e)
         {
 
-          //  var myBindingSource = new SortedBindingList<ConferenceTypeModel>(conferenceTypeModels);
-           // myBindingSource.ApplySort(propertyName, ListSortDirection.Ascending);
-          //  var bindingSource = new BindingSource();
+            //  var myBindingSource = new SortedBindingList<ConferenceTypeModel>(conferenceTypeModels);
+            // myBindingSource.ApplySort(propertyName, ListSortDirection.Ascending);
+            //  var bindingSource = new BindingSource();
             conferenceTypeModels = _conferenceTypeRepository.getConferenceTypes();
-         //   dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            //   dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
             dgvConferenceType.DataSource = conferenceTypeModels;
-           // dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            // dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
             dgvConferenceType.Columns[0].HeaderText = "Conference Type Name";
             dgvConferenceType.Columns[1].HeaderText = "Conference Type Id";
-            
+
 
 
         }
 
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
-           int counter = 1;
+
+            int counter = 1;
 
             //dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Descending);
 
 
             if (counter == 1)
             {
-               
-                dgvConferenceType.DataSource = null; 
+
+                dgvConferenceType.DataSource = null;
                 conferenceTypeModels.Sort();
                 dgvConferenceType.DataSource = conferenceTypeModels;
                 dgvConferenceType.Refresh();
@@ -208,11 +199,8 @@ namespace ConferencePlanner.WinUi
                 this.txtSearchCountry.Text = keyword.Remove(keyword.Length - 1);
             }
         }
-        }
-        private void LoadDistricts()
-        {
-            dgvDistricts.DataSource = _getDistrictRepository.GetDistrict();
-        }
+
+
 
         private void LoadCountries()
         {
@@ -221,7 +209,7 @@ namespace ConferencePlanner.WinUi
 
             bsCountries.AllowNew = true;
             bsCountries.DataSource = null;
-            bsCountries.DataSource = countries; 
+            bsCountries.DataSource = countries;
 
             dgvCountries.DataSource = bsCountries;
 
@@ -276,3 +264,4 @@ namespace ConferencePlanner.WinUi
         }
     }
 }
+
