@@ -147,13 +147,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return conferences;
         }
 
-        public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate)
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
         {
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"EXEC spConferences_GetByEmailOrdByStatus " +
-                  $"                       @Email='aaaaaaaa@gmail.com', " +
-                  $"                       @StartDate = '20100101', " +
-                  $"                       @EndDate = '20210101'";
+            SqlCommand sqlCommand = new SqlCommand("spConferences_GetByEmailOrdByStatus", sqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.Add(new SqlParameter("@Email", "Andrei.Stancescu@totalsoft.ro"));
+            sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
+            sqlCommand.Parameters.Add(new SqlParameter("@EndDate", endDate));
+
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             List<ConferenceModel> conferences = new List<ConferenceModel>();
 

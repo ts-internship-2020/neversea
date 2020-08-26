@@ -132,7 +132,7 @@ namespace ConferencePlanner.WinUi
         private void WireUpSpectator()
         {
             List<ConferenceModel> conferences = new List<ConferenceModel>();
-            conferences = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+            conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
 
             int pageCount = (int)Math.Ceiling((double)(conferences.Count / pageSize + 1));
 
