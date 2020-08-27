@@ -42,7 +42,7 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
         }
 
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         {
             _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
@@ -210,12 +210,13 @@ namespace ConferencePlanner.WinUi
             dgvConferences.Columns[1].HeaderText = "Id";
             dgvConferences.Columns[2].HeaderText = "Starts";
             dgvConferences.Columns[3].HeaderText = "Ends";
-            dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Speaker";
-            dgvConferences.Columns[6].HeaderText = "SpeakerId";
-            dgvConferences.Columns[7].HeaderText = "Location";
+            dgvConferences.Columns[4].HeaderText = "Type";
+            dgvConferences.Columns[5].HeaderText = "Category";
+            dgvConferences.Columns[6].HeaderText = "Speaker";
+            dgvConferences.Columns[7].HeaderText = "SpeakerId";
+            dgvConferences.Columns[8].HeaderText = "Location";
 
-//            dgvConferences.Columns[6].Visible = false;
+            dgvConferences.Columns[8].Visible = false;
 
             dgvConferences.Columns[6].Name = "conferenceMainSpeaker";
         }
@@ -304,8 +305,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
-            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository, conferenceCityRepository, _conferenceAttendanceRepository);
-            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository,conferenceCategoryRepository,_districtRepository);
+            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository, _districtRepository, conferenceCityRepository, _conferenceAttendanceRepository);
             addConferenceForm.ShowDialog();
         }
 

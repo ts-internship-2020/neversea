@@ -60,7 +60,7 @@ namespace ConferencePlanner.WinUi
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;

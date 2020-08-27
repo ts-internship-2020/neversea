@@ -515,7 +515,6 @@
             this.dgvCity.Size = new System.Drawing.Size(442, 203);
             this.dgvCity.TabIndex = 0;
             this.dgvCity.Text = "dataGridView2";
-            this.dgvCity.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // tableLayoutPanel18
             // 

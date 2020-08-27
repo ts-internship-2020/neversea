@@ -98,7 +98,7 @@
             // 
             this.picBoxLike1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike1.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike1.Image")));
-            this.picBoxLike1.Location = new System.Drawing.Point(226, 203);
+            this.picBoxLike1.Location = new System.Drawing.Point(196, 203);
             this.picBoxLike1.Name = "picBoxLike1";
             this.picBoxLike1.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike1.TabIndex = 5;
@@ -110,7 +110,7 @@
             this.picBoxLike2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike2.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike2.Image")));
             this.picBoxLike2.InitialImage = null;
-            this.picBoxLike2.Location = new System.Drawing.Point(260, 203);
+            this.picBoxLike2.Location = new System.Drawing.Point(230, 203);
             this.picBoxLike2.Name = "picBoxLike2";
             this.picBoxLike2.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike2.TabIndex = 5;
@@ -121,7 +121,7 @@
             // 
             this.picBoxLike3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike3.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike3.Image")));
-            this.picBoxLike3.Location = new System.Drawing.Point(294, 203);
+            this.picBoxLike3.Location = new System.Drawing.Point(264, 203);
             this.picBoxLike3.Name = "picBoxLike3";
             this.picBoxLike3.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike3.TabIndex = 5;
@@ -131,7 +131,7 @@
             // 
             this.picBoxLike4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike4.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike4.Image")));
-            this.picBoxLike4.Location = new System.Drawing.Point(328, 203);
+            this.picBoxLike4.Location = new System.Drawing.Point(298, 203);
             this.picBoxLike4.Name = "picBoxLike4";
             this.picBoxLike4.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike4.TabIndex = 5;
@@ -141,7 +141,7 @@
             // 
             this.picBoxLike5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike5.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike5.Image")));
-            this.picBoxLike5.Location = new System.Drawing.Point(362, 203);
+            this.picBoxLike5.Location = new System.Drawing.Point(332, 203);
             this.picBoxLike5.Name = "picBoxLike5";
             this.picBoxLike5.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike5.TabIndex = 5;
@@ -150,9 +150,9 @@
             // picBoxSpeaker
             // 
             this.picBoxSpeaker.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.picBoxSpeaker.Location = new System.Drawing.Point(394, 91);
+            this.picBoxSpeaker.Location = new System.Drawing.Point(395, 78);
             this.picBoxSpeaker.Name = "picBoxSpeaker";
-            this.picBoxSpeaker.Size = new System.Drawing.Size(115, 109);
+            this.picBoxSpeaker.Size = new System.Drawing.Size(100, 124);
             this.picBoxSpeaker.TabIndex = 6;
             this.picBoxSpeaker.TabStop = false;
             // 
@@ -160,7 +160,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblName.Location = new System.Drawing.Point(148, 91);
+            this.lblName.Location = new System.Drawing.Point(124, 91);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(49, 19);
             this.lblName.TabIndex = 7;
@@ -171,7 +171,7 @@
             this.lblNationality.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblNationality.AutoSize = true;
             this.lblNationality.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblNationality.Location = new System.Drawing.Point(148, 149);
+            this.lblNationality.Location = new System.Drawing.Point(124, 149);
             this.lblNationality.Name = "lblNationality";
             this.lblNationality.Size = new System.Drawing.Size(49, 19);
             this.lblNationality.TabIndex = 8;
@@ -182,7 +182,7 @@
             this.lblRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRating.AutoSize = true;
             this.lblRating.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRating.Location = new System.Drawing.Point(148, 207);
+            this.lblRating.Location = new System.Drawing.Point(124, 207);
             this.lblRating.Name = "lblRating";
             this.lblRating.Size = new System.Drawing.Size(49, 19);
             this.lblRating.TabIndex = 9;
