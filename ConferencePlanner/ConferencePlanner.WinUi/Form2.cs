@@ -15,6 +15,7 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly IConferenceCategoryRepository _getConferenceCategoryRepository;
+        private readonly IConferenceCityRepository _getConferenceCityRepository;
         private readonly ICountryRepository _getCountryRepository;
         private BindingSource bsCountries = new BindingSource();
         private BindingSource bsCategories = new BindingSource();
@@ -54,22 +55,48 @@ namespace ConferencePlanner.WinUi
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository)
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceCityRepository conferenceCityRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceCategoryRepository = conferenceCategoryRepository;
+            _getConferenceCityRepository = conferenceCityRepository;
             emailCopyFromMainForm = email;
             InitializeComponent();
             LoadConferenceCategories();
             LoadCountries();
+            LoadCities();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
         {
+            
         }
+        private void LoadCities()
+        {
+            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+            cities = _getConferenceCityRepository.GetConferenceCities(1);
+            dgvCity.ColumnCount = 2;
+            dgvCity.Columns[0].Name = "Id";
+            dgvCity.Columns[1].Name = "City";
+            this.dgvCity.Columns[0].Visible = false;
+            for (int i = 0; i < cities.Count; i++)
+            {
+                //if (i >= maxrange)
+                //{
+                //    Console.WriteLine("breaked");
+                //    break;
+                //}
+                //else
+                //{
+                dgvCity.Rows.Add(cities[i].ConferenceCityId,
+                            cities[i].ConferenceCityName);
+                //}
 
+            }
+            Console.WriteLine(dgvCity.ColumnCount);
+        }
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
         {
 
@@ -282,6 +309,11 @@ namespace ConferencePlanner.WinUi
                     button2.Visible = false;
                 }
             }
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
