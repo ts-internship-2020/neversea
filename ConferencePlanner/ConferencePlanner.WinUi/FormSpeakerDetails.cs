@@ -45,7 +45,7 @@ namespace ConferencePlanner.WinUi
             lblName.Text = speaker.DictionarySpeakerName.ToString();
             lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
             lblRating.Text = speaker.DictionarySpeakerRating.ToString();
-            int rating = int.Parse(lblRating.Text);
+            float rating = float.Parse(lblRating.Text);
 
             if (rating == 1 || rating < 2)
             {

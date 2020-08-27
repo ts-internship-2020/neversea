@@ -200,20 +200,24 @@ namespace ConferencePlanner.WinUi
             
             dgvConferences.DataSource = conferences;
 
-            this.dgvConferences.Columns[1].Visible = false;
+
 
             dgvConferences.Columns[0].HeaderText = "Title";
             dgvConferences.Columns[1].HeaderText = "Id";
             dgvConferences.Columns[2].HeaderText = "Starts";
             dgvConferences.Columns[3].HeaderText = "Ends";
-            dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Speaker";
-            dgvConferences.Columns[6].HeaderText = "SpeakerId";
+            dgvConferences.Columns[4].HeaderText = "Type";
+            dgvConferences.Columns[5].HeaderText = "Category";
+            dgvConferences.Columns[6].HeaderText = "Speaker";
             dgvConferences.Columns[7].HeaderText = "Location";
+            dgvConferences.Columns[8].HeaderText = "SpeakerId";
 
-//            dgvConferences.Columns[6].Visible = false;
 
-            dgvConferences.Columns[6].Name = "conferenceMainSpeaker";
+            this.dgvConferences.Columns[1].Visible = false;
+
+            this.dgvConferences.Columns[8].Visible = false;
+
+            this.dgvConferences.Columns[6].Name = "conferenceMainSpeaker";
         }
 
         private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
