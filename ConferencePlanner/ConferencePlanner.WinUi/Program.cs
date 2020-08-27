@@ -40,6 +40,7 @@ namespace ConferencePlanner.WinUi
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>();
             services.AddScoped<IConferenceCategoryRepository, ConferenceCategoryRepository>();
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
 
             services.AddSingleton<SqlConnection>(a =>
             {

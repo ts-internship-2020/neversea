@@ -21,6 +21,7 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
+        private readonly IDistrictRepository _districtRepository;
 
 
         private readonly ICountryRepository _countryRepository;
@@ -39,13 +40,14 @@ namespace ConferencePlanner.WinUi
         {
             InitializeComponent();
         }
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository,IDistrictRepository districtRepository)
         {
            _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
             _countryRepository = countryRepository;
             conferenceCategoryRepository = _conferenceCategoryRepository;
             emailCopyFromMainForm = emailCopy;
+            _districtRepository = districtRepository;
             InitializeComponent();
 
             DateTime now = DateTime.Now;
@@ -291,7 +293,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
-            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository,conferenceCategoryRepository);
+            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository,conferenceCategoryRepository,_districtRepository);
             addConferenceForm.ShowDialog();
         }
 

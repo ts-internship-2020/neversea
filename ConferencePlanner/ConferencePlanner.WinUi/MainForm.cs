@@ -22,15 +22,16 @@ namespace ConferencePlanner.WinUi
         private readonly ICountryRepository countryRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
+        private readonly IDistrictRepository _districtRepository;
 
-
-        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository)
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
             conferenceRepository = ConferenceRepository;
             countryRepository = CountryRepository;
             _conferenceCategoryRepository = conferenceCategoryRepository;
+            _districtRepository = districtRepository;
             InitializeComponent();
 
         }
@@ -55,7 +56,7 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository);
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository,_districtRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 
@@ -71,7 +72,7 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //tb_email.Text = "admin@admin.com";
+            tb_email.Text = "admin@admin.com";
            // player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {

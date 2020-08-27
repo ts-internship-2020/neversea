@@ -204,7 +204,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
 
-            sqlCommand.CommandText = $"SELECT ds.DictionarySpeakerName,ds.DictionarySpeakerRating, dc.DictionaryCountryNationality "+
+            sqlCommand.CommandText = $"SELECT ds.DictionarySpeakerName,ds.DictionarySpeakerRating, dc.DictionaryCountryNationality, ds.DictionarySpeakerImage "+
  "from DictionarySpeaker ds join ConferenceXSpeaker cs on cs.DictionarySpeakerId = ds.DictionarySpeakerId"+
  " join Conference c on cs.ConferenceId = c.ConferenceId"+
  " join Location l on l.LocationId = c.LocationId"+
@@ -229,10 +229,12 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
                     speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionaryCountryNationality"));
                     speaker.DictionarySpeakerRating =  (float)sqlDataReader.GetDouble("DictionarySpeakerRating");
+                    speaker.DictionarySpeakerImage = new string(sqlDataReader.GetString("DictionarySpeakerImage"));
                 }
                 
             }
             return speaker;
+            
         }
 
         public int getSpeakerId(string speakerName)

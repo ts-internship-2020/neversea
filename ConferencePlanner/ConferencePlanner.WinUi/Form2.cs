@@ -19,6 +19,8 @@ namespace ConferencePlanner.WinUi
         private BindingSource bsCountries = new BindingSource();
         private BindingSource bsCategories = new BindingSource();
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
+        private readonly IDistrictRepository _districtRepository;
+        private BindingSource bsDistricts = new BindingSource();
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
@@ -39,6 +41,7 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
             LoadConferenceCategories();
             LoadCountries();
+            LoadDistricts();
         }
 
         public Form2(IConferenceRepository getConferenceRepository, ConferenceModel conference)
@@ -49,18 +52,21 @@ namespace ConferencePlanner.WinUi
             InitializeComponent(); 
             LoadConferenceCategories();
             LoadCountries();
+            LoadDistricts();
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository)
+        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceCategoryRepository = conferenceCategoryRepository;
+            _districtRepository = districtRepository;
             InitializeComponent();
             LoadConferenceCategories();
             LoadCountries();
+            LoadDistricts();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
@@ -244,6 +250,24 @@ namespace ConferencePlanner.WinUi
         {
             string keyword = txtSearchCountry.Text;
             LoadCountries(keyword);
+        }
+        private void LoadDistricts()
+        {
+            List<DistrictModel> districts = new List<DistrictModel>();
+            districts = _districtRepository.GetDistrict();
+            bsDistricts.AllowNew = true;
+            bsDistricts.DataSource = null;
+            bsDistricts.DataSource = districts;
+            dgvDistrict.DataSource = bsDistricts;
+
+            this.dgvDistrict.Columns[3].Visible = false;
+
+
+            dgvDistrict.Columns[0].HeaderText = "Name";
+            dgvDistrict.Columns[1].HeaderText = "Id";
+            dgvDistrict.Columns[2].HeaderText = "Code";
+            dgvDistrict.Columns[3].HeaderText = "CountryId"; 
+
         }
 
         private void LoadCountries(string keyword)
