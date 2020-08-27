@@ -153,6 +153,7 @@
             this.picBoxSpeaker.Location = new System.Drawing.Point(395, 78);
             this.picBoxSpeaker.Name = "picBoxSpeaker";
             this.picBoxSpeaker.Size = new System.Drawing.Size(100, 124);
+            this.picBoxSpeaker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxSpeaker.TabIndex = 6;
             this.picBoxSpeaker.TabStop = false;
             // 

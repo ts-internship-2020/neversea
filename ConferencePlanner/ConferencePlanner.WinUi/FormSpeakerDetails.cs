@@ -47,7 +47,7 @@ namespace ConferencePlanner.WinUi
             lblRating.Text = speaker.DictionarySpeakerRating.ToString();
 
             picBoxSpeaker.LoadAsync(speaker.DictionarySpeakerImage.ToString());
-            int rating = int.Parse(lblRating.Text);
+            float rating = float.Parse(lblRating.Text);
 
             if (rating == 1 || rating < 2)
             {
