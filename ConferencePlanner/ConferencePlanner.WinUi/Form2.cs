@@ -14,14 +14,19 @@ namespace ConferencePlanner.WinUi
     public partial class Form2 : Form
     {
         private readonly IConferenceRepository _getConferenceRepository;
+        private readonly IConferenceCategoryRepository _getConferenceCategoryRepository;
         private readonly ICountryRepository _getCountryRepository;
         private BindingSource bsCountries = new BindingSource();
+        private BindingSource bsCategories = new BindingSource();
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
+        public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
+
         List<TabPage> tabPanel = new List<TabPage>();
         ConferenceModel model;
-        int tabIndex = 0; 
+        int tabIndex = 0;
+        public string emailCopyFromMainForm;
 
         public Form2()
         {
@@ -32,7 +37,9 @@ namespace ConferencePlanner.WinUi
         {
 
             _getCountryRepository = getCountryRepository;
+            
             InitializeComponent();
+            LoadConferenceCategories();
             LoadCountries();
         }
 
@@ -40,22 +47,27 @@ namespace ConferencePlanner.WinUi
         {
             _getConferenceRepository = getConferenceRepository;
             model = conference;
-            InitializeComponent();
+           
+            InitializeComponent(); 
+            LoadConferenceCategories();
+            LoadCountries();
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository)
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
+            _getConferenceCategoryRepository = conferenceCategoryRepository;
+            emailCopyFromMainForm = email;
             InitializeComponent();
+            LoadConferenceCategories();
             LoadCountries();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
-        {   
-
+        {
         }
 
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
@@ -89,7 +101,7 @@ namespace ConferencePlanner.WinUi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tabIndex < 5) 
+            if (tabIndex < tabControl1.TabCount - 1) 
             {
                 tabControl1.TabPages[tabIndex].Enabled = false;
                 tabIndex += 1;
@@ -99,19 +111,11 @@ namespace ConferencePlanner.WinUi
             tabControl1.SelectedIndex = tabIndex;
             lblBackCountry.Enabled = true;
 
-            if(tabIndex == 5)
+            if(tabIndex == tabControl1.TabCount)
             {
                 lblNextCountry.Text = "Save";
             }
         }
-        //private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (tabControl1.SelectedTab.Enabled == false)
-        //    {
-        //        tabControl1.SelectedTab = tabPage1;
-        //        MessageBox.Show("You don't have permission !!", "Meera Academy");
-        //    }
-        //}
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -144,6 +148,8 @@ namespace ConferencePlanner.WinUi
             dgvConferenceType.Columns[0].HeaderText = "Conference Type Name";
             dgvConferenceType.Columns[1].HeaderText = "Conference Type Id";
             
+
+
 
 
         }
@@ -199,6 +205,23 @@ namespace ConferencePlanner.WinUi
             }
         }
 
+        private void LoadConferenceCategories()
+        {
+            List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
+            conferenceCategories = _getConferenceCategoryRepository.GetConferenceCategories();
+            bsCategories.AllowNew = true;
+            bsCategories.DataSource = null;
+            bsCategories.DataSource = conferenceCategories;
+
+            //dgvConferenceCategory.DataSource = bsCategories;
+
+            
+            //dgvConferenceCategory.Columns[0].HeaderText = "Name";
+           // dgvConferenceCategory.Columns[1].HeaderText = "Id";
+
+
+        }
+
         private void LoadCountries()
         {
             List<CountryModel> countries = new List<CountryModel>();
@@ -243,6 +266,22 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "City")
+            {
+                Console.WriteLine("Am intrat in tabul city");
+                if (emailCopyFromMainForm != "paul.popescu@gmail.com")
+                {
+                    button2.Visible = false;
+                }
+            }
         }
     }
 }

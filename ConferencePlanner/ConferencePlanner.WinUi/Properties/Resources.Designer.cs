@@ -71,6 +71,16 @@ namespace ConferencePlanner.WinUi.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Dapino_Summer_Holiday_Palm_tree {
+            get {
+                object obj = ResourceManager.GetObject("Dapino_Summer_Holiday_Palm_tree", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icons8_add_user_group_man_man_20 {
@@ -116,6 +126,26 @@ namespace ConferencePlanner.WinUi.Properties {
         internal static System.Drawing.Bitmap icons8_event_accepted_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8_event_accepted_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_facebook_like_24px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_facebook_like_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_facebook_like_48px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_facebook_like_48px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

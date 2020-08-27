@@ -23,7 +23,10 @@ namespace ConferencePlanner.WinUi
         private readonly ICountryRepository countryRepository;
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
+        private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
 
+
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository)
         public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
@@ -32,6 +35,7 @@ namespace ConferencePlanner.WinUi
             countryRepository = CountryRepository;
             conferenceAttendanceRepository = ConferenceAttendanceRepository;
 
+            _conferenceCategoryRepository = conferenceCategoryRepository;
             InitializeComponent();
 
         }
@@ -74,7 +78,8 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-  //          player.Play();
+            //tb_email.Text = "admin@admin.com";
+           // player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {
                 tb_email.Text = Properties.Settings.Default.Email;
@@ -124,6 +129,11 @@ namespace ConferencePlanner.WinUi
             {
                 btn_enterEmail.PerformClick();
             }
+        }
+
+        private void tb_email_TextChanged(object sender, EventArgs e)
+        {
+            tb_email.Text = "paul.popescu@gmail.com";
         }
     }
 }

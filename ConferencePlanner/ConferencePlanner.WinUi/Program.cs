@@ -23,6 +23,7 @@ namespace ConferencePlanner.WinUi
             Application.SetCompatibleTextRenderingDefault(false);
             ConfigureServices();
             Application.Run(ServiceProvider.GetService<MainForm>()); 
+           
         }
 
 
@@ -37,6 +38,9 @@ namespace ConferencePlanner.WinUi
             services.AddScoped<IGetDemoRepository, GetDemoRepository>();
             services.AddScoped<IConferenceRepository, ConferenceRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>();
+            services.AddScoped<IConferenceCategoryRepository, ConferenceCategoryRepository>();
+
             services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>();
             services.AddScoped<IConferenceAttendanceRepository, ConferenceAttendanceRepository>();
 

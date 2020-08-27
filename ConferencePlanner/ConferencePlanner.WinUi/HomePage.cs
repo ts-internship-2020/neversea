@@ -20,6 +20,8 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
+        private readonly IConferenceCategoryRepository conferenceCategoryRepository;
+
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
 
@@ -37,6 +39,7 @@ namespace ConferencePlanner.WinUi
         {
             InitializeComponent();
         }
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository)
         public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         {
             _conferenceTypeRepository = conferenceTypeRepository;
@@ -44,6 +47,7 @@ namespace ConferencePlanner.WinUi
             _countryRepository = countryRepository;
             _conferenceAttendanceRepository = conferenceAttendanceRepository;
 
+            conferenceCategoryRepository = _conferenceCategoryRepository;
             emailCopyFromMainForm = emailCopy;
             InitializeComponent();
 
@@ -61,6 +65,7 @@ namespace ConferencePlanner.WinUi
             DateTime initialStart = DateTime.Parse("01.01.1900 00:00:00");
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
+            
             maxrange = Conferences.Count;
             button2.Enabled = false;
             dgvOrganiser.ColumnCount = 8;
@@ -159,6 +164,7 @@ namespace ConferencePlanner.WinUi
                 {
                     button3.Enabled = true;
                 }
+                //d/*gvOrganiser.Rows.RemoveAt(dgvOrganiser.Rows.Count - 1);*/
             }
         }
         private void dtpStart_CloseUp(Object sender, EventArgs e)
@@ -201,8 +207,13 @@ namespace ConferencePlanner.WinUi
             dgvConferences.Columns[2].HeaderText = "Starts";
             dgvConferences.Columns[3].HeaderText = "Ends";
             dgvConferences.Columns[4].HeaderText = "Category";
-            dgvConferences.Columns[5].HeaderText = "Location";
-            dgvConferences.Columns[6].HeaderText = "Speaker";
+            dgvConferences.Columns[5].HeaderText = "Speaker";
+            dgvConferences.Columns[6].HeaderText = "SpeakerId";
+            dgvConferences.Columns[7].HeaderText = "Location";
+
+//            dgvConferences.Columns[6].Visible = false;
+
+            dgvConferences.Columns[6].Name = "conferenceMainSpeaker";
         }
 
         private void dgvConferences_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -215,11 +226,11 @@ namespace ConferencePlanner.WinUi
                 if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
                 {
                     string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
-                    int speakerId = _getConferenceRepository.getSpeakerId(speakerName);
-                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository, speakerId);
+                    int speakerId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
+                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository,speakerId);
                     formSpeakerDetail.Show();
                 }
-                    if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+                   else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
 
 
@@ -246,7 +257,6 @@ namespace ConferencePlanner.WinUi
                 }
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             AddConference();
@@ -261,8 +271,8 @@ namespace ConferencePlanner.WinUi
                 string confName;
                 
                 dgvOrganiser.CurrentRow.Selected = true;
-                confId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                confName = dgvOrganiser.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                confId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceId"].FormattedValue.ToString());
+                confName = dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceName"].FormattedValue.ToString();
                 //confStartDate = dgvOrganiser.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToDate();
                 //confEndDate = dgvOrganiser.Rows[e.RowIndex].Cells["EndDate"].FormattedValue.ToDate();
                 Console.WriteLine(confId);
@@ -278,10 +288,11 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
+            Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
-            range = 0;
-            shown = 4;
-            step = 4;
+            step = (int)comboBox1.SelectedItem;
+            shown = (int)comboBox1.SelectedItem;
+            button2.Enabled = false;
             WireUpOrganiser();
         }
 
@@ -289,7 +300,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
-            Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository);
+            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository);
             addConferenceForm.ShowDialog();
         }
 
@@ -301,12 +312,14 @@ namespace ConferencePlanner.WinUi
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             dgvOrganiser.Rows.Clear();
-            range = 0;
-            shown = 4;
-            step = 4;
+            dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
+            Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
+            step = (int)comboBox1.SelectedItem;
+            shown = (int)comboBox1.SelectedItem;
+            button2.Enabled = false;
             WireUpOrganiser();
         }
 

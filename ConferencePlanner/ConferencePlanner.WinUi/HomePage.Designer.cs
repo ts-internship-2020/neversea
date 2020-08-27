@@ -374,6 +374,8 @@ namespace ConferencePlanner.WinUi
             // 
             // dgvOrganiser
             // 
+            this.dgvOrganiser.AllowUserToAddRows = false;
+            this.dgvOrganiser.AllowUserToDeleteRows = false;
             this.dgvOrganiser.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrganiser.BackgroundColor = System.Drawing.Color.White;
             this.dgvOrganiser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -444,7 +446,7 @@ namespace ConferencePlanner.WinUi
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.MainPageTab);
             this.Name = "HomePage";
-            this.Text = "MainPage";
+            this.Text = "Neversea";
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.MainPageTab.ResumeLayout(false);
             this.SpectatorTab.ResumeLayout(false);
