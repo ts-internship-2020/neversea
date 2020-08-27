@@ -348,11 +348,13 @@ namespace ConferencePlanner.WinUi
             //    conference.ConferenceCategory = row.Cells[0].Value.ToString();
             //    Console.WriteLine(conference.ConferenceCategory);
             //}
-           // if(dgvConferenceCategory.SelectedRows)
-           conference.ConferenceCategory = dgvConferenceCategory.SelectedRows[0].Cells[0].Value.ToString();
-           Console.WriteLine(conference.ConferenceCategory);
+           // if (dgvConferenceCategory.SelectedRows != null)
+           // {
+              //  conference.ConferenceCategory = dgvConferenceCategory.SelectedRows[0].Cells[0].Value.ToString();
+            //}
+          // Console.WriteLine(conference.ConferenceCategory);
 
-            return conference;
+           return conference;
 
         }
 

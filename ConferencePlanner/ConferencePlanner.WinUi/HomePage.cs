@@ -204,11 +204,16 @@ namespace ConferencePlanner.WinUi
         {
             string confName;
             int confId;
+            if (e.RowIndex == -1) return;
 
             if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
+                if (e.RowIndex == -1) return;
+
                 if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
                 {
+                    if (e.RowIndex == -1) return;
+
                     string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
                     int speakerId = _getConferenceRepository.getSpeakerId(speakerName);
                     FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository, speakerId);
@@ -216,6 +221,7 @@ namespace ConferencePlanner.WinUi
                 }
                     if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
+                    if (e.RowIndex == -1) return;
 
 
                     WebViewForm webViewForm = new WebViewForm();
@@ -225,6 +231,8 @@ namespace ConferencePlanner.WinUi
 
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
                 {
+                    if (e.RowIndex == -1) return;
+
                     dgvConferences.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                     _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
