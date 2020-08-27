@@ -61,13 +61,14 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.tbCategory = new System.Windows.Forms.TextBox();
+            this.dgvConferenceCategory = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvConferenceType = new System.Windows.Forms.DataGridView();
+            this.tbConferenceType = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblNationality = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -99,7 +99,7 @@
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage5.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceCategory)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
@@ -498,7 +498,8 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.tableLayoutPanel9);
+            this.tabPage5.Controls.Add(this.tbCategory);
+            this.tabPage5.Controls.Add(this.dgvConferenceCategory);
             this.tabPage5.Enabled = false;
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
@@ -506,32 +507,25 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Category";
             // 
-            // tableLayoutPanel9
+            // tbCategory
             // 
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel13, 0, 1);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 2;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(652, 297);
-            this.tableLayoutPanel9.TabIndex = 0;
+            this.tbCategory.Location = new System.Drawing.Point(24, 88);
+            this.tbCategory.Name = "tbCategory";
+            this.tbCategory.Size = new System.Drawing.Size(100, 23);
+            this.tbCategory.TabIndex = 1;
+            this.tbCategory.TextChanged += new System.EventHandler(this.tbCategory_TextChanged);
             // 
-            // label10
+            // dgvConferenceCategory
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label10.Location = new System.Drawing.Point(3, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(646, 15);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Conference Category";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dgvConferenceCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConferenceCategory.Location = new System.Drawing.Point(288, 88);
+            this.dgvConferenceCategory.Name = "dgvConferenceCategory";
+            this.dgvConferenceCategory.Size = new System.Drawing.Size(240, 150);
+            this.dgvConferenceCategory.TabIndex = 0;
+            this.dgvConferenceCategory.Text = "dataGridView4";
+            this.dgvConferenceCategory.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvConferenceCategory_RowsAdded);
+            this.dgvConferenceCategory.SelectionChanged += new System.EventHandler(this.dgvConferenceCategory_SelectionChanged);
+            this.dgvConferenceCategory.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvConferenceCategory_UserAddedRow);
             // 
             // tabPage6
             // 
@@ -572,16 +566,21 @@
             // 
             // tableLayoutPanel13
             // 
-            this.tableLayoutPanel13.ColumnCount = 1;
+            this.tableLayoutPanel13.ColumnCount = 3;
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel13.Controls.Add(this.dgvConferenceType, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.tbConferenceType, 2, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 38);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel13.Size = new System.Drawing.Size(646, 256);
-            this.tableLayoutPanel13.TabIndex = 2;
+            this.tableLayoutPanel13.TabIndex = 1;
             // 
             // dgvConferenceType
             // 
@@ -594,10 +593,19 @@
             this.dgvConferenceType.Location = new System.Drawing.Point(3, 3);
             this.dgvConferenceType.Name = "dgvConferenceType";
             this.dgvConferenceType.ReadOnly = true;
-            this.dgvConferenceType.Size = new System.Drawing.Size(640, 250);
+            this.dgvConferenceType.Size = new System.Drawing.Size(363, 250);
             this.dgvConferenceType.TabIndex = 2;
             this.dgvConferenceType.Text = "dataGridView3";
             this.dgvConferenceType.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvConferenceType_ColumnHeaderMouseClick);
+            this.dgvConferenceType.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvConferenceType_UserAddedRow);
+            // 
+            // tbConferenceType
+            // 
+            this.tbConferenceType.Location = new System.Drawing.Point(464, 3);
+            this.tbConferenceType.Name = "tbConferenceType";
+            this.tbConferenceType.Size = new System.Drawing.Size(100, 23);
+            this.tbConferenceType.TabIndex = 3;
+            this.tbConferenceType.TextChanged += new System.EventHandler(this.tbConferenceType_TextChanged);
             // 
             // tabPage7
             // 
@@ -747,20 +755,6 @@
             this.textBox6.Size = new System.Drawing.Size(128, 29);
             this.textBox6.TabIndex = 1;
             // 
-            // tableLayoutPanel13
-            // 
-            this.tableLayoutPanel13.ColumnCount = 3;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 38);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 1;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(646, 256);
-            this.tableLayoutPanel13.TabIndex = 1;
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -794,12 +788,13 @@
             this.tableLayoutPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage5.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceCategory)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceType)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
@@ -842,12 +837,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.TextBox txtSearchCountry;
@@ -866,6 +859,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridView dgvConferenceVategory;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.DataGridView dgvConferenceCategory;
+        private System.Windows.Forms.TextBox tbCategory;
+        private System.Windows.Forms.TextBox tbConferenceType;
+        // private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
     }
 }

@@ -8,6 +8,8 @@ namespace ConferencePlanner.Abstraction.Repository
    public interface IConferenceCategoryRepository
     {
         public List<ConferenceCategoryModel> GetConferenceCategories();
+        public List<ConferenceCategoryModel> GetConferenceCategories(string searchKey);
+
     }
 }
 

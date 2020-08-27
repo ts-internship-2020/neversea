@@ -37,7 +37,6 @@ namespace ConferencePlanner.WinUi
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             this.MainPageTab = new System.Windows.Forms.TabControl();
             this.SpectatorTab = new System.Windows.Forms.TabPage();
             this.tlpSpectator = new System.Windows.Forms.TableLayoutPanel();
@@ -446,10 +445,8 @@ namespace ConferencePlanner.WinUi
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.MainPageTab);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomePage";
-            this.Text = "Neversea";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomePage_FormClosed);
+            this.Text = "MainPage";
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.MainPageTab.ResumeLayout(false);
             this.SpectatorTab.ResumeLayout(false);
