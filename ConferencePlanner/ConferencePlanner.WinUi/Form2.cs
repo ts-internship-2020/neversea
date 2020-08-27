@@ -364,5 +364,6 @@ namespace ConferencePlanner.WinUi
             string keyword = txtBoxFitru.Text;
             LoadDistricts(keyword);
         }
+
     }
 }

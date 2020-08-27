@@ -138,9 +138,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
 
-            sqlCommand.CommandText = "SELECT c.ConferenceId, c.ConferenceName,'', c.StartDate, c.EndDate, dct.DictionaryConferenceTypeName," +
-                " dcc.DictionaryConferenceCategoryName, s.DictionarySpeakerName, CONCAT(dci.DictionaryCityName,', ', " +
-                " dd.DictionaryDistrictName, ', ', dco.DictionaryCountryName) AS ConferenceLocation, s.DictionarySpeakerId" +
+            sqlCommand.CommandText = "SELECT c.ConferenceId, c.ConferenceName, c.StartDate, c.EndDate,''," +
+                " dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, CONCAT(dci.DictionaryCityName,', ', " +
+                " dd.DictionaryDistrictName, ', ', dco.DictionaryCountryName) AS ConferenceLocation, s.DictionarySpeakerName, s.DictionarySpeakerId  " +
                 " FROM DictionarySpeaker s INNER JOIN ConferenceXSpeaker cxs ON s.DictionarySpeakerId = cxs.DictionarySpeakerId AND cxs.IsMain = 1 INNER JOIN Conference c ON cxs.ConferenceId = c.ConferenceId INNER JOIN DictionaryConferenceType dct ON c.DictionaryConferenceTypeId = dct.DictionaryConferenceTypeId INNER JOIN DictionaryConferenceCategory dcc ON c.DictionaryConferenceCategoryId = dcc.DictionaryConferenceCategoryId INNER JOIN[Location] l ON c.LocationId = l.LocationId INNER JOIN DictionaryCity dci ON l.DictionaryCityId = dci.DictionaryCityId INNER JOIN DictionaryDistrict dd ON dci.DictionaryDistrictId = dd.DictionaryDistrictId INNER JOIN DictionaryCountry dco ON dd.DictionaryCountryId = dco.DictionaryCountryId";
 
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
@@ -160,9 +160,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
                         ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
                         ConferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
                         ConferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName"),
-                        ConferenceLocation = sqlDataReader.GetString("ConferenceLocation"), 
+                        ConferenceLocation = sqlDataReader.GetString("ConferenceLocation"),
                         SpeakerId = sqlDataReader.GetInt32("DictionarySpeakerId")
-
                     });
                 }
             }
@@ -235,8 +234,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
             {
                 while (sqlDataReader.Read())
                 {
-                    speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
-                    speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionaryCountryNationality"));
+                    speaker.DictionarySpeakerName = sqlDataReader.GetString("DictionarySpeakerName");
+                    speaker.DictionarySpeakerNationality = sqlDataReader.GetString("DictionaryCountryNationality");
                     speaker.DictionarySpeakerRating =  (float)sqlDataReader.GetDouble("DictionarySpeakerRating");
                     speaker.DictionarySpeakerImage = new string(sqlDataReader.GetString("DictionarySpeakerImage"));
                 }
