@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
+using ConferencePlanner.WinUi.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,14 +21,16 @@ namespace ConferencePlanner.WinUi
         System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         private readonly IConferenceRepository conferenceRepository;
         private readonly ICountryRepository countryRepository;
+        private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
 
-        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository)
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
             conferenceRepository = ConferenceRepository;
             countryRepository = CountryRepository;
+            conferenceAttendanceRepository = ConferenceAttendanceRepository;
 
             InitializeComponent();
 
@@ -53,10 +56,12 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository);
+      //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
+
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, conferenceAttendanceRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
-                
+      //          tabSpectOrg.Show();
                 homePage.Show();
                 this.Hide();
             }
@@ -69,8 +74,7 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-            player.Play();
+  //          player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {
                 tb_email.Text = Properties.Settings.Default.Email;
