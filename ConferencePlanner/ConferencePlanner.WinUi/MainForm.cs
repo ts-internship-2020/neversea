@@ -24,9 +24,9 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
+        private readonly IConferenceCityRepository _conferenceCityRepository;
 
-
-        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository)
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
@@ -35,6 +35,7 @@ namespace ConferencePlanner.WinUi
             conferenceAttendanceRepository = ConferenceAttendanceRepository;
 
             _conferenceCategoryRepository = conferenceCategoryRepository;
+            _conferenceCityRepository = conferenceCityRepository;
             InitializeComponent();
 
         }
@@ -61,7 +62,7 @@ namespace ConferencePlanner.WinUi
             string emailCopy = this.tb_email.Text;
       //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
 
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, conferenceAttendanceRepository);
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _conferenceCityRepository, conferenceAttendanceRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
       //          tabSpectOrg.Show();
