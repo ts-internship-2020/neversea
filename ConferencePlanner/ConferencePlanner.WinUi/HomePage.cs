@@ -165,13 +165,14 @@ namespace ConferencePlanner.WinUi
             }
         }
         private void dtpStart_ValueChanged(Object sender, EventArgs e)
-        {
+        {   
+
             dtpEnd.MinDate = dtpStart.Value;
             WireUpSpectator();
         }
 
         private void dtpEnd_ValueChanged(Object sender, EventArgs e)
-        {
+        {   
             WireUpSpectator();
         }
 
@@ -280,10 +281,11 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
+            Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
-            range = 0;
-            shown = 4;
-            step = 4;
+            step = (int)comboBox1.SelectedItem;
+            shown = (int)comboBox1.SelectedItem;
+            button2.Enabled = false;
             WireUpOrganiser();
         }
 
@@ -291,7 +293,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
-            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository);
+            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository);
             addConferenceForm.ShowDialog();
         }
 
@@ -303,12 +305,14 @@ namespace ConferencePlanner.WinUi
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             dgvOrganiser.Rows.Clear();
-            range = 0;
-            shown = 4;
-            step = 4;
+            dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
+            Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
+            step = (int)comboBox1.SelectedItem;
+            shown = (int)comboBox1.SelectedItem;
+            button2.Enabled = false;
             WireUpOrganiser();
         }
 
