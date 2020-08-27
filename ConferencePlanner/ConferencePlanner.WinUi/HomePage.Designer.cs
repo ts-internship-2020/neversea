@@ -181,7 +181,6 @@ namespace ConferencePlanner.WinUi
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(222, 27);
             this.dtpStart.TabIndex = 0;
-            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // lblEnd
             // 
@@ -207,7 +206,6 @@ namespace ConferencePlanner.WinUi
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(224, 27);
             this.dtpEnd.TabIndex = 1;
-            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
             // 
             // OrganizerTab
             // 
@@ -446,7 +444,7 @@ namespace ConferencePlanner.WinUi
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.MainPageTab);
             this.Name = "HomePage";
-            this.Text = "MainPage";
+            this.Text = "Neversea";
             this.Load += new System.EventHandler(this.MainPage_Load);
             this.MainPageTab.ResumeLayout(false);
             this.SpectatorTab.ResumeLayout(false);

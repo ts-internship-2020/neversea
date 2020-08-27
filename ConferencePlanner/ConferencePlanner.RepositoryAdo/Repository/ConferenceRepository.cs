@@ -1,11 +1,12 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
+
 
 namespace ConferencePlanner.Repository.Ado.Repository
 {
@@ -42,7 +43,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
         }
 
 
- 
+
 
         public void ModifySpectatorStatusAttend(string conferenceName, string spectatorEmail)
         {
@@ -57,8 +58,6 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 $" where ParticipantEmailAddress = '@Email' and ConferenceId = (SELECT c.ConferenceId from Conference c where c.ConferenceName like '@Name')";
             sqlCommand.ExecuteNonQuery();
         }
-
-
 
 
         public void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId)
@@ -107,7 +106,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     "                     INNER JOIN DictionaryConferenceCategory dcc ON c.DictionaryConferenceCategoryId = dcc.DictionaryConferenceCategoryId" +
                     "                     INNER JOIN Location l ON c.LocationId = l.LocationId" +
                     "                     WHERE c.StartDate  > '" + sqlStartDate + "' and c.EndDate < '" + sqlEndDate + "' " +
-                    "                     AND c.OrganiserEmail = '" + emailOrganiser +"';";
+                    "                     AND c.OrganiserEmail = '" + emailOrganiser + "';";
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             List<ConferenceModel> conferences = new List<ConferenceModel>();
             Console.WriteLine(startDate);
@@ -135,15 +134,17 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return conferences;
         }
 
-        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances)
         {
-            SqlCommand sqlCommand = new SqlCommand("spConferences_GetByEmailOrdByStatus", sqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.Add(new SqlParameter("@Email", spectatorEmail));
-            sqlCommand.Parameters.Add(new SqlParameter("@StartDate", startDate));
-            sqlCommand.Parameters.Add(new SqlParameter("@EndDate", endDate));
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
+            sqlCommand.CommandText = "SELECT c.ConferenceId, c.ConferenceName, c.StartDate, c.EndDate,''," +
+                " dct.DictionaryConferenceTypeName, dcc.DictionaryConferenceCategoryName, CONCAT(dci.DictionaryCityName,', ', " +
+                " dd.DictionaryDistrictName, ', ', dco.DictionaryCountryName) AS ConferenceLocation, s.DictionarySpeakerName, s.DictionarySpeakerId  " +
+                " FROM DictionarySpeaker s INNER JOIN ConferenceXSpeaker cxs ON s.DictionarySpeakerId = cxs.DictionarySpeakerId AND cxs.IsMain = 1 INNER JOIN Conference c ON cxs.ConferenceId = c.ConferenceId INNER JOIN DictionaryConferenceType dct ON c.DictionaryConferenceTypeId = dct.DictionaryConferenceTypeId INNER JOIN DictionaryConferenceCategory dcc ON c.DictionaryConferenceCategoryId = dcc.DictionaryConferenceCategoryId INNER JOIN[Location] l ON c.LocationId = l.LocationId INNER JOIN DictionaryCity dci ON l.DictionaryCityId = dci.DictionaryCityId INNER JOIN DictionaryDistrict dd ON dci.DictionaryDistrictId = dd.DictionaryDistrictId INNER JOIN DictionaryCountry dco ON dd.DictionaryCountryId = dco.DictionaryCountryId";
 
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
             List<ConferenceModel> conferences = new List<ConferenceModel>();
 
             if (sqlDataReader.HasRows)
@@ -154,19 +155,27 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     {
                         ConferenceName = sqlDataReader.GetString("ConferenceName"),
                         ConferenceId = sqlDataReader.GetInt32("ConferenceId"),
-                        ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
                         ConferenceStartDate = sqlDataReader.GetDateTime("StartDate"),
                         ConferenceEndDate = sqlDataReader.GetDateTime("EndDate"),
+                        ConferenceType = sqlDataReader.GetString("DictionaryConferenceTypeName"),
                         ConferenceCategory = sqlDataReader.GetString("DictionaryConferenceCategoryName"),
+                        ConferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName"),
                         ConferenceLocation = sqlDataReader.GetString("ConferenceLocation"),
-                        ConferenceMainSpeaker = sqlDataReader.GetString("DictionarySpeakerName")
-                    }); 
+                        SpeakerId = sqlDataReader.GetInt32("DictionarySpeakerId")
+                    });
                 }
             }
 
             sqlDataReader.Close();
 
-            return conferences.GroupBy(x => x.ConferenceId).Select(grp => grp.First()).ToList();
+            List<ConferenceModel> conferencesBetweenDates = new List<ConferenceModel>();
+            conferencesBetweenDates = filterConferencesByDates(conferences, startDate, endDate);
+
+            List<ConferenceModel> conferencesOrderedByStatus = new List<ConferenceModel>();
+
+            conferencesOrderedByStatus = sortConferencesByStatus(conferencesBetweenDates, spectatorEmail, conferenceAttendances);
+
+            return conferencesOrderedByStatus;
         }
 
         public List<string> GetCountry(string name)
@@ -192,27 +201,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return countries;
         }
 
-        public SpeakerModel SelectSpeakerDetails(int speakerId)
-        {
-            SqlParameter[] parameters = new SqlParameter[1];
-            parameters[0] = new SqlParameter("@Id", speakerId);
-            
-            
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"SELECT DictionarySpeakerName,DictionarySpeakerRating " +
-                                     $"from DictionarySpeaker where DictionarySpeakerId = @Id";
-            sqlCommand.Parameters.Add(parameters[0]);
-        
-        SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            SpeakerModel speaker = new SpeakerModel();
-            if (sqlDataReader.HasRows)
-            {
-                speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
-                //speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionarySpeakerCountry"));
-                //speaker.DictionarySpeakerRating = new float.Parse(sqlDataReader.GetString("DictionarySpeakerRating"));
-            }
-            return speaker;
-        }
+       
         public SpeakerModel getSelectSpeakerDetails(int speakerId)
         {
             SqlParameter[] parameters = new SqlParameter[1];
@@ -223,8 +212,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
 
-            sqlCommand.CommandText = $"SELECT DictionarySpeakerName,DictionarySpeakerRating " +
-                                     $"from DictionarySpeaker where DictionarySpeakerId = @Id";
+            sqlCommand.CommandText = $"SELECT ds.DictionarySpeakerName,ds.DictionarySpeakerRating, dc.DictionaryCountryNationality, ds.DictionarySpeakerImage "+
+ "from DictionarySpeaker ds join ConferenceXSpeaker cs on cs.DictionarySpeakerId = ds.DictionarySpeakerId"+
+ " join Conference c on cs.ConferenceId = c.ConferenceId"+
+ " join Location l on l.LocationId = c.LocationId"+
+ " join DictionaryCity dci on dci.DictionaryCityId = l.DictionaryCityId"+
+ " join DictionaryDistrict dd on dd.DictionaryDistrictId = dci.DictionaryDistrictId"+
+ " join DictionaryCountry dc on dc.DictionaryCountryId = dd.DictionaryCountryId"+
+ " where ds.DictionarySpeakerId = @Id";
 
 
 
@@ -237,11 +232,17 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             if (sqlDataReader.HasRows)
             {
-                speaker.DictionarySpeakerName = new string(sqlDataReader.GetString("DictionarySpeakerName"));
-                //speaker.DictionarySpeakerNationality = new string(sqlDataReader.GetString("DictionarySpeakerCountry"));
-                //speaker.DictionarySpeakerRating = new float.Parse(sqlDataReader.GetString("DictionarySpeakerRating"));
+                while (sqlDataReader.Read())
+                {
+                    speaker.DictionarySpeakerName = sqlDataReader.GetString("DictionarySpeakerName");
+                    speaker.DictionarySpeakerNationality = sqlDataReader.GetString("DictionaryCountryNationality");
+                    speaker.DictionarySpeakerRating =  (float)sqlDataReader.GetDouble("DictionarySpeakerRating");
+                    speaker.DictionarySpeakerImage = new string(sqlDataReader.GetString("DictionarySpeakerImage"));
+                }
+                
             }
             return speaker;
+            
         }
 
         public int getSpeakerId(string speakerName)
@@ -257,7 +258,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             //sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 3 where ParticipantEmailAddress = @Email and ConferenceId = @Id";
             //sqlCommand.Parameters.Add(parameters[0]);
             //sqlCommand.Parameters.Add(parameters[1]);
-            int id=0;
+            int id = 0;
             SqlParameter[] parameters = new SqlParameter[1];
             parameters[0] = new SqlParameter("@Name", speakerName);
 
@@ -269,11 +270,155 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.Parameters.Add(parameters[0]);
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             if (sqlDataReader.HasRows)
-            { 
-            id = sqlDataReader.GetInt32("DictionarySpeakerId");
+            {
+                id = sqlDataReader.GetInt32("DictionarySpeakerId");
             }
             return id;
         }
-        
+
+
+        public List<ConferenceModel> filterConferencesByDates(List<ConferenceModel> conferences, DateTime startDate, DateTime endDate)
+        {
+            List<ConferenceModel> result = new List<ConferenceModel>();
+
+            foreach (ConferenceModel conference in conferences)
+            {
+                if (conference.ConferenceStartDate >= startDate && conference.ConferenceEndDate <= endDate)
+                {
+                    result.Add(conference);
+                }
+            }
+
+            return result;
+        }
+
+
+        public List<ConferenceModel> sortConferencesByStatus(List<ConferenceModel> conferencesBetweenDates, string spectatorEmail, List<ConferenceAttendanceModel> conferenceAttendances)
+        {
+            var conferencesBetweenDatesIDs = new ArrayList();
+            var conferencesAttendedIDs = new ArrayList();
+            var conferencesJoinedIDs = new ArrayList();
+            var conferencesWithdrawnIDs = new ArrayList();
+            var conferencesOtherIDs = new ArrayList();
+
+            foreach (ConferenceModel conference in conferencesBetweenDates)
+            {
+                if (conferencesBetweenDatesIDs.Contains(conference.ConferenceId))
+                {
+                    continue;
+                }
+                else
+                {
+                    conferencesBetweenDatesIDs.Add(conference.ConferenceId);
+                }
+            }
+
+            var conferenceAttendancesBetweenDates = new List<ConferenceAttendanceModel>();
+
+            for (int i = 0; i < conferencesBetweenDatesIDs.Count; i++)
+            {
+                conferenceAttendancesBetweenDates.AddRange(conferenceAttendances.FindAll(ca => ca.ConferenceId == (int)conferencesBetweenDatesIDs[i]));
+            }
+
+
+            List<ConferenceAttendanceModel> conferenceAttendancesBetweenDatesAttended = conferenceAttendancesBetweenDates.FindAll(cabd => cabd.ParticipantEmailAddress == spectatorEmail && cabd.DictionaryParticipantStatusId == 2);
+            List<ConferenceAttendanceModel> conferenceAttendancesBetweenDatesJoined = conferenceAttendancesBetweenDates.FindAll(cabd => cabd.ParticipantEmailAddress == spectatorEmail && cabd.DictionaryParticipantStatusId == 1);
+            List<ConferenceAttendanceModel> conferenceAttendancesBetweenDatesWithdrawn = conferenceAttendancesBetweenDates.FindAll(cabd => cabd.ParticipantEmailAddress == spectatorEmail && cabd.DictionaryParticipantStatusId == 3);
+            List<ConferenceAttendanceModel> conferenceAttendancesBetweenDatesWithoutStatus = conferenceAttendancesBetweenDates.FindAll(cabd => cabd.ParticipantEmailAddress != spectatorEmail);
+
+            foreach (ConferenceAttendanceModel caAttended in conferenceAttendancesBetweenDatesAttended)
+            {
+                if (conferencesAttendedIDs.Contains(caAttended.ConferenceId))
+                {
+                    continue;
+                }
+                else
+                {
+                    conferencesAttendedIDs.Add(caAttended.ConferenceId);
+                }
+            }
+
+            foreach (ConferenceAttendanceModel caJoined in conferenceAttendancesBetweenDatesJoined)
+            {
+                if (conferencesJoinedIDs.Contains(caJoined.ConferenceId))
+                {
+                    continue;
+                }
+                else
+                {
+                    conferencesJoinedIDs.Add(caJoined.ConferenceId);
+                }
+            }
+
+            foreach (ConferenceAttendanceModel caWithdrawn in conferenceAttendancesBetweenDatesWithdrawn)
+            {
+                if (conferencesWithdrawnIDs.Contains(caWithdrawn.ConferenceId))
+                {
+                    continue;
+                }
+                else
+                {
+                    conferencesWithdrawnIDs.Add(caWithdrawn.ConferenceId);
+                }
+            }
+
+            for (int i = 0; i < conferenceAttendancesBetweenDatesWithoutStatus.Count; i++)
+            {
+                if (conferencesOtherIDs.Contains(conferenceAttendancesBetweenDatesWithoutStatus[i].ConferenceId))
+                {
+                    continue;
+                }
+                else
+                {
+                    conferencesOtherIDs.Add(conferenceAttendancesBetweenDatesWithoutStatus[i].ConferenceId);
+                }
+            }
+
+
+            foreach (ConferenceAttendanceModel caOther in conferenceAttendancesBetweenDatesWithoutStatus)
+            {
+                if (conferencesOtherIDs.Contains(caOther.ConferenceId))
+                {
+                    continue;
+                }
+                else
+                {
+                    conferencesOtherIDs.Add(caOther.ConferenceId);
+                }
+            }
+
+
+            var orderedConferencesIDs = new ArrayList();
+
+            orderedConferencesIDs.AddRange(conferencesAttendedIDs);
+            orderedConferencesIDs.AddRange(conferencesJoinedIDs);
+            orderedConferencesIDs.AddRange(conferencesWithdrawnIDs);
+            orderedConferencesIDs.AddRange(conferencesOtherIDs);
+
+
+            List<ConferenceModel> orderedConferences = new List<ConferenceModel>();
+
+            for (int i = 0; i < orderedConferencesIDs.Count; i++)
+            {
+                orderedConferences.Add(conferencesBetweenDates.Find(cbd => cbd.ConferenceId == (int)orderedConferencesIDs[i]));
+            }
+
+            List<ConferenceModel> conferencesWithoutStatus = new List<ConferenceModel>();
+
+            foreach (ConferenceModel conference in conferencesBetweenDates)
+            {
+                if (orderedConferences.Contains(conference))
+                {
+                    Console.WriteLine("Conference already in the list");
+                }
+                else
+                {
+                    orderedConferences.Add(conference);
+                }
+            }
+
+            return orderedConferences;
+        }
+
     }
- };
+};
