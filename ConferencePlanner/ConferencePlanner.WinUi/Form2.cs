@@ -15,19 +15,22 @@ namespace ConferencePlanner.WinUi
     {
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly IConferenceCategoryRepository _getConferenceCategoryRepository;
+        private readonly IConferenceCityRepository _getConferenceCityRepository;
         private readonly ICountryRepository _getCountryRepository;
         private BindingSource bsCountries = new BindingSource();
         private BindingSource bsCategories = new BindingSource();
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IDistrictRepository _districtRepository;
         private BindingSource bsDistricts = new BindingSource();
+        private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
 
         List<TabPage> tabPanel = new List<TabPage>();
         ConferenceModel model;
-        int tabIndex = 0; 
+        int tabIndex = 0;
+        public string emailCopyFromMainForm;
 
         public Form2()
         {
@@ -38,6 +41,7 @@ namespace ConferencePlanner.WinUi
         {
 
             _getCountryRepository = getCountryRepository;
+            
             InitializeComponent();
             LoadConferenceCategories();
             LoadCountries();
@@ -56,24 +60,51 @@ namespace ConferencePlanner.WinUi
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository)
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceCategoryRepository = conferenceCategoryRepository;
+            _conferenceAttendanceRepository = conferenceAttendanceRepository;
+            _getConferenceCityRepository = conferenceCityRepository;
+            emailCopyFromMainForm = email;
             _districtRepository = districtRepository;
             InitializeComponent();
             LoadConferenceCategories();
             LoadCountries();
             LoadDistricts();
+            LoadCities();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
-        {   
-
+        {
+            
         }
+        private void LoadCities()
+        {
+            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+            cities = _getConferenceCityRepository.GetConferenceCities(1);
+            dgvCity.ColumnCount = 2;
+            dgvCity.Columns[0].Name = "Id";
+            dgvCity.Columns[1].Name = "City";
+            this.dgvCity.Columns[0].Visible = false;
+            for (int i = 0; i < cities.Count; i++)
+            {
+                //if (i >= maxrange)
+                //{
+                //    Console.WriteLine("breaked");
+                //    break;
+                //}
+                //else
+                //{
+                dgvCity.Rows.Add(cities[i].ConferenceCityId,
+                            cities[i].ConferenceCityName);
+                //}
 
+            }
+            Console.WriteLine(dgvCity.ColumnCount);
+        }
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
         {
 
@@ -271,6 +302,22 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "City")
+            {
+                Console.WriteLine("Am intrat in tabul city");
+                if (emailCopyFromMainForm != "paul.popescu@gmail.com")
+                {
+                    button2.Visible = false;
+                }
+            }
         }
 
         private void LoadDistricts()

@@ -22,14 +22,15 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
         private readonly IDistrictRepository _districtRepository;
+        private readonly IConferenceCityRepository conferenceCityRepository;
+
+        private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
 
         private readonly ICountryRepository _countryRepository;
 
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
-        int pageSize = 20;
-        int pageNumber = 1;
 
 
         public int range = 0;
@@ -40,12 +41,16 @@ namespace ConferencePlanner.WinUi
         {
             InitializeComponent();
         }
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository,IDistrictRepository districtRepository)
+
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         {
-           _conferenceTypeRepository = conferenceTypeRepository;
+            _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
             _countryRepository = countryRepository;
+            _conferenceAttendanceRepository = conferenceAttendanceRepository;
+
             conferenceCategoryRepository = _conferenceCategoryRepository;
+            conferenceCityRepository = _conferenceCityRepository;
             emailCopyFromMainForm = emailCopy;
             _districtRepository = districtRepository;
             InitializeComponent();
@@ -58,8 +63,8 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {   
-            WireUpSpectator();
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+            WireUpSpectator(dtpStart.Value, dtpEnd.Value);
+
             comboBox1.SelectedItem = 4;
             DateTime initialStart = DateTime.Parse("01.01.1900 00:00:00");
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
@@ -166,33 +171,38 @@ namespace ConferencePlanner.WinUi
                 //d/*gvOrganiser.Rows.RemoveAt(dgvOrganiser.Rows.Count - 1);*/
             }
         }
-        private void dtpStart_ValueChanged(Object sender, EventArgs e)
+        private void dtpStart_CloseUp(Object sender, EventArgs e)
         {
             dtpEnd.MinDate = dtpStart.Value;
-            WireUpSpectator();
+            DateTime startDate = dtpStart.Value;
+            DateTime endDate = dtpEnd.Value;
+
+            WireUpSpectator(startDate, endDate);
         }
 
-        private void dtpEnd_ValueChanged(Object sender, EventArgs e)
+        private void dtpEnd_CloseUp(Object sender, EventArgs e)
         {
-            WireUpSpectator();
+            DateTime startDate = dtpStart.Value;
+            DateTime endDate = dtpEnd.Value;
+
+            WireUpSpectator(startDate, endDate);
         }
 
       
 
-        private void WireUpSpectator()
+        private void WireUpSpectator(DateTime startDate, DateTime endDate)
         {
-
             List<ConferenceModel> conferences = new List<ConferenceModel>();
-            conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
+            List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
-            int pageCount = (int)Math.Ceiling((double)(conferences.Count / pageSize + 1));
+            conferenceAttendances = _conferenceAttendanceRepository.GetConferenceAttendance();
 
-            if (pageNumber >= 1 && pageNumber <= pageCount)
-            {
-                IEnumerable<ConferenceModel> conferencesDisplayed = conferences.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-                dgvConferences.DataSource = conferencesDisplayed;
-            }
 
+            conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, startDate, endDate, conferenceAttendances);
+
+            dgvConferences.DataSource = null;
+            
+            dgvConferences.DataSource = conferences;
 
             this.dgvConferences.Columns[1].Visible = false;
 
@@ -282,10 +292,11 @@ namespace ConferencePlanner.WinUi
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
+            Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
-            range = 0;
-            shown = 4;
-            step = 4;
+            step = (int)comboBox1.SelectedItem;
+            shown = (int)comboBox1.SelectedItem;
+            button2.Enabled = false;
             WireUpOrganiser();
         }
 
@@ -293,6 +304,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
+            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository, conferenceCityRepository, _conferenceAttendanceRepository);
             Form2 addConferenceForm = new Form2(_getConferenceRepository,  _conferenceTypeRepository, _countryRepository,conferenceCategoryRepository,_districtRepository);
             addConferenceForm.ShowDialog();
         }
@@ -305,12 +317,14 @@ namespace ConferencePlanner.WinUi
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             dgvOrganiser.Rows.Clear();
-            range = 0;
-            shown = 4;
-            step = 4;
+            dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
+            Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
+            step = (int)comboBox1.SelectedItem;
+            shown = (int)comboBox1.SelectedItem;
+            button2.Enabled = false;
             WireUpOrganiser();
         }
 

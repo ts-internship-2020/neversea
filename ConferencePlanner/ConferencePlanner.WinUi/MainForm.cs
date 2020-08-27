@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
+using ConferencePlanner.WinUi.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,18 +21,23 @@ namespace ConferencePlanner.WinUi
         System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         private readonly IConferenceRepository conferenceRepository;
         private readonly ICountryRepository countryRepository;
+        private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
         private readonly IDistrictRepository _districtRepository;
+        private readonly IConferenceCityRepository _conferenceCityRepository;
 
-        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository)
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
             conferenceRepository = ConferenceRepository;
             countryRepository = CountryRepository;
+            conferenceAttendanceRepository = ConferenceAttendanceRepository;
+
             _conferenceCategoryRepository = conferenceCategoryRepository;
             _districtRepository = districtRepository;
+            _conferenceCityRepository = conferenceCityRepository;
             InitializeComponent();
 
         }
@@ -56,10 +62,13 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
+      //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
+
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _conferenceCityRepository, conferenceAttendanceRepository);
             HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository,_districtRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
-                
+      //          tabSpectOrg.Show();
                 homePage.Show();
                 this.Hide();
             }
@@ -72,7 +81,7 @@ namespace ConferencePlanner.WinUi
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            tb_email.Text = "admin@admin.com";
+            //tb_email.Text = "admin@admin.com";
            // player.Play();
             if (Properties.Settings.Default.Email != string.Empty)
             {
