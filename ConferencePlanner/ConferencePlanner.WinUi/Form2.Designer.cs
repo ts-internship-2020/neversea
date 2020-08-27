@@ -568,17 +568,17 @@
             // 
             // tbCategory
             // 
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 2;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(652, 297);
-            this.tableLayoutPanel9.TabIndex = 0;
+            //this.tableLayoutPanel9.ColumnCount = 1;
+            //this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            //this.tableLayoutPanel9.Controls.Add(this.label10, 0, 0);
+            //this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            //this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            //this.tableLayoutPanel9.RowCount = 2;
+            //this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            //this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
+            //this.tableLayoutPanel9.Size = new System.Drawing.Size(652, 297);
+            //this.tableLayoutPanel9.TabIndex = 0;
             this.tbCategory.Location = new System.Drawing.Point(24, 88);
             this.tbCategory.Name = "tbCategory";
             this.tbCategory.Size = new System.Drawing.Size(100, 23);

@@ -44,7 +44,6 @@ namespace ConferencePlanner.WinUi
         }
 
         public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository conferenceCategoryRepository)
         {
             _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
