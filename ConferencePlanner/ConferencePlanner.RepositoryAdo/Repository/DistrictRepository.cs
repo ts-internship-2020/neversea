@@ -19,7 +19,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
         }
 
-        public List<DistrictModel> GetDistrict()
+        public List<DistrictModel> GetDistricts()
         {
 
             List<DistrictModel> ConferenceDistrict = new List<DistrictModel>();
@@ -45,6 +45,33 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
             return ConferenceDistrict;
+        }
+        public List<DistrictModel> GetDistricts(string keyword)
+        {
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
+            sqlCommand.CommandText = $"EXEC spDistricts_GetByKeyWord " +
+                                     $"@Keyword='{keyword}'";
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            List<DistrictModel> districts = new List<DistrictModel>();
+
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    districts.Add(new DistrictModel()
+                    {
+                        DistrictName = sqlDataReader.GetString("DictionaryDistrictName"),
+                        DistrictId = sqlDataReader.GetInt32("DictionaryDistrictId"),
+                        DistrictCode = sqlDataReader.GetString("DictionaryDistrictCode"),
+                        CountryId = sqlDataReader.GetInt32("DictionaryCountryId")
+                    });
+                }
+            }
+
+            sqlDataReader.Close();
+
+            return districts;
         }
     }
 }

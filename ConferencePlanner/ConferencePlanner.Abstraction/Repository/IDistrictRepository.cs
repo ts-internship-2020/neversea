@@ -7,6 +7,7 @@ namespace ConferencePlanner.Abstraction.Repository
 {
     public interface IDistrictRepository
     {
-        public List<DistrictModel> GetDistrict(); 
+        public List<DistrictModel> GetDistricts();
+        public List<DistrictModel> GetDistricts(string keyword); 
     }
 }

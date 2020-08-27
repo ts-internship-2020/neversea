@@ -251,24 +251,7 @@ namespace ConferencePlanner.WinUi
             string keyword = txtSearchCountry.Text;
             LoadCountries(keyword);
         }
-        private void LoadDistricts()
-        {
-            List<DistrictModel> districts = new List<DistrictModel>();
-            districts = _districtRepository.GetDistrict();
-            bsDistricts.AllowNew = true;
-            bsDistricts.DataSource = null;
-            bsDistricts.DataSource = districts;
-            dgvDistrict.DataSource = bsDistricts;
-
-            this.dgvDistrict.Columns[3].Visible = false;
-
-
-            dgvDistrict.Columns[0].HeaderText = "Name";
-            dgvDistrict.Columns[1].HeaderText = "Id";
-            dgvDistrict.Columns[2].HeaderText = "Code";
-            dgvDistrict.Columns[3].HeaderText = "CountryId"; 
-
-        }
+        
 
         private void LoadCountries(string keyword)
         {
@@ -290,5 +273,49 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[3].HeaderText = "Nationality";
         }
 
+        private void LoadDistricts()
+        {
+            List<DistrictModel> districts = new List<DistrictModel>();
+            districts = _districtRepository.GetDistricts();
+            bsDistricts.AllowNew = true;
+            bsDistricts.DataSource = null;
+            bsDistricts.DataSource = districts;
+            dgvDistrict.DataSource = bsDistricts;
+
+            this.dgvDistrict.Columns[3].Visible = false;
+            this.dgvDistrict.Columns[0].Visible = false;
+
+
+            dgvDistrict.Columns[0].HeaderText = "Id";
+            dgvDistrict.Columns[1].HeaderText = "District Name";
+            dgvDistrict.Columns[2].HeaderText = "Code";
+            dgvDistrict.Columns[3].HeaderText = "CountryId";
+
+        }
+        private void LoadDistricts(string keyword)
+        {
+            List<DistrictModel> districts = new List<DistrictModel>();
+            districts = _districtRepository.GetDistricts(keyword);
+
+            bsDistricts.AllowNew = true;
+            bsDistricts.DataSource = null;
+            bsDistricts.DataSource = districts;
+
+            dgvDistrict.DataSource = bsDistricts;
+
+            this.dgvDistrict.Columns[3].Visible = false;
+            this.dgvDistrict.Columns[0].Visible = false;
+
+
+            dgvDistrict.Columns[0].HeaderText = "Id";
+            dgvDistrict.Columns[1].HeaderText = "District Name";
+            dgvDistrict.Columns[2].HeaderText = "Code";
+            dgvDistrict.Columns[3].HeaderText = "CountryId";
+        }
+        private void txtB_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtBoxFitru.Text;
+            LoadDistricts(keyword);
+        }
     }
 }
