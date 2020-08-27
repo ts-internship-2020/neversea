@@ -20,6 +20,7 @@ namespace ConferencePlanner.WinUi
         private BindingSource bsCountries = new BindingSource();
         private BindingSource bsCategories = new BindingSource();
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
+        private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
@@ -55,12 +56,14 @@ namespace ConferencePlanner.WinUi
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository, IConferenceCityRepository conferenceCityRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
             _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceCategoryRepository = conferenceCategoryRepository;
+            _conferenceAttendanceRepository = conferenceAttendanceRepository;
             _getConferenceCityRepository = conferenceCityRepository;
             emailCopyFromMainForm = email;
             InitializeComponent();

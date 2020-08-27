@@ -23,12 +23,13 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
         private readonly IConferenceCityRepository conferenceCityRepository;
 
+        private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
+
+
         private readonly ICountryRepository _countryRepository;
 
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
-        int pageSize = 20;
-        int pageNumber = 1;
 
 
         public int range = 0;
@@ -39,11 +40,15 @@ namespace ConferencePlanner.WinUi
         {
             InitializeComponent();
         }
+
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceCityRepository _conferenceCityRepository)
         {
-           _conferenceTypeRepository = conferenceTypeRepository;
+            _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
             _countryRepository = countryRepository;
+            _conferenceAttendanceRepository = conferenceAttendanceRepository;
+
             conferenceCategoryRepository = _conferenceCategoryRepository;
             conferenceCityRepository = _conferenceCityRepository;
             emailCopyFromMainForm = emailCopy;
@@ -57,8 +62,8 @@ namespace ConferencePlanner.WinUi
 
         private void MainPage_Load(object sender, EventArgs e)
         {   
-            WireUpSpectator();
-            dgvConferences.DataSource = _getConferenceRepository.GetConference("spectator", dtpStart.Value, dtpEnd.Value);
+            WireUpSpectator(dtpStart.Value, dtpEnd.Value);
+
             comboBox1.SelectedItem = 4;
             DateTime initialStart = DateTime.Parse("01.01.1900 00:00:00");
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
@@ -165,34 +170,38 @@ namespace ConferencePlanner.WinUi
                 //d/*gvOrganiser.Rows.RemoveAt(dgvOrganiser.Rows.Count - 1);*/
             }
         }
-        private void dtpStart_ValueChanged(Object sender, EventArgs e)
-        {   
-
+        private void dtpStart_CloseUp(Object sender, EventArgs e)
+        {
             dtpEnd.MinDate = dtpStart.Value;
-            WireUpSpectator();
+            DateTime startDate = dtpStart.Value;
+            DateTime endDate = dtpEnd.Value;
+
+            WireUpSpectator(startDate, endDate);
         }
 
-        private void dtpEnd_ValueChanged(Object sender, EventArgs e)
-        {   
-            WireUpSpectator();
+        private void dtpEnd_CloseUp(Object sender, EventArgs e)
+        {
+            DateTime startDate = dtpStart.Value;
+            DateTime endDate = dtpEnd.Value;
+
+            WireUpSpectator(startDate, endDate);
         }
 
       
 
-        private void WireUpSpectator()
+        private void WireUpSpectator(DateTime startDate, DateTime endDate)
         {
-
             List<ConferenceModel> conferences = new List<ConferenceModel>();
-            conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
+            List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
-            int pageCount = (int)Math.Ceiling((double)(conferences.Count / pageSize + 1));
+            conferenceAttendances = _conferenceAttendanceRepository.GetConferenceAttendance();
 
-            if (pageNumber >= 1 && pageNumber <= pageCount)
-            {
-                IEnumerable<ConferenceModel> conferencesDisplayed = conferences.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
-                dgvConferences.DataSource = conferencesDisplayed;
-            }
 
+            conferences = _getConferenceRepository.GetConference(emailCopyFromMainForm, startDate, endDate, conferenceAttendances);
+
+            dgvConferences.DataSource = null;
+            
+            dgvConferences.DataSource = conferences;
 
             this.dgvConferences.Columns[1].Visible = false;
 
@@ -294,6 +303,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
+            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository, _conferenceAttendanceRepository);
             Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository, conferenceCityRepository);
             addConferenceForm.ShowDialog();
         }
