@@ -17,7 +17,6 @@ using System.Net.Mail;
 using System.Net.Mime;
 //using System.Net.Mime;
 using System.Text;
-using System.Linq;
 using System.Windows.Forms;
 
 
