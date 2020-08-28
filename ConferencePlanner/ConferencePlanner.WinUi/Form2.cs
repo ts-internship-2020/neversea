@@ -359,15 +359,28 @@ namespace ConferencePlanner.WinUi
         }
         private void dgvCity_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            Console.WriteLine("am intrat in dgv cell end edit");
-            Console.WriteLine("Event triggered");
             if (dgvCity.Columns[e.ColumnIndex].Name == "City")
-            {
-                int indexCity = e.RowIndex + 1 ;
-                string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                Console.WriteLine("Indexul este " + indexCity.ToString());
-                Console.WriteLine("numele orasului este " + nameCity);
-                _getConferenceCityRepository.updateCity(indexCity, nameCity, "city");
+            {   
+                try
+                {   
+                    if(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value != null)
+                    {
+                        int indexCity = Convert.ToInt32(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
+                        string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                        _getConferenceCityRepository.updateCity(indexCity, nameCity, 1);
+                    }
+                    else
+                    {
+                        string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                        _getConferenceCityRepository.insertCity(nameCity, 1);
+                        dgvCity.Rows.Clear();
+                        LoadCities();
+                    }
+                }
+                catch
+                {
+                   
+                }
             }
         }
         private void LoadDistricts(string keyword)
