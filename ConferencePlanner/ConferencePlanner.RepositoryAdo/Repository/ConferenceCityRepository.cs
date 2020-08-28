@@ -40,6 +40,32 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return cities;
         }
+        public List<ConferenceCityModel> GetConferenceCities(int districtId, string keyword)
+        {
+            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
+            SqlParameter[] parameters = new SqlParameter[2];
+            parameters[0] = new SqlParameter("@Key", keyword);
+            parameters[1] = new SqlParameter("@Index", districtId);
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+            sqlCommand.CommandText = "exec spCities_GetByKeyword @Key, @Index";
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    cities.Add(new ConferenceCityModel()
+                    {
+                        ConferenceCityId = sqlDataReader.GetInt32("DictionaryCityId"),
+                        ConferenceCityName = sqlDataReader.GetString("DictionaryCityName"),
+                    });
+                }
+            }
+            return cities;
+        }
         public void updateCity(int index, string city, int districtId)
         {
             try

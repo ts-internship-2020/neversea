@@ -25,6 +25,7 @@ namespace ConferencePlanner.WinUi
         private readonly IDistrictRepository _districtRepository;
         private BindingSource bsDistricts = new BindingSource();
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
+        private readonly IConferenceSpeakerRepository _getConferenceSpeakerRepository;
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
@@ -64,7 +65,7 @@ namespace ConferencePlanner.WinUi
         }
 
      //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository, IConferenceSpeakerRepository conferenceSpeakerRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
@@ -72,6 +73,7 @@ namespace ConferencePlanner.WinUi
             _getConferenceCategoryRepository = conferenceCategoryRepository;
             _conferenceAttendanceRepository = conferenceAttendanceRepository;
             _getConferenceCityRepository = conferenceCityRepository;
+            _getConferenceSpeakerRepository = conferenceSpeakerRepository;
             emailCopyFromMainForm = email;
             _districtRepository = districtRepository;
             InitializeComponent();
@@ -80,6 +82,7 @@ namespace ConferencePlanner.WinUi
             LoadCountries();
             LoadDistricts();
             LoadCities();
+            LoadSpeakers();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
@@ -108,8 +111,59 @@ namespace ConferencePlanner.WinUi
                 //}
 
             }
-            Console.WriteLine(dgvCity.ColumnCount);
         }
+        private void LoadCities(string keyword)
+        {
+            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+            cities = _getConferenceCityRepository.GetConferenceCities(1, keyword);
+            dgvCity.Rows.Clear();
+            for (int i = 0; i < cities.Count; i++)
+            {
+                //if (i >= maxrange)
+                //{
+                //    Console.WriteLine("breaked");
+                //    break;
+                //}
+                //else
+                //{
+                dgvCity.Rows.Add(cities[i].ConferenceCityId,
+                            cities[i].ConferenceCityName);
+                //}
+
+            }
+        }
+        private void LoadSpeakers()
+        {
+            List<SpeakerModel> speakers = new List<SpeakerModel>();
+            speakers = _getConferenceSpeakerRepository.GetConferenceSpeakers();
+            dgvSpeaker.ColumnCount = 5;
+            dgvSpeaker.Columns[0].Name = "Id";
+            dgvSpeaker.Columns[1].Name = "Name";
+            dgvSpeaker.Columns[2].Name = "Rating";
+            dgvSpeaker.Columns[3].Name = "Nationality";
+            dgvSpeaker.Columns[4].Name = "Image";
+            this.dgvSpeaker.Columns[0].Visible = false;
+            this.dgvSpeaker.Columns[4].Visible = false;
+            for (int i = 0; i < speakers.Count; i++)
+            {
+                //if (i >= maxrange)
+                //{
+                //    Console.WriteLine("breaked");
+                //    break;
+                //}
+                //else
+                //{
+                dgvSpeaker.Rows.Add(speakers[i].DictionarySpeakerId,
+                            speakers[i].DictionarySpeakerName,
+                            speakers[i].DictionarySpeakerRating,
+                            speakers[i].DictionarySpeakerNationality,
+                            speakers[i].DictionarySpeakerImage);
+                //}
+
+            }
+            Console.WriteLine(dgvSpeaker.ColumnCount);
+        }
+    
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
         {
 
@@ -486,6 +540,27 @@ namespace ConferencePlanner.WinUi
         private void dgvConferenceCategory_SelectionChanged(object sender, EventArgs e)
         {
             AddConference();
+        }
+
+        private void tableLayoutPanel19_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel13_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tbCitySearch_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = tbCitySearch.Text;
+            LoadCities(keyword);
+        }
+        private void tbCitySearch_SetText(object sender, EventArgs e)
+        {
+            this.tbCitySearch.Text = "Search a City...";
+            tbCitySearch.ForeColor = Color.Gray;
         }
     }
 
