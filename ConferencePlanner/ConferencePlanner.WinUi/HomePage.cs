@@ -1,14 +1,21 @@
-﻿using ConferencePlanner.Abstraction.Model;
+﻿using BarcodeLib;
+using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
+using MailKit.Net.Smtp;
 using Microsoft.Toolkit.Forms.UI.Controls;
 using Microsoft.Toolkit.Win32.UI.Controls;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
+//using System.Net.Mime;
 using System.Text;
 using System.Linq;
 using System.Windows.Forms;
@@ -28,7 +35,10 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
 
+        private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
         private readonly ICountryRepository _countryRepository;
+        private readonly Random random = new Random();
+
 
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
@@ -229,11 +239,16 @@ namespace ConferencePlanner.WinUi
         {
             string confName;
             int confId;
+            if (e.RowIndex == -1) return;
 
             if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
+                if (e.RowIndex == -1) return;
+
                 if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
                 {
+                    if (e.RowIndex == -1) return;
+
                     string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
                     int speakerId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
                     FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository,speakerId);
@@ -244,6 +259,7 @@ namespace ConferencePlanner.WinUi
                 }
                    else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
+                    if (e.RowIndex == -1) return;
 
 
                     WebViewForm webViewForm = new WebViewForm();
@@ -253,10 +269,15 @@ namespace ConferencePlanner.WinUi
 
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
                 {
+                    if (e.RowIndex == -1) return;
+
                     dgvConferences.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+                   // _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
+                  string conferenceName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                    sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, generateCode(int.MinValue, int.MaxValue));
+
 
 
                 }
@@ -382,6 +403,83 @@ namespace ConferencePlanner.WinUi
         private void pageSizeLabel_Click(object sender, EventArgs e)
         {
 
+     
+        
+        }
+
+
+        private void sendEmail(string name, string email, string subject, string confName, long code)
+        {
+            //var mailMessage = new MimeMessage();
+            //mailMessage.From.Add(new MailboxAddress("NeverSea", "ConferencePlannerNeverSea2020@gmail.com"));
+            //mailMessage.To.Add(new MailboxAddress(name, email));
+            //mailMessage.Subject = subject;
+            //mailMessage.Body = new TextPart("plain")
+            //{
+            //    Text = "Hello, " + name + "," + "\n You received this email because you subscribed for " + confName + ". \n You have attached below the room code and a barcode for it, thanks for using our platform!"
+
+
+            //};
+            
+
+
+
+            //using (var smtpClient = new MailKit.Net.Smtp.SmtpClient())
+            //{
+            //    smtpClient.Connect("smtp.gmail.com", 587, true);
+            //    smtpClient.Authenticate("ConferencePlannerNeverSea2020@gmail.com", "Neversea2020");
+            //    smtpClient.Send(mailMessage);
+            //    smtpClient.Disconnect(true);
+            //}
+
+
+            var smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("ConferencePlannerNeverSea2020@gmail.com", "Neversea2020"),
+                EnableSsl = true,
+            };
+
+            var mailMessage1 = new MailMessage
+            {
+                From = new MailAddress("ConferencePlannerNeverSea2020@gmail.com"),
+                Subject = "subject",
+                Body = "<h1>Hello there</h1>",
+                IsBodyHtml = true,
+            };
+
+            
+            using (var stream = new System.IO.MemoryStream())
+            {
+               // Bitmap bitmap = (Bitmap)
+                Image img = generateBarcode(code);
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                Attachment attachment1 = new Attachment(stream, "ParticipationCode.png", MediaTypeNames.Image.Jpeg);
+                mailMessage1.Attachments.Add(attachment1);
+
+            }
+            //  var attachment = new Attachment("Barcode.png", MediaTypeNames.Image.Jpeg);
+
+            mailMessage1.To.Add(email);
+            smtpClient.Send(mailMessage1);
+
+        }
+
+        public Image generateBarcode(long code)
+        {
+            Barcode barcode = new Barcode();
+            Color foreColor = Color.Black;
+            Color backColor = Color.Transparent;
+            Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 300, 200);
+            // image.Save(@"C:\NeverseaBugs");
+
+            return image;
+        }
+
+        public long generateCode(int min, int max)
+        {
+                        
+            return random.Next(min, max);
         }
 
     }
