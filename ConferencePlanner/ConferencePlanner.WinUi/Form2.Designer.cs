@@ -53,6 +53,10 @@
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCountries = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtBoxFitru = new System.Windows.Forms.TextBox();
             this.dgvDistrict = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -84,7 +88,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblNationality = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -410,6 +413,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button5);
+            this.tabPage3.Controls.Add(this.button4);
+            this.tabPage3.Controls.Add(this.comboBox3);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.txtBoxFitru);
             this.tabPage3.Controls.Add(this.dgvDistrict);
@@ -421,6 +427,43 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "District";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(210, 255);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "-->";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(3, 255);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "<--";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(292, 42);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 23);
+            this.comboBox3.TabIndex = 3;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged_1);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(9, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 19);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Name or Code";
             // 
             // txtBoxFitru
             // 
@@ -435,7 +478,7 @@
             this.dgvDistrict.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDistrict.Location = new System.Drawing.Point(3, 42);
             this.dgvDistrict.Name = "dgvDistrict";
-            this.dgvDistrict.Size = new System.Drawing.Size(282, 240);
+            this.dgvDistrict.Size = new System.Drawing.Size(282, 207);
             this.dgvDistrict.TabIndex = 0;
             this.dgvDistrict.Text = "dataGridView1";
             // 
@@ -808,16 +851,6 @@
             this.textBox6.Size = new System.Drawing.Size(128, 29);
             this.textBox6.TabIndex = 1;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(9, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 19);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Name or Code";
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -927,11 +960,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
         private System.Windows.Forms.DataGridView dgvCity;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
+        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView gvD;
         private System.Windows.Forms.TextBox txtBoxFitru;
         private System.Windows.Forms.DataGridView dgvDistrict;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
     }
 }

@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 
@@ -236,7 +237,10 @@ namespace ConferencePlanner.WinUi
                     string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
                     int speakerId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
                     FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository,speakerId);
-                    formSpeakerDetail.Show();
+                    formSpeakerDetail.ShowSpeakerDetails();
+                    FormSpeakerDetails frSpeakerDetail = new FormSpeakerDetails();
+                    frSpeakerDetail.Focus();
+
                 }
                    else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
@@ -379,6 +383,7 @@ namespace ConferencePlanner.WinUi
         {
 
         }
+
     }
 }
 
