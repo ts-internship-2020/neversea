@@ -271,8 +271,10 @@ namespace ConferencePlanner.WinUi
                     confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                     _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
-                  string conferenceName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                    string conferenceName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                     sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, generateCode(int.MinValue, int.MaxValue));
+                   // dgvConferences.Rows[e.RowIndex].Cells["buttonAttendColumn"].Visible = true;
+
 
 
 
@@ -450,14 +452,14 @@ namespace ConferencePlanner.WinUi
                // Bitmap bitmap = (Bitmap)
                 Image img = generateBarcode(code);
                 img.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                Attachment attachment1 = new Attachment(stream, "ParticipationCode.png", MediaTypeNames.Image.Jpeg);
+                Attachment attachment1 = new Attachment(stream, "ParticipationCode.jpeg", MediaTypeNames.Image.Jpeg);
                 mailMessage1.Attachments.Add(attachment1);
-
+                mailMessage1.To.Add(email);
+                smtpClient.Send(mailMessage1);
             }
             //  var attachment = new Attachment("Barcode.png", MediaTypeNames.Image.Jpeg);
 
-            mailMessage1.To.Add(email);
-            smtpClient.Send(mailMessage1);
+           
 
         }
 
