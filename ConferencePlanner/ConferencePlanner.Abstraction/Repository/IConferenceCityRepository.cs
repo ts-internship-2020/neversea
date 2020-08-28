@@ -8,5 +8,6 @@ namespace ConferencePlanner.Abstraction.Repository
     public interface IConferenceCityRepository
     {
         public List<ConferenceCityModel> GetConferenceCities(int districtId);
+        public void updateCity(int index, string city, string mode);
     }
 }

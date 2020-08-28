@@ -3,6 +3,7 @@ using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
 using Microsoft.Toolkit.Forms.UI.Controls;
 using Microsoft.Toolkit.Win32.UI.Controls;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,11 +22,13 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceRepository _getConferenceRepository;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
+        private readonly IDistrictRepository _districtRepository;
         private readonly IConferenceCityRepository conferenceCityRepository;
 
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
 
+        private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
         private readonly ICountryRepository _countryRepository;
 
         public List<ConferenceModel> Conferences { get; set; }
@@ -41,7 +44,7 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
         }
 
-        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
+        public HomePage(IConferenceRepository getConferenceRepository, String emailCopy, IConferenceTypeRepository conferenceTypeRepository,ICountryRepository countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         {
             _conferenceTypeRepository = conferenceTypeRepository;
             _getConferenceRepository = getConferenceRepository;
@@ -51,6 +54,7 @@ namespace ConferencePlanner.WinUi
             conferenceCategoryRepository = _conferenceCategoryRepository;
             conferenceCityRepository = _conferenceCityRepository;
             emailCopyFromMainForm = emailCopy;
+            _districtRepository = districtRepository;
             InitializeComponent();
 
             DateTime now = DateTime.Now;
@@ -226,11 +230,16 @@ namespace ConferencePlanner.WinUi
         {
             string confName;
             int confId;
+            if (e.RowIndex == -1) return;
 
             if (dgvConferences.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
+                if (e.RowIndex == -1) return;
+
                 if (dgvConferences.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
                 {
+                    if (e.RowIndex == -1) return;
+
                     string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
                     int speakerId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
                     FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository,speakerId);
@@ -238,6 +247,7 @@ namespace ConferencePlanner.WinUi
                 }
                    else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
+                    if (e.RowIndex == -1) return;
 
 
                     WebViewForm webViewForm = new WebViewForm();
@@ -247,6 +257,8 @@ namespace ConferencePlanner.WinUi
 
                 else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
                 {
+                    if (e.RowIndex == -1) return;
+
                     dgvConferences.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                     _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
@@ -306,7 +318,7 @@ namespace ConferencePlanner.WinUi
         {
          //   Form2 addConferenceForm = new Form2(_countryRepository);
         
-            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository, conferenceCityRepository, _conferenceAttendanceRepository);
+            Form2 addConferenceForm = new Form2(emailCopyFromMainForm, _getConferenceRepository,  _conferenceTypeRepository, _countryRepository, conferenceCategoryRepository, _districtRepository, conferenceCityRepository, _conferenceAttendanceRepository);
             addConferenceForm.ShowDialog();
         }
 
@@ -376,6 +388,21 @@ namespace ConferencePlanner.WinUi
         private void pageSizeLabel_Click(object sender, EventArgs e)
         {
 
+     
+        
+        }
+
+
+        private void sendEmail()
+        {
+            var mailMessage = new MimeMessage();
+            mailMessage.From.Add(new MailboxAddress("NeverSea", ""));
+            mailMessage.To.Add(new MailboxAddress("to name", "to email"));
+            mailMessage.Subject = "subject";
+            mailMessage.Body = new TextPart("plain")
+            {
+                Text = "Hello"
+            };
         }
     }
 }

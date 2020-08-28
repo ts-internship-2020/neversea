@@ -8,80 +8,70 @@ using System.Data;
 
 namespace ConferencePlanner.Repository.Ado.Repository
 {
-    public class DistrictRepository: IDistrictRepository
+    public class DistrictRepository : IDistrictRepository
     {
-            private readonly SqlConnection sqlConnection;
 
+
+            private readonly SqlConnection sqlConnection;
+    
         public DistrictRepository(SqlConnection SqlConnection)
         {
             sqlConnection = SqlConnection;
-
         }
 
-            public void DeleteDistrict(int districtId)
+        public List<DistrictModel> GetDistricts()
+        {
+
+            List<DistrictModel> ConferenceDistrict = new List<DistrictModel>();
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = "SELECT DictionaryDistrictId, DictionaryDistrictName, DictionaryDistrictCode, DictionaryCountryId " +
+                                     " FROM DictionaryDistrict";
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            if (sqlDataReader.HasRows)
             {
-                throw new NotImplementedException();
-            }
-
-            public List<DistrictModel> GetDistrict()
-            {
-                SqlCommand sqlCommand = sqlConnection.CreateCommand();
-                sqlCommand.CommandText = $"SELECT DictionaryDistrictName, DictionaryDistrictId" +
-                                         $"FROM DictionaryDistrict";
-
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-
-                List<DistrictModel> districts = new List<DistrictModel>();
-
-                if (sqlDataReader.HasRows)
+                while (sqlDataReader.Read())
                 {
-                    while (sqlDataReader.Read())
+                    ConferenceDistrict.Add(new DistrictModel()
                     {
-                        districts.Add(new DistrictModel()
-                        {
-                            DistrictId = sqlDataReader.GetInt32("DictionaryDistrictId"),
-                            DistrictName = sqlDataReader.GetString("DictionaryDistrictName"),
-                        });
-                    }
+                        DistrictName = sqlDataReader.GetString("DictionaryDistrictName"),
+                        DistrictId = sqlDataReader.GetInt32("DictionaryDistrictId"),
+                        DistrictCode = sqlDataReader.GetString("DictionaryDistrictCode"),
+                        CountryId=sqlDataReader.GetInt32("DictionaryCountryId")
+                    });
                 }
-
-                sqlDataReader.Close();
-
-                return districts;
             }
 
-            public List<DistrictModel> GetDistrict(string keyword)
-            {
-                SqlCommand sqlCommand = sqlConnection.CreateCommand();
-                sqlCommand.CommandText = $"EXEC spDistricts_GetByKeyword " +
-                                         $"@Keyword={keyword}";
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                List<DistrictModel> districts = new List<DistrictModel>();
 
-                if (sqlDataReader.HasRows)
+            return ConferenceDistrict;
+        }
+        public List<DistrictModel> GetDistricts(string keyword)
+        {
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
+            sqlCommand.CommandText = $"EXEC spDistricts_GetByKeyWord " +
+                                     $"@Keyword='{keyword}'";
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            List<DistrictModel> districts = new List<DistrictModel>();
+
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
                 {
-                    while (sqlDataReader.Read())
+                    districts.Add(new DistrictModel()
                     {
-                        districts.Add(new DistrictModel()
-                        {
-                            DistrictName = sqlDataReader.GetString("DictionaryDistrictName"),
-                            DistrictId = sqlDataReader.GetInt32("DictionaryDistrictId"),
-                        });
-                    }
+                        DistrictName = sqlDataReader.GetString("DictionaryDistrictName"),
+                        DistrictId = sqlDataReader.GetInt32("DictionaryDistrictId"),
+                        DistrictCode = sqlDataReader.GetString("DictionaryDistrictCode"),
+                        CountryId = sqlDataReader.GetInt32("DictionaryCountryId")
+                    });
                 }
-
-                sqlDataReader.Close();
-
-                return districts;
             }
 
-            public void InsertDistrict(int districtId, string districtName)
-            {
+            sqlDataReader.Close();
 
-            }
-            public void ModifyDistrict(int districtId)
-            {
-            
-            }
+            return districts;
         }
     }
+}
