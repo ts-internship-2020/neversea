@@ -18,7 +18,7 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceCategoryRepository _getConferenceCategoryRepository;
         private readonly IConferenceCityRepository _getConferenceCityRepository;
         private readonly ICountryRepository _getCountryRepository;
-        private BindingSource bsCountries = new BindingSource();
+        private readonly BindingSource bsCountries = new BindingSource();
         private BindingSource bsCategories = new BindingSource();
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IDistrictRepository _districtRepository;
@@ -82,32 +82,33 @@ namespace ConferencePlanner.WinUi
             LoadCountries();
             LoadDistricts();
             LoadCities();
+           
         }
 
-        private void WireUpDistrict()
-        {
-            for (int i = range; i < step; i++)
-            {
-                if (i >= maxrange)
-                {
-                    break;
-                }
-                else
-                {
-                    dgvDistrict.Rows.Add(districts[i].DistrictName,
-                                districts[i].DistrictCode);
-                }
+        //private void WireUpDistrict()
+        //{
+        //    for (int i = range; i < step; i++)
+        //    {
+        //        if (i >= maxrange)
+        //        {
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            dgvDistrict.Rows.Add(districts[i].DistrictName,
+        //                        districts[i].DistrictCode);
+        //        }
 
-                if (districts.Count <= (int)comboBox3.SelectedItem)
-                {
-                    button3.Enabled = false;
-                }
-                else if (step < maxrange)
-                {
-                    button3.Enabled = true;
-                }
-            }
-        }
+        //        if (districts.Count <= (int)comboBox3.SelectedItem)
+        //        {
+        //            button3.Enabled = false;
+        //        }
+        //        else if (step < maxrange)
+        //        {
+        //            button3.Enabled = true;
+        //        }
+        //    }
+        //}
         private void MainPage_Load(object sender, EventArgs e)
         {
 
@@ -279,11 +280,11 @@ namespace ConferencePlanner.WinUi
             bsCategories.DataSource = null;
             bsCategories.DataSource = conferenceCategories;
 
-            //dgvConferenceCategory.DataSource = bsCategories;
+            dgvConferenceCategory.DataSource = bsCategories;
 
 
-            //dgvConferenceCategory.Columns[0].HeaderText = "Name";
-            // dgvConferenceCategory.Columns[1].HeaderText = "Id";
+            dgvConferenceCategory.Columns[0].HeaderText = "Name";
+            dgvConferenceCategory.Columns[1].HeaderText = "Id";
 
 
         }
@@ -299,13 +300,14 @@ namespace ConferencePlanner.WinUi
 
             dgvCountries.DataSource = bsCountries;
 
-            this.dgvCountries.Columns[1].Visible = false;
+
 
 
             dgvCountries.Columns[0].HeaderText = "Name";
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
+            dgvCountries.Columns[1].Visible = false;
         }
 
         private void txtSearchCountry_TextChanged(object sender, EventArgs e)
@@ -333,7 +335,7 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
-            WireUpDistrict();
+        //    WireUpDistrict();
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -400,41 +402,41 @@ namespace ConferencePlanner.WinUi
             string keyword = txtBoxFitru.Text;
             LoadDistricts(keyword);
         }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            dgvDistrict.Rows.Clear();
-            range = step;
-            step += shown;
-            button5.Enabled = true;
-            if (step >= maxrange)
-            {
-                button4.Enabled = false;
-            }
-            WireUpDistrict();
-        }
+        //private void button4_Click(object sender, EventArgs e)
+        //{
+        //    dgvDistrict.Rows.Clear();
+        //    range = step;
+        //    step += shown;
+        //    button5.Enabled = true;
+        //    if (step >= maxrange)
+        //    {
+        //        button4.Enabled = false;
+        //    }
+        //    WireUpDistrict();
+        //}
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            dgvDistrict.Rows.Clear();
-            step = range;
-            range -= shown;
-            button4.Enabled = true;
-            if (range == 0)
-            {
-                button5.Enabled = false;
-            }
-            WireUpDistrict();
-        }
+        //private void button5_Click(object sender, EventArgs e)
+        //{
+        //    dgvDistrict.Rows.Clear();
+        //    step = range;
+        //    range -= shown;
+        //    button4.Enabled = true;
+        //    if (range == 0)
+        //    {
+        //        button5.Enabled = false;
+        //    }
+        //    WireUpDistrict();
+        //}
 
-        private void comboBox3_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            dgvDistrict.Rows.Clear();
-            range = 0;
-            step = (int)comboBox3.SelectedItem;
-            shown = (int)comboBox3.SelectedItem;
-            button4.Enabled = false;
-            WireUpDistrict();
-        }
+        //private void comboBox3_SelectedIndexChanged_1(object sender, EventArgs e)
+        //{
+        //    dgvDistrict.Rows.Clear();
+        //    range = 0;
+        //    step = (int)comboBox3.SelectedItem;
+        //    shown = (int)comboBox3.SelectedItem;
+        //    button4.Enabled = false;
+        //    WireUpDistrict();
+        //}
     }
 
 }
