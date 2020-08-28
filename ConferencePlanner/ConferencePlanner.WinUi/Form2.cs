@@ -1,6 +1,7 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using System;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,6 @@ namespace ConferencePlanner.WinUi
         private BindingSource bsDistricts = new BindingSource();
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
-
         public int range = 0;
         public int step = 4;
         public int shown = 4;
@@ -41,6 +41,7 @@ namespace ConferencePlanner.WinUi
         public Form2()
         {
             InitializeComponent();
+
         }
 
         public Form2(ICountryRepository getCountryRepository)
@@ -332,6 +333,7 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
+            WireUpDistrict();
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -354,22 +356,24 @@ namespace ConferencePlanner.WinUi
         {
             List<DistrictModel> districts = new List<DistrictModel>();
             districts = _districtRepository.GetDistricts();
-
+            //maxrange = districts.Count;
+            
             bsDistricts.AllowNew = true;
             bsDistricts.DataSource = null;
             bsDistricts.DataSource = districts;
             dgvDistrict.DataSource = bsDistricts;
 
-            //this.dgvDistrict.Columns[0].Visible = false;
-
             //dgvDistrict.ColumnCount = 4;
 
             this.dgvDistrict.Columns[3].Visible = false;
             this.dgvDistrict.Columns[0].Visible = false;
-            dgvDistrict.Columns[0].HeaderText = "Id";
+
+              dgvDistrict.Columns[0].HeaderText = "Id";
             dgvDistrict.Columns[1].HeaderText = "District Name";
             dgvDistrict.Columns[2].HeaderText = "Code";
             dgvDistrict.Columns[3].HeaderText = "CountryId";
+            
+
         }
 
         private void LoadDistricts(string keyword)
