@@ -269,7 +269,7 @@ namespace ConferencePlanner.WinUi
 
                     dgvConferences.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                   // _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+                    _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
                   string conferenceName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                     sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, generateCode(int.MinValue, int.MaxValue));
