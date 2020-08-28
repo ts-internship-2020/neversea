@@ -470,6 +470,7 @@ namespace ConferencePlanner.WinUi
             // image.Save(@"C:\NeverseaBugs");
 
             return image;
+
         }
 
         public long generateCode(int min, int max)
