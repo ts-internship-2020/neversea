@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -43,7 +44,7 @@ namespace ConferencePlanner.WinUi
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
 
-
+        public int counterEmails = 0;
         public int range = 0;
         public int step = 4;
         public int shown = 4;
@@ -74,7 +75,8 @@ namespace ConferencePlanner.WinUi
         }
 
         private void MainPage_Load(object sender, EventArgs e)
-        {   
+        {
+            generateBarcode(1234);
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
 
             LoadOrganiser();
@@ -257,7 +259,10 @@ namespace ConferencePlanner.WinUi
                     string speakerName =  dgvConferences.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
                     int speakerId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
                     FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(_getConferenceRepository,speakerId);
-                    formSpeakerDetail.Show();
+                    formSpeakerDetail.ShowSpeakerDetails();
+                    FormSpeakerDetails frSpeakerDetail = new FormSpeakerDetails();
+                    frSpeakerDetail.Focus();
+
                 }
                    else if (dgvConferences.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
@@ -275,10 +280,12 @@ namespace ConferencePlanner.WinUi
 
                     dgvConferences.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                   // _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+                    _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
-                  string conferenceName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                    string conferenceName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                     sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, generateCode(int.MinValue, int.MaxValue));
+                   // dgvConferences.Rows[e.RowIndex].Cells["buttonAttendColumn"].Visible = true;
+
 
 
 
@@ -482,6 +489,7 @@ namespace ConferencePlanner.WinUi
                         
             return random.Next(min, max);
         }
+
     }
 }
 
