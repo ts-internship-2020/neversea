@@ -53,6 +53,10 @@
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCountries = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtBoxFitru = new System.Windows.Forms.TextBox();
             this.dgvDistrict = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -85,7 +89,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblNationality = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -116,7 +119,6 @@
             this.tableLayoutPanel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
@@ -178,9 +180,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(660, 325);
             this.tabControl1.TabIndex = 1;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
-            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
-            this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
             // tabPage1
             // 
@@ -343,7 +342,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(646, 291);
             this.tableLayoutPanel6.TabIndex = 0;
-            this.tableLayoutPanel6.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel6_Paint);
             // 
             // tableLayoutPanel11
             // 
@@ -370,7 +368,6 @@
             this.txtSearchCountry.Name = "txtSearchCountry";
             this.txtSearchCountry.Size = new System.Drawing.Size(250, 23);
             this.txtSearchCountry.TabIndex = 0;
-            this.txtSearchCountry.TextChanged += new System.EventHandler(this.txtSearchCountry_TextChanged);
             // 
             // lblSearch
             // 
@@ -411,6 +408,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button5);
+            this.tabPage3.Controls.Add(this.button4);
+            this.tabPage3.Controls.Add(this.comboBox3);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.txtBoxFitru);
             this.tabPage3.Controls.Add(this.dgvDistrict);
@@ -423,20 +423,55 @@
             this.tabPage3.Text = "District";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(210, 255);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "-->";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(3, 255);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "<--";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(292, 42);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 23);
+            this.comboBox3.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(9, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 19);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Name or Code";
+            // 
             // txtBoxFitru
             // 
             this.txtBoxFitru.Location = new System.Drawing.Point(116, 13);
             this.txtBoxFitru.Name = "txtBoxFitru";
             this.txtBoxFitru.Size = new System.Drawing.Size(169, 23);
             this.txtBoxFitru.TabIndex = 1;
-            this.txtBoxFitru.TextChanged += new System.EventHandler(this.txtB_TextChanged);
             // 
             // dgvDistrict
             // 
             this.dgvDistrict.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDistrict.Location = new System.Drawing.Point(3, 42);
             this.dgvDistrict.Name = "dgvDistrict";
-            this.dgvDistrict.Size = new System.Drawing.Size(282, 240);
+            this.dgvDistrict.Size = new System.Drawing.Size(282, 207);
             this.dgvDistrict.TabIndex = 0;
             this.dgvDistrict.Text = "dataGridView1";
             // 
@@ -515,7 +550,6 @@
             this.dgvCity.Name = "dgvCity";
             this.dgvCity.Size = new System.Drawing.Size(442, 203);
             this.dgvCity.TabIndex = 0;
-            this.dgvCity.CellEndEdit += dgvCity_CellEndEdit;
             this.dgvCity.Text = "dataGridView2";
             // 
             // tableLayoutPanel18
@@ -584,7 +618,6 @@
             this.tbCategory.Name = "tbCategory";
             this.tbCategory.Size = new System.Drawing.Size(100, 23);
             this.tbCategory.TabIndex = 1;
-            this.tbCategory.TextChanged += new System.EventHandler(this.tbCategory_TextChanged);
             // 
             // dgvConferenceCategory
             // 
@@ -594,9 +627,6 @@
             this.dgvConferenceCategory.Size = new System.Drawing.Size(240, 150);
             this.dgvConferenceCategory.TabIndex = 0;
             this.dgvConferenceCategory.Text = "dataGridView4";
-            this.dgvConferenceCategory.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvConferenceCategory_RowsAdded);
-            this.dgvConferenceCategory.SelectionChanged += new System.EventHandler(this.dgvConferenceCategory_SelectionChanged);
-            this.dgvConferenceCategory.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvConferenceCategory_UserAddedRow);
             // 
             // tabPage6
             // 
@@ -667,8 +697,7 @@
             this.dgvConferenceType.Size = new System.Drawing.Size(363, 250);
             this.dgvConferenceType.TabIndex = 2;
             this.dgvConferenceType.Text = "dataGridView3";
-            this.dgvConferenceType.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvConferenceType_ColumnHeaderMouseClick);
-            this.dgvConferenceType.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvConferenceType_UserAddedRow);
+
             // 
             // tbConferenceType
             // 
@@ -676,7 +705,6 @@
             this.tbConferenceType.Name = "tbConferenceType";
             this.tbConferenceType.Size = new System.Drawing.Size(100, 23);
             this.tbConferenceType.TabIndex = 3;
-            this.tbConferenceType.TextChanged += new System.EventHandler(this.tbConferenceType_TextChanged);
             // 
             // tabPage7
             // 
@@ -781,7 +809,6 @@
             this.lblBackCountry.TabIndex = 0;
             this.lblBackCountry.Text = "Back";
             this.lblBackCountry.UseVisualStyleBackColor = true;
-            this.lblBackCountry.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblNextCountry
             // 
@@ -794,7 +821,6 @@
             this.lblNextCountry.TabIndex = 1;
             this.lblNextCountry.Text = "Next";
             this.lblNextCountry.UseVisualStyleBackColor = true;
-            this.lblNextCountry.Click += new System.EventHandler(this.button2_Click);
             // 
             // progressBar1
             // 
@@ -805,7 +831,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(376, 23);
             this.progressBar1.TabIndex = 2;
-            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // lblNationality
             // 
@@ -816,7 +841,6 @@
             this.lblNationality.Size = new System.Drawing.Size(86, 21);
             this.lblNationality.TabIndex = 0;
             this.lblNationality.Text = "Nationality";
-            this.lblNationality.Click += new System.EventHandler(this.lblAddNewCountry_Click);
             // 
             // textBox6
             // 
@@ -826,25 +850,8 @@
             this.textBox6.Size = new System.Drawing.Size(128, 29);
             this.textBox6.TabIndex = 1;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(9, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 19);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Name or Code";
-            // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form2";
-            this.Text = "Add Conference";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -885,7 +892,6 @@
             this.tableLayoutPanel14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.ResumeLayout(false);
 
         }
 
@@ -944,12 +950,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
         private System.Windows.Forms.DataGridView dgvCity;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
+        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView gvD;
         private System.Windows.Forms.TextBox txtBoxFitru;
         private System.Windows.Forms.DataGridView dgvDistrict;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dgvConferenceCategory;
         private System.Windows.Forms.TextBox tbCategory;
         private System.Windows.Forms.TextBox tbConferenceType;

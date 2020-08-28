@@ -27,7 +27,7 @@ namespace ConferencePlanner.WinUi
         public int x { get; private set; }
         public int y { get; private set; }
 
-        public void showAlert(string msg)
+        public void ShowAlert(string msg)
         {
             this.Opacity = 0.0;
             this.StartPosition = FormStartPosition.Manual;

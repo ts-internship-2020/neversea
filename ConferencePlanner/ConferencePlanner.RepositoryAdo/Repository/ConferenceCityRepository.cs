@@ -40,72 +40,32 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return cities;
         }
-        public void updateCity(int index, string city, int districtId)
+        public void updateCity(int index, string city, string mode)
         {
-            try
+            if (mode == "city")
             {
-                SqlParameter[] parametersUp = new SqlParameter[3];
-                parametersUp[0] = new SqlParameter("@Id", index);
-                parametersUp[1] = new SqlParameter("@City", city);
-                parametersUp[2] = new SqlParameter("@DistrictId", districtId);
+                try
+                {
+                    SqlParameter[] parameters = new SqlParameter[2];
+                    parameters[0] = new SqlParameter("@Id", index);
+                    parameters[1] = new SqlParameter("@City", city);
 
-                Console.WriteLine(index);
-                Console.WriteLine(city);
-                SqlCommand sqlCommandUp = sqlConnection.CreateCommand();
-                sqlCommandUp.CommandText = $"update DictionaryCity " +
-                    $"                     set DictionaryCityName = @City " +
-                    $"                     where DictionaryCityId = @Id " +
-                    $"                     AND DictionaryDistrictId = @DistrictId";
-                sqlCommandUp.Parameters.Add(parametersUp[0]);
-                sqlCommandUp.Parameters.Add(parametersUp[1]);
-                sqlCommandUp.Parameters.Add(parametersUp[2]);
-                sqlCommandUp.ExecuteNonQuery();
-                Console.WriteLine("Facui update");
-            }
-            catch
-            {
-                Console.WriteLine("nu am putut face update");
+                    Console.WriteLine(index);
+                    Console.WriteLine(city);
+                    SqlCommand sqlCommand = sqlConnection.CreateCommand();
+                    sqlCommand.CommandText = $"update DictionaryCity " +
+                        $"                     set DictionaryCityName = @City " +
+                        $"                     where DictionaryCityId = @Id ";
+                    sqlCommand.Parameters.Add(parameters[0]);
+                    sqlCommand.Parameters.Add(parameters[1]);
+                    sqlCommand.ExecuteNonQuery();
+                    Console.WriteLine("Facui update");
+                }
+                catch
+                {
+                    Console.WriteLine("nu am putut face update");
+                }
             }
         }
-        public void insertCity(string city, int districtId)
-        {
-            SqlCommand sqlCommandMaxIndex = sqlConnection.CreateCommand();
-            sqlCommandMaxIndex.CommandText = $"select Max(DictionaryCityId) as DictionaryCityId " +
-                    $"                     from DictionaryCity";
-            SqlDataReader sqlDataReaderMaxIndex = sqlCommandMaxIndex.ExecuteReader();
-            Console.WriteLine(sqlDataReaderMaxIndex.HasRows);
-            if (sqlDataReaderMaxIndex.HasRows)
-            { // In cazul in care am gasit indexul cel mai mare, fac insert;
-                Console.WriteLine(sqlDataReaderMaxIndex.Read());
-                int insertIndex = sqlDataReaderMaxIndex.GetInt32("DictionaryCityId") + 1;
-                SqlParameter[] parametersInsert = new SqlParameter[3];
-                parametersInsert[0] = new SqlParameter("@Id", insertIndex);
-                parametersInsert[1] = new SqlParameter("@CityName", city);
-                parametersInsert[2] = new SqlParameter("@DistrictId", districtId);
-                SqlCommand sqlCommandInsert = sqlConnection.CreateCommand();
-                sqlCommandInsert.CommandText = $"INSERT into DictionaryCity(DictionaryCityId, DictionaryCityName, DictionaryDistrictId) " +
-                        $"                     VALUES (@Id, @CityName, @DistrictId)";
-                sqlCommandInsert.Parameters.Add(parametersInsert[0]);
-                sqlCommandInsert.Parameters.Add(parametersInsert[1]);
-                sqlCommandInsert.Parameters.Add(parametersInsert[2]);
-                sqlCommandInsert.ExecuteNonQuery();
-            }
-            else
-            {
-                int insertIndex = 1;
-                SqlParameter[] parametersInsert = new SqlParameter[3];
-                parametersInsert[0] = new SqlParameter("@Id", insertIndex);
-                parametersInsert[1] = new SqlParameter("@CityName", city);
-                parametersInsert[2] = new SqlParameter("@DistrictId", districtId);
-                SqlCommand sqlCommandInsert = sqlConnection.CreateCommand();
-                sqlCommandInsert.CommandText = $"INSERT into DictionaryCity(DictionaryCityId, DictionaryCityName, DictionaryDistrictId) " +
-                        $"                     VALUES (@Id, @CityName, @DistrictId)";
-                sqlCommandInsert.Parameters.Add(parametersInsert[0]);
-                sqlCommandInsert.Parameters.Add(parametersInsert[1]);
-                sqlCommandInsert.Parameters.Add(parametersInsert[2]);
-                sqlCommandInsert.ExecuteNonQuery();
-            }
-        }
-
     }
 }

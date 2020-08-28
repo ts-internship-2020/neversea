@@ -1,6 +1,7 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using System;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,14 +20,17 @@ namespace ConferencePlanner.WinUi
         private readonly ICountryRepository _getCountryRepository;
         private BindingSource bsCountries = new BindingSource();
         private BindingSource bsCategories = new BindingSource();
-        private BindingSource bsTypes = new BindingSource();
-
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IDistrictRepository _districtRepository;
         private BindingSource bsDistricts = new BindingSource();
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
+        public int range = 0;
+        public int step = 4;
+        public int shown = 4;
+        public int maxrange;
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
+        public List<DistrictModel> districts { get; set; }
         public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
 
         List<TabPage> tabPanel = new List<TabPage>();
@@ -37,16 +41,16 @@ namespace ConferencePlanner.WinUi
         public Form2()
         {
             InitializeComponent();
+
         }
 
         public Form2(ICountryRepository getCountryRepository)
         {
 
             _getCountryRepository = getCountryRepository;
-            
+
             InitializeComponent();
             LoadConferenceCategories();
-            LoadConferenceTypes();
             LoadCountries();
             LoadDistricts();
         }
@@ -55,16 +59,15 @@ namespace ConferencePlanner.WinUi
         {
             _getConferenceRepository = getConferenceRepository;
             model = conference;
-           
-            InitializeComponent(); 
+
+            InitializeComponent();
             LoadConferenceCategories();
-            LoadConferenceTypes();
             LoadCountries();
             LoadDistricts();
         }
 
-     //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
+        //   public Form2(IConferenceRepository getConferenceRepository) { }
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
@@ -76,15 +79,38 @@ namespace ConferencePlanner.WinUi
             _districtRepository = districtRepository;
             InitializeComponent();
             LoadConferenceCategories();
-            LoadConferenceTypes();
             LoadCountries();
             LoadDistricts();
             LoadCities();
         }
 
+        private void WireUpDistrict()
+        {
+            for (int i = range; i < step; i++)
+            {
+                if (i >= maxrange)
+                {
+                    break;
+                }
+                else
+                {
+                    dgvDistrict.Rows.Add(districts[i].DistrictName,
+                                districts[i].DistrictCode);
+                }
+
+                if (districts.Count <= (int)comboBox3.SelectedItem)
+                {
+                    button3.Enabled = false;
+                }
+                else if (step < maxrange)
+                {
+                    button3.Enabled = true;
+                }
+            }
+        }
         private void MainPage_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void LoadCities()
         {
@@ -127,11 +153,11 @@ namespace ConferencePlanner.WinUi
             tabControl1.TabPages[tabIndex].Enabled = true;
 
             tabControl1.SelectedIndex = tabIndex;
-            if(tabIndex == 0)
+            if (tabIndex == 0)
             {
                 lblBackCountry.Enabled = false;
             }
-            if(lblNextCountry.Text == "Save")
+            if (lblNextCountry.Text == "Save")
             {
                 lblNextCountry.Text = "Next";
             }
@@ -141,7 +167,7 @@ namespace ConferencePlanner.WinUi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tabIndex < tabControl1.TabCount - 1) 
+            if (tabIndex < tabControl1.TabCount - 1)
             {
                 tabControl1.TabPages[tabIndex].Enabled = false;
                 tabIndex += 1;
@@ -151,7 +177,7 @@ namespace ConferencePlanner.WinUi
             tabControl1.SelectedIndex = tabIndex;
             lblBackCountry.Enabled = true;
 
-            if(tabIndex == tabControl1.TabCount)
+            if (tabIndex == tabControl1.TabCount)
             {
                 lblNextCountry.Text = "Save";
             }
@@ -178,8 +204,16 @@ namespace ConferencePlanner.WinUi
         private void tabControl1_Enter(object sender, EventArgs e)
         {
 
-       
-            
+            //  var myBindingSource = new SortedBindingList<ConferenceTypeModel>(conferenceTypeModels);
+            // myBindingSource.ApplySort(propertyName, ListSortDirection.Ascending);
+            //  var bindingSource = new BindingSource();
+            conferenceTypeModels = _conferenceTypeRepository.getConferenceTypes();
+            //   dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.DataSource = conferenceTypeModels;
+            // dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.Columns[0].HeaderText = "Conference Type Name";
+            dgvConferenceType.Columns[1].HeaderText = "Conference Type Id";
+
 
 
 
@@ -188,16 +222,16 @@ namespace ConferencePlanner.WinUi
 
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
-           int counter = 1;
+
+            int counter = 1;
 
             //dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Descending);
 
 
             if (counter == 1)
             {
-               
-                dgvConferenceType.DataSource = null; 
+
+                dgvConferenceType.DataSource = null;
                 conferenceTypeModels.Sort();
                 dgvConferenceType.DataSource = conferenceTypeModels;
                 dgvConferenceType.Refresh();
@@ -247,9 +281,9 @@ namespace ConferencePlanner.WinUi
 
             //dgvConferenceCategory.DataSource = bsCategories;
 
-            
+
             //dgvConferenceCategory.Columns[0].HeaderText = "Name";
-           // dgvConferenceCategory.Columns[1].HeaderText = "Id";
+            // dgvConferenceCategory.Columns[1].HeaderText = "Id";
 
 
         }
@@ -261,7 +295,7 @@ namespace ConferencePlanner.WinUi
 
             bsCountries.AllowNew = true;
             bsCountries.DataSource = null;
-            bsCountries.DataSource = countries; 
+            bsCountries.DataSource = countries;
 
             dgvCountries.DataSource = bsCountries;
 
@@ -279,7 +313,7 @@ namespace ConferencePlanner.WinUi
             string keyword = txtSearchCountry.Text;
             LoadCountries(keyword);
         }
-        
+
 
         private void LoadCountries(string keyword)
         {
@@ -299,6 +333,7 @@ namespace ConferencePlanner.WinUi
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
+            WireUpDistrict();
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -321,47 +356,26 @@ namespace ConferencePlanner.WinUi
         {
             List<DistrictModel> districts = new List<DistrictModel>();
             districts = _districtRepository.GetDistricts();
+            //maxrange = districts.Count;
+
             bsDistricts.AllowNew = true;
             bsDistricts.DataSource = null;
             bsDistricts.DataSource = districts;
             dgvDistrict.DataSource = bsDistricts;
 
+            //dgvDistrict.ColumnCount = 4;
+
             this.dgvDistrict.Columns[3].Visible = false;
             this.dgvDistrict.Columns[0].Visible = false;
-
 
             dgvDistrict.Columns[0].HeaderText = "Id";
             dgvDistrict.Columns[1].HeaderText = "District Name";
             dgvDistrict.Columns[2].HeaderText = "Code";
             dgvDistrict.Columns[3].HeaderText = "CountryId";
 
+
         }
-        private void dgvCity_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvCity.Columns[e.ColumnIndex].Name == "City")
-            {   
-                try
-                {   
-                    if(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value != null)
-                    {
-                        int indexCity = Convert.ToInt32(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
-                        string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        _getConferenceCityRepository.updateCity(indexCity, nameCity, 1);
-                    }
-                    else
-                    {
-                        string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        _getConferenceCityRepository.insertCity(nameCity, 1);
-                        dgvCity.Rows.Clear();
-                        LoadCities();
-                    }
-                }
-                catch
-                {
-                   
-                }
-            }
-        }
+
         private void LoadDistricts(string keyword)
         {
             List<DistrictModel> districts = new List<DistrictModel>();
@@ -370,7 +384,6 @@ namespace ConferencePlanner.WinUi
             bsDistricts.AllowNew = true;
             bsDistricts.DataSource = null;
             bsDistricts.DataSource = districts;
-
             dgvDistrict.DataSource = bsDistricts;
 
             this.dgvDistrict.Columns[3].Visible = false;
@@ -387,108 +400,41 @@ namespace ConferencePlanner.WinUi
             string keyword = txtBoxFitru.Text;
             LoadDistricts(keyword);
         }
-
-        private void LoadConferenceCategories(string keyword)
+        private void button4_Click(object sender, EventArgs e)
         {
-            List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
-            conferenceCategories = _getConferenceCategoryRepository.GetConferenceCategories(keyword);
-            bsCategories.AllowNew = true;
-            bsCategories.DataSource = null;
-            bsCategories.DataSource = conferenceCategories;
-
-            dgvConferenceCategory.DataSource = bsCategories;
-
-
-            dgvConferenceCategory.Columns[0].HeaderText = "Name";
-            dgvConferenceCategory.Columns[1].HeaderText = "Id";
-        }
-         
-
-        public void LoadConferenceTypes()
-        {
-            List<ConferenceTypeModel> conferenceTypes = new List<ConferenceTypeModel>();
-            conferenceTypes = _conferenceTypeRepository.getConferenceTypes();
-            bsTypes.AllowNew = true;
-            bsTypes.DataSource = null;
-            bsTypes.DataSource = conferenceTypes;
-
-            dgvConferenceType.DataSource = bsTypes;
-
-
-            dgvConferenceType.Columns[0].HeaderText = "Name";
-            dgvConferenceType.Columns[1].HeaderText = "Id";
-        }
-        public void LoadConferenceTypes(string keyword)
-        {
-            List<ConferenceTypeModel> conferenceTypes = new List<ConferenceTypeModel>();
-            conferenceTypes = _conferenceTypeRepository.getConferenceTypes(keyword);
-            bsTypes.AllowNew = true;
-            bsTypes.DataSource = null;
-            bsTypes.DataSource = conferenceTypes;
-
-            dgvConferenceType.DataSource = bsTypes;
-
-
-            dgvConferenceType.Columns[0].HeaderText = "Name";
-            dgvConferenceType.Columns[1].HeaderText = "Id";
+            dgvDistrict.Rows.Clear();
+            range = step;
+            step += shown;
+            button5.Enabled = true;
+            if (step >= maxrange)
+            {
+                button4.Enabled = false;
+            }
+            WireUpDistrict();
         }
 
-
-        private void tbCategory_TextChanged(object sender, EventArgs e)
-        {                         
-            string keyword = tbCategory.Text;
-            LoadConferenceCategories(keyword);
+        private void button5_Click(object sender, EventArgs e)
+        {
+            dgvDistrict.Rows.Clear();
+            step = range;
+            range -= shown;
+            button4.Enabled = true;
+            if (range == 0)
+            {
+                button5.Enabled = false;
+            }
+            WireUpDistrict();
         }
 
-        private void tbConferenceType_TextChanged(object sender, EventArgs e)
+        private void comboBox3_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            string keyword = tbConferenceType.Text;
-            LoadConferenceTypes(keyword);
-
-        }
-
-        private void dgvConferenceType_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            Console.WriteLine("Row Added");
-        }
-
-        private void dgvConferenceCategory_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-        Console.WriteLine("Row Added");
-
-        }
-
-        private void dgvConferenceCategory_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            Console.WriteLine("Row Added Corectly");
-
-        }
-        
-        public ConferenceModel AddConference()
-        {
-            ConferenceModel conference = new ConferenceModel();
-
-            //foreach(DataGridViewRow row in dgvConferenceCategory.SelectedRows)
-            //{
-            //    conference.ConferenceCategory = row.Cells[0].Value.ToString();
-            //    Console.WriteLine(conference.ConferenceCategory);
-            //}
-           // if (dgvConferenceCategory.SelectedRows != null)
-           // {
-              //  conference.ConferenceCategory = dgvConferenceCategory.SelectedRows[0].Cells[0].Value.ToString();
-            //}
-          // Console.WriteLine(conference.ConferenceCategory);
-
-           return conference;
-
-        }
-
-        private void dgvConferenceCategory_SelectionChanged(object sender, EventArgs e)
-        {
-            AddConference();
+            dgvDistrict.Rows.Clear();
+            range = 0;
+            step = (int)comboBox3.SelectedItem;
+            shown = (int)comboBox3.SelectedItem;
+            button4.Enabled = false;
+            WireUpDistrict();
         }
     }
 
-
-    
 }
