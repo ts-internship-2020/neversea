@@ -336,6 +336,32 @@ namespace ConferencePlanner.WinUi
             dgvDistrict.Columns[3].HeaderText = "CountryId";
 
         }
+        private void dgvCity_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvCity.Columns[e.ColumnIndex].Name == "City")
+            {   
+                try
+                {   
+                    if(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value != null)
+                    {
+                        int indexCity = Convert.ToInt32(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
+                        string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                        _getConferenceCityRepository.updateCity(indexCity, nameCity, 1);
+                    }
+                    else
+                    {
+                        string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                        _getConferenceCityRepository.insertCity(nameCity, 1);
+                        dgvCity.Rows.Clear();
+                        LoadCities();
+                    }
+                }
+                catch
+                {
+                   
+                }
+            }
+        }
         private void LoadDistricts(string keyword)
         {
             List<DistrictModel> districts = new List<DistrictModel>();
