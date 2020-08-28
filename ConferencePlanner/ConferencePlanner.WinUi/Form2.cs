@@ -299,7 +299,7 @@ namespace ConferencePlanner.WinUi
 
             dgvCountries.DataSource = bsCountries;
 
-            this.dgvCountries.Columns[1].Visible = false;
+            dgvCountries.Columns[1].Visible = false;
 
 
             dgvCountries.Columns[0].HeaderText = "Name";
