@@ -346,7 +346,7 @@ namespace ConferencePlanner.WinUi
                 string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
                 Console.WriteLine("Indexul este " + indexCity.ToString());
                 Console.WriteLine("numele orasului este " + nameCity);
-                _getConferenceCityRepository.updateCity(indexCity, nameCity, "city");
+                _getConferenceCityRepository.updateCity(indexCity, nameCity, );
             }
         }
         private void LoadDistricts(string keyword)
