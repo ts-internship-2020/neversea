@@ -22,5 +22,6 @@ namespace ConferencePlanner.Abstraction.Repository
         public SpeakerModel getSelectSpeakerDetails(int speakerId);
 
         public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate);
+
     }
 }

@@ -273,7 +273,7 @@ namespace ConferencePlanner.WinUi
 
                     dgvConferences.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvConferences.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                   // _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+                    _getConferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
                   string conferenceName = dgvConferences.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                     sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, generateCode(int.MinValue, int.MaxValue));
@@ -474,6 +474,7 @@ namespace ConferencePlanner.WinUi
             // image.Save(@"C:\NeverseaBugs");
 
             return image;
+
         }
 
         public long generateCode(int min, int max)
