@@ -336,6 +336,19 @@ namespace ConferencePlanner.WinUi
             dgvDistrict.Columns[3].HeaderText = "CountryId";
 
         }
+        private void dgvCity_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("am intrat in dgv cell end edit");
+            Console.WriteLine("Event triggered");
+            if (dgvCity.Columns[e.ColumnIndex].Name == "City")
+            {
+                int indexCity = e.RowIndex + 1 ;
+                string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                Console.WriteLine("Indexul este " + indexCity.ToString());
+                Console.WriteLine("numele orasului este " + nameCity);
+                _getConferenceCityRepository.updateCity(indexCity, nameCity, "city");
+            }
+        }
         private void LoadDistricts(string keyword)
         {
             List<DistrictModel> districts = new List<DistrictModel>();

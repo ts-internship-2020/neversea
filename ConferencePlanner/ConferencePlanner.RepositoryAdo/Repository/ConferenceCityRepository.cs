@@ -40,5 +40,32 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return cities;
         }
+        public void updateCity(int index, string city, string mode)
+        {
+            if (mode == "city")
+            {
+                try
+                {
+                    SqlParameter[] parameters = new SqlParameter[2];
+                    parameters[0] = new SqlParameter("@Id", index);
+                    parameters[1] = new SqlParameter("@City", city);
+
+                    Console.WriteLine(index);
+                    Console.WriteLine(city);
+                    SqlCommand sqlCommand = sqlConnection.CreateCommand();
+                    sqlCommand.CommandText = $"update DictionaryCity " +
+                        $"                     set DictionaryCityName = @City " +
+                        $"                     where DictionaryCityId = @Id ";
+                    sqlCommand.Parameters.Add(parameters[0]);
+                    sqlCommand.Parameters.Add(parameters[1]);
+                    sqlCommand.ExecuteNonQuery();
+                    Console.WriteLine("Facui update");
+                }
+                catch
+                {
+                    Console.WriteLine("nu am putut face update");
+                }
+            }
+        }
     }
 }

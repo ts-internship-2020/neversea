@@ -515,6 +515,7 @@
             this.dgvCity.Name = "dgvCity";
             this.dgvCity.Size = new System.Drawing.Size(442, 203);
             this.dgvCity.TabIndex = 0;
+            this.dgvCity.CellEndEdit += dgvCity_CellEndEdit;
             this.dgvCity.Text = "dataGridView2";
             // 
             // tableLayoutPanel18
