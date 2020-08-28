@@ -3,6 +3,7 @@ using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
 using Microsoft.Toolkit.Forms.UI.Controls;
 using Microsoft.Toolkit.Win32.UI.Controls;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -387,6 +388,21 @@ namespace ConferencePlanner.WinUi
         private void pageSizeLabel_Click(object sender, EventArgs e)
         {
 
+     
+        
+        }
+
+
+        private void sendEmail()
+        {
+            var mailMessage = new MimeMessage();
+            mailMessage.From.Add(new MailboxAddress("NeverSea", ""));
+            mailMessage.To.Add(new MailboxAddress("to name", "to email"));
+            mailMessage.Subject = "subject";
+            mailMessage.Body = new TextPart("plain")
+            {
+                Text = "Hello"
+            };
         }
     }
 }
