@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -42,7 +44,7 @@ namespace ConferencePlanner.WinUi
         public List<ConferenceModel> Conferences { get; set; }
         public string emailCopyFromMainForm;
 
-
+        public int counterEmails = 0;
         public int range = 0;
         public int step = 4;
         public int shown = 4;
@@ -72,7 +74,8 @@ namespace ConferencePlanner.WinUi
         }
 
         private void MainPage_Load(object sender, EventArgs e)
-        {   
+        {
+            generateBarcode(1234);
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
 
             comboBox1.SelectedItem = 4;
@@ -449,15 +452,16 @@ namespace ConferencePlanner.WinUi
             
             using (var stream = new System.IO.MemoryStream())
             {
-               // Bitmap bitmap = (Bitmap)
                 Image img = generateBarcode(code);
-                img.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                img.Save(stream, ImageFormat.Jpeg);
                 Attachment attachment1 = new Attachment(stream, "ParticipationCode.jpeg", MediaTypeNames.Image.Jpeg);
                 mailMessage1.Attachments.Add(attachment1);
                 mailMessage1.To.Add(email);
                 smtpClient.Send(mailMessage1);
+                
             }
-            //  var attachment = new Attachment("Barcode.png", MediaTypeNames.Image.Jpeg);
+            
+            
 
            
 
@@ -467,9 +471,9 @@ namespace ConferencePlanner.WinUi
         {
             Barcode barcode = new Barcode();
             Color foreColor = Color.Black;
-            Color backColor = Color.Transparent;
-            Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 300, 200);
-            // image.Save(@"C:\NeverseaBugs");
+            Color backColor = Color.White;
+            Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 900, 900);
+            image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image" + counterEmails + ".jpeg", ImageFormat.Jpeg);
 
             return image;
 
