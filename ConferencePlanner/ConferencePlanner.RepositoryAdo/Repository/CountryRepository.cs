@@ -3,20 +3,27 @@ using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ConferencePlanner.Repository.Ado.Repository
 {
     public class CountryRepository : ICountryRepository
     {
+
+
         private readonly SqlConnection sqlConnection;
 
         public CountryRepository(SqlConnection SqlConnection)
         {
             sqlConnection = SqlConnection;
 
+
         }
+
+
 
         public void DeleteCountry(int countryId)
         {
@@ -81,14 +88,29 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return countries;
         }
 
-        public void InsertCountry(int countryId, string countryName, string countryCode, string nationality)
+
+
+
+        public void UpdateCountry(int countryId, string countryName, string countryCode, string nationality)
         {
-            //TODO insert country
+
+            SqlCommand sqlCommand = new SqlCommand("spCountries_Update", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryId", SqlDbType.Int).Value = ValueOrNull(countryId));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryName", SqlDbType.NVarChar).Value = ValueOrNull(countryName));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryCode", SqlDbType.NVarChar).Value = ValueOrNull(countryCode));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryNationality", SqlDbType.NVarChar).Value = ValueOrNull(nationality));
+
+            sqlCommand.ExecuteNonQuery();
         }
 
-        public void ModifyCountry(int countryId)
+        protected object ValueOrNull(object value)
         {
-            //TODO modify country
+            return value ?? DBNull.Value;
         }
+
+
     }
 }

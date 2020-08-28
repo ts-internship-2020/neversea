@@ -408,6 +408,7 @@
             this.dgvCountries.Size = new System.Drawing.Size(442, 207);
             this.dgvCountries.TabIndex = 0;
             this.dgvCountries.Text = "dataGridView3";
+            this.dgvCountries.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellEndEdit);
             // 
             // tabPage3
             // 

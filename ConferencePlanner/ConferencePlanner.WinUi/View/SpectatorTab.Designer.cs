@@ -44,9 +44,9 @@
             this.dgvSpectator.BackgroundColor = System.Drawing.Color.White;
             this.dgvSpectator.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSpectator.GridColor = System.Drawing.Color.White;
-            this.dgvSpectator.Location = new System.Drawing.Point(265, 18);
+            this.dgvSpectator.Location = new System.Drawing.Point(265, 12);
             this.dgvSpectator.Name = "dgvSpectator";
-            this.dgvSpectator.Size = new System.Drawing.Size(507, 202);
+            this.dgvSpectator.Size = new System.Drawing.Size(507, 213);
             this.dgvSpectator.TabIndex = 0;
             this.dgvSpectator.Text = "dataGridView1";
             // 
@@ -118,7 +118,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(784, 226);
+            this.ClientSize = new System.Drawing.Size(784, 237);
             this.Controls.Add(this.btnEndDate);
             this.Controls.Add(this.btnStartDate);
             this.Controls.Add(this.btnSearch);

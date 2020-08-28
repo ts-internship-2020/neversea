@@ -60,11 +60,13 @@ namespace ConferencePlanner.WinUi
                 Properties.Settings.Default.Save();
             }
             string emailCopy = this.tb_email.Text;
-      //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
+            //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
+            //AddConferenceForm addConferenceForm = new AddConferenceForm();
 
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _conferenceCityRepository, conferenceAttendanceRepository);
+           HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _conferenceCityRepository, conferenceAttendanceRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
+     //           addConferenceForm.Show();
       //          tabSpectOrg.Show();
                 homePage.Show();
                 this.Hide();

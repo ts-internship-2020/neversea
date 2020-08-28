@@ -19,8 +19,13 @@ namespace ConferencePlanner.WinUi
         private readonly ICountryRepository _getCountryRepository;
         private BindingSource bsCountries = new BindingSource();
         private BindingSource bsCategories = new BindingSource();
+        private DataSet dsCountries;
         private readonly IConferenceTypeRepository _conferenceTypeRepository;
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
+
+        private DataRow LastDataRowCountries = null;
+
+
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
@@ -71,7 +76,7 @@ namespace ConferencePlanner.WinUi
             LoadCities();
         }
 
-        private void MainPage_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
             
         }
@@ -183,6 +188,22 @@ namespace ConferencePlanner.WinUi
 
         }
 
+        private void dgvCountries_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int countryId;
+            string countryName = "";
+            string countryCode = "";
+            string nationality = "";
+
+            var row = dgvCountries.Rows[e.RowIndex];
+
+            countryId = e.RowIndex + 1; 
+            countryName = (string)row.Cells[0].Value.ToString();
+            countryCode = (string)row.Cells[2].Value.ToString();
+            nationality = (string)row.Cells[3].Value.ToString(); 
+            _getCountryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
+        }
+
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             
@@ -255,6 +276,7 @@ namespace ConferencePlanner.WinUi
         {
             List<CountryModel> countries = new List<CountryModel>();
             countries = _getCountryRepository.GetCountry();
+
 
             bsCountries.AllowNew = true;
             bsCountries.DataSource = null;

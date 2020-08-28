@@ -64,7 +64,7 @@
             // 
             // btnOrganizer
             // 
-            this.btnOrganizer.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnOrganizer.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.btnOrganizer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOrganizer.FlatAppearance.BorderSize = 0;
             this.btnOrganizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -114,7 +114,7 @@
             this.panelTitleBar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panelTitleBar.Controls.Add(this.lblTitle);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelTitleBar.Location = new System.Drawing.Point(0, 420);
+            this.panelTitleBar.Location = new System.Drawing.Point(0, 431);
             this.panelTitleBar.Name = "panelTitleBar";
             this.panelTitleBar.Size = new System.Drawing.Size(800, 30);
             this.panelTitleBar.TabIndex = 1;
@@ -136,14 +136,14 @@
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 155);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(800, 265);
+            this.panelDesktop.Size = new System.Drawing.Size(800, 276);
             this.panelDesktop.TabIndex = 2;
             // 
             // TabSpectOrg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelTabSpectOrg);

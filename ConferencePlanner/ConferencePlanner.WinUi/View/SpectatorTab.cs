@@ -21,10 +21,6 @@ namespace ConferencePlanner.WinUi.View
             LoadTheme();
         }
 
-        private void SpectatorTab_OnLoad(EventArgs e)
-        {
-            LoadTheme();
-        }
 
         private void LoadTheme()
         {
