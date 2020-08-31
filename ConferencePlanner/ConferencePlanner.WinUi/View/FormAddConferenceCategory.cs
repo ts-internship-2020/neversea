@@ -34,13 +34,14 @@ namespace ConferencePlanner.WinUi.View
 
             dgvConferenceCategories.DataSource = bsCategories;
 
+            dgvConferenceCategories.Columns[1].Visible = false;
 
-            dgvConferenceCategories.Columns[0].HeaderText = "Name";
+            dgvConferenceCategories.Columns[0].HeaderText = "Category";
             dgvConferenceCategories.Columns[1].HeaderText = "Id";
             dgvConferenceCategories.Columns[1].Name = "Id";
 
 
-            dgvConferenceCategories.Columns[1].Visible = false;
+
         }
 
         public void LoadConferenceCategories(string keyword)
@@ -53,11 +54,11 @@ namespace ConferencePlanner.WinUi.View
 
             dgvConferenceCategories.DataSource = bsCategories;
 
+            dgvConferenceCategories.Columns[1].Visible = false;
 
-            dgvConferenceCategories.Columns[0].HeaderText = "Name";
+            dgvConferenceCategories.Columns[0].HeaderText = "Category";
             dgvConferenceCategories.Columns[1].HeaderText = "Id";
 
-            dgvConferenceCategories.Columns[1].Visible = false;
         }
 
         private void dgvConferenceCategories_CellEndEdit(object sender, DataGridViewCellEventArgs e)

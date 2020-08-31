@@ -40,6 +40,7 @@
             this.btnStep1 = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.panelAddDetails = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
             this.panelRoadmap.SuspendLayout();
             this.SuspendLayout();
@@ -221,15 +222,24 @@
             this.panelAddDetails.Size = new System.Drawing.Size(990, 351);
             this.panelAddDetails.TabIndex = 27;
             // 
-            // Add
+            // btnSave
             // 
-            this.Add.Location = new System.Drawing.Point(802, 50);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(75, 23);
-            this.Add.TabIndex = 7;
-            this.Add.Text = "Add";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.Add_Click);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Location = new System.Drawing.Point(442, 438);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(82, 96);
+            this.btnSave.TabIndex = 28;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Visible = false;
             // 
             // FormAddConferenceGeneral
             // 
@@ -237,13 +247,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(990, 567);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panelAddDetails);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.panelRoadmap);
             this.Controls.Add(this.btnNext);
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormAddConferenceGeneral";
             this.Text = "Add New Conference";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormAddConferenceGeneral_KeyDown);
             this.panelRoadmap.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -262,6 +275,6 @@
         private System.Windows.Forms.Button btnStep1;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Panel panelAddDetails;
-        private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.Button btnSave;
     }
 }

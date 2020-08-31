@@ -34,8 +34,13 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.comboBoxPagesNumber = new System.Windows.Forms.ComboBox();
             this.btnPagesNumber = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpeakers)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvSpeakers
@@ -49,7 +54,7 @@
             this.dgvSpeakers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvSpeakers.MultiSelect = false;
             this.dgvSpeakers.Name = "dgvSpeakers";
-            this.dgvSpeakers.Size = new System.Drawing.Size(309, 245);
+            this.dgvSpeakers.Size = new System.Drawing.Size(309, 204);
             this.dgvSpeakers.TabIndex = 28;
             this.dgvSpeakers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpeakers_CellDoubleClick);
             this.dgvSpeakers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpeakers_DataBindingComplete);
@@ -108,18 +113,65 @@
             this.btnPagesNumber.TabIndex = 32;
             this.btnPagesNumber.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnDelete
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(285, 144);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 41);
-            this.button1.TabIndex = 33;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(285, 144);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(31, 41);
+            this.btnDelete.TabIndex = 33;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(9, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(42, 33);
+            this.button2.TabIndex = 34;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
+            this.btnPrevious.Location = new System.Drawing.Point(9, 7);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(42, 33);
+            this.btnPrevious.TabIndex = 34;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.Location = new System.Drawing.Point(52, 7);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(42, 33);
+            this.button3.TabIndex = 34;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnPrevious);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Location = new System.Drawing.Point(248, 191);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(102, 46);
+            this.panel1.TabIndex = 35;
             // 
             // FormAddConferenceSpeaker
             // 
@@ -127,7 +179,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(824, 271);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPagesNumber);
             this.Controls.Add(this.comboBoxPagesNumber);
             this.Controls.Add(this.btnSearch);
@@ -140,6 +193,7 @@
             this.Text = "FormAddConferenceSpeaker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceSpeaker_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpeakers)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,6 +206,10 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox comboBoxPagesNumber;
         private System.Windows.Forms.Button btnPagesNumber;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -35,7 +35,11 @@
             this.btnPagesCount = new System.Windows.Forms.Button();
             this.dgvCities = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.panelPageControls = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).BeginInit();
+            this.panelPageControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -104,7 +108,7 @@
             this.dgvCities.MultiSelect = false;
             this.dgvCities.Name = "dgvCities";
             this.dgvCities.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvCities.Size = new System.Drawing.Size(277, 264);
+            this.dgvCities.Size = new System.Drawing.Size(277, 204);
             this.dgvCities.TabIndex = 28;
             this.dgvCities.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellDoubleClick);
             this.dgvCities.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellEndEdit);
@@ -124,6 +128,43 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnNextPage.FlatAppearance.BorderSize = 0;
+            this.btnNextPage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnNextPage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextPage.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPage.Image")));
+            this.btnNextPage.Location = new System.Drawing.Point(52, 7);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(42, 33);
+            this.btnNextPage.TabIndex = 34;
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnPreviousPage.FlatAppearance.BorderSize = 0;
+            this.btnPreviousPage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPreviousPage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPage.Image")));
+            this.btnPreviousPage.Location = new System.Drawing.Point(9, 7);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(42, 33);
+            this.btnPreviousPage.TabIndex = 34;
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            // 
+            // panelPageControls
+            // 
+            this.panelPageControls.Controls.Add(this.btnPreviousPage);
+            this.panelPageControls.Controls.Add(this.btnNextPage);
+            this.panelPageControls.Location = new System.Drawing.Point(249, 193);
+            this.panelPageControls.Name = "panelPageControls";
+            this.panelPageControls.Size = new System.Drawing.Size(102, 46);
+            this.panelPageControls.TabIndex = 35;
+            // 
             // FormAddConferenceCity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -136,6 +177,7 @@
             this.Controls.Add(this.comboBoxPagesCount);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.panelPageControls);
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -143,6 +185,7 @@
             this.Text = "FormAddConferenceCity";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCity_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).EndInit();
+            this.panelPageControls.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,5 +199,8 @@
         private System.Windows.Forms.Button btnPagesCount;
         private System.Windows.Forms.DataGridView dgvCities;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.Panel panelPageControls;
     }
 }

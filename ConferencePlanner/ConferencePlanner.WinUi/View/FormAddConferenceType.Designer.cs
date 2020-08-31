@@ -35,7 +35,11 @@
             this.comboBoxPagesNumber = new System.Windows.Forms.ComboBox();
             this.btnPagesNumber = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.panelPagesControl = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceTypes)).BeginInit();
+            this.panelPagesControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvConferenceTypes
@@ -49,7 +53,7 @@
             this.dgvConferenceTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvConferenceTypes.MultiSelect = false;
             this.dgvConferenceTypes.Name = "dgvConferenceTypes";
-            this.dgvConferenceTypes.Size = new System.Drawing.Size(309, 245);
+            this.dgvConferenceTypes.Size = new System.Drawing.Size(277, 204);
             this.dgvConferenceTypes.TabIndex = 28;
             this.dgvConferenceTypes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceTypes_CellDoubleClick);
             this.dgvConferenceTypes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceTypes_CellEndEdit);
@@ -124,12 +128,50 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
+            this.btnPrevious.Location = new System.Drawing.Point(9, 7);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(42, 33);
+            this.btnPrevious.TabIndex = 34;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(52, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(42, 33);
+            this.button2.TabIndex = 34;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // panelPagesControl
+            // 
+            this.panelPagesControl.Controls.Add(this.btnPrevious);
+            this.panelPagesControl.Controls.Add(this.button2);
+            this.panelPagesControl.Location = new System.Drawing.Point(248, 191);
+            this.panelPagesControl.Name = "panelPagesControl";
+            this.panelPagesControl.Size = new System.Drawing.Size(102, 46);
+            this.panelPagesControl.TabIndex = 35;
+            // 
             // FormAddConferenceType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(824, 271);
+            this.Controls.Add(this.panelPagesControl);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPagesNumber);
             this.Controls.Add(this.comboBoxPagesNumber);
@@ -142,6 +184,7 @@
             this.Text = "FormAddConferenceType";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceType_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceTypes)).EndInit();
+            this.panelPagesControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +198,8 @@
         private System.Windows.Forms.ComboBox comboBoxPagesNumber;
         private System.Windows.Forms.Button btnPagesNumber;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panelPagesControl;
     }
 }

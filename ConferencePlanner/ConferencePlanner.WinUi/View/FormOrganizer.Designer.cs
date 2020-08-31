@@ -35,8 +35,6 @@ namespace ConferencePlanner.WinUi.View
             this.btnNext = new System.Windows.Forms.Button();
             this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnPagesNumber = new System.Windows.Forms.Button();
             this.panelSpeakerDetails = new System.Windows.Forms.Panel();
             this.dgvOrganiser = new System.Windows.Forms.DataGridView();
@@ -98,33 +96,6 @@ namespace ConferencePlanner.WinUi.View
             this.dtpEnd.Size = new System.Drawing.Size(126, 23);
             this.dtpEnd.TabIndex = 5;
             this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged_1);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.White;
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(440, 26);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(40, 31);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(488, 28);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(146, 23);
-            this.txtSearch.TabIndex = 2;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnPagesNumber
             // 
@@ -211,8 +182,6 @@ namespace ConferencePlanner.WinUi.View
             this.Controls.Add(this.dgvOrganiser);
             this.Controls.Add(this.panelSpeakerDetails);
             this.Controls.Add(this.btnPagesNumber);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.btnFromTo);
             this.Controls.Add(this.dtpStart);
@@ -223,7 +192,6 @@ namespace ConferencePlanner.WinUi.View
             this.Text = "Your Conferences";
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrganiser)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -232,8 +200,6 @@ namespace ConferencePlanner.WinUi.View
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.DateTimePicker dtpEnd;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnPagesNumber;
         private System.Windows.Forms.Panel panelSpeakerDetails;
         private System.Windows.Forms.DataGridView dgvOrganiser;

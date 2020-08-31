@@ -35,8 +35,10 @@ namespace ConferencePlanner.WinUi.View
 
             dgvConferenceTypes.DataSource = bsTypes;
 
+            dgvConferenceTypes.Columns[1].Visible = false;
 
-            dgvConferenceTypes.Columns[0].HeaderText = "Name";
+
+            dgvConferenceTypes.Columns[0].HeaderText = "Type";
             dgvConferenceTypes.Columns[1].HeaderText = "Id";
             dgvConferenceTypes.Columns[1].Name = "Id";
 
