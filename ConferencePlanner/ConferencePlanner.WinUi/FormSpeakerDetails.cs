@@ -88,11 +88,28 @@ namespace ConferencePlanner.WinUi
         private FormSpeakerDetails.enmAction action;
         public int x { get; private set; }
         public int y { get; private set; }
+        //private int x, y;
         public void ShowSpeakerDetails()
         {
             this.Opacity = 0.0;
             this.StartPosition = FormStartPosition.Manual;
-         
+
+            string fname;
+           
+            for (int i = 0; i < 4; i++)
+            {
+                fname = "Detail" + i.ToString();
+                FormSpeakerDetails frmDet = (FormSpeakerDetails)Application.OpenForms[fname];
+
+                if (frmDet ==null)
+                {
+                    this.Name = fname;
+                    this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width + 15;
+                    this.y = Screen.PrimaryScreen.WorkingArea.Height - this.Height * i;
+                    this.Location = new Point(this.x, this.y);
+                    break;
+                }
+            }
             this.x = Screen.PrimaryScreen.WorkingArea.Width - base.Width - 5;
 
             this.Show();
