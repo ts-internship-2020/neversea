@@ -15,19 +15,28 @@ namespace ConferencePlanner.WinUi.View
         public int locationId = 0;
         private readonly IConferenceCityRepository conferenceCityRepository;
         private readonly IConferenceLocationRepository conferenceLocationRepository;
+        List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+        public int range = 0;
+        public int step = 4;
+        public int shown = 4;
+        public int maxrange;
         public FormAddConferenceCity(IConferenceCityRepository _conferenceCityRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
             conferenceLocationRepository = _conferenceLocationRepository;
             conferenceCityRepository = _conferenceCityRepository;
             InitializeComponent();
-            LoadCities();
+            LoadCities(1);
         }
 
-        private void LoadCities()
+        private void LoadCities(int districtId)
         {
-            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
-            cities = conferenceCityRepository.GetConferenceCities(1);
-            WireUpCities(cities);
+            cities = conferenceCityRepository.GetConferenceCities(districtId);
+            dgvCities.ColumnCount = 2;
+            dgvCities.Columns[0].Name = "Id";
+            dgvCities.Columns[1].Name = "City";
+            this.dgvCities.Columns[0].Visible = false;
+            maxrange = cities.Count;
+            WireUpCities();
         }
 
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)
@@ -39,10 +48,9 @@ namespace ConferencePlanner.WinUi.View
                 //int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
                 conferenceCityRepository.DeleteCity(cityId, 1);
                 dgvCities.Rows.Clear();
-                LoadCities();
+                LoadCities(1);
             }
         }
-
         private void dgvCities_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -55,13 +63,19 @@ namespace ConferencePlanner.WinUi.View
                         int indexCity = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
                         conferenceCityRepository.updateCity(indexCity, nameCity, 1);
+                        cities[e.RowIndex].ConferenceCityName = nameCity;
                     }
                     else
                     {
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
                         conferenceCityRepository.insertCity(nameCity, 1);
                         dgvCities.Rows.Clear();
-                        LoadCities();
+                        if (txtSearch.Text == null)
+                            LoadCities(1);
+                        else
+                        {
+                            LoadCities(1, txtSearch.Text);
+                        }
                     }
                 }
                 catch
@@ -79,36 +93,49 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {   ///SEARCH CITY
             Console.WriteLine("text changed");
+            
+            range = 0;
+            btnPreviousPage.Visible = false;
+            step = (int)comboBoxPagesCount.SelectedItem;
+            shown = (int)comboBoxPagesCount.SelectedItem;
             string keyword = txtSearch.Text;
             LoadCities(1, keyword); // de inlocuit cu district Id ul selectat
         }
         private void LoadCities(int districtId, string keyword)
         {
-            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+            
             cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
-            WireUpCities(cities);
-        }
-
-        public void WireUpCities(List<ConferenceCityModel> cities)
-        {
-            dgvCities.Rows.Clear();
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
             this.dgvCities.Columns[0].Visible = false;
-            for (int i = 0; i < cities.Count; i++)
-            {
-                //if (i >= maxrange)
-                //{
-                //    Console.WriteLine("breaked");
-                //    break;
-                //}
-                //else
-                //{
-                dgvCities.Rows.Add(cities[i].ConferenceCityId,
-                            cities[i].ConferenceCityName);
-                //}
+            maxrange = cities.Count;
+            WireUpCities();
+        }
 
+        public void WireUpCities()
+        {
+            dgvCities.Rows.Clear();
+            for (int i = range; i < step; i++)
+            {
+                if (i >= maxrange)
+                {
+                    Console.WriteLine("breaked");
+                    break;
+                }
+                else
+                {   
+                    dgvCities.Rows.Add(cities[i].ConferenceCityId,
+                            cities[i].ConferenceCityName);
+                }
+                if (cities.Count <= (int)comboBoxPagesCount.SelectedItem)
+                {
+                    btnNextPage.Enabled = false;
+                }
+                else if (step < maxrange)
+                {
+                    btnNextPage.Enabled = true;
+                }
 
             }
         }
@@ -121,6 +148,44 @@ namespace ConferencePlanner.WinUi.View
         private void dgvCities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+        }
+
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            dgvCities.Rows.Clear();
+            range = step;
+            step += shown;
+            btnPreviousPage.Visible = true;
+            if (step >= maxrange)
+            {
+                btnNextPage.Enabled = false;
+            }
+            Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
+            WireUpCities();
+        }
+
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            dgvCities.Rows.Clear();
+            step = range;
+            range -= shown;
+            btnPreviousPage.Visible = true;
+            if (range == 0)
+            {
+                btnPreviousPage.Visible = false;
+            }
+            Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
+            WireUpCities();
+        }
+
+        private void comboBoxPagesCount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvCities.Rows.Clear();
+            range = 0;
+            step = (int)comboBoxPagesCount.SelectedItem;
+            shown = (int)comboBoxPagesCount.SelectedItem;
+            btnPreviousPage.Visible = false;
+            WireUpCities();
         }
     }
 }
