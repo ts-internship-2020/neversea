@@ -10,9 +10,30 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceGeneralDetails : Form
     {
+
+        public static string title;
+        public static DateTime startDate;
+        public static DateTime endDate;
+        public static string email;
+        public FormAddConferenceGeneral formGeneral;
         public FormAddConferenceGeneralDetails()
         {
             InitializeComponent();
+        }
+
+        private void FormAddConferenceGeneralDetails_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            title = txtTitle.Text.ToString();
+            email = txtEmail.Text.ToString();
+            startDate = dtpStart.Value;
+            endDate = dtpEnd.Value;
+            FormAddConferenceGeneral.conference.ConferenceName = title;
+            FormAddConferenceGeneral.conference.ConferenceOrganiserEmail = email;
+
+            FormAddConferenceGeneral.conference.ConferenceStartDate = startDate;
+            FormAddConferenceGeneral.conference.ConferenceEndDate = endDate;
+
+
         }
     }
 }

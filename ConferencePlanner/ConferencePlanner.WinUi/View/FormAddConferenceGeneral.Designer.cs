@@ -41,6 +41,7 @@
             this.btnPrevious = new System.Windows.Forms.Button();
             this.panelAddDetails = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.Add = new System.Windows.Forms.Button();
             this.panelRoadmap.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             // 
             // panelRoadmap
             // 
+            this.panelRoadmap.Controls.Add(this.Add);
             this.panelRoadmap.Controls.Add(this.btnStep7);
             this.panelRoadmap.Controls.Add(this.btnStep6);
             this.panelRoadmap.Controls.Add(this.btnStep5);

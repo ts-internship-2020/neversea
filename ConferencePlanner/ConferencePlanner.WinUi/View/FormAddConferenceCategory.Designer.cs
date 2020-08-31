@@ -55,6 +55,7 @@
             this.dgvConferenceCategories.Name = "dgvConferenceCategories";
             this.dgvConferenceCategories.Size = new System.Drawing.Size(277, 204);
             this.dgvConferenceCategories.TabIndex = 28;
+            this.dgvConferenceCategories.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceCategories_CellDoubleClick);
             this.dgvConferenceCategories.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceCategories_CellEndEdit);
             this.dgvConferenceCategories.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvConferenceCategories_DataBindingComplete);
             // 
@@ -181,6 +182,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceCategory";
             this.Text = "FormAddConferenceCategory";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCategory_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceCategories)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

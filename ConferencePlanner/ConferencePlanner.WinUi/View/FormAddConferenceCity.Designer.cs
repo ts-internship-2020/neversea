@@ -110,6 +110,7 @@
             this.dgvCities.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvCities.Size = new System.Drawing.Size(277, 204);
             this.dgvCities.TabIndex = 28;
+            this.dgvCities.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellDoubleClick);
             this.dgvCities.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellEndEdit);
             this.dgvCities.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCities_DataBindingComplete);
             // 
@@ -182,6 +183,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceCity";
             this.Text = "FormAddConferenceCity";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCity_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).EndInit();
             this.panelPageControls.ResumeLayout(false);
             this.ResumeLayout(false);

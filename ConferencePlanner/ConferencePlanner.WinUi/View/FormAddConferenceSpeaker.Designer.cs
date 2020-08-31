@@ -56,6 +56,7 @@
             this.dgvSpeakers.Name = "dgvSpeakers";
             this.dgvSpeakers.Size = new System.Drawing.Size(309, 204);
             this.dgvSpeakers.TabIndex = 28;
+            this.dgvSpeakers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpeakers_CellDoubleClick);
             this.dgvSpeakers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpeakers_DataBindingComplete);
             // 
             // txtSearch
@@ -190,6 +191,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceSpeaker";
             this.Text = "FormAddConferenceSpeaker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceSpeaker_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpeakers)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

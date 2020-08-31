@@ -60,6 +60,7 @@
             this.dgvDistricts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvDistricts.Size = new System.Drawing.Size(277, 204);
             this.dgvDistricts.TabIndex = 28;
+            this.dgvDistricts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistricts_CellDoubleClick);
             this.dgvDistricts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistricts_CellEndEdit);
             this.dgvDistricts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDistricts_DataBindingComplete);
             // 
@@ -187,6 +188,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceDistrict";
             this.Text = "FormAddConferenceDistrict";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceDistrict_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).EndInit();
             panelPagesControl.ResumeLayout(false);
             this.ResumeLayout(false);

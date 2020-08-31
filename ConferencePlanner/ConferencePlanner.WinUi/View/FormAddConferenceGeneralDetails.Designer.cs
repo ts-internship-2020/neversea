@@ -151,6 +151,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceGeneralDetails";
             this.Text = "Conference Details";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceGeneralDetails_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

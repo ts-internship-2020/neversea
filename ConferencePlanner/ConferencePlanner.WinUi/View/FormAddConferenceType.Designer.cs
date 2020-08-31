@@ -55,6 +55,7 @@
             this.dgvConferenceTypes.Name = "dgvConferenceTypes";
             this.dgvConferenceTypes.Size = new System.Drawing.Size(277, 204);
             this.dgvConferenceTypes.TabIndex = 28;
+            this.dgvConferenceTypes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceTypes_CellDoubleClick);
             this.dgvConferenceTypes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceTypes_CellEndEdit);
             this.dgvConferenceTypes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvConferenceType_ColumnHeaderMouseClick);
             this.dgvConferenceTypes.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvConferenceTypes_DataBindingComplete);
@@ -181,6 +182,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceType";
             this.Text = "FormAddConferenceType";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceType_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceTypes)).EndInit();
             this.panelPagesControl.ResumeLayout(false);
             this.ResumeLayout(false);
