@@ -143,11 +143,7 @@ namespace ConferencePlanner.WinUi
 
         private void FormSpeakerDetails_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter||e.KeyCode==Keys.Escape)
-            {
-                button2.PerformClick();
-                e.SuppressKeyPress = true;
-            }
+            button2.PerformClick();
         }
 
     }
