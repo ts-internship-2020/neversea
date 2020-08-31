@@ -410,6 +410,7 @@ namespace ConferencePlanner.WinUi
         }
         private void dgvCity_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            Console.WriteLine("Event triggered");
             if (dgvCity.Columns[e.ColumnIndex].Name == "City")
             {
                 try

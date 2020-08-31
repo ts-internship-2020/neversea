@@ -14,5 +14,10 @@ namespace ConferencePlanner.WinUi.View
         {
             InitializeComponent();
         }
+
+        private void dgvSpeakers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvSpeakers.ClearSelection();
+        }
     }
 }

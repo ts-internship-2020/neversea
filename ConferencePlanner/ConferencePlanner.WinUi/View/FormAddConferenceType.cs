@@ -119,10 +119,18 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)
         {
-            int selectedIndex = dgvConferenceTypes.SelectedRows[0].Index;
-            int conferenceTypeId = Convert.ToInt32(dgvConferenceTypes[1, selectedIndex].Value);
-            conferenceTypeRepository.DeleteConferenceType(conferenceTypeId);
-            LoadConferenceTypes();
+            if (dgvConferenceTypes.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvConferenceTypes.SelectedRows[0].Index;
+                int conferenceTypeId = Convert.ToInt32(dgvConferenceTypes[1, selectedIndex].Value);
+                conferenceTypeRepository.DeleteConferenceType(conferenceTypeId);
+                LoadConferenceTypes();
+            }
+        }
+
+        private void dgvConferenceTypes_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvConferenceTypes.ClearSelection();
         }
     }
 }

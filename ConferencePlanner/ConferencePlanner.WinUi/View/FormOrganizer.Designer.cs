@@ -59,6 +59,7 @@ namespace ConferencePlanner.WinUi.View
             this.btnPrevious.Size = new System.Drawing.Size(61, 58);
             this.btnPrevious.TabIndex = 7;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click_1);
             // 
             // btnNext
             // 
@@ -74,6 +75,7 @@ namespace ConferencePlanner.WinUi.View
             this.btnNext.Size = new System.Drawing.Size(61, 58);
             this.btnNext.TabIndex = 12;
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click_1);
             // 
             // dtpStart
             // 
@@ -84,7 +86,7 @@ namespace ConferencePlanner.WinUi.View
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(117, 23);
             this.dtpStart.TabIndex = 4;
-            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged_1);
             // 
             // dtpEnd
             // 
@@ -95,6 +97,7 @@ namespace ConferencePlanner.WinUi.View
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(126, 23);
             this.dtpEnd.TabIndex = 5;
+            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged_1);
             // 
             // btnSearch
             // 
@@ -162,6 +165,7 @@ namespace ConferencePlanner.WinUi.View
             this.dgvOrganiser.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvOrganiser.Size = new System.Drawing.Size(828, 474);
             this.dgvOrganiser.TabIndex = 0;
+            this.dgvOrganiser.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOrganiser_DataBindingComplete);
             // 
             // comboBoxPagesNumber
             // 
@@ -178,6 +182,7 @@ namespace ConferencePlanner.WinUi.View
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged_1);
             // 
             // btnFromTo
             // 

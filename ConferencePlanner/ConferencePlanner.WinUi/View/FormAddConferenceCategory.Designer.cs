@@ -47,10 +47,12 @@
             this.dgvConferenceCategories.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvConferenceCategories.Location = new System.Drawing.Point(437, 4);
             this.dgvConferenceCategories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvConferenceCategories.MultiSelect = false;
             this.dgvConferenceCategories.Name = "dgvConferenceCategories";
             this.dgvConferenceCategories.Size = new System.Drawing.Size(277, 264);
             this.dgvConferenceCategories.TabIndex = 28;
             this.dgvConferenceCategories.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceCategories_CellEndEdit);
+            this.dgvConferenceCategories.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvConferenceCategories_DataBindingComplete);
             // 
             // txtSearch
             // 
@@ -90,6 +92,7 @@
             10});
             this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
+            this.comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
             // 
