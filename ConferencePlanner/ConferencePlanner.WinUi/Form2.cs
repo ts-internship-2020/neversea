@@ -26,8 +26,6 @@ namespace ConferencePlanner.WinUi
         private BindingSource bsDistricts = new BindingSource();
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
 
-        private DataRow LastDataRowCountries = null;
-
 
 
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
@@ -193,17 +191,40 @@ namespace ConferencePlanner.WinUi
         private void dgvCountries_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int countryId;
-            string countryName = "";
-            string countryCode = "";
-            string nationality = "";
+            string countryName="";
+            string countryCode="";
+            string nationality="";
 
-            var row = dgvCountries.Rows[e.RowIndex];
+            /*if (dgvCountries.Columns[e.ColumnIndex].Name == "dgvCountries")
+            {*/
+                try
+                {
+                    if((int)dgvCountries.Rows[e.RowIndex].Cells[1].Value != 0)
+                    {
+                        countryId = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells[1].Value.ToString());
+                        countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
+                        nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        _getCountryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
+                    }
 
-            countryId = e.RowIndex + 1; 
-            countryName = (string)row.Cells[0].Value.ToString();
-            countryCode = (string)row.Cells[2].Value.ToString();
-            nationality = (string)row.Cells[3].Value.ToString(); 
-            _getCountryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
+                    else
+                    {
+                        countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();      
+                        countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
+                        nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
+                   
+                        _getCountryRepository.InsertCountry(countryName, countryCode, nationality);
+                        dgvCountries.Rows.Clear();
+                        LoadCountries();
+                    }
+                }
+                catch (Exception ex)
+                {
+                Console.WriteLine(ex.Message);
+                }
+            //}
+
         }
 
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -403,6 +424,7 @@ namespace ConferencePlanner.WinUi
             dgvDistrict.Columns[2].HeaderText = "Code";
             dgvDistrict.Columns[3].HeaderText = "CountryId";
         }
+
         private void txtB_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtBoxFitru.Text;
@@ -507,6 +529,14 @@ namespace ConferencePlanner.WinUi
         private void dgvConferenceCategory_SelectionChanged(object sender, EventArgs e)
         {
             AddConference();
+        }
+
+        private void btnDeleteSelected_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = dgvCountries.SelectedRows[0].Index;
+            int countryId = Convert.ToInt32(dgvCountries[1, selectedIndex].Value);
+            _getCountryRepository.DeleteCountry(countryId);
+            LoadCountries();
         }
     }
 

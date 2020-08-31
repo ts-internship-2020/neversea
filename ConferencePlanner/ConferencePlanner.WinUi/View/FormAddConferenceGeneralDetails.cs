@@ -8,21 +8,11 @@ using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi.View
 {
-    public partial class AddConferenceGeneral : Form
+    public partial class FormAddConferenceGeneralDetails : Form
     {
-        public AddConferenceGeneral()
+        public FormAddConferenceGeneralDetails()
         {
             InitializeComponent();
-        }
-
-        private void lblStartDate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblErrorEmail_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

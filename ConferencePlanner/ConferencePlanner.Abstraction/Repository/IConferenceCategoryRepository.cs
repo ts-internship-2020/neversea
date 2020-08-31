@@ -10,6 +10,11 @@ namespace ConferencePlanner.Abstraction.Repository
         public List<ConferenceCategoryModel> GetConferenceCategories();
         public List<ConferenceCategoryModel> GetConferenceCategories(string searchKey);
 
+        public void UpdateConferenceCategory(int conferenceCategoryId, string conferenceCategoryName);
+        public void InsertConferenceCategory(string conferenceCategoryName);
+        public void DeleteConferenceCategory(int conferenceCategoryId);
+
+
     }
 }
 

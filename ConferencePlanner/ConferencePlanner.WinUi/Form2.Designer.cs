@@ -53,6 +53,7 @@
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCountries = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtBoxFitru = new System.Windows.Forms.TextBox();
             this.dgvDistrict = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -85,7 +86,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblNationality = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -391,6 +392,7 @@
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel12.Controls.Add(this.dgvCountries, 1, 0);
+            this.tableLayoutPanel12.Controls.Add(this.btnDeleteSelected, 2, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 75);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -423,6 +425,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "District";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(9, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 19);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Name or Code";
             // 
             // txtBoxFitru
             // 
@@ -516,7 +528,6 @@
             this.dgvCity.Name = "dgvCity";
             this.dgvCity.Size = new System.Drawing.Size(442, 203);
             this.dgvCity.TabIndex = 0;
-            this.dgvCity.CellEndEdit += dgvCity_CellEndEdit;
             this.dgvCity.Text = "dataGridView2";
             // 
             // tableLayoutPanel18
@@ -570,17 +581,6 @@
             // 
             // tbCategory
             // 
-            //this.tableLayoutPanel9.ColumnCount = 1;
-            //this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            //this.tableLayoutPanel9.Controls.Add(this.label10, 0, 0);
-            //this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            //this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
-            //this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            //this.tableLayoutPanel9.RowCount = 2;
-            //this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            //this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
-            //this.tableLayoutPanel9.Size = new System.Drawing.Size(652, 297);
-            //this.tableLayoutPanel9.TabIndex = 0;
             this.tbCategory.Location = new System.Drawing.Point(24, 88);
             this.tbCategory.Name = "tbCategory";
             this.tbCategory.Size = new System.Drawing.Size(100, 23);
@@ -827,15 +827,15 @@
             this.textBox6.Size = new System.Drawing.Size(128, 29);
             this.textBox6.TabIndex = 1;
             // 
-            // label7
+            // btnDeleteSelected
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(9, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 19);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Name or Code";
+            this.btnDeleteSelected.Location = new System.Drawing.Point(547, 3);
+            this.btnDeleteSelected.Name = "btnDeleteSelected";
+            this.btnDeleteSelected.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteSelected.TabIndex = 1;
+            this.btnDeleteSelected.Text = "delete row";
+            this.btnDeleteSelected.UseVisualStyleBackColor = true;
+            this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             // 
             // Form2
             // 
@@ -954,6 +954,7 @@
         private System.Windows.Forms.DataGridView dgvConferenceCategory;
         private System.Windows.Forms.TextBox tbCategory;
         private System.Windows.Forms.TextBox tbConferenceType;
+        private System.Windows.Forms.Button btnDeleteSelected;
         // private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
     }
 }

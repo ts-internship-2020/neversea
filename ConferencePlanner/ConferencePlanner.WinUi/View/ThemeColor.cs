@@ -9,31 +9,22 @@ namespace ConferencePlanner.WinUi.View
     {
         public static Color PrimaryColor { get; set; }
         public static Color SecondaryColor { get; set; }
-        public static List<string> ColorList = new List<string>() { 
-            "#009688", 
-            "#3F5185",
-            "#FF5722",
-            "#607D88",
-            "#FF9800",
-            "#9527B0",
-            "#2196F3",
-            "#EA676C",
-            "#E41A4A",
-            "#5978BB",
-            "#018790",
-            "#0E3441",
-            "#00B0AD",
-            "#721D47",
-            "#EA4833",
-            "#EF937E",
-            "#F37521",
-            "#A12059",
-            "#126881",
-            "#8BC240",
-            "#364D58",
-            "#57DC58",
-            "#0094BC",
-            "#E41268"};
+        public static List<string> ColorList = new List<string>() {
+            "#DF51F0",
+            "#BC55FA",
+            "#8959E3",
+            "#6255FA",
+            "#516FF0"};
+
+        /*  monochromatic
+         * {
+            "#240F63",
+            "#8868E8",
+            "#5222E3",
+            "#3A2D63",
+            "#401AB0"}
+         * */
+
 
         public static Color ChangeColorBrightness(Color color, double correctionFactor)
         {
@@ -59,6 +50,5 @@ namespace ConferencePlanner.WinUi.View
             return Color.FromArgb(color.A, (byte)red, (byte)green, (byte)blue);
         }
     }
-
-  
 }
+

@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi.View
 {
-    public partial class AddConferenceCountry : Form
+    public partial class FormAddConferenceSpeaker : Form
     {
-        public AddConferenceCountry()
+        public FormAddConferenceSpeaker()
         {
             InitializeComponent();
         }
