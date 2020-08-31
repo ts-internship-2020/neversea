@@ -59,10 +59,10 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(89, 1);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(79, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(258, 33);
+            this.label1.Size = new System.Drawing.Size(218, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "Speaker Informations";
             // 
@@ -83,7 +83,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(6, 78);
+            this.label3.Location = new System.Drawing.Point(6, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 21);
             this.label3.TabIndex = 2;
@@ -95,7 +95,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(6, 112);
+            this.label4.Location = new System.Drawing.Point(6, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 21);
             this.label4.TabIndex = 3;
@@ -106,7 +106,7 @@
             this.picBoxLike1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike1.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike1.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike1.Image")));
-            this.picBoxLike1.Location = new System.Drawing.Point(89, 154);
+            this.picBoxLike1.Location = new System.Drawing.Point(79, 127);
             this.picBoxLike1.Name = "picBoxLike1";
             this.picBoxLike1.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike1.TabIndex = 5;
@@ -118,7 +118,7 @@
             this.picBoxLike2.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike2.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike2.Image")));
             this.picBoxLike2.InitialImage = null;
-            this.picBoxLike2.Location = new System.Drawing.Point(130, 154);
+            this.picBoxLike2.Location = new System.Drawing.Point(120, 127);
             this.picBoxLike2.Name = "picBoxLike2";
             this.picBoxLike2.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike2.TabIndex = 5;
@@ -129,7 +129,7 @@
             this.picBoxLike3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike3.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike3.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike3.Image")));
-            this.picBoxLike3.Location = new System.Drawing.Point(171, 154);
+            this.picBoxLike3.Location = new System.Drawing.Point(161, 127);
             this.picBoxLike3.Name = "picBoxLike3";
             this.picBoxLike3.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike3.TabIndex = 5;
@@ -140,7 +140,7 @@
             this.picBoxLike4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike4.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike4.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike4.Image")));
-            this.picBoxLike4.Location = new System.Drawing.Point(212, 154);
+            this.picBoxLike4.Location = new System.Drawing.Point(202, 127);
             this.picBoxLike4.Name = "picBoxLike4";
             this.picBoxLike4.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike4.TabIndex = 5;
@@ -151,7 +151,7 @@
             this.picBoxLike5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike5.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike5.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike5.Image")));
-            this.picBoxLike5.Location = new System.Drawing.Point(253, 154);
+            this.picBoxLike5.Location = new System.Drawing.Point(243, 127);
             this.picBoxLike5.Name = "picBoxLike5";
             this.picBoxLike5.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike5.TabIndex = 5;
@@ -161,9 +161,9 @@
             // 
             this.picBoxSpeaker.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.picBoxSpeaker.BackColor = System.Drawing.Color.Transparent;
-            this.picBoxSpeaker.Location = new System.Drawing.Point(290, 42);
+            this.picBoxSpeaker.Location = new System.Drawing.Point(280, 40);
             this.picBoxSpeaker.Name = "picBoxSpeaker";
-            this.picBoxSpeaker.Size = new System.Drawing.Size(135, 135);
+            this.picBoxSpeaker.Size = new System.Drawing.Size(125, 125);
             this.picBoxSpeaker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxSpeaker.TabIndex = 6;
             this.picBoxSpeaker.TabStop = false;
@@ -186,7 +186,7 @@
             this.lblNationality.BackColor = System.Drawing.Color.Transparent;
             this.lblNationality.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblNationality.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblNationality.Location = new System.Drawing.Point(102, 78);
+            this.lblNationality.Location = new System.Drawing.Point(102, 72);
             this.lblNationality.Name = "lblNationality";
             this.lblNationality.Size = new System.Drawing.Size(2, 24);
             this.lblNationality.TabIndex = 8;
@@ -198,7 +198,7 @@
             this.lblRating.BackColor = System.Drawing.Color.Transparent;
             this.lblRating.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblRating.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRating.Location = new System.Drawing.Point(102, 112);
+            this.lblRating.Location = new System.Drawing.Point(102, 100);
             this.lblRating.Name = "lblRating";
             this.lblRating.Size = new System.Drawing.Size(2, 21);
             this.lblRating.TabIndex = 9;
@@ -226,9 +226,9 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(404, 1);
+            this.button2.Location = new System.Drawing.Point(386, 1);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 30);
+            this.button2.Size = new System.Drawing.Size(29, 27);
             this.button2.TabIndex = 11;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -239,7 +239,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(437, 189);
+            this.ClientSize = new System.Drawing.Size(417, 177);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblRating);
@@ -256,11 +256,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(1000, 0);
-            this.MinimumSize = new System.Drawing.Size(437, 189);
+            this.Location = new System.Drawing.Point(970, 20);
             this.Name = "FormSpeakerDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSpeakerDetails_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSpeakerDetails_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike1)).EndInit();

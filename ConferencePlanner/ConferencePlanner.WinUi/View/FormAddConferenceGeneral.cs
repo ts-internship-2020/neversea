@@ -1,4 +1,5 @@
 ﻿using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.Repository.Ado.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace ConferencePlanner.WinUi.View
         private readonly IConferenceCityRepository conferenceCityRepository;
         private readonly IConferenceTypeRepository conferenceTypeRepository;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
+        private readonly IConferenceSpeakerRepository conferenceSpeakerRepository;
 
 
 
@@ -25,13 +27,14 @@ namespace ConferencePlanner.WinUi.View
         private Form activeForm;
 
 
-        public FormAddConferenceGeneral(object sender, ICountryRepository _countryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceTypeRepository _conferenceTypeRepository, IConferenceCategoryRepository _conferenceCategoryRepository)
+        public FormAddConferenceGeneral(object sender, ICountryRepository _countryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceTypeRepository _conferenceTypeRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceSpeakerRepository _conferenceSpeakerRepository)
         {
             countryRepository = _countryRepository;
             districtRepository = _districtRepository;
             conferenceCityRepository = _conferenceCityRepository;
             conferenceTypeRepository = _conferenceTypeRepository;
             conferenceCategoryRepository = _conferenceCategoryRepository;
+            conferenceSpeakerRepository = _conferenceSpeakerRepository;
 
             InitializeComponent();
             //LoadTheme();
@@ -238,7 +241,8 @@ namespace ConferencePlanner.WinUi.View
                     break;
                 case 7:
                     {
-                        OpenChildForm(new FormAddConferenceSpeaker(), sender);
+                        FormAddConferenceSpeaker formAddConferenceSpeaker = new FormAddConferenceSpeaker(conferenceSpeakerRepository);
+                        OpenChildForm(formAddConferenceSpeaker, sender);
                     }
                     break;
             }

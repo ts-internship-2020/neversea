@@ -45,5 +45,34 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return speakers;
         }
 
+        public List<SpeakerModel> GetConferenceSpeakers(string keyword)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spSpeakers_GetByKeyword", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@Keyword", keyword));
+
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            List<SpeakerModel> speakers = new List<SpeakerModel>();
+
+
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    speakers.Add(new SpeakerModel()
+                    {
+                        DictionarySpeakerId = sqlDataReader.GetInt32("DictionarySpeakerId"),
+                        DictionarySpeakerName = sqlDataReader.GetString("DictionarySpeakerName"),
+                        DictionarySpeakerNationality = sqlDataReader.GetString("DictionaryCountryNationality"),
+                        DictionarySpeakerRating = (float)sqlDataReader.GetDouble("DictionarySpeakerRating"),
+                        DictionarySpeakerImage = sqlDataReader.GetString("DictionarySpeakerImage"),
+                    });
+                }
+            }
+            return speakers;
+        }
     }
 }

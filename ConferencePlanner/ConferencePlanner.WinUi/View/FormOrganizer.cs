@@ -157,6 +157,8 @@ namespace ConferencePlanner.WinUi.View
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
             Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
+            range = 0;
+            btnPrevious.Visible = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             btnPrevious.Visible = false;
@@ -253,7 +255,8 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnNext.Enabled = false;
+            //btnNext.Enabled = false;
+            btnPrevious.Visible = false;
             WireUpOrganiser();
         }
 
@@ -264,6 +267,8 @@ namespace ConferencePlanner.WinUi.View
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
             Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
+            range = 0;
+            btnPrevious.Visible = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             btnNext.Enabled = false;
@@ -272,6 +277,11 @@ namespace ConferencePlanner.WinUi.View
         private void dgvOrganiser_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvOrganiser.ClearSelection();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("test");
         }
     }
 }

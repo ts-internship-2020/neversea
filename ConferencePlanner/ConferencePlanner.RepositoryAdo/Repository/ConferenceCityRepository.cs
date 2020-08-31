@@ -119,5 +119,34 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             sqlCommand.ExecuteNonQuery();
         }
+
+        public List<ConferenceCityModel> GetConferenceCities(int districtId, string keyword)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spCities_GetByKeyword", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@Keyword", keyword));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryDistrictId", districtId));
+
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    cities.Add(new ConferenceCityModel()
+                    {
+                        ConferenceCityId = sqlDataReader.GetInt32("DictionaryCityId"),
+                        ConferenceCityName = sqlDataReader.GetString("DictionaryCityName")
+                    });
+                }
+            }
+            Console.WriteLine("Am returnat un nr de :" + cities.Count);
+            sqlDataReader.Close();
+            return cities;
+
+        }
     }
 }
