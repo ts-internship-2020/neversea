@@ -120,11 +120,19 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)
         {
-            int selectedIndex = dgvDistricts.SelectedRows[0].Index;
-            int districtId = Convert.ToInt32(dgvDistricts[0, selectedIndex].Value);
-            int countryId = Convert.ToInt32(dgvDistricts[3, selectedIndex].Value);
-            districtRepository.DeleteDistrict(districtId, countryId);
-            LoadDistricts();
+            if (dgvDistricts.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvDistricts.SelectedRows[0].Index;
+                int districtId = Convert.ToInt32(dgvDistricts[0, selectedIndex].Value);
+                int countryId = Convert.ToInt32(dgvDistricts[3, selectedIndex].Value);
+                districtRepository.DeleteDistrict(districtId, countryId);
+                LoadDistricts();
+            }
+        }
+
+        private void dgvDistricts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvDistricts.ClearSelection();
         }
 
         private void dgvDistricts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

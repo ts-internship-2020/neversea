@@ -85,12 +85,14 @@
             this.dgvCountries.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvCountries.Location = new System.Drawing.Point(390, 4);
             this.dgvCountries.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvCountries.MultiSelect = false;
             this.dgvCountries.Name = "dgvCountries";
             this.dgvCountries.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvCountries.Size = new System.Drawing.Size(360, 264);
             this.dgvCountries.TabIndex = 28;
             this.dgvCountries.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellDoubleClick);
             this.dgvCountries.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellEndEdit);
+            this.dgvCountries.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCountries_DataBindingComplete);
             // 
             // comboBoxPagesNumber
             // 

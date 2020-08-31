@@ -410,6 +410,7 @@ namespace ConferencePlanner.WinUi
         }
         private void dgvCity_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            Console.WriteLine("Event triggered");
             if (dgvCity.Columns[e.ColumnIndex].Name == "City")
             {
                 try
@@ -629,6 +630,11 @@ namespace ConferencePlanner.WinUi
             int countryId = Convert.ToInt32(dgvCountries[1, selectedIndex].Value);
             _getCountryRepository.DeleteCountry(countryId);
             LoadCountries();
+        }
+
+        private void tbCitySearch_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

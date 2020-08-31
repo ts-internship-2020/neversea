@@ -53,6 +53,9 @@
             this.dgvCountries = new System.Windows.Forms.DataGridView();
             this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtBoxFitru = new System.Windows.Forms.TextBox();
             this.dgvDistrict = new System.Windows.Forms.DataGridView();
@@ -81,9 +84,7 @@
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvSpeaker = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
@@ -95,10 +96,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblNationality = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -427,6 +424,7 @@
             this.dgvCountries.Size = new System.Drawing.Size(442, 207);
             this.dgvCountries.TabIndex = 0;
             this.dgvCountries.Text = "dataGridView3";
+            this.dgvCountries.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellDoubleClick);
             this.dgvCountries.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellEndEdit);
             // 
             // btnDeleteSelected
@@ -437,22 +435,11 @@
             this.btnDeleteSelected.TabIndex = 1;
             this.btnDeleteSelected.Text = "delete row";
             this.btnDeleteSelected.UseVisualStyleBackColor = true;
-            this.dgvCountries.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellDoubleClick);
-            // 
-            // btnDeleteSelected
-            // 
-            this.btnDeleteSelected.Location = new System.Drawing.Point(547, 3);
-            this.btnDeleteSelected.Name = "btnDeleteSelected";
-            this.btnDeleteSelected.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteSelected.TabIndex = 1;
-            this.btnDeleteSelected.Text = "delete row";
-            this.btnDeleteSelected.UseVisualStyleBackColor = true;
+            this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.comboBox3);
-            this.tabPage3.Controls.Add(this.button5);
-            this.tabPage3.Controls.Add(this.button4);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.txtBoxFitru);
             this.tabPage3.Controls.Add(this.dgvDistrict);
@@ -464,6 +451,34 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "District";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(292, 42);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 23);
+            this.comboBox3.TabIndex = 5;
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button5.Location = new System.Drawing.Point(76, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(67, 28);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Location = new System.Drawing.Point(69, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(60, 28);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -609,7 +624,7 @@
             this.tbCitySearch.Size = new System.Drawing.Size(186, 23);
             this.tbCitySearch.TabIndex = 2;
             this.tbCitySearch.Text = "Search a City..";
-            //this.tbCitySearch.TextChanged += new System.EventHandler(this.tbCitySearch_TextChanged);
+            this.tbCitySearch.TextChanged += new System.EventHandler(this.tbCitySearch_TextChanged);
             // 
             // button2
             // 
@@ -703,7 +718,6 @@
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel13.Size = new System.Drawing.Size(646, 256);
             this.tableLayoutPanel13.TabIndex = 1;
-            //this.tableLayoutPanel13.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel13_Paint);
             // 
             // dgvConferenceType
             // 
@@ -812,16 +826,6 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(220, 34);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // button5
-            // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Location = new System.Drawing.Point(76, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(67, 28);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "<--";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 3;
@@ -835,16 +839,6 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(200, 34);
             this.tableLayoutPanel9.TabIndex = 2;
-            // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(69, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(60, 28);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "-->";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel19
             // 
@@ -861,7 +855,6 @@
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel19.Size = new System.Drawing.Size(646, 201);
             this.tableLayoutPanel19.TabIndex = 2;
-            //this.tableLayoutPanel19.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel19_Paint);
             // 
             // dgvSpeaker
             // 
@@ -985,39 +978,6 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(128, 29);
             this.textBox6.TabIndex = 1;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(9, 265);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(196, 265);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(292, 42);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 23);
-            this.comboBox3.TabIndex = 5;
-            this.btnDeleteSelected.Location = new System.Drawing.Point(547, 3);
-            this.btnDeleteSelected.Name = "btnDeleteSelected";
-            this.btnDeleteSelected.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteSelected.TabIndex = 1;
-            this.btnDeleteSelected.Text = "delete row";
-            this.btnDeleteSelected.UseVisualStyleBackColor = true;
-            this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             // 
             // Form2
             // 

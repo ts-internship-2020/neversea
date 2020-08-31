@@ -48,6 +48,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(155, 27);
             this.txtSearch.TabIndex = 29;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnSearch
             // 
@@ -100,12 +101,14 @@
             this.dgvCities.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvCities.Location = new System.Drawing.Point(437, 4);
             this.dgvCities.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvCities.MultiSelect = false;
             this.dgvCities.Name = "dgvCities";
             this.dgvCities.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvCities.Size = new System.Drawing.Size(277, 264);
             this.dgvCities.TabIndex = 28;
             this.dgvCities.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellDoubleClick);
             this.dgvCities.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellEndEdit);
+            this.dgvCities.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCities_DataBindingComplete);
             // 
             // btnDelete
             // 

@@ -81,6 +81,7 @@
             this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddNew.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAddNew.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnAddNew.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNew.Image")));
             this.btnAddNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddNew.Location = new System.Drawing.Point(0, 79);
             this.btnAddNew.Name = "btnAddNew";
@@ -100,13 +101,14 @@
             this.btnConferences.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConferences.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnConferences.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnConferences.Image = ((System.Drawing.Image)(resources.GetObject("btnConferences.Image")));
             this.btnConferences.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConferences.Location = new System.Drawing.Point(0, 0);
             this.btnConferences.Name = "btnConferences";
             this.btnConferences.Padding = new System.Windows.Forms.Padding(20, 0, 0, 10);
             this.btnConferences.Size = new System.Drawing.Size(212, 79);
             this.btnConferences.TabIndex = 6;
-            this.btnConferences.Text = "  Conferences";
+            this.btnConferences.Text = "      Conferences";
             this.btnConferences.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConferences.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnConferences.UseVisualStyleBackColor = true;
@@ -120,6 +122,7 @@
             this.btnOrganizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrganizer.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnOrganizer.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnOrganizer.Image = ((System.Drawing.Image)(resources.GetObject("btnOrganizer.Image")));
             this.btnOrganizer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrganizer.Location = new System.Drawing.Point(0, 227);
             this.btnOrganizer.Name = "btnOrganizer";
@@ -140,6 +143,7 @@
             this.btnSpectator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpectator.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSpectator.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnSpectator.Image = ((System.Drawing.Image)(resources.GetObject("btnSpectator.Image")));
             this.btnSpectator.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSpectator.Location = new System.Drawing.Point(0, 148);
             this.btnSpectator.Name = "btnSpectator";

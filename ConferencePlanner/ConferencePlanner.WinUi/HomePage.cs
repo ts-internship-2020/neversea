@@ -388,7 +388,7 @@ namespace ConferencePlanner.WinUi
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            dgvOrganiser.Rows.Clear();
+            //dgvOrganiser.Rows.Clear();
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
@@ -512,8 +512,8 @@ namespace ConferencePlanner.WinUi
             Color foreColor = Color.Black;
             Color backColor = Color.White;
             Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 900, 900);
-            image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image.jpeg", ImageFormat.Jpeg);
-            
+           // image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image" + counterEmails + ".jpeg", ImageFormat.Jpeg);
+           // counterEmails++;
             return image;
         }
 

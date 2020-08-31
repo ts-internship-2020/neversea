@@ -47,12 +47,14 @@
             this.dgvConferenceTypes.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvConferenceTypes.Location = new System.Drawing.Point(437, 4);
             this.dgvConferenceTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvConferenceTypes.MultiSelect = false;
             this.dgvConferenceTypes.Name = "dgvConferenceTypes";
             this.dgvConferenceTypes.Size = new System.Drawing.Size(309, 245);
             this.dgvConferenceTypes.TabIndex = 28;
             this.dgvConferenceTypes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceTypes_CellDoubleClick);
             this.dgvConferenceTypes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceTypes_CellEndEdit);
             this.dgvConferenceTypes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvConferenceType_ColumnHeaderMouseClick);
+            this.dgvConferenceTypes.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvConferenceTypes_DataBindingComplete);
             // 
             // txtSearch
             // 

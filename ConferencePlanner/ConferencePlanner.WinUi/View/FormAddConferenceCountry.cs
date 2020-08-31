@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Windows.UI.Xaml.Documents;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -62,6 +63,8 @@ namespace ConferencePlanner.WinUi.View
             this.dgvCountries.Columns[1].Visible = false;
 
 
+
+
             dgvCountries.Columns[0].HeaderText = "Name";
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
@@ -114,10 +117,19 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnDeleteSelected_MouseClick(object sender, MouseEventArgs e)
         {
-            int selectedIndex = dgvCountries.SelectedRows[0].Index;
-            int countryId = Convert.ToInt32(dgvCountries[1, selectedIndex].Value);
-            countryRepository.DeleteCountry(countryId);
-            LoadCountries();
+            if(dgvCountries.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvCountries.SelectedRows[0].Index;
+                int countryId = Convert.ToInt32(dgvCountries[1, selectedIndex].Value);
+                countryRepository.DeleteCountry(countryId);
+                LoadCountries();
+            }   
+
+        }
+
+        private void dgvCountries_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvCountries.ClearSelection();
         }
 
         private void FormAddConferenceCountry_FormClosing(object sender, FormClosingEventArgs e)

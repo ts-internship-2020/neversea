@@ -22,12 +22,6 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
         }
 
-
-        
-
-
-
-
         public void ModifySpectatorStatusAttend(string conferenceName, string spectatorEmail)
         {
             SqlParameter[] parameters = new SqlParameter[2];
@@ -106,7 +100,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     "                     INNER JOIN DictionaryConferenceCategory dcc ON c.DictionaryConferenceCategoryId = dcc.DictionaryConferenceCategoryId" +
                     "                     INNER JOIN Location l ON c.LocationId = l.LocationId" +
                     "                     WHERE c.StartDate  > '" + sqlStartDate + "' and c.EndDate < '" + sqlEndDate + "' " +
-                    "                     AND c.OrganiserEmail = '" + emailOrganiser + "';";
+                    "                     AND c.OrganiserEmail = '" + emailOrganiser + "'" +
+                    "                     ORDER BY c.StartDate;";
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
             List<ConferenceModel> conferences = new List<ConferenceModel>();
             Console.WriteLine(startDate);

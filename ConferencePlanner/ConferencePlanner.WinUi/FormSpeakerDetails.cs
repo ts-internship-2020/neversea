@@ -45,44 +45,40 @@ namespace ConferencePlanner.WinUi
 
             if ( rating < 2)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
             else if (rating >= 2 && rating < 3)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
             else if (rating >= 3 && rating < 4)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
             else if (rating >= 4 && rating < 5)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px_1;
             }
             else if ( rating == 5)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike5.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike5.Image = Properties.Resources.icons8_facebook_like_48px_1;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            timer1.Interval = 1;
-            action = enmAction.close;
-        }
+      
         public enum enmAction
         {
             wait,
@@ -92,11 +88,28 @@ namespace ConferencePlanner.WinUi
         private FormSpeakerDetails.enmAction action;
         public int x { get; private set; }
         public int y { get; private set; }
+        //private int x, y;
         public void ShowSpeakerDetails()
         {
             this.Opacity = 0.0;
             this.StartPosition = FormStartPosition.Manual;
-         
+
+            string fname;
+           
+            for (int i = 1; i < 5; i++)
+            {
+                fname = "Detail" + i.ToString();
+                FormSpeakerDetails frmDet = (FormSpeakerDetails)Application.OpenForms[fname];
+                if (frmDet ==null)
+                    
+                {
+                    this.Name = fname;
+                    this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width + 15;
+                    this.y = Screen.PrimaryScreen.WorkingArea.Height - this.Height * i;
+                    this.Location = new Point(this.x, this.y);
+                    break;
+                }
+            }
             this.x = Screen.PrimaryScreen.WorkingArea.Width - base.Width - 5;
 
             this.Show();
@@ -104,6 +117,7 @@ namespace ConferencePlanner.WinUi
             this.timer1.Interval = 1;
             timer1.Start();
         }
+       
         private void timer1_Tick(object sender, EventArgs e)
         {
             switch (this.action)
@@ -143,12 +157,13 @@ namespace ConferencePlanner.WinUi
 
         private void FormSpeakerDetails_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter||e.KeyCode==Keys.Escape)
-            {
-                button2.PerformClick();
-                e.SuppressKeyPress = true;
-            }
+            button2.PerformClick();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Interval = 1;
+            action = enmAction.close;
+        }
     }
 }
