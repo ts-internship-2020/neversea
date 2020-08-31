@@ -303,6 +303,7 @@ namespace ConferencePlanner.WinUi
         {
             List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
             conferenceCategories = _getConferenceCategoryRepository.GetConferenceCategories();
+            dgvConferenceCategory.ColumnCount = 2;
             bsCategories.AllowNew = true;
             bsCategories.DataSource = null;
             bsCategories.DataSource = conferenceCategories;
@@ -313,11 +314,17 @@ namespace ConferencePlanner.WinUi
             dgvConferenceCategory.Columns[0].HeaderText = "Name";
             dgvConferenceCategory.Columns[1].HeaderText = "Id";
             dgvConferenceCategory.Columns[1].Name = "categoryId";
+            dgvConferenceCategory.Columns[0].Name = "categoryName";
+            for(int i = 0;i<conferenceCategories.Count; i++)
+            {
+                dgvConferenceCategory.Rows.Add(conferenceCategories[i].conferenceCategoryName, conferenceCategories[i].conferenceCategoryId);
+            }
 
 
-        }
 
-        private void LoadCountries()
+                       }
+
+            private void LoadCountries()
         {
             List<CountryModel> countries = new List<CountryModel>();
             countries = _getCountryRepository.GetCountry();
@@ -559,8 +566,8 @@ namespace ConferencePlanner.WinUi
             else
             {
                 dgvCountries.CurrentRow.Selected = true;
-                 countryId = Convert.ToInt32(value: dgvCountries.Rows[e.RowIndex].Cells["countryId"].FormattedValue.ToString());
-                
+                countryId = Convert.ToInt32(value: dgvCountries.Rows[e.RowIndex].Cells["countryId"].FormattedValue.ToString());
+
             }
 
         }
@@ -593,7 +600,7 @@ namespace ConferencePlanner.WinUi
             dgvConferenceType.CurrentRow.Selected = true;
             typeId = Convert.ToInt32(value: dgvConferenceType.Rows[e.RowIndex].Cells["typeId"].FormattedValue.ToString());
         }
-    }
+
         //private void button4_Click(object sender, EventArgs e)
         //{
         //    dgvDistrict.Rows.Clear();
@@ -620,7 +627,7 @@ namespace ConferencePlanner.WinUi
             LoadCountries();
         }
     }
+    }
 
 
 
-}
