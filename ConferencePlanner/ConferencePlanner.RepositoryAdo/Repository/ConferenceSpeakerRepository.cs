@@ -74,5 +74,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return speakers;
         }
+    
+
+
     }
 }

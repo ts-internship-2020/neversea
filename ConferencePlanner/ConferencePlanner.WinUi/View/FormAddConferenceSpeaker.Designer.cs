@@ -51,6 +51,7 @@
             this.dgvSpeakers.Name = "dgvSpeakers";
             this.dgvSpeakers.Size = new System.Drawing.Size(309, 245);
             this.dgvSpeakers.TabIndex = 28;
+            //this.dgvSpeakers.CellEndEdit += dgvSpeakers_CellEndEdit;
             this.dgvSpeakers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpeakers_DataBindingComplete);
             // 
             // txtSearch
@@ -119,6 +120,7 @@
             this.button1.Size = new System.Drawing.Size(31, 41);
             this.button1.TabIndex = 33;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormAddConferenceSpeaker
             // 

@@ -42,7 +42,6 @@ namespace ConferencePlanner.WinUi.View
             dgvSpeakers.Columns[3].Name = "Rating";
             dgvSpeakers.Columns[4].Name = "Image";
             this.dgvSpeakers.Columns[0].Visible = false;
-            this.dgvSpeakers.Columns[0].Visible = false;
             for (int i = 0; i < speakers.Count; i++)
             {
                 //if (i >= maxrange)
@@ -58,8 +57,6 @@ namespace ConferencePlanner.WinUi.View
                             speakers[i].DictionarySpeakerRating,
                             speakers[i].DictionarySpeakerImage);
                 //}
-
-
             }
         }
         private void dgvSpeakers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -76,6 +73,11 @@ namespace ConferencePlanner.WinUi.View
         {
             string keyword = txtSearch.Text;
             LoadSpeakers(keyword);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
