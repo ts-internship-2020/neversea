@@ -388,7 +388,7 @@ namespace ConferencePlanner.WinUi
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            dgvOrganiser.Rows.Clear();
+            //dgvOrganiser.Rows.Clear();
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
@@ -498,7 +498,7 @@ namespace ConferencePlanner.WinUi
                // Bitmap bitmap = (Bitmap)
             Image img = generateBarcode(code);
             //img.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            Attachment attachment1 = new Attachment(@"C:\Users\gabriel.sasu\source\repos\neversea\Image.jpeg");
+            Attachment attachment1 = new Attachment(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image.jpeg");
             mailMessage1.Attachments.Add(attachment1);
             mailMessage1.To.Add(email);
             smtpClient.Send(mailMessage1);
@@ -512,8 +512,8 @@ namespace ConferencePlanner.WinUi
             Color foreColor = Color.Black;
             Color backColor = Color.White;
             Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 900, 900);
-            image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image" + counterEmails + ".jpeg", ImageFormat.Jpeg);
-            counterEmails++;
+           // image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image" + counterEmails + ".jpeg", ImageFormat.Jpeg);
+           // counterEmails++;
             return image;
         }
 

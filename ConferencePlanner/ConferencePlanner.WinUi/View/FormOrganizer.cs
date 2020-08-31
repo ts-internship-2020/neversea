@@ -36,7 +36,7 @@ namespace ConferencePlanner.WinUi.View
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
 
-            comboBoxPagesNumber.SelectedItem = 4;
+            comboBoxPagesNumber.SelectedIndex = 0;
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
 
             maxrange = Conferences.Count;
@@ -75,7 +75,7 @@ namespace ConferencePlanner.WinUi.View
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
 
-            comboBoxPagesNumber.SelectedIndex = 0;
+           //comboBoxPagesNumber.SelectedIndex = 0;
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
 
             maxrange = Conferences.Count;
@@ -102,10 +102,8 @@ namespace ConferencePlanner.WinUi.View
             dgvOrganiser.Columns.Add(buttonEditColumn);
         }
 
-            private void WireUpOrganiser()
-        {
-            comboBoxPagesNumber.SelectedIndex = 0;
-
+        private void WireUpOrganiser()
+        { 
             for (int i = range; i < step; i++)
             {
                 if (i >= maxrange)
@@ -134,7 +132,7 @@ namespace ConferencePlanner.WinUi.View
                     btnNext.Enabled = true;
                 }
             }
-        }
+    }
 
         private void LoadTheme()
         {
@@ -151,23 +149,9 @@ namespace ConferencePlanner.WinUi.View
         }
 
 
-        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        private void dtpStart_ValueChanged_1(object sender, EventArgs e)
         {
             Console.WriteLine(dtpStart.Value);
-            dgvOrganiser.Rows.Clear();
-            Conferences.Clear();
-            Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
-            Console.WriteLine(Conferences.Count);
-            maxrange = Conferences.Count;
-            step = (int)comboBoxPagesNumber.SelectedItem;
-            shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPrevious.Visible = false;
-            WireUpOrganiser();
-        }
-
-        private void dtpEnd_ValueChanged(object sender, EventArgs e)
-        {
-            dgvOrganiser.Rows.Clear();
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
@@ -235,6 +219,56 @@ namespace ConferencePlanner.WinUi.View
 
         }
 
+        private void btnNext_Click_1(object sender, EventArgs e)
+        {
+            dgvOrganiser.Rows.Clear();
+            range = step;
+            step += shown;
+            btnPrevious.Visible = true;
+            if (step >= maxrange)
+            {
+                btnNext.Enabled = false;
+            }
+            Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
+            WireUpOrganiser();
+        }
+
+        private void btnPrevious_Click_1(object sender, EventArgs e)
+        {
+            dgvOrganiser.Rows.Clear();
+            step = range;
+            range -= shown;
+            btnPrevious.Visible = true;
+            if (range == 0)
+            {
+                btnPrevious.Visible = false;
+            }
+            Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
+            WireUpOrganiser();
+        }
+
+        private void comboBoxPagesNumber_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            dgvOrganiser.Rows.Clear();
+            range = 0;
+            step = (int)comboBoxPagesNumber.SelectedItem;
+            shown = (int)comboBoxPagesNumber.SelectedItem;
+            btnNext.Enabled = false;
+            WireUpOrganiser();
+        }
+
+        private void dtpEnd_ValueChanged_1(object sender, EventArgs e)
+        {
+            dgvOrganiser.Rows.Clear();
+            Conferences.Clear();
+            Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
+            Console.WriteLine(Conferences.Count);
+            maxrange = Conferences.Count;
+            step = (int)comboBoxPagesNumber.SelectedItem;
+            shown = (int)comboBoxPagesNumber.SelectedItem;
+            btnNext.Enabled = false;
+            WireUpOrganiser();
+        }
         private void dgvOrganiser_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvOrganiser.ClearSelection();
