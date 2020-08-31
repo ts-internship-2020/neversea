@@ -95,10 +95,12 @@
             8,
             9,
             10});
+            this.comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnPagesNumber
             // 
@@ -149,6 +151,7 @@
             this.btnPrevious.Size = new System.Drawing.Size(42, 33);
             this.btnPrevious.TabIndex = 34;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // button3
             // 
@@ -163,6 +166,7 @@
             this.button3.Size = new System.Drawing.Size(42, 33);
             this.button3.TabIndex = 34;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel1
             // 
