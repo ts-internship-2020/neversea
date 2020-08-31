@@ -36,6 +36,9 @@ namespace ConferencePlanner.WinUi.View
             _conferenceSpeakerRepository = conferenceSpeakerRepository;
             InitializeComponent();
 
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
         }
         public void Alert(string msg)
         {
@@ -137,6 +140,11 @@ namespace ConferencePlanner.WinUi.View
         private void tb_email_TextChanged(object sender, EventArgs e)
         {
             tb_email.Text = "paul.popescu@gmail.com";
+        }
+
+        private void btnExit_MouseClick(object sender, MouseEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSpectator));
             this.dgvSpectator = new System.Windows.Forms.DataGridView();
             this.panelSpeaker = new System.Windows.Forms.Panel();
-            this.txtSearchBar = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -70,32 +68,6 @@
             this.panelSpeaker.Name = "panelSpeaker";
             this.panelSpeaker.Size = new System.Drawing.Size(138, 150);
             this.panelSpeaker.TabIndex = 1;
-            // 
-            // txtSearchBar
-            // 
-            this.txtSearchBar.BackColor = System.Drawing.Color.White;
-            this.txtSearchBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearchBar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearchBar.Location = new System.Drawing.Point(481, 23);
-            this.txtSearchBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtSearchBar.Name = "txtSearchBar";
-            this.txtSearchBar.Size = new System.Drawing.Size(146, 23);
-            this.txtSearchBar.TabIndex = 2;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.White;
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(433, 21);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(40, 31);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.UseVisualStyleBackColor = false;
             // 
             // dtpStart
             // 
@@ -210,8 +182,6 @@
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.dtpStart);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtSearchBar);
             this.Controls.Add(this.panelSpeaker);
             this.Controls.Add(this.dgvSpectator);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -219,7 +189,6 @@
             this.Text = "Conferences to Attend";
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpectator)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -227,8 +196,6 @@
 
         private System.Windows.Forms.DataGridView dgvSpectator;
         private System.Windows.Forms.Panel panelSpeaker;
-        private System.Windows.Forms.TextBox txtSearchBar;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.Button btnPrevious;

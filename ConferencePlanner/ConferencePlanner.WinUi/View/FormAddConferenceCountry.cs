@@ -38,7 +38,7 @@ namespace ConferencePlanner.WinUi.View
             this.dgvCountries.Columns[1].Visible = false;
 
 
-            dgvCountries.Columns[0].HeaderText = "Name";
+            dgvCountries.Columns[0].HeaderText = "Country";
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
