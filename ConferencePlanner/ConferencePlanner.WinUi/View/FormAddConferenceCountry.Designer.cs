@@ -89,6 +89,7 @@
             this.dgvCountries.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvCountries.Size = new System.Drawing.Size(360, 264);
             this.dgvCountries.TabIndex = 28;
+            this.dgvCountries.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellDoubleClick);
             this.dgvCountries.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellEndEdit);
             // 
             // comboBoxPagesNumber
@@ -137,6 +138,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceCountry";
             this.Text = "FormAddConferenceCountry";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCountry_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

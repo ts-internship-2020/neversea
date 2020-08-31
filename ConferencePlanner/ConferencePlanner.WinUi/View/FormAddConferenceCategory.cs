@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi.View
 {
+   
     public partial class FormAddConferenceCategory : Form
-    {
+    {  
+        public int categoryId = 0;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
         private BindingSource bsCategories = new BindingSource();
         public List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
@@ -35,6 +37,8 @@ namespace ConferencePlanner.WinUi.View
 
             dgvConferenceCategories.Columns[0].HeaderText = "Name";
             dgvConferenceCategories.Columns[1].HeaderText = "Id";
+            dgvConferenceCategories.Columns[1].Name = "Id";
+
 
             dgvConferenceCategories.Columns[1].Visible = false;
         }
@@ -98,6 +102,16 @@ namespace ConferencePlanner.WinUi.View
         {
             string keyword = txtSearch.Text;
             LoadConferenceCategories(keyword);
+        }
+
+        private void dgvConferenceCategories_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+        }
+
+        private void FormAddConferenceCategory_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormAddConferenceGeneral.conference.ConferenceCategory = categoryId.ToString();
         }
     }
 }

@@ -59,7 +59,7 @@
             this.dgvSpectator.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSpectator.Size = new System.Drawing.Size(828, 474);
             this.dgvSpectator.TabIndex = 0;
-            this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_1);
+            this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
             // 
             // panelSpeaker
             // 

@@ -12,13 +12,16 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceCountry : Form
     {
+        public int id = 0;
         private readonly ICountryRepository countryRepository;
+        private readonly IConferenceLocationRepository conferenceLocationRepository;
         private BindingSource bsCountries = new BindingSource();
 
         public List<CountryModel> countries { get; set; }
 
-        public FormAddConferenceCountry(ICountryRepository _countryRepository)
+        public FormAddConferenceCountry(ICountryRepository _countryRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
+            conferenceLocationRepository = _conferenceLocationRepository;
             countryRepository = _countryRepository;
             InitializeComponent();
             LoadCountries();
@@ -41,6 +44,9 @@ namespace ConferencePlanner.WinUi.View
             dgvCountries.Columns[1].HeaderText = "Id";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
+            dgvCountries.Columns[1].Name = "Id";
+
+
         }
 
         private void LoadCountries(string keyword)
@@ -112,6 +118,17 @@ namespace ConferencePlanner.WinUi.View
             int countryId = Convert.ToInt32(dgvCountries[1, selectedIndex].Value);
             countryRepository.DeleteCountry(countryId);
             LoadCountries();
+        }
+
+        private void FormAddConferenceCountry_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormAddConferenceGeneral.countryId = id;
+
+        }
+
+        private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+             id= Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
         }
     }
 }

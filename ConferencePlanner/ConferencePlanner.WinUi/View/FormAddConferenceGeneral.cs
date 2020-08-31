@@ -1,4 +1,5 @@
-﻿using ConferencePlanner.Abstraction.Repository;
+﻿using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,11 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceGeneral : Form
     {
+        public static int districtId = new int();
+
+        public static int countryId = new int();
+        public static LocationModel location = new LocationModel();
+        public static ConferenceModel conference = new ConferenceModel();
         /*private readonly IConferenceRepository conferenceRepository;
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;*/
         private readonly ICountryRepository countryRepository;
@@ -18,20 +24,19 @@ namespace ConferencePlanner.WinUi.View
         private readonly IConferenceCityRepository conferenceCityRepository;
         private readonly IConferenceTypeRepository conferenceTypeRepository;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
-
-
-
+        private readonly IConferenceLocationRepository _conferenceLocationRepository;
         private int tabCount = 1;
         private Form activeForm;
 
 
-        public FormAddConferenceGeneral(object sender, ICountryRepository _countryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceTypeRepository _conferenceTypeRepository, IConferenceCategoryRepository _conferenceCategoryRepository)
+        public FormAddConferenceGeneral(object sender, ICountryRepository _countryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceTypeRepository _conferenceTypeRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceLocationRepository conferenceLocationRepository)
         {
             countryRepository = _countryRepository;
             districtRepository = _districtRepository;
             conferenceCityRepository = _conferenceCityRepository;
             conferenceTypeRepository = _conferenceTypeRepository;
             conferenceCategoryRepository = _conferenceCategoryRepository;
+            _conferenceLocationRepository = conferenceLocationRepository;
 
             InitializeComponent();
             //LoadTheme();
@@ -199,7 +204,8 @@ namespace ConferencePlanner.WinUi.View
             {
                 case 1:
                     {
-                        OpenChildForm(new FormAddConferenceGeneralDetails(), sender);
+                        FormAddConferenceGeneralDetails formAddDetails = new FormAddConferenceGeneralDetails();
+                        OpenChildForm(formAddDetails, sender);
                         btnPrevious.Visible = false;
                         btnNext.Visible = true;
                         addCurrentStepButtonStyle(btnStep1);
@@ -207,20 +213,22 @@ namespace ConferencePlanner.WinUi.View
                     break;
                 case 2:
                     {
-                        FormAddConferenceCountry formAddConferenceCountry = new FormAddConferenceCountry(countryRepository);
+
+                        
+                        FormAddConferenceCountry formAddConferenceCountry = new FormAddConferenceCountry(countryRepository,_conferenceLocationRepository);
                         OpenChildForm(formAddConferenceCountry, sender);
                         btnPrevious.Visible = true;
                     }
                     break;
                 case 3:
                     {
-                        FormAddConferenceDistrict formAddConferenceDistrict = new FormAddConferenceDistrict(districtRepository);
+                        FormAddConferenceDistrict formAddConferenceDistrict = new FormAddConferenceDistrict(districtRepository,_conferenceLocationRepository);
                         OpenChildForm(formAddConferenceDistrict, sender);
                     }
                     break;
                 case 4:
                     {
-                        FormAddConferenceCity formAddConferenceCity = new FormAddConferenceCity(conferenceCityRepository);
+                        FormAddConferenceCity formAddConferenceCity = new FormAddConferenceCity(conferenceCityRepository, _conferenceLocationRepository);
                         OpenChildForm(formAddConferenceCity, sender);
                     }
                     break;
@@ -259,5 +267,9 @@ namespace ConferencePlanner.WinUi.View
             switchTabs(tabCount, sender);
         }
 
+        private void Add_Click(object sender, EventArgs e)
+        {
+            _conferenceLocationRepository.InsertLocation(location.CityId);
+        }
     }
 }

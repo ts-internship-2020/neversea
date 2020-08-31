@@ -12,6 +12,8 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceType : Form
     {
+
+        public int typeId;
         private readonly IConferenceTypeRepository conferenceTypeRepository;
         private BindingSource bsTypes = new BindingSource();
         public List<ConferenceTypeModel> conferenceTypes { get; set; }
@@ -36,6 +38,8 @@ namespace ConferencePlanner.WinUi.View
 
             dgvConferenceTypes.Columns[0].HeaderText = "Name";
             dgvConferenceTypes.Columns[1].HeaderText = "Id";
+            dgvConferenceTypes.Columns[1].Name = "Id";
+
         }
 
         public void LoadConferenceTypes(string keyword)
@@ -123,6 +127,17 @@ namespace ConferencePlanner.WinUi.View
             int conferenceTypeId = Convert.ToInt32(dgvConferenceTypes[1, selectedIndex].Value);
             conferenceTypeRepository.DeleteConferenceType(conferenceTypeId);
             LoadConferenceTypes();
+        }
+
+        private void dgvConferenceTypes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+        }
+
+        private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormAddConferenceGeneral.conference.ConferenceType = typeId.ToString();
+
         }
     }
 }

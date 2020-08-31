@@ -20,8 +20,9 @@ namespace ConferencePlanner.WinUi.View
         private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
         private readonly IDistrictRepository _districtRepository;
         private readonly IConferenceCityRepository _conferenceCityRepository;
+        private readonly IConferenceLocationRepository _conferenceLocationRepository;
 
-        public FormLogin(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository)
+        public FormLogin(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository, IConferenceLocationRepository conferenceLocationRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
@@ -32,6 +33,8 @@ namespace ConferencePlanner.WinUi.View
             _conferenceCategoryRepository = conferenceCategoryRepository;
             _districtRepository = districtRepository;
             _conferenceCityRepository = conferenceCityRepository;
+            _conferenceLocationRepository = conferenceLocationRepository;
+
             InitializeComponent();
 
         }
@@ -59,7 +62,7 @@ namespace ConferencePlanner.WinUi.View
             //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
             //AddConferenceForm addConferenceForm = new AddConferenceForm();
 
-            FormHomePage homePage = new FormHomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _districtRepository, _conferenceCityRepository, conferenceAttendanceRepository);
+            FormHomePage homePage = new FormHomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _districtRepository, _conferenceCityRepository, conferenceAttendanceRepository, _conferenceLocationRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 //           addConferenceForm.Show();

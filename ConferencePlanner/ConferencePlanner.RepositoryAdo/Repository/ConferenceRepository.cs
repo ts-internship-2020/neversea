@@ -472,6 +472,34 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         }
 
-       
+        public void InsertConference(ConferenceModel conference, int locationId)
+        {
+            SqlParameter[] parameters = new SqlParameter[2];
+
+            parameters[0] = new SqlParameter("@Name", conference.ConferenceName);
+            parameters[1] = new SqlParameter("@StartDate", conference.ConferenceStartDate);
+            parameters[2] = new SqlParameter("@EndDate", conference.ConferenceEndDate);
+            parameters[3] = new SqlParameter("@OrganiserMail", conference.ConferenceOrganiserEmail);
+            parameters[4] = new SqlParameter("@LocationId", locationId);
+            parameters[5] = new SqlParameter("@TypeId", conference.ConferenceType);
+            parameters[6] = new SqlParameter("@CategoryId", conference.ConferenceCategory);
+
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = $"Insert into Conference(ConferenceName,StartDate, EndDate, OrganiserEmail," +
+                $" LocationId,DictionaryConferenceTypeId, DictionaryConferenceCategoryId)" +
+                $" values(@Name, @StartDate, @EndDate, @OrganiserMail,@LocationId, @TypeId, @CategoryId";
+
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+            sqlCommand.Parameters.Add(parameters[2]);
+            sqlCommand.Parameters.Add(parameters[3]);
+            sqlCommand.Parameters.Add(parameters[4]);
+            sqlCommand.Parameters.Add(parameters[5]);
+            sqlCommand.Parameters.Add(parameters[6]);
+
+
+            sqlCommand.ExecuteNonQuery();
+        }
     }
 };
