@@ -77,5 +77,56 @@ namespace ConferencePlanner.WinUi.View
             string keyword = txtSearch.Text;
             LoadSpeakers(keyword);
         }
+
+        private void dgvSpeakers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int speakerId;
+            string speakerName = "";
+            string speakerNationality = "";
+            float speakerRating;
+            string speakerImage = "";
+
+            try
+            {
+                if (dgvSpeakers.Rows[e.RowIndex].Cells[0].Value != null)
+                {
+                    speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    speakerName = dgvSpeakers.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    speakerNationality = dgvSpeakers.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    speakerRating = float.Parse(dgvSpeakers.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    conferenceSpeakerRepository.UpdateSpeaker(speakerId, speakerName, speakerNationality, speakerRating, speakerImage);
+                }
+
+                else
+                {
+                    speakerName = dgvSpeakers.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    speakerNationality = dgvSpeakers.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    speakerRating = dgvSpeakers.Rows[e.RowIndex].Cells[3].Value == null ? 0 : float.Parse(dgvSpeakers.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+
+                    conferenceSpeakerRepository.InsertSpeaker(speakerName, speakerNationality, speakerRating, speakerImage);
+                    dgvSpeakers.Rows.Clear();
+                }
+
+                LoadSpeakers();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvSpeakers.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvSpeakers.SelectedRows[0].Index;
+                int speakerId = Convert.ToInt32(dgvSpeakers[0, selectedIndex].Value);
+                conferenceSpeakerRepository.DeleteSpeaker(speakerId);
+                LoadSpeakers();
+            }
+        }
     }
 }

@@ -56,6 +56,7 @@
             this.dgvSpeakers.Name = "dgvSpeakers";
             this.dgvSpeakers.Size = new System.Drawing.Size(309, 204);
             this.dgvSpeakers.TabIndex = 28;
+            this.dgvSpeakers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpeakers_CellEndEdit);
             this.dgvSpeakers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpeakers_DataBindingComplete);
             // 
             // txtSearch
@@ -124,6 +125,7 @@
             this.btnDelete.Size = new System.Drawing.Size(31, 41);
             this.btnDelete.TabIndex = 33;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // button2
             // 

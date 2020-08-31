@@ -12,5 +12,9 @@ namespace ConferencePlanner.Abstraction.Repository
         //public void updateSpeaker(int index, string city, int districtId);
         //public void insertSpeaker(string city, int districtId);
         public List<SpeakerModel> GetConferenceSpeakers(string keyword);
+        void DeleteSpeaker(int speakerId);
+        public void InsertSpeaker(string speakerName, string speakerNationality, float speakerRating, string speakerImage);
+
+        public void UpdateSpeaker(int speakerId, string speakerName, string speakerNationality, float speakerRating, string speakerImage);
     }
 }
