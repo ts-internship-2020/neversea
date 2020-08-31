@@ -1,4 +1,4 @@
-﻿using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;

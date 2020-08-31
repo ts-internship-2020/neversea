@@ -16,6 +16,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         private readonly SqlConnection sqlConnection;
 
+
+
         public CountryRepository(SqlConnection SqlConnection)
         {
             sqlConnection = SqlConnection;
@@ -36,6 +38,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
+
+
         public List<CountryModel> GetCountry()
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
@@ -43,9 +47,15 @@ namespace ConferencePlanner.Repository.Ado.Repository
                                      "DictionaryCountryNationality " +
                                      "FROM DictionaryCountry";
 
+
+
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
+
+
             List<CountryModel> countries = new List<CountryModel>();
+
+
 
             if (sqlDataReader.HasRows)
             {
@@ -55,16 +65,22 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     {
                         CountryName = sqlDataReader.GetString("DictionaryCountryName"),
                         CountryId = sqlDataReader.GetInt32("DictionaryCountryId"),
-                        CountryCode = sqlDataReader.GetString("DictionaryCountryCode"), 
+                        CountryCode = sqlDataReader.GetString("DictionaryCountryCode"),
                         CountryNationality = sqlDataReader.GetString("DictionaryCountryNationality")
                     });
                 }
             }
 
+
+
             sqlDataReader.Close();
+
+
 
             return countries;
         }
+
+
 
         public List<CountryModel> GetCountry(string keyword)
         {

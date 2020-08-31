@@ -1,4 +1,4 @@
-﻿using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ConferencePlanner.WinUi
 {
@@ -25,9 +26,17 @@ namespace ConferencePlanner.WinUi
         private readonly IDistrictRepository _districtRepository;
         private BindingSource bsDistricts = new BindingSource();
         private readonly IConferenceAttendanceRepository _conferenceAttendanceRepository;
+        private ConferenceModel conferenceModel = new ConferenceModel();
 
-
-
+        private int districtId;
+        public int countryId;
+        public int cityId;
+        public int categoryId;
+        public int typeId;
+        public int range = 0;
+        public int step = 4;
+        public int shown = 4;
+        public int maxrange;
         public List<ConferenceTypeModel> conferenceTypeModels { get; set; }
         public List<ConferenceCategoryModel> conferenceCategoriesModels { get; set; }
 
@@ -45,7 +54,7 @@ namespace ConferencePlanner.WinUi
         {
 
             _getCountryRepository = getCountryRepository;
-            
+
             InitializeComponent();
             LoadConferenceCategories();
             LoadConferenceTypes();
@@ -57,16 +66,16 @@ namespace ConferencePlanner.WinUi
         {
             _getConferenceRepository = getConferenceRepository;
             model = conference;
-           
-            InitializeComponent(); 
+
+            InitializeComponent();
             LoadConferenceCategories();
             LoadConferenceTypes();
             LoadCountries();
             LoadDistricts();
         }
 
-     //   public Form2(IConferenceRepository getConferenceRepository) { }
-        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository)
+        //   public Form2(IConferenceRepository getConferenceRepository) { }
+        public Form2(string email, IConferenceRepository getConferenceRepository, IConferenceTypeRepository conferenceTypeRepository, ICountryRepository getCountryRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository conferenceAttendanceRepository, IConferenceSpeakerRepository conferenceSpeakerRepository)
         {
             _getCountryRepository = getCountryRepository;
             _getConferenceRepository = getConferenceRepository;
@@ -86,7 +95,7 @@ namespace ConferencePlanner.WinUi
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void LoadCities()
         {
@@ -95,6 +104,8 @@ namespace ConferencePlanner.WinUi
             dgvCity.ColumnCount = 2;
             dgvCity.Columns[0].Name = "Id";
             dgvCity.Columns[1].Name = "City";
+            dgvCity.Columns[0].HeaderText = "Id";
+            dgvCity.Columns[1].HeaderText = "City";
             this.dgvCity.Columns[0].Visible = false;
             for (int i = 0; i < cities.Count; i++)
             {
@@ -129,11 +140,11 @@ namespace ConferencePlanner.WinUi
             tabControl1.TabPages[tabIndex].Enabled = true;
 
             tabControl1.SelectedIndex = tabIndex;
-            if(tabIndex == 0)
+            if (tabIndex == 0)
             {
                 lblBackCountry.Enabled = false;
             }
-            if(lblNextCountry.Text == "Save")
+            if (lblNextCountry.Text == "Save")
             {
                 lblNextCountry.Text = "Next";
             }
@@ -143,7 +154,7 @@ namespace ConferencePlanner.WinUi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tabIndex < tabControl1.TabCount - 1) 
+            if (tabIndex < tabControl1.TabCount - 1)
             {
                 tabControl1.TabPages[tabIndex].Enabled = false;
                 tabIndex += 1;
@@ -153,7 +164,7 @@ namespace ConferencePlanner.WinUi
             tabControl1.SelectedIndex = tabIndex;
             lblBackCountry.Enabled = true;
 
-            if(tabIndex == tabControl1.TabCount)
+            if (tabIndex == tabControl1.TabCount)
             {
                 lblNextCountry.Text = "Save";
             }
@@ -180,8 +191,18 @@ namespace ConferencePlanner.WinUi
         private void tabControl1_Enter(object sender, EventArgs e)
         {
 
-       
-            
+            //  var myBindingSource = new SortedBindingList<ConferenceTypeModel>(conferenceTypeModels);
+            // myBindingSource.ApplySort(propertyName, ListSortDirection.Ascending);
+            //  var bindingSource = new BindingSource();
+            conferenceTypeModels = _conferenceTypeRepository.getConferenceTypes();
+            //   dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.DataSource = conferenceTypeModels;
+            // dgvConferenceType.DataSource = _conferenceTypeRepository.getConferenceTypes();
+            dgvConferenceType.Columns[0].HeaderText = "Conference Type Name";
+            dgvConferenceType.Columns[1].HeaderText = "Conference Type Id";
+            dgvConferenceType.Columns[1].Name = "typeId";
+
+
 
 
 
@@ -229,16 +250,16 @@ namespace ConferencePlanner.WinUi
 
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
-           int counter = 1;
+
+            int counter = 1;
 
             //dgvConferenceType.Sort(dgvConferenceType.Columns[0], ListSortDirection.Descending);
 
 
             if (counter == 1)
             {
-               
-                dgvConferenceType.DataSource = null; 
+
+                dgvConferenceType.DataSource = null;
                 conferenceTypeModels.Sort();
                 dgvConferenceType.DataSource = conferenceTypeModels;
                 dgvConferenceType.Refresh();
@@ -282,20 +303,28 @@ namespace ConferencePlanner.WinUi
         {
             List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
             conferenceCategories = _getConferenceCategoryRepository.GetConferenceCategories();
+            dgvConferenceCategory.ColumnCount = 2;
             bsCategories.AllowNew = true;
             bsCategories.DataSource = null;
             bsCategories.DataSource = conferenceCategories;
 
             //dgvConferenceCategory.DataSource = bsCategories;
 
-            
-            //dgvConferenceCategory.Columns[0].HeaderText = "Name";
-           // dgvConferenceCategory.Columns[1].HeaderText = "Id";
+
+            dgvConferenceCategory.Columns[0].HeaderText = "Name";
+            dgvConferenceCategory.Columns[1].HeaderText = "Id";
+            dgvConferenceCategory.Columns[1].Name = "categoryId";
+            dgvConferenceCategory.Columns[0].Name = "categoryName";
+            for(int i = 0;i<conferenceCategories.Count; i++)
+            {
+                dgvConferenceCategory.Rows.Add(conferenceCategories[i].conferenceCategoryName, conferenceCategories[i].conferenceCategoryId);
+            }
 
 
-        }
 
-        private void LoadCountries()
+                       }
+
+            private void LoadCountries()
         {
             List<CountryModel> countries = new List<CountryModel>();
             countries = _getCountryRepository.GetCountry();
@@ -303,7 +332,7 @@ namespace ConferencePlanner.WinUi
 
             bsCountries.AllowNew = true;
             bsCountries.DataSource = null;
-            bsCountries.DataSource = countries; 
+            bsCountries.DataSource = countries;
 
             dgvCountries.DataSource = bsCountries;
 
@@ -321,7 +350,7 @@ namespace ConferencePlanner.WinUi
             string keyword = txtSearchCountry.Text;
             LoadCountries(keyword);
         }
-        
+
 
         private void LoadCountries(string keyword)
         {
@@ -339,6 +368,7 @@ namespace ConferencePlanner.WinUi
 
             dgvCountries.Columns[0].HeaderText = "Name";
             dgvCountries.Columns[1].HeaderText = "Id";
+            dgvCountries.Columns[1].Name = "countryId";
             dgvCountries.Columns[2].HeaderText = "Code";
             dgvCountries.Columns[3].HeaderText = "Nationality";
         }
@@ -381,10 +411,10 @@ namespace ConferencePlanner.WinUi
         private void dgvCity_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvCity.Columns[e.ColumnIndex].Name == "City")
-            {   
+            {
                 try
-                {   
-                    if(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value != null)
+                {
+                    if (dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value != null)
                     {
                         int indexCity = Convert.ToInt32(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
                         string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
@@ -400,7 +430,7 @@ namespace ConferencePlanner.WinUi
                 }
                 catch
                 {
-                   
+
                 }
             }
         }
@@ -420,6 +450,7 @@ namespace ConferencePlanner.WinUi
 
 
             dgvDistrict.Columns[0].HeaderText = "Id";
+            dgvDistrict.Columns[0].Name = "districtId";
             dgvDistrict.Columns[1].HeaderText = "District Name";
             dgvDistrict.Columns[2].HeaderText = "Code";
             dgvDistrict.Columns[3].HeaderText = "CountryId";
@@ -445,7 +476,7 @@ namespace ConferencePlanner.WinUi
             dgvConferenceCategory.Columns[0].HeaderText = "Name";
             dgvConferenceCategory.Columns[1].HeaderText = "Id";
         }
-         
+
 
         public void LoadConferenceTypes()
         {
@@ -478,7 +509,7 @@ namespace ConferencePlanner.WinUi
 
 
         private void tbCategory_TextChanged(object sender, EventArgs e)
-        {                         
+        {
             string keyword = tbCategory.Text;
             LoadConferenceCategories(keyword);
         }
@@ -497,7 +528,7 @@ namespace ConferencePlanner.WinUi
 
         private void dgvConferenceCategory_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-        Console.WriteLine("Row Added");
+            Console.WriteLine("Row Added");
 
         }
 
@@ -506,7 +537,7 @@ namespace ConferencePlanner.WinUi
             Console.WriteLine("Row Added Corectly");
 
         }
-        
+
         public ConferenceModel AddConference()
         {
             ConferenceModel conference = new ConferenceModel();
@@ -516,15 +547,72 @@ namespace ConferencePlanner.WinUi
             //    conference.ConferenceCategory = row.Cells[0].Value.ToString();
             //    Console.WriteLine(conference.ConferenceCategory);
             //}
-           // if (dgvConferenceCategory.SelectedRows != null)
-           // {
-              //  conference.ConferenceCategory = dgvConferenceCategory.SelectedRows[0].Cells[0].Value.ToString();
+            // if (dgvConferenceCategory.SelectedRows != null)
+            // {
+            //  conference.ConferenceCategory = dgvConferenceCategory.SelectedRows[0].Cells[0].Value.ToString();
             //}
-          // Console.WriteLine(conference.ConferenceCategory);
+            // Console.WriteLine(conference.ConferenceCategory);
 
-           return conference;
+            return conference;
 
         }
+
+        private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+            else
+            {
+                dgvCountries.CurrentRow.Selected = true;
+                countryId = Convert.ToInt32(value: dgvCountries.Rows[e.RowIndex].Cells["countryId"].FormattedValue.ToString());
+
+            }
+
+        }
+
+        private void dgvDistrict_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvDistrict.CurrentRow.Selected = true;
+            districtId = Convert.ToInt32(value: dgvDistrict.Rows[e.RowIndex].Cells["districtId"].FormattedValue.ToString());
+        }
+
+        private void dgvCity_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvCity.CurrentRow.Selected = true;
+            cityId = Convert.ToInt32(value: dgvCity.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+        }
+
+        private void dgvConferenceCategory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvConferenceCategory.CurrentRow.Selected = true;
+            categoryId = Convert.ToInt32(value: dgvConferenceCategory.Rows[e.RowIndex].Cells["categoryId"].FormattedValue.ToString());
+        }
+
+        private void dgvConferenceType_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvConferenceType_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvConferenceType.CurrentRow.Selected = true;
+            typeId = Convert.ToInt32(value: dgvConferenceType.Rows[e.RowIndex].Cells["typeId"].FormattedValue.ToString());
+        }
+
+        //private void button4_Click(object sender, EventArgs e)
+        //{
+        //    dgvDistrict.Rows.Clear();
+        //    range = step;
+        //    step += shown;
+        //    button5.Enabled = true;
+        //    if (step >= maxrange)
+        //    {
+        //        button4.Enabled = false;
+        //    }
+        //    WireUpDistrict();
+        //}
 
         private void dgvConferenceCategory_SelectionChanged(object sender, EventArgs e)
         {
@@ -541,5 +629,4 @@ namespace ConferencePlanner.WinUi
     }
 
 
-    
-}
+

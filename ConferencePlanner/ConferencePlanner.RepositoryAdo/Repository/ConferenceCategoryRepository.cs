@@ -52,7 +52,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 }
             }
 
-
+            sqlDataReader.Close();
             return conferenceCategories;
 
 
@@ -86,7 +86,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 }
             }
 
-
+            sqlDataReader.Close();
             return conferenceCategories;
 
         }
