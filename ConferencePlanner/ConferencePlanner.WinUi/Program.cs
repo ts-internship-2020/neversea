@@ -41,7 +41,7 @@ namespace ConferencePlanner.WinUi
             services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>();
             services.AddScoped<IConferenceCategoryRepository, ConferenceCategoryRepository>();
             services.AddScoped<IConferenceCityRepository, ConferenceCityRepository>();
-
+            services.AddScoped<IConferenceSpeakerRepository, ConferenceSpeakerRepository>();
             services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>();
             services.AddScoped<IConferenceAttendanceRepository, ConferenceAttendanceRepository>();
             services.AddScoped<IDistrictRepository, DistrictRepository>();

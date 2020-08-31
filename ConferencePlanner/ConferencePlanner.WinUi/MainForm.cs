@@ -26,8 +26,8 @@ namespace ConferencePlanner.WinUi
         private readonly IConferenceCategoryRepository _conferenceCategoryRepository;
         private readonly IDistrictRepository _districtRepository;
         private readonly IConferenceCityRepository _conferenceCityRepository;
-
-        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository)
+        private readonly IConferenceSpeakerRepository _conferenceSpeakerRepository;
+        public MainForm(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository,IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository, IConferenceSpeakerRepository conferenceSpeakerRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
@@ -38,6 +38,7 @@ namespace ConferencePlanner.WinUi
             _conferenceCategoryRepository = conferenceCategoryRepository;
             _districtRepository = districtRepository;
             _conferenceCityRepository = conferenceCityRepository;
+            _conferenceSpeakerRepository = conferenceSpeakerRepository;
             InitializeComponent();
 
         }
@@ -64,7 +65,7 @@ namespace ConferencePlanner.WinUi
             string emailCopy = this.tb_email.Text;
       //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
 
-            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _districtRepository, _conferenceCityRepository, conferenceAttendanceRepository);
+            HomePage homePage = new HomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _districtRepository, _conferenceCityRepository, conferenceAttendanceRepository, _conferenceSpeakerRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
       //          tabSpectOrg.Show();
