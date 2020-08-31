@@ -580,8 +580,12 @@ namespace ConferencePlanner.WinUi
 
         private void dgvCity_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvCity.CurrentRow.Selected = true;
-            cityId = Convert.ToInt32(value: dgvCity.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            if(dgvCity.Rows[e.RowIndex].Cells["City"].FormattedValue.ToString() != null)
+            {
+             dgvCity.CurrentRow.Selected = true;
+             cityId = Convert.ToInt32(value: dgvCity.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            }
+            
         }
 
         private void dgvConferenceCategory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
