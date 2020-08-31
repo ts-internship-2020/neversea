@@ -19,6 +19,18 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
         }
 
+        public void DeleteDistrict(int districtId, int countryId)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spDistricts_Delete", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryDistrictId", districtId));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryId", countryId));
+
+            sqlCommand.ExecuteNonQuery();
+        }
+
         public List<DistrictModel> GetDistricts()
         {
 
@@ -72,6 +84,58 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlDataReader.Close();
 
             return districts;
+        }
+
+        public void InsertDistrict(string districtName, string districtCode, int countryId)
+        {
+            SqlCommand sqlCommandMaxId = sqlConnection.CreateCommand();
+            sqlCommandMaxId.CommandText = $"SELECT MAX(DictionaryDistrictId) AS DictionaryDistrictId " +
+                    $"                     FROM DictionaryDistrict";
+            SqlDataReader sqlDataReaderMaxId = sqlCommandMaxId.ExecuteReader();
+
+            if (sqlDataReaderMaxId.HasRows)
+            {
+                sqlDataReaderMaxId.Read();
+                int insertedId = sqlDataReaderMaxId.GetInt32("DictionaryDistrictId") + 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spDistricts_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryDistrictId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryDistrictName", districtName));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryDistrictCode", districtCode));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryId", countryId));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+            else
+            {
+                int insertedId = 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spDistricts_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryDistrictId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryDistrictName", districtName));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryDistrictCode", districtCode));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryId", countryId));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateDistrict(int districtId, string districtName, string districtCode, int countryId)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spDistricts_Update", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryDistrictId", districtId));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryDistrictName", districtName));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryDistrictCode", districtCode));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryId", countryId));
+
+            sqlCommand.ExecuteNonQuery();
         }
     }
 }

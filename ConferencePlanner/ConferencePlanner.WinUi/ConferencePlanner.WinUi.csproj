@@ -7,6 +7,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\icoane\btnFromTo_48.png" />
+    <None Remove="Resources\icoane\btnNext_48.png" />
+    <None Remove="Resources\icoane\btnPagesNumber_32.png" />
+    <None Remove="Resources\icoane\btnPrevious_48.png" />
+    <None Remove="Resources\icoane\btnSearch_32.png" />
+    <None Remove="View\icoane\btnDeleteSelected_48.png" />
+    <None Remove="View\icoane\btnExit_32.png" />
+    <None Remove="View\icoane\btnFromTo_48.png" />
+    <None Remove="View\icoane\btnMaximize_32.png" />
+    <None Remove="View\icoane\btnMinimize_32.png" />
+    <None Remove="View\icoane\btnNext_48.png" />
+    <None Remove="View\icoane\btnPagesNumber_32.png" />
+    <None Remove="View\icoane\btnPrevious_48.png" />
+    <None Remove="View\icoane\btnSearch_32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\icoane\btnFromTo_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnNext_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnPagesNumber_32.png" />
+    <EmbeddedResource Include="Resources\icoane\btnPrevious_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnSearch_32.png" />
+    <EmbeddedResource Include="View\icoane\btnDeleteSelected_48.png" />
+    <EmbeddedResource Include="View\icoane\btnExit_32.png" />
+    <EmbeddedResource Include="View\icoane\btnFromTo_48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\icoane\btnMaximize_32.png" />
+    <EmbeddedResource Include="View\icoane\btnMinimize_32.png" />
+    <EmbeddedResource Include="View\icoane\btnNext_48.png" />
+    <EmbeddedResource Include="View\icoane\btnPagesNumber_32.png" />
+    <EmbeddedResource Include="View\icoane\btnPrevious_48.png" />
+    <EmbeddedResource Include="View\icoane\btnSearch_32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.2.6" />
     <PackageReference Include="MailKit" Version="2.8.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
