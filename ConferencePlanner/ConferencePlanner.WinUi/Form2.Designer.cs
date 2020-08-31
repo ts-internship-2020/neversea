@@ -624,7 +624,6 @@
             this.tbCitySearch.Size = new System.Drawing.Size(186, 23);
             this.tbCitySearch.TabIndex = 2;
             this.tbCitySearch.Text = "Search a City..";
-            this.tbCitySearch.TextChanged += new System.EventHandler(this.tbCitySearch_TextChanged);
             // 
             // button2
             // 
