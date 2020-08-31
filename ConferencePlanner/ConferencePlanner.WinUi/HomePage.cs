@@ -388,7 +388,7 @@ namespace ConferencePlanner.WinUi
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            dgvOrganiser.Rows.Clear();
+            //dgvOrganiser.Rows.Clear();
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
             Conferences = _getConferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dateTimePicker1.Value, dateTimePicker2.Value);
