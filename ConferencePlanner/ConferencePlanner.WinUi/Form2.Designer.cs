@@ -568,6 +568,7 @@
             this.dgvCity.TabIndex = 0;
             this.dgvCity.Text = "dataGridView2";
             this.dgvCity.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCity_CellDoubleClick);
+            this.dgvCity.CellEndEdit += dgvCity_CellEndEdit;
             // 
             // tableLayoutPanel18
             // 
@@ -705,8 +706,8 @@
             // 
             // dgvConferenceType
             // 
-            this.dgvConferenceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvConferenceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvConferenceType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvConferenceType.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -929,8 +930,8 @@
             // 
             // lblBackCountry
             // 
-            this.lblBackCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblBackCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBackCountry.Enabled = false;
             this.lblBackCountry.Location = new System.Drawing.Point(3, 3);
@@ -943,8 +944,8 @@
             // 
             // lblNextCountry
             // 
-            this.lblNextCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblNextCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNextCountry.Location = new System.Drawing.Point(531, 3);
             this.lblNextCountry.Name = "lblNextCountry";

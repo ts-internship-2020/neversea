@@ -511,8 +511,8 @@ namespace ConferencePlanner.WinUi
             Color foreColor = Color.Black;
             Color backColor = Color.White;
             Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 900, 900);
-            image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image" + counterEmails + ".jpeg", ImageFormat.Jpeg);
-            counterEmails++;
+           // image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image" + counterEmails + ".jpeg", ImageFormat.Jpeg);
+           // counterEmails++;
             return image;
         }
 
