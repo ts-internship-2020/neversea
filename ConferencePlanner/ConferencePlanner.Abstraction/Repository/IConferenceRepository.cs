@@ -24,5 +24,8 @@ namespace ConferencePlanner.Abstraction.Repository
 
         public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate);
 
+
+        public void InsertConference(ConferenceModel conference, int locationId);
+
     }
 }

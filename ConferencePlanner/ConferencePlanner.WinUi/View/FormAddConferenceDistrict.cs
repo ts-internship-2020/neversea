@@ -12,11 +12,15 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceDistrict : Form
     {
+        public int DistrictId;
         private readonly IDistrictRepository districtRepository;
+        private readonly IConferenceLocationRepository conferenceLocationRepository;
+
         private BindingSource bsDistricts = new BindingSource();
 
-        public FormAddConferenceDistrict(IDistrictRepository _districtRepository)
+        public FormAddConferenceDistrict(IDistrictRepository _districtRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
+            conferenceLocationRepository = _conferenceLocationRepository;
             districtRepository = _districtRepository;
             InitializeComponent();
             foreach(Control ctrl in dgvDistricts.Controls)
@@ -43,9 +47,11 @@ namespace ConferencePlanner.WinUi.View
 
 
             dgvDistricts.Columns[0].HeaderText = "Id";
-            dgvDistricts.Columns[1].HeaderText = "District Name";
+            dgvDistricts.Columns[1].HeaderText = "District";
             dgvDistricts.Columns[2].HeaderText = "Code";
             dgvDistricts.Columns[3].HeaderText = "CountryId";
+            dgvDistricts.Columns[0].Name = "Id";
+
 
         }
 
@@ -65,7 +71,7 @@ namespace ConferencePlanner.WinUi.View
 
 
             dgvDistricts.Columns[0].HeaderText = "Id";
-            dgvDistricts.Columns[1].HeaderText = "District Name";
+            dgvDistricts.Columns[1].HeaderText = "District";
             dgvDistricts.Columns[2].HeaderText = "Code";
             dgvDistricts.Columns[3].HeaderText = "CountryId";
         }
@@ -127,6 +133,18 @@ namespace ConferencePlanner.WinUi.View
         private void dgvDistricts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvDistricts.ClearSelection();
+        }
+
+        private void dgvDistricts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+
+        }
+
+        private void FormAddConferenceDistrict_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormAddConferenceGeneral.districtId = DistrictId;
         }
     }
 }

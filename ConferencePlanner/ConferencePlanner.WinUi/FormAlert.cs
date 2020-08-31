@@ -33,7 +33,7 @@ namespace ConferencePlanner.WinUi
             this.StartPosition = FormStartPosition.Manual;
             string fname;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 2; i++)
             {
                 fname = "alert" + i.ToString();
                 FormAlert frm = (FormAlert)Application.OpenForms[fname];

@@ -29,13 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddConferenceDistrict));
+            System.Windows.Forms.Button btnPreviousPage;
+            System.Windows.Forms.Button btnNext;
+            System.Windows.Forms.Panel panelPagesControl;
             this.dgvDistricts = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.comboBoxPagesNumber = new System.Windows.Forms.ComboBox();
             this.btnPagesNumber = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            btnPreviousPage = new System.Windows.Forms.Button();
+            btnNext = new System.Windows.Forms.Button();
+            panelPagesControl = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).BeginInit();
+            panelPagesControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvDistricts
@@ -51,8 +58,9 @@
             this.dgvDistricts.MultiSelect = false;
             this.dgvDistricts.Name = "dgvDistricts";
             this.dgvDistricts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvDistricts.Size = new System.Drawing.Size(277, 264);
+            this.dgvDistricts.Size = new System.Drawing.Size(277, 204);
             this.dgvDistricts.TabIndex = 28;
+            this.dgvDistricts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistricts_CellDoubleClick);
             this.dgvDistricts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistricts_CellEndEdit);
             this.dgvDistricts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDistricts_DataBindingComplete);
             // 
@@ -124,6 +132,43 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
+            // btnPreviousPage
+            // 
+            btnPreviousPage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            btnPreviousPage.FlatAppearance.BorderSize = 0;
+            btnPreviousPage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            btnPreviousPage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPage.Image")));
+            btnPreviousPage.Location = new System.Drawing.Point(9, 7);
+            btnPreviousPage.Name = "btnPreviousPage";
+            btnPreviousPage.Size = new System.Drawing.Size(42, 33);
+            btnPreviousPage.TabIndex = 34;
+            btnPreviousPage.UseVisualStyleBackColor = true;
+            // 
+            // btnNext
+            // 
+            btnNext.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            btnNext.FlatAppearance.BorderSize = 0;
+            btnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            btnNext.Location = new System.Drawing.Point(52, 7);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new System.Drawing.Size(42, 33);
+            btnNext.TabIndex = 34;
+            btnNext.UseVisualStyleBackColor = true;
+            // 
+            // panelPagesControl
+            // 
+            panelPagesControl.Controls.Add(btnPreviousPage);
+            panelPagesControl.Controls.Add(btnNext);
+            panelPagesControl.Location = new System.Drawing.Point(249, 193);
+            panelPagesControl.Name = "panelPagesControl";
+            panelPagesControl.Size = new System.Drawing.Size(102, 46);
+            panelPagesControl.TabIndex = 35;
+            // 
             // FormAddConferenceDistrict
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -131,6 +176,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(824, 271);
+            this.Controls.Add(panelPagesControl);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPagesNumber);
             this.Controls.Add(this.comboBoxPagesNumber);
@@ -142,7 +188,9 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceDistrict";
             this.Text = "FormAddConferenceDistrict";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceDistrict_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).EndInit();
+            panelPagesControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,5 +204,8 @@
         private System.Windows.Forms.ComboBox comboBoxPagesNumber;
         private System.Windows.Forms.Button btnPagesNumber;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Panel panelPagesControl;
     }
 }

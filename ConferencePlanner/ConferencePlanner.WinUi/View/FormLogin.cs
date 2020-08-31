@@ -22,7 +22,9 @@ namespace ConferencePlanner.WinUi.View
         private readonly IDistrictRepository _districtRepository;
         private readonly IConferenceCityRepository _conferenceCityRepository;
         private readonly IConferenceSpeakerRepository _conferenceSpeakerRepository;
-        public FormLogin(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository, IConferenceSpeakerRepository conferenceSpeakerRepository)
+        private readonly IConferenceLocationRepository _conferenceLocationRepository;
+
+        public FormLogin(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository, IConferenceLocationRepository conferenceLocationRepository, IConferenceSpeakerRepository conferenceSpeakerRepository)
         {
             player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
@@ -34,13 +36,18 @@ namespace ConferencePlanner.WinUi.View
             _districtRepository = districtRepository;
             _conferenceCityRepository = conferenceCityRepository;
             _conferenceSpeakerRepository = conferenceSpeakerRepository;
+            _conferenceLocationRepository = conferenceLocationRepository;
+
             InitializeComponent();
+
+            this.Text = string.Empty;
+            this.ControlBox = false;
 
         }
         public void Alert(string msg)
         {
             FormAlert frm = new FormAlert();
-            //frm.showAlert(msg);
+            frm.ShowAlert(msg);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -61,7 +68,7 @@ namespace ConferencePlanner.WinUi.View
             //      TabSpectOrg tabSpectOrg = new TabSpectOrg();
             //AddConferenceForm addConferenceForm = new AddConferenceForm();
 
-            FormHomePage homePage = new FormHomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _districtRepository, _conferenceCityRepository, conferenceAttendanceRepository, _conferenceSpeakerRepository);
+            FormHomePage homePage = new FormHomePage(conferenceRepository, emailCopy, _conferenceTypeRepository, countryRepository, _conferenceCategoryRepository, _districtRepository, _conferenceCityRepository, conferenceAttendanceRepository, _conferenceSpeakerRepository, _conferenceLocationRepository);
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 //           addConferenceForm.Show();
@@ -69,7 +76,7 @@ namespace ConferencePlanner.WinUi.View
                 homePage.Show();
                 this.Hide();
             }
-            if (tb_email.Text == "")
+            if (tb_email.Text == ""||tb_email==null)
             {
                 this.Alert("Email is empty");
             }
@@ -95,13 +102,16 @@ namespace ConferencePlanner.WinUi.View
                    @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
-                errorProvider2.Clear();
+                errorProvider2.Clear(); 
+                
             }
             else
             {
                 errorProvider2.SetError(this.tb_email, " Please provide a valid Mail Address");
+
                 return;
             }
+            errorProvider2.Clear();
             {
                 if (tb_email.Text.Trim() == "")
                     tb_email_SetText();
@@ -134,6 +144,11 @@ namespace ConferencePlanner.WinUi.View
         private void tb_email_TextChanged(object sender, EventArgs e)
         {
             tb_email.Text = "paul.popescu@gmail.com";
+        }
+
+        private void btnExit_MouseClick(object sender, MouseEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -256,10 +256,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(970, 50);
+            this.Location = new System.Drawing.Point(970, 20);
             this.Name = "FormSpeakerDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSpeakerDetails_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSpeakerDetails_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike1)).EndInit();

@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi.View
 {
+   
     public partial class FormAddConferenceCategory : Form
-    {
+    {  
+        public int categoryId = 0;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
         private BindingSource bsCategories = new BindingSource();
         public List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
@@ -32,11 +34,14 @@ namespace ConferencePlanner.WinUi.View
 
             dgvConferenceCategories.DataSource = bsCategories;
 
-
-            dgvConferenceCategories.Columns[0].HeaderText = "Name";
-            dgvConferenceCategories.Columns[1].HeaderText = "Id";
-
             dgvConferenceCategories.Columns[1].Visible = false;
+
+            dgvConferenceCategories.Columns[0].HeaderText = "Category";
+            dgvConferenceCategories.Columns[1].HeaderText = "Id";
+            dgvConferenceCategories.Columns[1].Name = "Id";
+
+
+
         }
 
         public void LoadConferenceCategories(string keyword)
@@ -49,11 +54,11 @@ namespace ConferencePlanner.WinUi.View
 
             dgvConferenceCategories.DataSource = bsCategories;
 
+            dgvConferenceCategories.Columns[1].Visible = false;
 
-            dgvConferenceCategories.Columns[0].HeaderText = "Name";
+            dgvConferenceCategories.Columns[0].HeaderText = "Category";
             dgvConferenceCategories.Columns[1].HeaderText = "Id";
 
-            dgvConferenceCategories.Columns[1].Visible = false;
         }
 
         private void dgvConferenceCategories_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -106,6 +111,16 @@ namespace ConferencePlanner.WinUi.View
         private void dgvConferenceCategories_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvConferenceCategories.ClearSelection();
+        }
+
+        private void dgvConferenceCategories_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+        }
+
+        private void FormAddConferenceCategory_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormAddConferenceGeneral.conference.ConferenceCategory = categoryId.ToString();
         }
     }
 }

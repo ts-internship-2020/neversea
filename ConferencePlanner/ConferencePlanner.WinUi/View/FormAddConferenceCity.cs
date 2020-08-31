@@ -12,9 +12,12 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceCity : Form
     {
+        public int locationId = 0;
         private readonly IConferenceCityRepository conferenceCityRepository;
-        public FormAddConferenceCity(IConferenceCityRepository _conferenceCityRepository)
+        private readonly IConferenceLocationRepository conferenceLocationRepository;
+        public FormAddConferenceCity(IConferenceCityRepository _conferenceCityRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
+            conferenceLocationRepository = _conferenceLocationRepository;
             conferenceCityRepository = _conferenceCityRepository;
             InitializeComponent();
             LoadCities();
@@ -108,6 +111,16 @@ namespace ConferencePlanner.WinUi.View
 
 
             }
+        }
+
+        private void FormAddConferenceCity_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormAddConferenceGeneral.location.CityId = locationId;
+        }
+
+        private void dgvCities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
         }
     }
 }

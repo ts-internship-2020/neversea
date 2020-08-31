@@ -13,6 +13,9 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceSpeaker : Form
     {
         private readonly IConferenceSpeakerRepository conferenceSpeakerRepository;
+       
+
+        public int speakerId = 0;
         public FormAddConferenceSpeaker(IConferenceSpeakerRepository _conferenceSpeakerRepository)
         {
             conferenceSpeakerRepository = _conferenceSpeakerRepository;
@@ -75,8 +78,15 @@ namespace ConferencePlanner.WinUi.View
             LoadSpeakers(keyword);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void dgvSpeakers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+
+        }
+
+        private void FormAddConferenceSpeaker_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormAddConferenceGeneral.conference.ConferenceMainSpeaker = speakerId.ToString();
 
         }
     }
