@@ -38,7 +38,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                         ParticipantEmailAddress = sqlDataReader.GetString("ParticipantEmailAddress"),
                         DictionaryParticipantStatusId = sqlDataReader.GetInt32("DictionaryParticipantStatusId"),
                         ParticipationCode = sqlDataReader.GetGuid("ParticipationCode")
-                    }); 
+                    });
                 }
             }
 
@@ -46,6 +46,65 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
             return conferenceAttendances;
+        }
+
+        public bool isParticipating(string email, int id)
+        {
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            SqlParameter[] parameters = new SqlParameter[2];
+
+            parameters[0] = new SqlParameter("@Id", id);
+            parameters[1] = new SqlParameter("@Email", email);
+            sqlCommand.CommandText = "exec sp_isParticipating @Email, @Id";
+
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+
+
+            if (sqlDataReader.HasRows)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool isWithdrawn(string email, int id)
+        {
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            SqlParameter[] parameters = new SqlParameter[2];
+
+            parameters[0] = new SqlParameter("@Id", id);
+            parameters[1] = new SqlParameter("@Email", email);
+            sqlCommand.CommandText = "exec sp_isWithdrawn @Email, @Id";
+
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            int status = 0;
+
+
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    status = sqlDataReader.GetInt32("DictionaryParticipantStatusId");
+                }
+            }
+            if (status == 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

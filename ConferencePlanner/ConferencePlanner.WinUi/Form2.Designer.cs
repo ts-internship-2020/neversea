@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,6 +51,7 @@
             this.lblSearch = new System.Windows.Forms.Label();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCountries = new System.Windows.Forms.DataGridView();
+            this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.txtBoxFitru = new System.Windows.Forms.TextBox();
@@ -86,7 +86,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblNationality = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -410,7 +409,16 @@
             this.dgvCountries.Size = new System.Drawing.Size(442, 207);
             this.dgvCountries.TabIndex = 0;
             this.dgvCountries.Text = "dataGridView3";
-            //this.dgvCountries.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellEndEdit);
+            this.dgvCountries.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellDoubleClick);
+            // 
+            // btnDeleteSelected
+            // 
+            this.btnDeleteSelected.Location = new System.Drawing.Point(547, 3);
+            this.btnDeleteSelected.Name = "btnDeleteSelected";
+            this.btnDeleteSelected.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteSelected.TabIndex = 1;
+            this.btnDeleteSelected.Text = "delete row";
+            this.btnDeleteSelected.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -452,6 +460,7 @@
             this.dgvDistrict.Size = new System.Drawing.Size(282, 240);
             this.dgvDistrict.TabIndex = 0;
             this.dgvDistrict.Text = "dataGridView1";
+            this.dgvDistrict.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistrict_CellDoubleClick);
             // 
             // tabPage4
             // 
@@ -529,6 +538,7 @@
             this.dgvCity.Size = new System.Drawing.Size(442, 203);
             this.dgvCity.TabIndex = 0;
             this.dgvCity.Text = "dataGridView2";
+            this.dgvCity.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCity_CellDoubleClick);
             // 
             // tableLayoutPanel18
             // 
@@ -585,7 +595,6 @@
             this.tbCategory.Name = "tbCategory";
             this.tbCategory.Size = new System.Drawing.Size(100, 23);
             this.tbCategory.TabIndex = 1;
-            //this.tbCategory.TextChanged += new System.EventHandler(this.tbCategory_TextChanged);
             // 
             // dgvConferenceCategory
             // 
@@ -595,9 +604,7 @@
             this.dgvConferenceCategory.Size = new System.Drawing.Size(240, 150);
             this.dgvConferenceCategory.TabIndex = 0;
             this.dgvConferenceCategory.Text = "dataGridView4";
-           // this.dgvConferenceCategory.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvConferenceCategory_RowsAdded);
-           // this.dgvConferenceCategory.SelectionChanged += new System.EventHandler(this.dgvConferenceCategory_SelectionChanged);
-            //this.dgvConferenceCategory.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvConferenceCategory_UserAddedRow);
+            this.dgvConferenceCategory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceCategory_CellDoubleClick);
             // 
             // tabPage6
             // 
@@ -656,8 +663,8 @@
             // 
             // dgvConferenceType
             // 
-            this.dgvConferenceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dgvConferenceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvConferenceType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvConferenceType.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -668,8 +675,9 @@
             this.dgvConferenceType.Size = new System.Drawing.Size(363, 250);
             this.dgvConferenceType.TabIndex = 2;
             this.dgvConferenceType.Text = "dataGridView3";
+            this.dgvConferenceType.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceType_CellContentClick);
+            this.dgvConferenceType.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceType_CellDoubleClick);
             this.dgvConferenceType.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvConferenceType_ColumnHeaderMouseClick);
-           // this.dgvConferenceType.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvConferenceType_UserAddedRow);
             // 
             // tbConferenceType
             // 
@@ -677,7 +685,6 @@
             this.tbConferenceType.Name = "tbConferenceType";
             this.tbConferenceType.Size = new System.Drawing.Size(100, 23);
             this.tbConferenceType.TabIndex = 3;
-            //this.tbConferenceType.TextChanged += new System.EventHandler(this.tbConferenceType_TextChanged);
             // 
             // tabPage7
             // 
@@ -772,8 +779,8 @@
             // 
             // lblBackCountry
             // 
-            this.lblBackCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblBackCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBackCountry.Enabled = false;
             this.lblBackCountry.Location = new System.Drawing.Point(3, 3);
@@ -786,8 +793,8 @@
             // 
             // lblNextCountry
             // 
-            this.lblNextCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblNextCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNextCountry.Location = new System.Drawing.Point(531, 3);
             this.lblNextCountry.Name = "lblNextCountry";
@@ -827,23 +834,12 @@
             this.textBox6.Size = new System.Drawing.Size(128, 29);
             this.textBox6.TabIndex = 1;
             // 
-            // btnDeleteSelected
-            // 
-            this.btnDeleteSelected.Location = new System.Drawing.Point(547, 3);
-            this.btnDeleteSelected.Name = "btnDeleteSelected";
-            this.btnDeleteSelected.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteSelected.TabIndex = 1;
-            this.btnDeleteSelected.Text = "delete row";
-            this.btnDeleteSelected.UseVisualStyleBackColor = true;
-           // this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.Text = "Add Conference";
             this.tableLayoutPanel1.ResumeLayout(false);
