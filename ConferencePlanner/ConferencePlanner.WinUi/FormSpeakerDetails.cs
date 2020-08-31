@@ -96,7 +96,7 @@ namespace ConferencePlanner.WinUi
 
             string fname;
            
-            for (int i = 1; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 fname = "Detail" + i.ToString();
                 FormSpeakerDetails frmDet = (FormSpeakerDetails)Application.OpenForms[fname];
