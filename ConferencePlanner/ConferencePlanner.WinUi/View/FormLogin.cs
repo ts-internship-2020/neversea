@@ -38,7 +38,7 @@ namespace ConferencePlanner.WinUi.View
         public void Alert(string msg)
         {
             FormAlert frm = new FormAlert();
-            frm.showAlert(msg);
+            //frm.showAlert(msg);
         }
         private void button1_Click(object sender, EventArgs e)
         {

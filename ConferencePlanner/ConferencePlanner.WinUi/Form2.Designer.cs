@@ -1151,7 +1151,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnDeleteSelected;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button btnDeleteSelected;
+        //private System.Windows.Forms.Button btnDeleteSelected;
         // private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
     }
 }

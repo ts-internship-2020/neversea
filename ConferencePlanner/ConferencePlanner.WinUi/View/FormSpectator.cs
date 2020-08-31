@@ -38,6 +38,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void WireUpSpectator(DateTime startDate, DateTime endDate)
         {
+            btnNext.Visible = false;
             dgvSpectator.Rows.Clear();
             dgvSpectator.Columns.Clear();
 
@@ -204,7 +205,7 @@ namespace ConferencePlanner.WinUi.View
 
                     dgvSpectator.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+                    //conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
 
 
@@ -254,7 +255,7 @@ namespace ConferencePlanner.WinUi.View
 
                     dgvSpectator.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+                    //conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
                     //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
 
 

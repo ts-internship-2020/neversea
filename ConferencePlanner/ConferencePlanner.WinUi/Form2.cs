@@ -212,38 +212,38 @@ namespace ConferencePlanner.WinUi
         private void dgvCountries_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int countryId;
-            string countryName="";
-            string countryCode="";
-            string nationality="";
+            string countryName = "";
+            string countryCode = "";
+            string nationality = "";
 
             /*if (dgvCountries.Columns[e.ColumnIndex].Name == "dgvCountries")
             {*/
-                try
+            try
+            {
+                if ((int)dgvCountries.Rows[e.RowIndex].Cells[1].Value != 0)
                 {
-                    if((int)dgvCountries.Rows[e.RowIndex].Cells[1].Value != 0)
-                    {
-                        countryId = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells[1].Value.ToString());
-                        countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
-                        nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
-                        _getCountryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
-                    }
+                    countryId = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    _getCountryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
+                }
 
-                    else
-                    {
-                        countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();      
-                        countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
-                        nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
-                   
-                        _getCountryRepository.InsertCountry(countryName, countryCode, nationality);
-                        dgvCountries.Rows.Clear();
-                        LoadCountries();
-                    }
-                }
-                catch (Exception ex)
+                else
                 {
-                Console.WriteLine(ex.Message);
+                    countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+                    _getCountryRepository.InsertCountry(countryName, countryCode, nationality);
+                    dgvCountries.Rows.Clear();
+                    LoadCountries();
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             //}
 
         }
@@ -315,16 +315,16 @@ namespace ConferencePlanner.WinUi
             dgvConferenceCategory.Columns[1].HeaderText = "Id";
             dgvConferenceCategory.Columns[1].Name = "categoryId";
             dgvConferenceCategory.Columns[0].Name = "categoryName";
-            for(int i = 0;i<conferenceCategories.Count; i++)
+            for (int i = 0; i < conferenceCategories.Count; i++)
             {
                 dgvConferenceCategory.Rows.Add(conferenceCategories[i].conferenceCategoryName, conferenceCategories[i].conferenceCategoryId);
             }
 
 
 
-                       }
+        }
 
-            private void LoadCountries()
+        private void LoadCountries()
         {
             List<CountryModel> countries = new List<CountryModel>();
             countries = _getCountryRepository.GetCountry();
@@ -627,6 +627,7 @@ namespace ConferencePlanner.WinUi
             LoadCountries();
         }
     }
+}
 
 
 
