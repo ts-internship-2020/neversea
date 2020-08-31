@@ -470,7 +470,6 @@ namespace ConferencePlanner.WinUi
             //}
             //  var attachment = new Attachment("Barcode.png", MediaTypeNames.Image.Jpeg);
         }
-        public int counterEmails = 0;
         public Image generateBarcode(long code)
         {
 

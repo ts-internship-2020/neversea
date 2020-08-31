@@ -595,7 +595,7 @@
             this.tbCitySearch.Size = new System.Drawing.Size(186, 23);
             this.tbCitySearch.TabIndex = 2;
             this.tbCitySearch.Text = "Search a City..";
-            this.tbCitySearch.TextChanged += new System.EventHandler(this.tbCitySearch_TextChanged);
+            //this.tbCitySearch.TextChanged += new System.EventHandler(this.tbCitySearch_TextChanged);
             // 
             // button2
             // 
@@ -688,7 +688,7 @@
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel13.Size = new System.Drawing.Size(646, 256);
             this.tableLayoutPanel13.TabIndex = 1;
-            this.tableLayoutPanel13.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel13_Paint);
+            //this.tableLayoutPanel13.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel13_Paint);
             // 
             // dgvConferenceType
             // 
@@ -844,7 +844,7 @@
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel19.Size = new System.Drawing.Size(646, 201);
             this.tableLayoutPanel19.TabIndex = 2;
-            this.tableLayoutPanel19.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel19_Paint);
+            //this.tableLayoutPanel19.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel19_Paint);
             // 
             // dgvSpeaker
             // 
@@ -1127,8 +1127,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnDeleteSelected;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
         // private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
     }
 }
