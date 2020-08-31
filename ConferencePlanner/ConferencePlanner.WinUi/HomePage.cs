@@ -498,7 +498,7 @@ namespace ConferencePlanner.WinUi
                // Bitmap bitmap = (Bitmap)
             Image img = generateBarcode(code);
             //img.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            Attachment attachment1 = new Attachment(@"C:\Users\gabriel.sasu\source\repos\neversea\Image.jpeg");
+            Attachment attachment1 = new Attachment(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image.jpeg");
             mailMessage1.Attachments.Add(attachment1);
             mailMessage1.To.Add(email);
             smtpClient.Send(mailMessage1);
