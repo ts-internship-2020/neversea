@@ -23,30 +23,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
         }
 
 
-        public void InsertParticipant(int conferenceId, string spectatorEmail, int spectatorCode)
-        {
-            SqlParameter[] parameters = new SqlParameter[3];
-            parameters[0] = new SqlParameter("@Id", conferenceId);
-            parameters[1] = new SqlParameter("@Email", spectatorEmail);
-            parameters[2] = new SqlParameter("@Code", spectatorCode);
-
-
-
-
-
-
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"insert into ConferenceAttendance values(@Id,@Email, 2, NULL )";
-            sqlCommand.Parameters.Add(parameters[0]);
-            sqlCommand.Parameters.Add(parameters[1]);
-            sqlCommand.Parameters.Add(parameters[2]);
-
-
-
-
-
-            sqlCommand.ExecuteNonQuery();
-        }
+        
 
 
 
@@ -99,7 +76,24 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
-        public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
+        public void InsertParticipant(int conferenceId, string spectatorEmail, int spectatorCode)
+        {
+            SqlParameter[] parameters = new SqlParameter[3];
+            parameters[0] = new SqlParameter("@Id", conferenceId);
+            parameters[1] = new SqlParameter("@Email", spectatorEmail);
+            parameters[2] = new SqlParameter("@Code", spectatorCode);
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = $"insert into ConferenceAttendance values(@Id,@Email, 2, NULL )";
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+            sqlCommand.Parameters.Add(parameters[2]);
+
+
+            sqlCommand.ExecuteNonQuery();
+        }
+
+            public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             string sqlStartDate = startDate.ToString("yyyy-MM-dd HH:mm:ss.fff");

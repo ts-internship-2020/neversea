@@ -107,5 +107,17 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
         }
 
+        public void DeleteCity(int cityId, int districtId)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spCities_Delete", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCityId", cityId));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryDistrictId", districtId));
+
+
+            sqlCommand.ExecuteNonQuery();
+        }
     }
 }

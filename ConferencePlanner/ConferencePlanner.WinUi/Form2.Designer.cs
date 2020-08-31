@@ -98,6 +98,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -426,6 +427,7 @@
             this.dgvCountries.Size = new System.Drawing.Size(442, 207);
             this.dgvCountries.TabIndex = 0;
             this.dgvCountries.Text = "dataGridView3";
+            this.dgvCountries.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCountries_CellEndEdit);
             // 
             // btnDeleteSelected
             // 
@@ -1010,6 +1012,13 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 23);
             this.comboBox3.TabIndex = 5;
+            this.btnDeleteSelected.Location = new System.Drawing.Point(547, 3);
+            this.btnDeleteSelected.Name = "btnDeleteSelected";
+            this.btnDeleteSelected.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteSelected.TabIndex = 1;
+            this.btnDeleteSelected.Text = "delete row";
+            this.btnDeleteSelected.UseVisualStyleBackColor = true;
+            this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             // 
             // Form2
             // 
@@ -1143,6 +1152,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnDeleteSelected;
         private System.Windows.Forms.ComboBox comboBox3;
+        //private System.Windows.Forms.Button btnDeleteSelected;
         // private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
     }
 }

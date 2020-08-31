@@ -315,16 +315,16 @@ namespace ConferencePlanner.WinUi
             dgvConferenceCategory.Columns[1].HeaderText = "Id";
             dgvConferenceCategory.Columns[1].Name = "categoryId";
             dgvConferenceCategory.Columns[0].Name = "categoryName";
-            for(int i = 0;i<conferenceCategories.Count; i++)
+            for (int i = 0; i < conferenceCategories.Count; i++)
             {
                 dgvConferenceCategory.Rows.Add(conferenceCategories[i].conferenceCategoryName, conferenceCategories[i].conferenceCategoryId);
             }
 
 
 
-                       }
+        }
 
-            private void LoadCountries()
+        private void LoadCountries()
         {
             List<CountryModel> countries = new List<CountryModel>();
             countries = _getCountryRepository.GetCountry();
@@ -628,7 +628,7 @@ namespace ConferencePlanner.WinUi
             LoadCountries();
         }
     }
-    }
+}
 
 
 

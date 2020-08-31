@@ -19,7 +19,18 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
         }
 
-            public List<ConferenceCategoryModel> GetConferenceCategories()
+        public void DeleteConferenceCategory(int conferenceCategoryId)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spConferenceCategories_Delete", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryConferenceCategoryId", conferenceCategoryId));
+
+            sqlCommand.ExecuteNonQuery();
+        }
+
+        public List<ConferenceCategoryModel> GetConferenceCategories()
         {
 
             List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
@@ -78,6 +89,53 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlDataReader.Close();
             return conferenceCategories;
 
+        }
+
+        public void InsertConferenceCategory(string conferenceCategoryName)
+        {
+            SqlCommand sqlCommandMaxId = sqlConnection.CreateCommand();
+            sqlCommandMaxId.CommandText = $"SELECT MAX(DictionaryConferenceCategoryId) AS DictionaryConferenceCategoryId " +
+                    $"                     FROM DictionaryConferenceCategory";
+            SqlDataReader sqlDataReaderMaxId = sqlCommandMaxId.ExecuteReader();
+
+            if (sqlDataReaderMaxId.HasRows)
+            {
+                sqlDataReaderMaxId.Read();
+                int insertedId = sqlDataReaderMaxId.GetInt32("DictionaryConferenceCategoryId") + 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spConferenceCategories_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceCategoryId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceCategoryName", conferenceCategoryName));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+            else
+            {
+                int insertedId = 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spConferenceCategories_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceCategoryId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceCategoryName", conferenceCategoryName));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateConferenceCategory(int conferenceCategoryId, string conferenceCategoryName)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spConferenceCategories_Update", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryConferenceCategoryId", conferenceCategoryId));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryConferenceCategoryName", conferenceCategoryName));
+
+
+            sqlCommand.ExecuteNonQuery();
         }
     }
 }

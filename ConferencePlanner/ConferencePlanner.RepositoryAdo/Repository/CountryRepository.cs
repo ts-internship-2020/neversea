@@ -3,15 +3,15 @@ using ConferencePlanner.Abstraction.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ConferencePlanner.Repository.Ado.Repository
 {
     public class CountryRepository : ICountryRepository
     {
-
-
 
 
         private readonly SqlConnection sqlConnection;
@@ -23,11 +23,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
 
 
-
-
         }
-
-
 
 
 
@@ -35,15 +31,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             SqlCommand sqlCommand = new SqlCommand("spCountries_DeleteById", sqlConnection);
 
-
-
             sqlCommand.CommandType = CommandType.StoredProcedure;
 
-
-
             sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryId", countryId));
-
-
 
             sqlCommand.ExecuteNonQuery();
         }
@@ -96,23 +86,13 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             SqlCommand sqlCommand = new SqlCommand("spCountries_GetByKeyword", sqlConnection);
 
-
-
             sqlCommand.CommandType = CommandType.StoredProcedure;
-
-
 
             sqlCommand.Parameters.Add(new SqlParameter("@Keyword", keyword));
 
-
-
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-
-
             List<CountryModel> countries = new List<CountryModel>();
-
-
 
             if (sqlDataReader.HasRows)
             {
@@ -128,11 +108,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 }
             }
 
-
-
             sqlDataReader.Close();
-
-
 
             return countries;
         }
@@ -140,32 +116,20 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
 
-
-
         public void UpdateCountry(int countryId, string countryName, string countryCode, string nationality)
         {
 
-
-
             SqlCommand sqlCommand = new SqlCommand("spCountries_Update", sqlConnection);
 
-
-
             sqlCommand.CommandType = CommandType.StoredProcedure;
-
-
 
             sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryId", countryId));
             sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryName", countryName));
             sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryCode", countryCode));
             sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryNationality", nationality));
 
-
-
             sqlCommand.ExecuteNonQuery();
         }
-
-
 
         public void InsertCountry(string countryName, string countryCode, string nationality)
         {
@@ -174,26 +138,18 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     $"                     FROM DictionaryCountry";
             SqlDataReader sqlDataReaderMaxId = sqlCommandMaxId.ExecuteReader();
 
-
-
             if (sqlDataReaderMaxId.HasRows)
             {
                 sqlDataReaderMaxId.Read();
                 int insertedId = sqlDataReaderMaxId.GetInt32("DictionaryCountryId") + 1;
 
-
-
                 SqlCommand sqlCommandInsert = new SqlCommand("spCountries_Insert", sqlConnection);
                 sqlCommandInsert.CommandType = CommandType.StoredProcedure;
-
-
 
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryId", insertedId));
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryName", countryName));
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryCode", countryCode));
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryNationality", nationality));
-
-
 
                 sqlCommandInsert.ExecuteNonQuery();
             }
@@ -201,25 +157,17 @@ namespace ConferencePlanner.Repository.Ado.Repository
             {
                 int insertedId = 1;
 
-
-
                 SqlCommand sqlCommandInsert = new SqlCommand("spCountries_Insert", sqlConnection);
                 sqlCommandInsert.CommandType = CommandType.StoredProcedure;
-
-
 
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryId", insertedId));
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryName", countryName));
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionartCountryCode", countryCode));
                 sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryNationality", nationality));
 
-
-
                 sqlCommandInsert.ExecuteNonQuery();
             }
         }
-
-
 
 
     }
