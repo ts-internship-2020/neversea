@@ -45,7 +45,7 @@ namespace ConferencePlanner.WinUi.View
 
             }
 
-            dgvCities.Rows[0].Cells[0].Selected = false;
+            //dgvCities.Rows[0].Selected = false;
 
             Console.WriteLine(dgvCities.ColumnCount);
         }
