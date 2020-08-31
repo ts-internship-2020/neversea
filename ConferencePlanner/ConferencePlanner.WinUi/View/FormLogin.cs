@@ -38,7 +38,7 @@ namespace ConferencePlanner.WinUi.View
         public void Alert(string msg)
         {
             FormAlert frm = new FormAlert();
-            //frm.showAlert(msg);
+            frm.ShowAlert(msg);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -67,7 +67,7 @@ namespace ConferencePlanner.WinUi.View
                 homePage.Show();
                 this.Hide();
             }
-            if (tb_email.Text == "")
+            if (tb_email.Text == ""||tb_email==null)
             {
                 this.Alert("Email is empty");
             }
@@ -93,13 +93,16 @@ namespace ConferencePlanner.WinUi.View
                    @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
-                errorProvider2.Clear();
+                errorProvider2.Clear(); 
+                
             }
             else
             {
                 errorProvider2.SetError(this.tb_email, " Please provide a valid Mail Address");
+
                 return;
             }
+            errorProvider2.Clear();
             {
                 if (tb_email.Text.Trim() == "")
                     tb_email_SetText();

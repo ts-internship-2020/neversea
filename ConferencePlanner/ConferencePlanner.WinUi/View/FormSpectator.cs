@@ -238,8 +238,8 @@ namespace ConferencePlanner.WinUi.View
                     int speakerId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
                     FormSpeakerDetails formSpeakerDetails = new FormSpeakerDetails(conferenceRepository, speakerId);
                     formSpeakerDetails.ShowSpeakerDetails();
-                    FormSpeakerDetails frSpeakerDetail = new FormSpeakerDetails();
-                    frSpeakerDetail.Focus();
+                    FormSpeakerDetails frmSpeakerDetails = new FormSpeakerDetails();
+                    frmSpeakerDetails.Focus();
                 }
                 else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {

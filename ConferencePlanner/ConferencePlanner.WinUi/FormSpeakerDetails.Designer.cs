@@ -260,6 +260,7 @@
             this.Name = "FormSpeakerDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSpeakerDetails_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSpeakerDetails_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike1)).EndInit();

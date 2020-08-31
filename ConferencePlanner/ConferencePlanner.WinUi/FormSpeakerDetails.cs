@@ -45,36 +45,36 @@ namespace ConferencePlanner.WinUi
 
             if ( rating < 2)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
             else if (rating >= 2 && rating < 3)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
             else if (rating >= 3 && rating < 4)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
             else if (rating >= 4 && rating < 5)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px_1;
             }
             else if ( rating == 5)
             {
-                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px;
-                picBoxLike5.Image = Properties.Resources.icons8_facebook_like_48px;
+                picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px_1;
+                picBoxLike5.Image = Properties.Resources.icons8_facebook_like_48px_1;
             }
         }
 
@@ -100,8 +100,8 @@ namespace ConferencePlanner.WinUi
             {
                 fname = "Detail" + i.ToString();
                 FormSpeakerDetails frmDet = (FormSpeakerDetails)Application.OpenForms[fname];
-
                 if (frmDet ==null)
+                    
                 {
                     this.Name = fname;
                     this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width + 15;
@@ -117,6 +117,7 @@ namespace ConferencePlanner.WinUi
             this.timer1.Interval = 1;
             timer1.Start();
         }
+       
         private void timer1_Tick(object sender, EventArgs e)
         {
             switch (this.action)
