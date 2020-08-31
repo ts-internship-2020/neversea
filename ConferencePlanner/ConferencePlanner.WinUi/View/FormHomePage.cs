@@ -31,7 +31,7 @@ namespace ConferencePlanner.WinUi.View
         private Form activeForm;
 
 
-        public FormHomePage(IConferenceRepository _conferenceRepository, String emailCopy, IConferenceTypeRepository _conferenceTypeRepository, ICountryRepository _countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository _conferenceAttendanceRepository, IConferenceSpeakerRepository _conferenceSpeakerRepository)
+        public FormHomePage(IConferenceRepository _conferenceRepository, String emailCopy, IConferenceTypeRepository _conferenceTypeRepository, ICountryRepository _countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository _conferenceAttendanceRepository, IConferenceSpeakerRepository _conferenceSpeakerRepository, IConferenceLocationRepository conferenceLocationRepository)
         {
 
             conferenceRepository = _conferenceRepository;
@@ -177,8 +177,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            FormAddConferenceGeneral formAddConferenceGeneral = new FormAddConferenceGeneral(sender, countryRepository, districtRepository, conferenceCityRepository, conferenceTypeRepository, conferenceCategoryRepository, conferenceSpeakerRepository);
-            FormAddConferenceGeneral formAddConferenceGeneral = new FormAddConferenceGeneral(sender, countryRepository, districtRepository, conferenceCityRepository, conferenceTypeRepository, conferenceCategoryRepository,_conferenceLocationRepository);
+            FormAddConferenceGeneral formAddConferenceGeneral = new FormAddConferenceGeneral(sender, countryRepository, districtRepository, conferenceCityRepository, conferenceTypeRepository, conferenceCategoryRepository,_conferenceLocationRepository, conferenceSpeakerRepository);
             OpenChildForm(formAddConferenceGeneral, sender);
         }
 

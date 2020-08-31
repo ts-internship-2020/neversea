@@ -13,10 +13,10 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceSpeaker : Form
     {
         private readonly IConferenceSpeakerRepository conferenceSpeakerRepository;
-        public FormAddConferenceSpeaker(IConferenceSpeakerRepository _conferenceSpeakerRepository)
+       
 
         public int speakerId = 0;
-        public FormAddConferenceSpeaker()
+        public FormAddConferenceSpeaker(IConferenceSpeakerRepository _conferenceSpeakerRepository)
         {
             conferenceSpeakerRepository = _conferenceSpeakerRepository;
             InitializeComponent();
