@@ -78,11 +78,7 @@ namespace ConferencePlanner.WinUi
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            timer1.Interval = 1;
-            action = enmAction.close;
-        }
+      
         public enum enmAction
         {
             wait,
@@ -146,5 +142,10 @@ namespace ConferencePlanner.WinUi
             button2.PerformClick();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Interval = 1;
+            action = enmAction.close;
+        }
     }
 }

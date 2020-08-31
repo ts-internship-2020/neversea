@@ -231,6 +231,7 @@
             this.button2.Size = new System.Drawing.Size(32, 30);
             this.button2.TabIndex = 11;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormSpeakerDetails
             // 
@@ -255,7 +256,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(1000, 0);
+            this.Location = new System.Drawing.Point(970, 0);
             this.MinimumSize = new System.Drawing.Size(437, 189);
             this.Name = "FormSpeakerDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
