@@ -24,6 +24,7 @@ namespace ConferencePlanner.WinUi.View
         {
             List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
             cities = conferenceCityRepository.GetConferenceCities(1);
+            dgvCities.ClearSelection();
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
@@ -41,18 +42,25 @@ namespace ConferencePlanner.WinUi.View
                             cities[i].ConferenceCityName);
                 //}
 
+
             }
+
+            dgvCities.Rows[0].Cells[0].Selected = false;
+
             Console.WriteLine(dgvCities.ColumnCount);
         }
 
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)
         {
-            int selectedIndex = dgvCities.SelectedRows[0].Index;
-            int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
-            //int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
-            conferenceCityRepository.DeleteCity(cityId, 1);
-            dgvCities.Rows.Clear();
-            LoadCities();
+            if (dgvCities.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvCities.SelectedRows[0].Index;
+                int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
+                //int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
+                conferenceCityRepository.DeleteCity(cityId, 1);
+                dgvCities.Rows.Clear();
+                LoadCities();
+            }
         }
 
         private void dgvCities_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -81,6 +89,11 @@ namespace ConferencePlanner.WinUi.View
 
                 }
             }
+        }
+
+        private void dgvCities_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvCities.ClearSelection();
         }
     }
 }

@@ -235,6 +235,10 @@ namespace ConferencePlanner.WinUi.View
 
         }
 
+        private void dgvOrganiser_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvOrganiser.ClearSelection();
+        }
     }
 }
 

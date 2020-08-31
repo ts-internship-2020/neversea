@@ -88,16 +88,24 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)
         {
-            int selectedIndex = dgvConferenceCategories.SelectedRows[0].Index;
-            int conferenceCategoryId = Convert.ToInt32(dgvConferenceCategories[1, selectedIndex].Value);
-            conferenceCategoryRepository.DeleteConferenceCategory(conferenceCategoryId);
-            LoadConferenceCategories();
+            if (dgvConferenceCategories.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvConferenceCategories.SelectedRows[0].Index;
+                int conferenceCategoryId = Convert.ToInt32(dgvConferenceCategories[1, selectedIndex].Value);
+                conferenceCategoryRepository.DeleteConferenceCategory(conferenceCategoryId);
+                LoadConferenceCategories();
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text;
             LoadConferenceCategories(keyword);
+        }
+
+        private void dgvConferenceCategories_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvConferenceCategories.ClearSelection();
         }
     }
 }

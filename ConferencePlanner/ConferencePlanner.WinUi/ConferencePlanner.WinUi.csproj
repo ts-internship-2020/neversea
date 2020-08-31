@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\icoane\btnAddConference_48.png" />
+    <None Remove="Resources\icoane\btnConferences_48.png" />
     <None Remove="Resources\icoane\btnFromTo_48.png" />
     <None Remove="Resources\icoane\btnNext_48.png" />
+    <None Remove="Resources\icoane\btnOrganizer_64.png" />
     <None Remove="Resources\icoane\btnPagesNumber_32.png" />
     <None Remove="Resources\icoane\btnPrevious_48.png" />
     <None Remove="Resources\icoane\btnSearch_32.png" />
+    <None Remove="Resources\icoane\btnSpectator_64.png" />
     <None Remove="View\icoane\btnDeleteSelected_48.png" />
     <None Remove="View\icoane\btnExit_32.png" />
     <None Remove="View\icoane\btnFromTo_48.png" />
@@ -24,11 +28,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\icoane\btnAddConference_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnConferences_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnFromTo_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnNext_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnOrganizer_64.png" />
     <EmbeddedResource Include="Resources\icoane\btnPagesNumber_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnPrevious_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnSearch_32.png" />
+    <EmbeddedResource Include="Resources\icoane\btnSpectator_64.png" />
     <EmbeddedResource Include="View\icoane\btnDeleteSelected_48.png" />
     <EmbeddedResource Include="View\icoane\btnExit_32.png" />
     <EmbeddedResource Include="View\icoane\btnFromTo_48.png">

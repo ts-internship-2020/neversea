@@ -47,9 +47,11 @@
             this.dgvSpeakers.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvSpeakers.Location = new System.Drawing.Point(437, 4);
             this.dgvSpeakers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvSpeakers.MultiSelect = false;
             this.dgvSpeakers.Name = "dgvSpeakers";
             this.dgvSpeakers.Size = new System.Drawing.Size(309, 245);
             this.dgvSpeakers.TabIndex = 28;
+            this.dgvSpeakers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpeakers_DataBindingComplete);
             // 
             // txtSearch
             // 

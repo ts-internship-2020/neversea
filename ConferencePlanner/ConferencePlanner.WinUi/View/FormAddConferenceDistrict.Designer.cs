@@ -48,11 +48,13 @@
             this.dgvDistricts.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvDistricts.Location = new System.Drawing.Point(437, 4);
             this.dgvDistricts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvDistricts.MultiSelect = false;
             this.dgvDistricts.Name = "dgvDistricts";
             this.dgvDistricts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvDistricts.Size = new System.Drawing.Size(277, 264);
             this.dgvDistricts.TabIndex = 28;
             this.dgvDistricts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistricts_CellEndEdit);
+            this.dgvDistricts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDistricts_DataBindingComplete);
             // 
             // txtSearch
             // 
