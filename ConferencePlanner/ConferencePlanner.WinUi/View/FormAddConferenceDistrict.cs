@@ -12,8 +12,10 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceDistrict : Form
     {
+
         private readonly IDistrictRepository districtRepository;
         private BindingSource bsDistricts = new BindingSource();
+
 
         public FormAddConferenceDistrict(IDistrictRepository _districtRepository)
         {
