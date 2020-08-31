@@ -20,6 +20,7 @@ namespace ConferencePlanner.WinUi.View
         private readonly IConferenceCityRepository conferenceCityRepository;
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
         private readonly ICountryRepository countryRepository;
+        private readonly IConferenceSpeakerRepository conferenceSpeakerRepository;
 
         public string emailCopyFromMainForm;
 
@@ -29,7 +30,7 @@ namespace ConferencePlanner.WinUi.View
         private Form activeForm;
 
 
-        public FormHomePage(IConferenceRepository _conferenceRepository, String emailCopy, IConferenceTypeRepository _conferenceTypeRepository, ICountryRepository _countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository _conferenceAttendanceRepository)
+        public FormHomePage(IConferenceRepository _conferenceRepository, String emailCopy, IConferenceTypeRepository _conferenceTypeRepository, ICountryRepository _countryRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceAttendanceRepository _conferenceAttendanceRepository, IConferenceSpeakerRepository _conferenceSpeakerRepository)
         {
 
             conferenceRepository = _conferenceRepository;
@@ -39,6 +40,7 @@ namespace ConferencePlanner.WinUi.View
             conferenceCityRepository = _conferenceCityRepository;
             conferenceTypeRepository = _conferenceTypeRepository;
             conferenceCategoryRepository = _conferenceCategoryRepository;
+            conferenceSpeakerRepository = _conferenceSpeakerRepository;
             //conferenceCityRepository = _conferenceCityRepository;
             emailCopyFromMainForm = emailCopy;
             //_districtRepository = districtRepository;
@@ -173,7 +175,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            FormAddConferenceGeneral formAddConferenceGeneral = new FormAddConferenceGeneral(sender, countryRepository, districtRepository, conferenceCityRepository, conferenceTypeRepository, conferenceCategoryRepository);
+            FormAddConferenceGeneral formAddConferenceGeneral = new FormAddConferenceGeneral(sender, countryRepository, districtRepository, conferenceCityRepository, conferenceTypeRepository, conferenceCategoryRepository, conferenceSpeakerRepository);
             OpenChildForm(formAddConferenceGeneral, sender);
         }
 

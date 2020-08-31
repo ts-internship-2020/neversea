@@ -24,30 +24,7 @@ namespace ConferencePlanner.WinUi.View
         {
             List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
             cities = conferenceCityRepository.GetConferenceCities(1);
-            dgvCities.ClearSelection();
-            dgvCities.ColumnCount = 2;
-            dgvCities.Columns[0].Name = "Id";
-            dgvCities.Columns[1].Name = "City";
-            this.dgvCities.Columns[0].Visible = false;
-            for (int i = 0; i < cities.Count; i++)
-            {
-                //if (i >= maxrange)
-                //{
-                //    Console.WriteLine("breaked");
-                //    break;
-                //}
-                //else
-                //{
-                dgvCities.Rows.Add(cities[i].ConferenceCityId,
-                            cities[i].ConferenceCityName);
-                //}
-
-
-            }
-
-            //dgvCities.Rows[0].Selected = false;
-
-            Console.WriteLine(dgvCities.ColumnCount);
+            WireUpCities(cities);
         }
 
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)
@@ -94,6 +71,43 @@ namespace ConferencePlanner.WinUi.View
         private void dgvCities_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvCities.ClearSelection();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {   ///SEARCH CITY
+            Console.WriteLine("text changed");
+            string keyword = txtSearch.Text;
+            LoadCities(1, keyword); // de inlocuit cu district Id ul selectat
+        }
+        private void LoadCities(int districtId, string keyword)
+        {
+            List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
+            cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
+            WireUpCities(cities);
+        }
+
+        public void WireUpCities(List<ConferenceCityModel> cities)
+        {
+            dgvCities.Rows.Clear();
+            dgvCities.ColumnCount = 2;
+            dgvCities.Columns[0].Name = "Id";
+            dgvCities.Columns[1].Name = "City";
+            this.dgvCities.Columns[0].Visible = false;
+            for (int i = 0; i < cities.Count; i++)
+            {
+                //if (i >= maxrange)
+                //{
+                //    Console.WriteLine("breaked");
+                //    break;
+                //}
+                //else
+                //{
+                dgvCities.Rows.Add(cities[i].ConferenceCityId,
+                            cities[i].ConferenceCityName);
+                //}
+
+
+            }
         }
     }
 }

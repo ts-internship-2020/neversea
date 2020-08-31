@@ -278,6 +278,11 @@ namespace ConferencePlanner.WinUi.View
         {
             dgvOrganiser.ClearSelection();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("test");
+        }
     }
 }
 

@@ -631,6 +631,11 @@ namespace ConferencePlanner.WinUi
             _getCountryRepository.DeleteCountry(countryId);
             LoadCountries();
         }
+
+        private void tbCitySearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

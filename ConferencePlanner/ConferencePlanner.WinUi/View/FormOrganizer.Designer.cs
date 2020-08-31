@@ -124,6 +124,7 @@ namespace ConferencePlanner.WinUi.View
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(146, 23);
             this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnPagesNumber
             // 
