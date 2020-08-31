@@ -43,7 +43,7 @@ namespace ConferencePlanner.WinUi.View
 
 
             dgvDistricts.Columns[0].HeaderText = "Id";
-            dgvDistricts.Columns[1].HeaderText = "District Name";
+            dgvDistricts.Columns[1].HeaderText = "District";
             dgvDistricts.Columns[2].HeaderText = "Code";
             dgvDistricts.Columns[3].HeaderText = "CountryId";
 
@@ -65,7 +65,7 @@ namespace ConferencePlanner.WinUi.View
 
 
             dgvDistricts.Columns[0].HeaderText = "Id";
-            dgvDistricts.Columns[1].HeaderText = "District Name";
+            dgvDistricts.Columns[1].HeaderText = "District";
             dgvDistricts.Columns[2].HeaderText = "Code";
             dgvDistricts.Columns[3].HeaderText = "CountryId";
         }
