@@ -5,19 +5,62 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Repository;
 
 namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceSpeaker : Form
     {
-        public FormAddConferenceSpeaker()
+        private readonly IConferenceSpeakerRepository conferenceSpeakerRepository;
+        public FormAddConferenceSpeaker(IConferenceSpeakerRepository _conferenceSpeakerRepository)
         {
+            conferenceSpeakerRepository = _conferenceSpeakerRepository;
             InitializeComponent();
+            LoadSpeakers();
+        }
+        private void LoadSpeakers()
+        {
+            List<SpeakerModel> speakers = new List<SpeakerModel>();
+            speakers = conferenceSpeakerRepository.GetConferenceSpeakers();
+            dgvSpeakers.ClearSelection();
+            dgvSpeakers.ColumnCount = 5;
+            dgvSpeakers.Columns[0].Name = "Id";
+            dgvSpeakers.Columns[1].Name = "Name";
+            dgvSpeakers.Columns[2].Name = "Nationality";
+            dgvSpeakers.Columns[3].Name = "Rating";
+            dgvSpeakers.Columns[4].Name = "Image";
+            this.dgvSpeakers.Columns[0].Visible = false;
+            for (int i = 0; i < speakers.Count; i++)
+            {
+                //if (i >= maxrange)
+                //{
+                //    Console.WriteLine("breaked");
+                //    break;
+                //}
+                //else
+                //{
+                dgvSpeakers.Rows.Add(speakers[i].DictionarySpeakerId,
+                            speakers[i].DictionarySpeakerName,
+                            speakers[i].DictionarySpeakerNationality,
+                            speakers[i].DictionarySpeakerRating,
+                            speakers[i].DictionarySpeakerImage);
+                //}
+
+
+            }
+
+            Console.WriteLine(dgvSpeakers.ColumnCount);
         }
 
         private void dgvSpeakers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvSpeakers.ClearSelection();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
