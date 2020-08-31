@@ -8,5 +8,8 @@ namespace ConferencePlanner.Abstraction.Repository
     public interface IConferenceAttendanceRepository
     {
         public List<ConferenceAttendanceModel> GetConferenceAttendance();
+        public bool isParticipating(string email, int id);
+        public bool isWithdrawn(string email, int id);
+
     }
 }

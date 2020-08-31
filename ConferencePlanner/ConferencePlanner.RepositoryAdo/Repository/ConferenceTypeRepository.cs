@@ -75,6 +75,64 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlDataReader.Close();
             return conferenceTypeModels;
         }
+
+        public void UpdateConferenceType(int conferenceTypeId, string conferenceTypeName)
+        {
+
+            SqlCommand sqlCommand = new SqlCommand("spConferenceTypes_Update", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryConferenceTypeId", conferenceTypeId));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryConferenceTypeName", conferenceTypeName));
+
+            sqlCommand.ExecuteNonQuery();
+        }
+
+        public void InsertConferenceType(string conferenceTypeName)
+        {
+            SqlCommand sqlCommandMaxId = sqlConnection.CreateCommand();
+            sqlCommandMaxId.CommandText = $"SELECT MAX(DictionaryConferenceTypeId) AS DictionaryConferenceTypeId " +
+                    $"                     FROM DictionaryConferenceType";
+            SqlDataReader sqlDataReaderMaxId = sqlCommandMaxId.ExecuteReader();
+
+            if (sqlDataReaderMaxId.HasRows)
+            {
+                sqlDataReaderMaxId.Read();
+                int insertedId = sqlDataReaderMaxId.GetInt32("DictionaryConferenceTypeId") + 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spConferenceTypes_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceTypeId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceTypeName", conferenceTypeName));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+            else
+            {
+                int insertedId = 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spConferenceTypes_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceTypeId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryConferenceTypeName", conferenceTypeName));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteConferenceType(int conferenceTypeId)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spConferenceTypes_Delete", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryConferenceTypeId", conferenceTypeId));
+
+            sqlCommand.ExecuteNonQuery();
+        }
     }
 }
 

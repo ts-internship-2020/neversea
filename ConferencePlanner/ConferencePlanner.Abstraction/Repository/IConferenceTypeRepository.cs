@@ -9,7 +9,8 @@ namespace ConferencePlanner.Abstraction.Repository
     {
         public List<ConferenceTypeModel> getConferenceTypes();
         public List<ConferenceTypeModel> getConferenceTypes(string keyword);
-
-
+        void UpdateConferenceType(int conferenceTypeId, string conferenceTypeName);
+        void InsertConferenceType(string conferenceTypeName);
+        void DeleteConferenceType(int conferenceTypeId);
     }
 }

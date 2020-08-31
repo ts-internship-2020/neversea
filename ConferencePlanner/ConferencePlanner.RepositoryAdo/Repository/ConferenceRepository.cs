@@ -23,24 +23,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
         }
 
 
-        public void InsertParticipant(int conferenceId, string spectatorEmail)
-        {
-            SqlParameter[] parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@Id", conferenceId);
-            parameters[1] = new SqlParameter("@Email", spectatorEmail);
-
-
-
-
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"insert into ConferenceAttendance values(@Id,@Email, 2, NULL)";
-            sqlCommand.Parameters.Add(parameters[0]);
-            sqlCommand.Parameters.Add(parameters[1]);
-
-
-
-            sqlCommand.ExecuteNonQuery();
-        }
+        
 
 
 
@@ -93,7 +76,24 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
-        public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
+        public void InsertParticipant(int conferenceId, string spectatorEmail, int spectatorCode)
+        {
+            SqlParameter[] parameters = new SqlParameter[3];
+            parameters[0] = new SqlParameter("@Id", conferenceId);
+            parameters[1] = new SqlParameter("@Email", spectatorEmail);
+            parameters[2] = new SqlParameter("@Code", spectatorCode);
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = $"insert into ConferenceAttendance values(@Id,@Email, 2, NULL )";
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+            sqlCommand.Parameters.Add(parameters[2]);
+
+
+            sqlCommand.ExecuteNonQuery();
+        }
+
+            public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             string sqlStartDate = startDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
@@ -420,5 +420,58 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return orderedConferences;
         }
 
+        public void InsertConference(ConferenceModel model)
+        {
+
+            SqlParameter[] parameters = new SqlParameter[7];
+
+            parameters[0] = new SqlParameter("@Name", model.ConferenceName);
+            parameters[1] = new SqlParameter("@StartDate", model.ConferenceStartDate);
+            parameters[2] = new SqlParameter("@EndDate", model.ConferenceEndDate);
+            parameters[3] = new SqlParameter("@Type", model.ConferenceType);
+            parameters[4] = new SqlParameter("@Category", model.ConferenceCategory);
+            parameters[5] = new SqlParameter("@Speaker", model.ConferenceMainSpeaker);
+            parameters[6] = new SqlParameter("@Location", model.ConferenceLocation);
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+
+            sqlCommand.CommandText = $"insert into Conference(ConferenceName, StartDate, EndDate, OrganiserEmail, LocationId, DictionaryConferenceTypeId, DictionaryConferenceCategoryId) " +
+                $"values(@Name,@StartDate, @EndDate, @OrganiserEmail, @Location, CAST(@Type AS int), CAST(@Category AS int))";
+
+
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+            sqlCommand.Parameters.Add(parameters[2]);
+            sqlCommand.Parameters.Add(parameters[3]);
+            sqlCommand.Parameters.Add(parameters[4]);
+            sqlCommand.Parameters.Add(parameters[5]);
+            sqlCommand.Parameters.Add(parameters[6]);
+
+            sqlCommand.ExecuteNonQuery();
+
+        }
+
+        public void InsertConferenceXSpeaker(ConferenceModel model, int speakerId)
+        {
+
+            SqlParameter[] parameters = new SqlParameter[2];
+
+            parameters[0] = new SqlParameter("@ConfId", model.ConferenceId);
+            parameters[1] = new SqlParameter("@SpeakerId", speakerId);
+            //  parameters[2] = new SqlParameter("@EndDate", model.ConferenceEndDate);
+
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText = $"Insert into ConferenceXSpeaker values(@ConfId, @SpeakerId, 1)";
+
+            sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+
+            sqlCommand.ExecuteNonQuery();
+
+
+
+        }
+
+       
     }
 };

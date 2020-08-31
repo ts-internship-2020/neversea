@@ -1,5 +1,6 @@
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
+using ConferencePlanner.WinUi.View;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace ConferencePlanner.WinUi
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ConfigureServices();
-            Application.Run(ServiceProvider.GetService<MainForm>()); 
+            Application.Run(ServiceProvider.GetService<FormLogin>()); 
            
         }
 
@@ -35,13 +36,14 @@ namespace ConferencePlanner.WinUi
             services.AddScoped<HomePage>();
             services.AddScoped<MainForm>();
             services.AddScoped<Form2>();
+            services.AddScoped<FormLogin>();
             services.AddScoped<IGetDemoRepository, GetDemoRepository>();
             services.AddScoped<IConferenceRepository, ConferenceRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>();
             services.AddScoped<IConferenceCategoryRepository, ConferenceCategoryRepository>();
             services.AddScoped<IConferenceCityRepository, ConferenceCityRepository>();
-
+            services.AddScoped<IConferenceSpeakerRepository, ConferenceSpeakerRepository>();
             services.AddScoped<IConferenceTypeRepository, ConferenceTypeRepository>();
             services.AddScoped<IConferenceAttendanceRepository, ConferenceAttendanceRepository>();
             services.AddScoped<IDistrictRepository, DistrictRepository>();
