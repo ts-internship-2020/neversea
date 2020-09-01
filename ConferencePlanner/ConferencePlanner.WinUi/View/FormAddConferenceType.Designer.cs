@@ -44,12 +44,11 @@
             // 
             // dgvConferenceTypes
             // 
-            this.dgvConferenceTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvConferenceTypes.BackgroundColor = System.Drawing.Color.White;
             this.dgvConferenceTypes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvConferenceTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConferenceTypes.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvConferenceTypes.Location = new System.Drawing.Point(437, 4);
+            this.dgvConferenceTypes.Location = new System.Drawing.Point(33, 27);
             this.dgvConferenceTypes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvConferenceTypes.MultiSelect = false;
             this.dgvConferenceTypes.Name = "dgvConferenceTypes";
@@ -65,7 +64,7 @@
             this.txtSearch.BackColor = System.Drawing.Color.White;
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(104, 40);
+            this.txtSearch.Location = new System.Drawing.Point(518, 28);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(155, 27);
@@ -78,7 +77,7 @@
             this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(276, 31);
+            this.btnSearch.Location = new System.Drawing.Point(690, 16);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(50, 46);
@@ -96,10 +95,12 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(628, 82);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndex = 0;
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnPagesNumber
             // 
@@ -107,7 +108,7 @@
             this.btnPagesNumber.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPagesNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPagesNumber.Image = ((System.Drawing.Image)(resources.GetObject("btnPagesNumber.Image")));
-            this.btnPagesNumber.Location = new System.Drawing.Point(276, 85);
+            this.btnPagesNumber.Location = new System.Drawing.Point(690, 70);
             this.btnPagesNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPagesNumber.Name = "btnPagesNumber";
             this.btnPagesNumber.Size = new System.Drawing.Size(50, 46);
@@ -121,10 +122,12 @@
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(285, 144);
+            this.btnDelete.Location = new System.Drawing.Point(636, 132);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(31, 41);
+            this.btnDelete.Size = new System.Drawing.Size(102, 41);
             this.btnDelete.TabIndex = 33;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
@@ -141,6 +144,7 @@
             this.btnPrevious.Size = new System.Drawing.Size(42, 33);
             this.btnPrevious.TabIndex = 34;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // button2
             // 
@@ -155,12 +159,13 @@
             this.button2.Size = new System.Drawing.Size(42, 33);
             this.button2.TabIndex = 34;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panelPagesControl
             // 
             this.panelPagesControl.Controls.Add(this.btnPrevious);
             this.panelPagesControl.Controls.Add(this.button2);
-            this.panelPagesControl.Location = new System.Drawing.Point(248, 191);
+            this.panelPagesControl.Location = new System.Drawing.Point(663, 179);
             this.panelPagesControl.Name = "panelPagesControl";
             this.panelPagesControl.Size = new System.Drawing.Size(102, 46);
             this.panelPagesControl.TabIndex = 35;

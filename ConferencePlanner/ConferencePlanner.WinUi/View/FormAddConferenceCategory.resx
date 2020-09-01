@@ -103,25 +103,25 @@
   </data>
   <data name="btnPrevious.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAEySURBVEhLYxjUoK9pmXZf2zJ7KJe6AGR4T8uSN0D8s6d1
-        iSdUmDqgt22hGtDg50D8H4qfQKUoB/3tyxWALn6MZPj37uZFTlBpykBfy0JpoIH3kAynXvBMaF0mDjTw
-        BpLhv7tblgRCpSkDbW0LhYEGXkIy/G9Py+JIqDRloKNjFT8wGM4gGf6vu3lxIlSaMjC1YRVPT/OSY0iG
-        /+9tXpINlaYM9PWt4gQauA/F8JalJVBpygEwjDehGN66tB4qRR2AbgEQ10GlqANoHkQgAI7kliVHkS0B
-        4iyoNHUATZMpDPQ1rBICGoyS0bpbl0ZApakDsBUVPc2LA6DS1AHQwu4ukiXAwm6pO1SaOgBLcf2N6rVa
-        V/NSVaDBiAoHaCFUinoAWmW+BmLqV5kwQNNKnzjAwAAAMI8W6MPy7B8AAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DQAACw0B7QfALAAAATJJREFUSEtjGNSgr2mZdl/bMnsol7oAZHhPy5I3QPyzp3WJJ1SYOqC3baEa0ODn
+        QPwfip9ApSgH/e3LFYAufoxk+Pfu5kVOUGnKQF/LQmmggfeQDKde8ExoXSYONPAGkuG/u1uWBEKlKQNt
+        bQuFgQZeQjL8b0/L4kioNGWgo2MVPzAYziAZ/q+7eXEiVJoyMLVhFU9P85JjSIb/721ekg2Vpgz09a3i
+        BBq4D8XwlqUlUGnKATCMN6EY3rq0HipFHYBuARDXQaWoA2geRCAAjuSWJUeRLQHiLKg0dQBNkykM9DWs
+        EgIajJLRuluXRkClqQOwFRU9zYsDoNLUAdDC7i6SJcDCbqk7VJo6AEtx/Y3qtVpX81JVoMGICgdoIVSK
+        egBaZb4GYupXmTBA00qfOMDAAAAwjxbow/LsHwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAFKSURBVEhLxZW/SwMxGIZvVRQEhTro4OLkH2HBpTiJk7jp
-        qqurgUsOziTVxcFBSpvvKnQVXMVFXHTRRQcdWsHBXRFp/QqfNndrvsMHMoQXnpfL5Uf0r+jYLWvVWqIp
-        L1q5VSPhC8d7KSVGwSvKBzTebNJcpIgHHWcrRrrPvxIFXR23FijmwVum3y95TgXMUcyDlW4dxd+jkuzx
-        SLUrFPOA0k2U90clcJ8kzWmKecB/su0VDKyE20PRmKKYBxPDrl+C8+tj0ZmgmAcU7+VKJFzW650xinnA
-        Ey4KJecU8WBVtl8ouKAoHJQVl+hKiJNxisPQ0u3k5Apu0vR0kuIwrIKtnFy6O7ZtirINlPoH7cGI9gzF
-        YWgJayj0rgp4OhCNWYrDwDWuodC/7F6sPJunOAzcilUUfnjyHut1PRR68hIenLKfzCGlPvo8RNEPkA4W
-        k3twU2AAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DQAACw0B7QfALAAAAUpJREFUSEvFlb9LAzEYhm9VFASFOujg4uQfYcGlOImTuOmqq6uBSw7OJNXFwUFK
+        m+8qdBVcxUVcdNFFBx1awcFdEWn9Cp82d2u+wwcyhBeel8vlR/Sv6Ngta9VaoikvWrlVI+ELx3spJUbB
+        K8oHNN5s0lykiAcdZytGus+/EgVdHbcWKObBW6bfL3lOBcxRzIOVbh3F36OS7PFItSsU84DSTZT3RyVw
+        nyTNaYp5wH+y7RUMrITbQ9GYopgHE8OuX4Lz62PRmaCYBxTv5UokXNbrnTGKecATLgol5xTxYFW2Xyi4
+        oCgclBWX6EqIk3GKw9DS7eTkCm7S9HSS4jCsgq2cXLo7tm2Ksg2U+gftwYj2DMVhaAlrKPSuCng6EI1Z
+        isPANa6h0L/sXqw8m6c4DNyKVRR+ePIe63U9FHryEh6csp/MIaU++jxE0Q+QDhaTe3BTYAAAAABJRU5E
+        rkJggg==
 </value>
   </data>
 </root>

@@ -37,9 +37,9 @@
             this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelPageController = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelPageController.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPagesNumber
@@ -48,7 +48,7 @@
             this.btnPagesNumber.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPagesNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPagesNumber.Image = ((System.Drawing.Image)(resources.GetObject("btnPagesNumber.Image")));
-            this.btnPagesNumber.Location = new System.Drawing.Point(276, 82);
+            this.btnPagesNumber.Location = new System.Drawing.Point(690, 70);
             this.btnPagesNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPagesNumber.Name = "btnPagesNumber";
             this.btnPagesNumber.Size = new System.Drawing.Size(50, 46);
@@ -61,7 +61,7 @@
             this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(276, 28);
+            this.btnSearch.Location = new System.Drawing.Point(690, 16);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(50, 46);
@@ -73,7 +73,7 @@
             this.txtSearchBar.BackColor = System.Drawing.Color.White;
             this.txtSearchBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchBar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearchBar.Location = new System.Drawing.Point(104, 40);
+            this.txtSearchBar.Location = new System.Drawing.Point(518, 28);
             this.txtSearchBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearchBar.Name = "txtSearchBar";
             this.txtSearchBar.Size = new System.Drawing.Size(155, 27);
@@ -82,12 +82,11 @@
             // 
             // dgvCountries
             // 
-            this.dgvCountries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCountries.BackgroundColor = System.Drawing.Color.White;
             this.dgvCountries.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCountries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCountries.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvCountries.Location = new System.Drawing.Point(390, 4);
+            this.dgvCountries.Location = new System.Drawing.Point(33, 27);
             this.dgvCountries.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvCountries.MultiSelect = false;
             this.dgvCountries.Name = "dgvCountries";
@@ -109,10 +108,12 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 94);
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(628, 82);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndex = 0;
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnDeleteSelected
             // 
@@ -121,10 +122,12 @@
             this.btnDeleteSelected.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDeleteSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteSelected.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteSelected.Image")));
-            this.btnDeleteSelected.Location = new System.Drawing.Point(285, 144);
+            this.btnDeleteSelected.Location = new System.Drawing.Point(636, 132);
             this.btnDeleteSelected.Name = "btnDeleteSelected";
-            this.btnDeleteSelected.Size = new System.Drawing.Size(31, 41);
+            this.btnDeleteSelected.Size = new System.Drawing.Size(102, 41);
             this.btnDeleteSelected.TabIndex = 33;
+            this.btnDeleteSelected.Text = "Delete";
+            this.btnDeleteSelected.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnDeleteSelected.UseVisualStyleBackColor = true;
             this.btnDeleteSelected.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDeleteSelected_MouseClick);
             // 
@@ -141,6 +144,7 @@
             this.btnPreviousPage.Size = new System.Drawing.Size(42, 33);
             this.btnPreviousPage.TabIndex = 34;
             this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // button2
             // 
@@ -155,15 +159,16 @@
             this.button2.Size = new System.Drawing.Size(42, 33);
             this.button2.TabIndex = 34;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // panel1
+            // panelPageController
             // 
-            this.panel1.Controls.Add(this.btnPreviousPage);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Location = new System.Drawing.Point(249, 191);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(102, 46);
-            this.panel1.TabIndex = 35;
+            this.panelPageController.Controls.Add(this.btnPreviousPage);
+            this.panelPageController.Controls.Add(this.button2);
+            this.panelPageController.Location = new System.Drawing.Point(663, 179);
+            this.panelPageController.Name = "panelPageController";
+            this.panelPageController.Size = new System.Drawing.Size(102, 46);
+            this.panelPageController.TabIndex = 35;
             // 
             // FormAddConferenceCountry
             // 
@@ -171,7 +176,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(824, 271);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelPageController);
             this.Controls.Add(this.btnDeleteSelected);
             this.Controls.Add(this.comboBoxPagesNumber);
             this.Controls.Add(this.btnPagesNumber);
@@ -184,7 +189,7 @@
             this.Text = "FormAddConferenceCountry";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCountry_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelPageController.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,6 +205,6 @@
         private System.Windows.Forms.Button btnDeleteSelected;
         private System.Windows.Forms.Button btnPreviousPage;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelPageController;
     }
 }

@@ -272,7 +272,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1000, 590);
+            this.MinimumSize = new System.Drawing.Size(1020, 620);
             this.Name = "FormHomePage";
             this.Text = "HomePage";
             this.panelSidebarMenu.ResumeLayout(false);
