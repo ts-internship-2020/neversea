@@ -55,6 +55,7 @@
             this.dgvSpeakers.Name = "dgvSpeakers";
             this.dgvSpeakers.Size = new System.Drawing.Size(452, 204);
             this.dgvSpeakers.TabIndex = 28;
+            this.dgvSpeakers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpeakers_CellDoubleClick);
             this.dgvSpeakers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpeakers_CellEndEdit);
             this.dgvSpeakers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpeakers_DataBindingComplete);
             // 
@@ -94,10 +95,12 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(628, 82);
+            this.comboBoxPagesNumber.SelectedIndex = 0;
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnPagesNumber
             // 
@@ -151,6 +154,7 @@
             this.btnPrevious.Size = new System.Drawing.Size(42, 33);
             this.btnPrevious.TabIndex = 34;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // button3
             // 
@@ -165,6 +169,7 @@
             this.button3.Size = new System.Drawing.Size(42, 33);
             this.button3.TabIndex = 34;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel1
             // 
@@ -193,6 +198,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceSpeaker";
             this.Text = "FormAddConferenceSpeaker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceSpeaker_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpeakers)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

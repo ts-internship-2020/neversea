@@ -47,15 +47,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
                                      "DictionaryCountryNationality " +
                                      "FROM DictionaryCountry";
 
-
-
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-
-
             List<CountryModel> countries = new List<CountryModel>();
-
-
 
             if (sqlDataReader.HasRows)
             {
@@ -112,9 +106,6 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             return countries;
         }
-
-
-
 
         public void UpdateCountry(int countryId, string countryName, string countryCode, string nationality)
         {

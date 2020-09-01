@@ -54,6 +54,7 @@
             this.dgvConferenceCategories.Name = "dgvConferenceCategories";
             this.dgvConferenceCategories.Size = new System.Drawing.Size(277, 204);
             this.dgvConferenceCategories.TabIndex = 28;
+            this.dgvConferenceCategories.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceCategories_CellDoubleClick);
             this.dgvConferenceCategories.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConferenceCategories_CellEndEdit);
             this.dgvConferenceCategories.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvConferenceCategories_DataBindingComplete);
             // 
@@ -93,7 +94,8 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(628, 82);
+            this.comboBoxPagesNumber.SelectedIndex = 0;
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
@@ -182,6 +184,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceCategory";
             this.Text = "FormAddConferenceCategory";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCategory_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvConferenceCategories)).EndInit();
             this.panelPageController.ResumeLayout(false);
             this.ResumeLayout(false);

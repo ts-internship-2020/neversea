@@ -78,10 +78,12 @@
             8,
             9,
             10});
-            this.comboBoxPagesCount.Location = new System.Drawing.Point(628, 82);
+            this.comboBoxPagesCount.SelectedIndex = 0;
+            this.comboBoxPagesCount.Location = new System.Drawing.Point(214, 97);
             this.comboBoxPagesCount.Name = "comboBoxPagesCount";
             this.comboBoxPagesCount.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesCount.TabIndex = 13;
+            this.comboBoxPagesCount.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesCount_SelectedIndexChanged);
             // 
             // btnPagesCount
             // 
@@ -109,6 +111,7 @@
             this.dgvCities.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvCities.Size = new System.Drawing.Size(277, 204);
             this.dgvCities.TabIndex = 28;
+            this.dgvCities.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellDoubleClick);
             this.dgvCities.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellEndEdit);
             this.dgvCities.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCities_DataBindingComplete);
             // 
@@ -141,6 +144,7 @@
             this.btnNextPage.Size = new System.Drawing.Size(42, 33);
             this.btnNextPage.TabIndex = 34;
             this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // btnPreviousPage
             // 
@@ -155,6 +159,7 @@
             this.btnPreviousPage.Size = new System.Drawing.Size(42, 33);
             this.btnPreviousPage.TabIndex = 34;
             this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // panelPageControls
             // 
@@ -183,6 +188,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceCity";
             this.Text = "FormAddConferenceCity";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCity_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).EndInit();
             this.panelPageControls.ResumeLayout(false);
             this.ResumeLayout(false);
