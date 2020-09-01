@@ -46,13 +46,12 @@ namespace ConferencePlanner.WinUi.View
             List<SpeakerModel> speakers = new List<SpeakerModel>();
             speakers = conferenceSpeakerRepository.GetConferenceSpeakers(keyword);
             maxrange = speakers.Count;
+            
             WireUpSpeakers();
         }
         private void WireUpSpeakers()
         {
             dgvSpeakers.Rows.Clear();
-            comboBoxPagesNumber.SelectedIndex = 0;
-
             for (int i = range; i < step; i++)
             {
                 if (i >= maxrange)
