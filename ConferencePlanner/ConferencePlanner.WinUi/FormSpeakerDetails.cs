@@ -94,8 +94,8 @@ namespace ConferencePlanner.WinUi
         private void button2_Click(object sender, EventArgs e)
         {
             timer1.Interval = 1;
-            //action = enmAction.close;
-            this.Close();
+            action = enmAction.close;
+           
         }
         public void ShowSpeakerDetails()
         {
