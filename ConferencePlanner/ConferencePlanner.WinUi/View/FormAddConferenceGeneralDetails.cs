@@ -10,7 +10,7 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceGeneralDetails : Form
     {
-
+        public static string address;
         public static string title;
         public static DateTime startDate;
         public static DateTime endDate;
@@ -27,11 +27,13 @@ namespace ConferencePlanner.WinUi.View
             email = txtEmail.Text.ToString();
             startDate = dtpStart.Value;
             endDate = dtpEnd.Value;
+            address = txtLocation.Text.ToString();
             FormAddConferenceGeneral.conference.ConferenceName = title;
             FormAddConferenceGeneral.conference.ConferenceOrganiserEmail = email;
 
             FormAddConferenceGeneral.conference.ConferenceStartDate = startDate;
             FormAddConferenceGeneral.conference.ConferenceEndDate = endDate;
+            FormAddConferenceGeneral.conference.ConferenceLocation = address;
 
 
         }

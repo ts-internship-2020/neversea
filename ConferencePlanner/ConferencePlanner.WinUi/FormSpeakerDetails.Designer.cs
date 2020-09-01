@@ -62,9 +62,9 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(79, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 27);
+            this.label1.Size = new System.Drawing.Size(209, 27);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Speaker Informations";
+            this.label1.Text = "Speaker Information";
             // 
             // label2
             // 
@@ -205,7 +205,7 @@
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // button1
             // 
@@ -213,7 +213,6 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Lavender;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(1100, 650);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 31);
@@ -235,8 +234,7 @@
             // 
             // FormSpeakerDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Lavender;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(417, 177);
@@ -262,7 +260,6 @@
             this.Text = "Form1";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSpeakerDetails_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSpeakerDetails_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike3)).EndInit();
