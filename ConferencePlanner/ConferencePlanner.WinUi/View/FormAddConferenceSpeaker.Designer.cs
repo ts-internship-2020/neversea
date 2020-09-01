@@ -45,18 +45,18 @@
             // 
             // dgvSpeakers
             // 
-            this.dgvSpeakers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSpeakers.BackgroundColor = System.Drawing.Color.White;
             this.dgvSpeakers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSpeakers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSpeakers.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvSpeakers.Location = new System.Drawing.Point(437, 4);
+            this.dgvSpeakers.Location = new System.Drawing.Point(33, 27);
             this.dgvSpeakers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvSpeakers.MultiSelect = false;
             this.dgvSpeakers.Name = "dgvSpeakers";
-            this.dgvSpeakers.Size = new System.Drawing.Size(309, 204);
+            this.dgvSpeakers.Size = new System.Drawing.Size(452, 204);
             this.dgvSpeakers.TabIndex = 28;
             this.dgvSpeakers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpeakers_CellDoubleClick);
+            this.dgvSpeakers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpeakers_CellEndEdit);
             this.dgvSpeakers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpeakers_DataBindingComplete);
             // 
             // txtSearch
@@ -64,7 +64,7 @@
             this.txtSearch.BackColor = System.Drawing.Color.White;
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(104, 40);
+            this.txtSearch.Location = new System.Drawing.Point(518, 28);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(155, 27);
@@ -77,7 +77,7 @@
             this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(276, 31);
+            this.btnSearch.Location = new System.Drawing.Point(690, 16);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(50, 46);
@@ -95,10 +95,11 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(628, 82);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnPagesNumber
             // 
@@ -106,7 +107,7 @@
             this.btnPagesNumber.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPagesNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPagesNumber.Image = ((System.Drawing.Image)(resources.GetObject("btnPagesNumber.Image")));
-            this.btnPagesNumber.Location = new System.Drawing.Point(276, 85);
+            this.btnPagesNumber.Location = new System.Drawing.Point(690, 70);
             this.btnPagesNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPagesNumber.Name = "btnPagesNumber";
             this.btnPagesNumber.Size = new System.Drawing.Size(50, 46);
@@ -120,11 +121,14 @@
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(285, 144);
+            this.btnDelete.Location = new System.Drawing.Point(635, 132);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(31, 41);
+            this.btnDelete.Size = new System.Drawing.Size(102, 41);
             this.btnDelete.TabIndex = 33;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // button2
             // 
@@ -149,6 +153,7 @@
             this.btnPrevious.Size = new System.Drawing.Size(42, 33);
             this.btnPrevious.TabIndex = 34;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // button3
             // 
@@ -163,12 +168,13 @@
             this.button3.Size = new System.Drawing.Size(42, 33);
             this.button3.TabIndex = 34;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnPrevious);
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Location = new System.Drawing.Point(248, 191);
+            this.panel1.Location = new System.Drawing.Point(663, 179);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(102, 46);
             this.panel1.TabIndex = 35;

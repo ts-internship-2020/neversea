@@ -41,12 +41,13 @@
             this.btnPrevious = new System.Windows.Forms.Button();
             this.panelAddDetails = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
+            //this.Add = new System.Windows.Forms.Button();
             this.panelRoadmap.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNext
             // 
-            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -62,6 +63,7 @@
             // 
             // panelRoadmap
             // 
+            //this.panelRoadmap.Controls.Add(this.Add);
             this.panelRoadmap.Controls.Add(this.btnStep7);
             this.panelRoadmap.Controls.Add(this.btnStep6);
             this.panelRoadmap.Controls.Add(this.btnStep5);
@@ -69,7 +71,6 @@
             this.panelRoadmap.Controls.Add(this.btnStep3);
             this.panelRoadmap.Controls.Add(this.btnStep2);
             this.panelRoadmap.Controls.Add(this.btnStep1);
-            this.panelRoadmap.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelRoadmap.Location = new System.Drawing.Point(0, 0);
             this.panelRoadmap.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelRoadmap.Name = "panelRoadmap";
@@ -196,7 +197,7 @@
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -213,11 +214,13 @@
             // 
             // panelAddDetails
             // 
-            this.panelAddDetails.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelAddDetails.Location = new System.Drawing.Point(0, 81);
+            this.panelAddDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelAddDetails.Location = new System.Drawing.Point(0, 87);
             this.panelAddDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelAddDetails.Name = "panelAddDetails";
-            this.panelAddDetails.Size = new System.Drawing.Size(990, 351);
+            this.panelAddDetails.Size = new System.Drawing.Size(904, 313);
             this.panelAddDetails.TabIndex = 27;
             // 
             // btnSave

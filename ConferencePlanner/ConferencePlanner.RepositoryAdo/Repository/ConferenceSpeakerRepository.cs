@@ -45,6 +45,62 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return speakers;
         }
 
+        public void UpdateSpeaker(int speakerId, string speakerName, string speakerNationality, float speakerRating, string speakerImage)
+        {
+
+            SqlCommand sqlCommand = new SqlCommand("spSpeakers_Update", sqlConnection);
+
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionarySpeakerId", speakerId));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionarySpeakerName", speakerName));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionaryCountryNationality", speakerNationality));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionarySpeakerRating", speakerRating));
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionarySpeakerImage", speakerImage));
+
+            sqlCommand.ExecuteNonQuery();
+        }
+
+        public void InsertSpeaker(string speakerName, string speakerNationality, float speakerRating, string speakerImage)
+        {
+            SqlCommand sqlCommandMaxId = sqlConnection.CreateCommand();
+            sqlCommandMaxId.CommandText = $"SELECT MAX(DictionarySpeakerId) AS DictionarySpeakerId " +
+                    $"                     FROM DictionarySpeaker";
+            SqlDataReader sqlDataReaderMaxId = sqlCommandMaxId.ExecuteReader();
+
+            if (sqlDataReaderMaxId.HasRows)
+            {
+                sqlDataReaderMaxId.Read();
+                int insertedId = sqlDataReaderMaxId.GetInt32("DictionarySpeakerId") + 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spSpeakers_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionarySpeakerId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionarySpeakerName", speakerName));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryNationality", speakerNationality));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionarySpeakerRating", speakerRating));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionarySpeakerImage", speakerImage));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+            else
+            {
+                int insertedId = 1;
+
+                SqlCommand sqlCommandInsert = new SqlCommand("spSpeakers_Insert", sqlConnection);
+                sqlCommandInsert.CommandType = CommandType.StoredProcedure;
+
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryId", insertedId));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionarySpeakerName", speakerName));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionaryCountryNationality", speakerNationality));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionarySpeakerRating", speakerRating));
+                sqlCommandInsert.Parameters.Add(new SqlParameter("@DictionarySpeakerImage", speakerImage));
+
+                sqlCommandInsert.ExecuteNonQuery();
+            }
+        }
+
         public List<SpeakerModel> GetConferenceSpeakers(string keyword)
         {
             SqlCommand sqlCommand = new SqlCommand("spSpeakers_GetByKeyword", sqlConnection);
@@ -74,8 +130,16 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return speakers;
         }
-    
 
+        public void DeleteSpeaker(int speakerId)
+        {
+            SqlCommand sqlCommand = new SqlCommand("spSpeakers_Delete", sqlConnection);
 
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.Add(new SqlParameter("@DictionarySpeakerId", speakerId));
+
+            sqlCommand.ExecuteNonQuery();
+        }
     }
 }
