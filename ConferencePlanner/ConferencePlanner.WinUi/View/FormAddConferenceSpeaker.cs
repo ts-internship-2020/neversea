@@ -177,7 +177,7 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if (dgvSpeakers.Rows[e.RowIndex].Cells[0].Value != null)
+                if ((dgvSpeakers.Rows[e.RowIndex].Cells[0].Value != null) && (Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells[0].Value.ToString()) != 0))
                 {
                     speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells[0].Value.ToString());
                     speakerName = dgvSpeakers.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -191,7 +191,7 @@ namespace ConferencePlanner.WinUi.View
                 {
                     speakerName = dgvSpeakers.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[1].Value.ToString();
                     speakerNationality = dgvSpeakers.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    speakerRating = dgvSpeakers.Rows[e.RowIndex].Cells[3].Value == null ? 0 : float.Parse(dgvSpeakers.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    speakerRating = dgvSpeakers.Rows[e.RowIndex].Cells[3].Value == null ? 1 : float.Parse(dgvSpeakers.Rows[e.RowIndex].Cells[3].Value.ToString());
                     speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
 
 
