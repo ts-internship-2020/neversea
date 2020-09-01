@@ -99,7 +99,7 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if (dgvCountries.Rows[e.RowIndex].Cells[1].Value != null)
+                if (dgvCountries.Rows[e.RowIndex].Cells["Id"].Value != null)
                 {
                     countryId = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells[1].Value.ToString());
                     countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();

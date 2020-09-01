@@ -102,11 +102,12 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if (dgvConferenceTypes.Rows[e.RowIndex].Cells[1].Value != null)
+                if ((dgvConferenceTypes.Rows[e.RowIndex].Cells[1].Value != null) && Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells[1].Value.ToString()) != 0)
                 {
                     conferenceTypeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells[1].Value.ToString());
                     conferenceTypeName = dgvConferenceTypes.Rows[e.RowIndex].Cells[0].Value.ToString();
                     conferenceTypeRepository.UpdateConferenceType(conferenceTypeId, conferenceTypeName);
+                    LoadConferenceTypes();
                 }
 
                 else

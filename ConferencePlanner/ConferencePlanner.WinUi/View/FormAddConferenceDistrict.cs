@@ -91,7 +91,7 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if (Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].Value.ToString()) != 0)
+                if ((dgvDistricts.Rows[e.RowIndex].Cells["Id"].Value != null) && (Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].Value.ToString()) != 0))
                 {
                     districtId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[0].Value.ToString());
                     districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -104,7 +104,7 @@ namespace ConferencePlanner.WinUi.View
                 {
                     districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
                     districtCode = dgvDistricts.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    //countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
 
 
                     districtRepository.InsertDistrict(districtName, districtCode, 1);
