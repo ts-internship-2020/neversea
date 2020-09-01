@@ -15,8 +15,11 @@ namespace ConferencePlanner.WinUi.View
         public int DistrictId;
         private readonly IDistrictRepository districtRepository;
         private readonly IConferenceLocationRepository conferenceLocationRepository;
-
-        private BindingSource bsDistricts = new BindingSource();
+        List<DistrictModel> districts = new List<DistrictModel>();
+        public int range = 0;
+        public int step = 4;
+        public int shown = 4;
+        public int maxrange;
 
         public FormAddConferenceDistrict(IDistrictRepository _districtRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
@@ -35,45 +38,61 @@ namespace ConferencePlanner.WinUi.View
 
         private void LoadDistricts()
         {
-            List<DistrictModel> districts = new List<DistrictModel>();
             districts = districtRepository.GetDistricts();
-            bsDistricts.AllowNew = true;
-            bsDistricts.DataSource = null;
-            bsDistricts.DataSource = districts;
-            dgvDistricts.DataSource = bsDistricts;
+            dgvDistricts.ColumnCount = 4;
 
             this.dgvDistricts.Columns[3].Visible = false;
             this.dgvDistricts.Columns[0].Visible = false;
 
-
-            dgvDistricts.Columns[0].HeaderText = "Id";
-            dgvDistricts.Columns[1].HeaderText = "District";
-            dgvDistricts.Columns[2].HeaderText = "Code";
-            dgvDistricts.Columns[3].HeaderText = "CountryId";
             dgvDistricts.Columns[0].Name = "Id";
-
-
+            dgvDistricts.Columns[1].Name = "District";
+            dgvDistricts.Columns[2].Name = "Code";
+            dgvDistricts.Columns[3].Name = "CountryId";
+            maxrange = districts.Count;
+            WireUpDistricts();
         }
 
         private void LoadDistricts(string keyword)
         {
-            List<DistrictModel> districts = new List<DistrictModel>();
             districts = districtRepository.GetDistricts(keyword);
 
-            bsDistricts.AllowNew = true;
-            bsDistricts.DataSource = null;
-            bsDistricts.DataSource = districts;
-
-            dgvDistricts.DataSource = bsDistricts;
-
+            dgvDistricts.ColumnCount = 4;
             this.dgvDistricts.Columns[3].Visible = false;
             this.dgvDistricts.Columns[0].Visible = false;
 
-
-            dgvDistricts.Columns[0].HeaderText = "Id";
-            dgvDistricts.Columns[1].HeaderText = "District";
-            dgvDistricts.Columns[2].HeaderText = "Code";
-            dgvDistricts.Columns[3].HeaderText = "CountryId";
+            dgvDistricts.Columns[0].Name = "Id";
+            dgvDistricts.Columns[1].Name = "District";
+            dgvDistricts.Columns[2].Name = "Code";
+            dgvDistricts.Columns[3].Name = "CountryId";
+            maxrange = districts.Count;
+            WireUpDistricts();
+        }
+        private void WireUpDistricts()
+        {
+            dgvDistricts.Rows.Clear();
+            for (int i = range; i < step; i++)
+            {
+                if (i >= maxrange)
+                {
+                    Console.WriteLine("breaked");
+                    break;
+                }
+                else
+                {
+                    dgvDistricts.Rows.Add(districts[i].DistrictId,
+                            districts[i].DistrictName,
+                            districts[i].DistrictCode,
+                            districts[i].CountryId);
+                }
+                if (districts.Count <= (int)comboBoxPagesNumber.SelectedItem)
+                {
+                    btnNextDistrict.Enabled = false;
+                }
+                else if (step < maxrange)
+                {
+                    btnNextDistrict.Enabled = true;
+                }
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -105,7 +124,6 @@ namespace ConferencePlanner.WinUi.View
                     districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
                     districtCode = dgvDistricts.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[2].Value.ToString();
                     countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
-
 
                     districtRepository.InsertDistrict(districtName, districtCode, countryId);
                     dgvDistricts.Rows.Clear();
@@ -145,6 +163,75 @@ namespace ConferencePlanner.WinUi.View
         private void FormAddConferenceDistrict_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormAddConferenceGeneral.districtId = DistrictId;
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            dgvDistricts.Rows.Clear();
+            range = step;
+            step += shown;
+            btnPreviousPage.Visible = true;
+            if (step >= maxrange)
+            {
+                btnNext.Enabled = false;
+            }
+            Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
+            WireUpDistricts();
+
+        }
+
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            dgvDistricts.Rows.Clear();
+            step = range;
+            range -= shown;
+            btnPreviousPage.Visible = true;
+            if (range == 0)
+            {
+                btnPreviousPage.Visible = false;
+            }
+            Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
+            WireUpDistricts();
+
+        }
+
+        private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvDistricts.Rows.Clear();
+            range = 0;
+            step = (int)comboBoxPagesNumber.SelectedItem;
+            shown = (int)comboBoxPagesNumber.SelectedItem;
+            btnBackDistrict.Visible = false;
+            WireUpDistricts();
+        }
+
+        private void btnNextDistrict_Click(object sender, EventArgs e)
+        {
+            dgvDistricts.Rows.Clear();
+            range = step;
+            step += shown;
+            btnBackDistrict.Visible = true;
+            if (step >= maxrange)
+            {
+                btnNextDistrict.Enabled = false;
+            }
+            Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
+            WireUpDistricts();
+
+        }
+
+        private void btnBackDistrict_Click(object sender, EventArgs e)
+        {
+            dgvDistricts.Rows.Clear();
+            step = range;
+            range -= shown;
+            btnBackDistrict.Visible = true;
+            if (range == 0)
+            {
+                btnBackDistrict.Visible = false;
+            }
+            Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
+            WireUpDistricts();
         }
     }
 }
