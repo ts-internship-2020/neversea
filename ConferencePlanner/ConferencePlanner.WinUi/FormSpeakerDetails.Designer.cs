@@ -62,9 +62,9 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(79, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 27);
+            this.label1.Size = new System.Drawing.Size(209, 27);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Speaker Informations";
+            this.label1.Text = "Speaker Information";
             // 
             // label2
             // 
@@ -213,7 +213,6 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Lavender;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.Location = new System.Drawing.Point(1100, 650);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 31);
@@ -256,7 +255,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(970, 20);
+            this.Location = new System.Drawing.Point(940, 20);
             this.Name = "FormSpeakerDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";

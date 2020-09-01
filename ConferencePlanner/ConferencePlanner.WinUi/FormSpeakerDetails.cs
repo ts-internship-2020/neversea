@@ -31,10 +31,10 @@ namespace ConferencePlanner.WinUi
             InitializeComponent();
         }
 
-    
+
         private void FormSpeakerDetails_Load(object sender, EventArgs e)
         {
-            
+
             speaker = _getConferenceRepository.getSelectSpeakerDetails(SpeakerId);
             lblName.Text = speaker.DictionarySpeakerName.ToString();
             lblNationality.Text = speaker.DictionarySpeakerNationality.ToString();
@@ -43,7 +43,7 @@ namespace ConferencePlanner.WinUi
             picBoxSpeaker.LoadAsync(speaker.DictionarySpeakerImage.ToString());
             float rating = float.Parse(lblRating.Text);
 
-            if ( rating < 2)
+            if (rating < 2)
             {
                 picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
@@ -67,18 +67,20 @@ namespace ConferencePlanner.WinUi
                 picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
                 picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
                 picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px_1;
+            
             }
-            else if ( rating == 5)
+            else if (rating == 5)
             {
                 picBoxLike1.Image = Properties.Resources.icons8_facebook_like_48px_1;
                 picBoxLike2.Image = Properties.Resources.icons8_facebook_like_48px_1;
                 picBoxLike3.Image = Properties.Resources.icons8_facebook_like_48px_1;
                 picBoxLike4.Image = Properties.Resources.icons8_facebook_like_48px_1;
                 picBoxLike5.Image = Properties.Resources.icons8_facebook_like_48px_1;
+            
             }
         }
 
-      
+
         public enum enmAction
         {
             wait,
@@ -95,13 +97,13 @@ namespace ConferencePlanner.WinUi
             this.StartPosition = FormStartPosition.Manual;
 
             string fname;
-           
+
             for (int i = 1; i < 5; i++)
             {
                 fname = "Detail" + i.ToString();
                 FormSpeakerDetails frmDet = (FormSpeakerDetails)Application.OpenForms[fname];
-                if (frmDet ==null)
-                    
+                if (frmDet == null)
+
                 {
                     this.Name = fname;
                     this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width + 15;
@@ -117,7 +119,7 @@ namespace ConferencePlanner.WinUi
             this.timer1.Interval = 1;
             timer1.Start();
         }
-       
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             switch (this.action)
