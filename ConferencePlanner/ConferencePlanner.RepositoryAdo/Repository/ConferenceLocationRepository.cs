@@ -17,16 +17,20 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         }
 
-        public void InsertLocation(int CityId)
+        public void InsertLocation(int CityId, string address)
         {
 
-            SqlParameter[] parameters = new SqlParameter[1];
+            SqlParameter[] parameters = new SqlParameter[2];
             parameters[0] = new SqlParameter("@Id", CityId);
+            parameters[1] = new SqlParameter("@Address", address);
+
 
 
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"insert into Location(DictionaryCityId, LocationAddress) values(@Id, 'aa')";
+            sqlCommand.CommandText = $"insert into Location(DictionaryCityId, LocationAddress) values(@Id, @Address)";
             sqlCommand.Parameters.Add(parameters[0]);
+            sqlCommand.Parameters.Add(parameters[1]);
+
 
 
             sqlCommand.ExecuteNonQuery();

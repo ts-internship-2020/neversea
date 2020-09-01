@@ -14,12 +14,13 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceGeneral : Form
     {
         public static int districtId = new int();
-
+        public int locId = 0;
+        public static string locationAddress = new string("");
         public static int countryId = new int();
         public static LocationModel location = new LocationModel();
         public static ConferenceModel conference = new ConferenceModel();
-        /*private readonly IConferenceRepository conferenceRepository;
-        private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;*/
+        private readonly IConferenceRepository conferenceRepository;
+        private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
         private readonly ICountryRepository countryRepository;
         private readonly IDistrictRepository districtRepository;
         private readonly IConferenceCityRepository conferenceCityRepository;
@@ -34,7 +35,7 @@ namespace ConferencePlanner.WinUi.View
         private Form activeForm;
 
 
-        public FormAddConferenceGeneral(object sender, ICountryRepository _countryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceTypeRepository _conferenceTypeRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceLocationRepository conferenceLocationRepository, IConferenceSpeakerRepository _conferenceSpeakerRepository)
+        public FormAddConferenceGeneral(object sender, ICountryRepository _countryRepository, IDistrictRepository _districtRepository, IConferenceCityRepository _conferenceCityRepository, IConferenceTypeRepository _conferenceTypeRepository, IConferenceCategoryRepository _conferenceCategoryRepository, IConferenceLocationRepository conferenceLocationRepository, IConferenceSpeakerRepository _conferenceSpeakerRepository, IConferenceRepository _conferenceRepository)
         {
             countryRepository = _countryRepository;
             districtRepository = _districtRepository;
@@ -43,6 +44,8 @@ namespace ConferencePlanner.WinUi.View
             conferenceCategoryRepository = _conferenceCategoryRepository;
             _conferenceLocationRepository = conferenceLocationRepository;
             conferenceSpeakerRepository = _conferenceSpeakerRepository;
+            conferenceRepository = _conferenceRepository;
+
 
             InitializeComponent();
             //LoadTheme();
@@ -291,7 +294,16 @@ namespace ConferencePlanner.WinUi.View
         }
         private void Add_Click(object sender, EventArgs e)
         {
-            _conferenceLocationRepository.InsertLocation(location.CityId);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            
+            _conferenceLocationRepository.InsertLocation(location.CityId, locationAddress);
+            locId = _conferenceLocationRepository.GetLocationId(location.CityId, conference.ConferenceLocation);
+            
+
+            conferenceRepository.InsertConference(conference, locId);
         }
     }
 }

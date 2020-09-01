@@ -177,7 +177,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            FormAddConferenceGeneral formAddConferenceGeneral = new FormAddConferenceGeneral(sender, countryRepository, districtRepository, conferenceCityRepository, conferenceTypeRepository, conferenceCategoryRepository,_conferenceLocationRepository, conferenceSpeakerRepository);
+            FormAddConferenceGeneral formAddConferenceGeneral = new FormAddConferenceGeneral(sender, countryRepository, districtRepository, conferenceCityRepository, conferenceTypeRepository, conferenceCategoryRepository,_conferenceLocationRepository, conferenceSpeakerRepository, conferenceRepository);
             OpenChildForm(formAddConferenceGeneral, sender);
         }
 

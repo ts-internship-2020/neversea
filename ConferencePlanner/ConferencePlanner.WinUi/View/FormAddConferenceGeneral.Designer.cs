@@ -41,7 +41,6 @@
             this.btnPrevious = new System.Windows.Forms.Button();
             this.panelAddDetails = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
-            this.Add = new System.Windows.Forms.Button();
             this.panelRoadmap.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +62,6 @@
             // 
             // panelRoadmap
             // 
-            this.panelRoadmap.Controls.Add(this.Add);
             this.panelRoadmap.Controls.Add(this.btnStep7);
             this.panelRoadmap.Controls.Add(this.btnStep6);
             this.panelRoadmap.Controls.Add(this.btnStep5);
@@ -239,7 +237,7 @@
             this.btnSave.Text = "Save";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Visible = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FormAddConferenceGeneral
             // 
