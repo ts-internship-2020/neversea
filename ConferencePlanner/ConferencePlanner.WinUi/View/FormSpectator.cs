@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -26,6 +27,7 @@ namespace ConferencePlanner.WinUi.View
         {
             conferenceRepository = _conferenceRepository;
             conferenceAttendanceRepository = _conferenceAttendanceRepository;
+            emailCopyFromMainForm = emailCopy;
 
             InitializeComponent();
 
@@ -36,6 +38,13 @@ namespace ConferencePlanner.WinUi.View
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
 
             btnPrevious.Visible = false;
+            foreach (DataGridViewRow row in dgvSpectator.Rows)
+            {
+                int confId = Convert.ToInt32(row.Cells["conferenceId"].FormattedValue.ToString());
+
+                if (conferenceAttendanceRepository.isParticipating(emailCopyFromMainForm, confId) == false)
+                    row.Cells["buttonJoinColumn"].Style.BackColor = System.Drawing.Color.Khaki;
+            }
 
 
         }
@@ -76,13 +85,18 @@ namespace ConferencePlanner.WinUi.View
             dgvSpectator.Columns[2].Name = "StartDate";
             dgvSpectator.Columns[3].Name = "EndDate";
 
-
+            // Image img = Properties.Resources.icons8_cancel_32px;
+            Image img2 = Properties.Resources.icons8_add_user_group_man_man_20;
             DataGridViewImageColumn buttonJoinColumn = new DataGridViewImageColumn
             {
                 HeaderText = "Join",
                 Name = "buttonJoinColumn",
                 ToolTipText = "Join Conference",
-                Image = Properties.Resources.icons8_add_user_group_man_man_20
+                Image = img2,
+                Description = "Press to Join"
+
+
+
             };
 
             comboBoxPagesNumber.SelectedIndex = 0;
@@ -95,7 +109,10 @@ namespace ConferencePlanner.WinUi.View
                 HeaderText = "Attend",
                 Name = "buttonAttendColumn",
                 ToolTipText = "Attend Conference",
-                Image = Properties.Resources.icons8_event_accepted_20
+                Image = Properties.Resources.icons8_event_accepted_20,
+                Description = "Press to Attend"
+
+
             };
 
 
@@ -108,10 +125,14 @@ namespace ConferencePlanner.WinUi.View
                 Name = "buttonWithdrawColumn",
                 ToolTipText = "Withdraw from conference",
                 DividerWidth = 0,
-                Image = Properties.Resources.icons8_xbox_x_20
+                Image = Properties.Resources.icons8_xbox_x_20,
+                Description = "Press to Withdraw"
+
             };
 
             dgvSpectator.Columns.Add(buttonWithdrawColumn);
+
+         
         }
 
         private void OpenChildForm(Form childForm)
@@ -179,137 +200,136 @@ namespace ConferencePlanner.WinUi.View
             WireUpSpectator(startDate, endDate);
         }
 
-        private void dgvSpectator_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string confName;
-            int confId;
-            if (e.RowIndex == -1) return;
+        //private void dgvSpectator_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    string confName;
+        //    int confId;
+        //    if (e.RowIndex == -1) return;
 
-            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-            {
-                if (e.RowIndex == -1)
-                    return;
+        //    if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+        //    {
+        //        if (e.RowIndex == -1) return;
 
-                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
-                {
-                    if (e.RowIndex == -1) return;
+        //        if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+        //        {
+        //            if (e.RowIndex == -1) return;
 
-                    string speakerName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
-                    int speakerId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
-                    FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(conferenceRepository, speakerId);
-                    formSpeakerDetail.Show();
-                }
-                else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
-                {
-                    DateTime sDate = Convert.ToDateTime(dgvSpectator.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToString());
-                    if (e.RowIndex == -1) return;
-                    if (DateTime.Now.Minute >= sDate.AddMinutes(-5).Minute && DateTime.Now.Minute <= sDate.Minute)
-                    {
-                        WebViewForm webViewForm = new WebViewForm();
-                        webViewForm.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("You can only join if there are 5 more minutes ");
-                    }
-                }
+        //            string speakerName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
+        //            int speakerId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
+        //            FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(conferenceRepository, speakerId);
+        //            formSpeakerDetail.Show();
+        //        }
+        //        else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+        //        {
+        //            DateTime sDate = Convert.ToDateTime(dgvSpectator.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToString());
+        //            if (e.RowIndex == -1) return;
+        //            if (DateTime.Now.Minute >= sDate.AddMinutes(-5).Minute && DateTime.Now.Minute <= sDate.Minute)
+        //            {
+        //                WebViewForm webViewForm = new WebViewForm();
+        //                webViewForm.Show();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("You can only join if there are 5 more minutes ");
+        //            }
+        //        }
 
-                else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
-                {
-                    if (e.RowIndex == -1) return;
-                    else
-                    {
+        //        else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+        //        {
+        //            if (e.RowIndex == -1) return;
+        //            else
+        //            {
 
-                        confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                        if (conferenceAttendanceRepository.isParticipating(emailCopyFromMainForm, confId) == true)
-                        {
-                            MessageBox.Show("Attending Already");
-                        }
-                        else
-                        {
-
-
-                            dgvSpectator.CurrentRow.Selected = true;
-                            conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm, 1);
-                            string conferenceName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
-                            sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, 1);
-                        }
-                    }
-                }
+        //                confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
+        //                if (conferenceAttendanceRepository.isParticipating(emailCopyFromMainForm, confId) == true)
+        //                {
+        //                    MessageBox.Show("Attending Already");
+        //                }
+        //                else
+        //                {
 
 
-                else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
-                {
-                    dgvSpectator.CurrentRow.Selected = true;
-                    confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    conferenceRepository.ModifySpectatorStatusWithdraw(emailCopyFromMainForm, confId);
+        //                    dgvSpectator.CurrentRow.Selected = true;
+        //                    conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm, 1);
+        //                    string conferenceName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+        //                    sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, 1);
+        //                }
+        //            }
+        //        }
+
+
+        //        else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+        //        {
+        //            dgvSpectator.CurrentRow.Selected = true;
+        //            confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
+        //            conferenceRepository.ModifySpectatorStatusWithdraw(emailCopyFromMainForm, confId);
 
 
 
-                    if (conferenceAttendanceRepository.isWithdrawn(emailCopyFromMainForm, confId))
-                    {
-                        MessageBox.Show("User has already withdrawn");
-                    }
-                    else
-                    {
-                        dgvSpectator.CurrentRow.Selected = true;
-                        conferenceRepository.ModifySpectatorStatusWithdraw(emailCopyFromMainForm, confId);
-                    }
-                }
-            }
-        }
+        //            if (conferenceAttendanceRepository.isWithdrawn(emailCopyFromMainForm, confId))
+        //            {
+        //                MessageBox.Show("User has already withdrawn");
+        //            }
+        //            else
+        //            {
+        //                dgvSpectator.CurrentRow.Selected = true;
+        //                conferenceRepository.ModifySpectatorStatusWithdraw(emailCopyFromMainForm, confId);
+        //            }
+        //        }
+        //    }
+        //}
 
-        private void dgvSpectator_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            string confName;
-            int confId;
-            if (e.RowIndex == -1) return;
+        //private void dgvSpectator_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    string confName;
+        //    int confId;
+        //    if (e.RowIndex == -1) return;
 
-            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-            {
-                if (e.RowIndex == -1) return;
+        //    if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+        //    {
+        //        if (e.RowIndex == -1) return;
 
-                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
-                {
-                    if (e.RowIndex == -1) return;
+        //        if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+        //        {
+        //            if (e.RowIndex == -1) return;
 
-                    string speakerName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
-                    int speakerId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
-                    FormSpeakerDetails formSpeakerDetails = new FormSpeakerDetails(conferenceRepository, speakerId);
-                    formSpeakerDetails.ShowSpeakerDetails();
-                    FormSpeakerDetails frmSpeakerDetails = new FormSpeakerDetails();
-                    frmSpeakerDetails.Focus();
-                }
-                else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
-                {
-                    if (e.RowIndex == -1) return;
-
-
-                    WebViewForm webViewForm = new WebViewForm();
-                    webViewForm.Show();
-
-                }
-
-                else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
-                {
-                    if (e.RowIndex == -1) return;
-
-                    dgvSpectator.CurrentRow.Selected = true;
-                    confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    //conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
-                    //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
+        //            string speakerName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
+        //            int speakerId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
+        //            FormSpeakerDetails formSpeakerDetails = new FormSpeakerDetails(conferenceRepository, speakerId);
+        //            formSpeakerDetails.ShowSpeakerDetails();
+        //            FormSpeakerDetails frmSpeakerDetails = new FormSpeakerDetails();
+        //            frmSpeakerDetails.Focus();
+        //        }
+        //        else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
+        //        {
+        //            if (e.RowIndex == -1) return;
 
 
-                }
+        //            WebViewForm webViewForm = new WebViewForm();
+        //            webViewForm.Show();
 
-                else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
-                {
-                    dgvSpectator.CurrentRow.Selected = true;
-                    confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    conferenceRepository.ModifySpectatorStatusWithdraw(emailCopyFromMainForm, confId);
-                }
-            }
-        }
+        //        }
+
+        //        else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
+        //        {
+        //            if (e.RowIndex == -1) return;
+
+        //            dgvSpectator.CurrentRow.Selected = true;
+        //            confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
+        //            //conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm);
+        //            //_getConferenceRepository.ModifySpectatorStatusAttend(confName, email);
+
+
+        //        }
+
+        //        else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
+        //        {
+        //            dgvSpectator.CurrentRow.Selected = true;
+        //            confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
+        //            conferenceRepository.ModifySpectatorStatusWithdraw(emailCopyFromMainForm, confId);
+        //        }
+        //    }
+        //}
 
         private void dgvSpectator_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -381,6 +401,8 @@ namespace ConferencePlanner.WinUi.View
                 {
                     DateTime sDate = Convert.ToDateTime(dgvSpectator.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToString());
                     if (e.RowIndex == -1) return;
+                    dgvSpectator.CurrentRow.Selected = true;
+
                     if (DateTime.Now.Minute >= sDate.AddMinutes(-5).Minute && DateTime.Now.Minute <= sDate.Minute)
                     {
                         WebViewForm webViewForm = new WebViewForm();
@@ -397,6 +419,7 @@ namespace ConferencePlanner.WinUi.View
                     if (e.RowIndex == -1) return;
                     else
                     {
+                        dgvSpectator.CurrentRow.Selected = true;
 
                         confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                         if (conferenceAttendanceRepository.isParticipating(emailCopyFromMainForm, confId) == true)
@@ -410,7 +433,8 @@ namespace ConferencePlanner.WinUi.View
                             dgvSpectator.CurrentRow.Selected = true;
                             conferenceRepository.InsertParticipant(confId, emailCopyFromMainForm, 1);
                             string conferenceName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
-                            sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, 1);
+                            //sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, 1);
+                            dgvSpectator.Rows[e.RowIndex].Cells["buttonAttendColumn"].Style.BackColor = System.Drawing.Color.Khaki;
                         }
                     }
                 }
@@ -422,6 +446,7 @@ namespace ConferencePlanner.WinUi.View
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                     conferenceRepository.ModifySpectatorStatusWithdraw(emailCopyFromMainForm, confId);
 
+                    dgvSpectator.CurrentRow.Selected = true;
 
 
                     if (conferenceAttendanceRepository.isWithdrawn(emailCopyFromMainForm, confId))

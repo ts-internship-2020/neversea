@@ -57,7 +57,7 @@
             this.dgvSpectator.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSpectator.Size = new System.Drawing.Size(828, 474);
             this.dgvSpectator.TabIndex = 0;
-            this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_1);
+          //  this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_1);
             this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
             // 

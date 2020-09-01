@@ -13,7 +13,7 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormLogin : Form
     {
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+      //  System.Media.SoundPlayer player = new System.Media.SoundPlayer();
         private readonly IConferenceRepository conferenceRepository;
         private readonly ICountryRepository countryRepository;
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
@@ -26,7 +26,7 @@ namespace ConferencePlanner.WinUi.View
 
         public FormLogin(IConferenceRepository ConferenceRepository, ICountryRepository CountryRepository, IConferenceTypeRepository conferenceTypeRepository, IConferenceCategoryRepository conferenceCategoryRepository, IDistrictRepository districtRepository, IConferenceCityRepository conferenceCityRepository, IConferenceAttendanceRepository ConferenceAttendanceRepository, IConferenceLocationRepository conferenceLocationRepository, IConferenceSpeakerRepository conferenceSpeakerRepository)
         {
-            player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
+           // player.SoundLocation = @"C:\Users\andrei.stancescu\Downloads\chelutuwav.wav";
             _conferenceTypeRepository = conferenceTypeRepository;
             conferenceRepository = ConferenceRepository;
             countryRepository = CountryRepository;

@@ -469,7 +469,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         public void InsertConference(ConferenceModel conference, int locationId)
         {
-            SqlParameter[] parameters = new SqlParameter[2];
+            SqlParameter[] parameters = new SqlParameter[7];
 
             parameters[0] = new SqlParameter("@Name", conference.ConferenceName);
             parameters[1] = new SqlParameter("@StartDate", conference.ConferenceStartDate);
@@ -483,7 +483,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             sqlCommand.CommandText = $"Insert into Conference(ConferenceName,StartDate, EndDate, OrganiserEmail," +
                 $" LocationId,DictionaryConferenceTypeId, DictionaryConferenceCategoryId)" +
-                $" values(@Name, @StartDate, @EndDate, @OrganiserMail,@LocationId, @TypeId, @CategoryId";
+                $" values(@Name, @StartDate, @EndDate, @OrganiserMail,@LocationId, @TypeId, @CategoryId)";
 
             sqlCommand.Parameters.Add(parameters[0]);
             sqlCommand.Parameters.Add(parameters[1]);
