@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddConferenceDistrict));
             System.Windows.Forms.Button btnPreviousPage;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddConferenceDistrict));
             System.Windows.Forms.Button btnNext;
             System.Windows.Forms.Panel panelPagesControl;
             this.dgvDistricts = new System.Windows.Forms.DataGridView();
@@ -41,95 +41,9 @@
             btnPreviousPage = new System.Windows.Forms.Button();
             btnNext = new System.Windows.Forms.Button();
             panelPagesControl = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).BeginInit();
             panelPagesControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvDistricts
-            // 
-            this.dgvDistricts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDistricts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dgvDistricts.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDistricts.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvDistricts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDistricts.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvDistricts.Location = new System.Drawing.Point(437, 4);
-            this.dgvDistricts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgvDistricts.MultiSelect = false;
-            this.dgvDistricts.Name = "dgvDistricts";
-            this.dgvDistricts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvDistricts.Size = new System.Drawing.Size(277, 204);
-            this.dgvDistricts.TabIndex = 28;
-            this.dgvDistricts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistricts_CellEndEdit);
-            this.dgvDistricts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDistricts_DataBindingComplete);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(104, 40);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(155, 27);
-            this.txtSearch.TabIndex = 29;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(276, 31);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(50, 46);
-            this.btnSearch.TabIndex = 30;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxPagesNumber
-            // 
-            this.comboBoxPagesNumber.FormattingEnabled = true;
-            this.comboBoxPagesNumber.Items.AddRange(new object[] {
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
-            this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
-            this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
-            this.comboBoxPagesNumber.TabIndex = 13;
-            // 
-            // btnPagesNumber
-            // 
-            this.btnPagesNumber.FlatAppearance.BorderSize = 0;
-            this.btnPagesNumber.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnPagesNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPagesNumber.Image = ((System.Drawing.Image)(resources.GetObject("btnPagesNumber.Image")));
-            this.btnPagesNumber.Location = new System.Drawing.Point(276, 85);
-            this.btnPagesNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnPagesNumber.Name = "btnPagesNumber";
-            this.btnPagesNumber.Size = new System.Drawing.Size(50, 46);
-            this.btnPagesNumber.TabIndex = 32;
-            this.btnPagesNumber.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(285, 144);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(31, 41);
-            this.btnDelete.TabIndex = 33;
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
             // btnPreviousPage
             // 
@@ -163,10 +77,98 @@
             // 
             panelPagesControl.Controls.Add(btnPreviousPage);
             panelPagesControl.Controls.Add(btnNext);
-            panelPagesControl.Location = new System.Drawing.Point(249, 193);
+            panelPagesControl.Location = new System.Drawing.Point(663, 179);
             panelPagesControl.Name = "panelPagesControl";
             panelPagesControl.Size = new System.Drawing.Size(102, 46);
             panelPagesControl.TabIndex = 35;
+            // 
+            // dgvDistricts
+            // 
+            this.dgvDistricts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvDistricts.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDistricts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvDistricts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDistricts.GridColor = System.Drawing.Color.Gainsboro;
+            this.dgvDistricts.Location = new System.Drawing.Point(33, 27);
+            this.dgvDistricts.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvDistricts.MultiSelect = false;
+            this.dgvDistricts.Name = "dgvDistricts";
+            this.dgvDistricts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvDistricts.Size = new System.Drawing.Size(277, 204);
+            this.dgvDistricts.TabIndex = 28;
+            this.dgvDistricts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDistricts_CellEndEdit);
+            this.dgvDistricts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDistricts_DataBindingComplete);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtSearch.Location = new System.Drawing.Point(518, 28);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(155, 27);
+            this.txtSearch.TabIndex = 29;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.AutoSize = true;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(690, 16);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(50, 46);
+            this.btnSearch.TabIndex = 30;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxPagesNumber
+            // 
+            this.comboBoxPagesNumber.FormattingEnabled = true;
+            this.comboBoxPagesNumber.Items.AddRange(new object[] {
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10});
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(628, 82);
+            this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
+            this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
+            this.comboBoxPagesNumber.TabIndex = 13;
+            // 
+            // btnPagesNumber
+            // 
+            this.btnPagesNumber.FlatAppearance.BorderSize = 0;
+            this.btnPagesNumber.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPagesNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPagesNumber.Image = ((System.Drawing.Image)(resources.GetObject("btnPagesNumber.Image")));
+            this.btnPagesNumber.Location = new System.Drawing.Point(690, 70);
+            this.btnPagesNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPagesNumber.Name = "btnPagesNumber";
+            this.btnPagesNumber.Size = new System.Drawing.Size(50, 46);
+            this.btnPagesNumber.TabIndex = 32;
+            this.btnPagesNumber.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(635, 132);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(102, 41);
+            this.btnDelete.TabIndex = 33;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
             // FormAddConferenceDistrict
             // 
@@ -187,8 +189,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormAddConferenceDistrict";
             this.Text = "FormAddConferenceDistrict";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).EndInit();
             panelPagesControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

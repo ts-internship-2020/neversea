@@ -125,5 +125,40 @@ namespace ConferencePlanner.WinUi.View
         {
             dgvCountries.ClearSelection();
         }
+
+        private void FormAddConferenceCountry_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPagesNumber_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteSelected_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
