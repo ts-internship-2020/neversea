@@ -68,7 +68,7 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if ((int)dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value != 0)
+                if (dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value != null)
                 {
                     conferenceCategoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value.ToString());
                     conferenceCategoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells[0].Value.ToString();

@@ -106,7 +106,26 @@ namespace ConferencePlanner.WinUi.View
 
         private void FormAddConferenceSpeaker_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormAddConferenceGeneral.conference.ConferenceMainSpeaker = speakerId.ToString();
+            for (int i = 0; i < dgvSpeakers.Rows.Count - 1; i++)
+            {
+                foreach (DataGridViewColumn column in dgvSpeakers.Columns)
+                {
+                    if (dgvSpeakers.Rows[i].Cells[column.Name] == null)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                }
+            }
+
+            if (e.Cancel == true)
+            {
+                MessageBox.Show("You must fill in all the fields.");
+            } 
+            else
+            {
+                FormAddConferenceGeneral.conference.ConferenceMainSpeaker = speakerId.ToString();
+            }
 
         }
 
@@ -162,10 +181,10 @@ namespace ConferencePlanner.WinUi.View
                 if (dgvSpeakers.Rows[e.RowIndex].Cells[0].Value != null)
                 {
                     speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    speakerName = dgvSpeakers.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    speakerNationality = dgvSpeakers.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    speakerRating = float.Parse(dgvSpeakers.Rows[e.RowIndex].Cells[3].Value.ToString());
-                    speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    speakerName = dgvSpeakers.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    speakerNationality = dgvSpeakers.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    speakerRating = dgvSpeakers.Rows[e.RowIndex].Cells[3].Value == null ? 0 : float.Parse(dgvSpeakers.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
                     conferenceSpeakerRepository.UpdateSpeaker(speakerId, speakerName, speakerNationality, speakerRating, speakerImage);
                 }
 

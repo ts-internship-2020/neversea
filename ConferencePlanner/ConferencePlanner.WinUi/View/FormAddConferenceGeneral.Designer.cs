@@ -257,7 +257,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormAddConferenceGeneral";
             this.Text = "Add New Conference";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormAddConferenceGeneral_KeyDown);
             this.panelRoadmap.ResumeLayout(false);
             this.ResumeLayout(false);
 

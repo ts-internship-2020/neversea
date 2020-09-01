@@ -274,21 +274,6 @@ namespace ConferencePlanner.WinUi.View
             switchTabs(tabCount, sender);
         }
 
-        private void FormAddConferenceGeneral_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyData == Keys.Right)
-            {
-                tabCount++;
-
-                switchTabs(tabCount, sender);
-            } 
-            else if (e.KeyData == Keys.Left)
-            {
-                tabCount--;
-
-                switchTabs(tabCount, sender);
-            }
-        }
         private void Add_Click(object sender, EventArgs e)
         {
             _conferenceLocationRepository.InsertLocation(location.CityId);

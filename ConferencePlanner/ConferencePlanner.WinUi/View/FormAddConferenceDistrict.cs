@@ -91,12 +91,12 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if ((int)dgvDistricts.Rows[e.RowIndex].Cells[0].Value != 0)
+                if (Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].Value.ToString()) != 0)
                 {
                     districtId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    districtCode = dgvDistricts.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    districtCode = dgvDistricts.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    countryId = dgvDistricts.Rows[e.RowIndex].Cells[3].Value == null ? 0 : Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
                     districtRepository.UpdateDistrict(districtId, districtName, districtCode, countryId);
                 }
 
@@ -107,7 +107,7 @@ namespace ConferencePlanner.WinUi.View
                     countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
 
 
-                    districtRepository.InsertDistrict(districtName, districtCode, countryId);
+                    districtRepository.InsertDistrict(districtName, districtCode, 1);
                     dgvDistricts.Rows.Clear();
                     LoadDistricts();
                 }
@@ -144,7 +144,27 @@ namespace ConferencePlanner.WinUi.View
 
         private void FormAddConferenceDistrict_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormAddConferenceGeneral.districtId = DistrictId;
+            for (int i = 0; i < dgvDistricts.Rows.Count - 1; i++)
+            {
+                foreach (DataGridViewColumn column in dgvDistricts.Columns)
+                {
+                    if (dgvDistricts.Rows[i].Cells[column.Name] == null)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                }
+            }
+
+            if (e.Cancel == true)
+            {
+                MessageBox.Show("You must fill in all the fields.");
+            }
+            else
+            {
+                FormAddConferenceGeneral.districtId = DistrictId;
+            }
+
         }
     }
 }
