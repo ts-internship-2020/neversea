@@ -69,6 +69,7 @@ namespace ConferencePlanner.WinUi.View
         }
         private void WireUpDistricts()
         {
+            comboBoxPagesNumber.SelectedIndex = 0;
             dgvDistricts.Rows.Clear();
             for (int i = range; i < step; i++)
             {
@@ -171,10 +172,10 @@ namespace ConferencePlanner.WinUi.View
             dgvDistricts.Rows.Clear();
             range = step;
             step += shown;
-            btnPreviousPage.Visible = true;
+            btnBackDistrict.Visible = true;
             if (step >= maxrange)
             {
-                btnNext.Enabled = false;
+                btnNextDistrict.Enabled = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpDistricts();
@@ -186,10 +187,10 @@ namespace ConferencePlanner.WinUi.View
             dgvDistricts.Rows.Clear();
             step = range;
             range -= shown;
-            btnPreviousPage.Visible = true;
+            btnBackDistrict.Visible = true;
             if (range == 0)
             {
-                btnPreviousPage.Visible = false;
+                btnBackDistrict.Visible = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpDistricts();
