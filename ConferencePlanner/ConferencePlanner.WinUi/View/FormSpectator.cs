@@ -187,7 +187,8 @@ namespace ConferencePlanner.WinUi.View
 
             if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                if (e.RowIndex == -1) return;
+                if (e.RowIndex == -1)
+                    return;
 
                 if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
                 {
@@ -374,7 +375,7 @@ namespace ConferencePlanner.WinUi.View
                     string speakerName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
                     int speakerId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
                     FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(conferenceRepository, speakerId);
-                    formSpeakerDetail.Show();
+                    
                 }
                 else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {

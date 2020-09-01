@@ -205,7 +205,7 @@
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // button1
             // 
@@ -234,8 +234,7 @@
             // 
             // FormSpeakerDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Lavender;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(417, 177);
@@ -255,13 +254,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(940, 20);
+            this.Location = new System.Drawing.Point(940, 30);
             this.Name = "FormSpeakerDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSpeakerDetails_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSpeakerDetails_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLike3)).EndInit();
