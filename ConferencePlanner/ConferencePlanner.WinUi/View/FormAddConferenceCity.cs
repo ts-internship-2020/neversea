@@ -102,8 +102,7 @@ namespace ConferencePlanner.WinUi.View
             LoadCities(1, keyword); // de inlocuit cu district Id ul selectat
         }
         private void LoadCities(int districtId, string keyword)
-        {
-            
+        { 
             cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
@@ -115,7 +114,6 @@ namespace ConferencePlanner.WinUi.View
 
         public void WireUpCities()
         {
-            comboBoxPagesCount.SelectedIndex = 0;
             dgvCities.Rows.Clear();
             for (int i = range; i < step; i++)
             {

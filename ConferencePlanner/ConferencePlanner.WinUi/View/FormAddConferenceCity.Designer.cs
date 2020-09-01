@@ -78,6 +78,7 @@
             8,
             9,
             10});
+            this.comboBoxPagesCount.SelectedIndex = 0;
             this.comboBoxPagesCount.Location = new System.Drawing.Point(628, 82);
             this.comboBoxPagesCount.Name = "comboBoxPagesCount";
             this.comboBoxPagesCount.Size = new System.Drawing.Size(45, 25);
