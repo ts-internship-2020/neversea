@@ -95,8 +95,7 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.SelectedIndex = 0;
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(214, 97);
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(628, 82);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;

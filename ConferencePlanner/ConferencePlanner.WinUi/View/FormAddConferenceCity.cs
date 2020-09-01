@@ -115,6 +115,7 @@ namespace ConferencePlanner.WinUi.View
 
         public void WireUpCities()
         {
+            comboBoxPagesCount.SelectedIndex = 0;
             dgvCities.Rows.Clear();
             for (int i = range; i < step; i++)
             {

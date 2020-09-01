@@ -51,6 +51,8 @@ namespace ConferencePlanner.WinUi.View
         private void WireUpSpeakers()
         {
             dgvSpeakers.Rows.Clear();
+            comboBoxPagesNumber.SelectedIndex = 0;
+
             for (int i = range; i < step; i++)
             {
                 if (i >= maxrange)

@@ -54,7 +54,7 @@
             this.btnPagesNumber.Size = new System.Drawing.Size(50, 46);
             this.btnPagesNumber.TabIndex = 32;
             this.btnPagesNumber.UseVisualStyleBackColor = true;
-            this.btnPagesNumber.Click += new System.EventHandler(this.btnPagesNumber_Click);
+            //this.btnPagesNumber.Click += new System.EventHandler(this.btnPagesNumber_Click);
             // 
             // btnSearch
             // 
@@ -68,7 +68,7 @@
             this.btnSearch.Size = new System.Drawing.Size(50, 46);
             this.btnSearch.TabIndex = 30;
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            //this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSearchBar
             // 
@@ -114,7 +114,7 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
-            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
+            //this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnDeleteSelected
             // 
@@ -130,7 +130,7 @@
             this.btnDeleteSelected.Text = "Delete";
             this.btnDeleteSelected.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnDeleteSelected.UseVisualStyleBackColor = true;
-            this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
+            //this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             this.btnDeleteSelected.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDeleteSelected_MouseClick);
             // 
             // btnPreviousPage
@@ -146,7 +146,7 @@
             this.btnPreviousPage.Size = new System.Drawing.Size(42, 33);
             this.btnPreviousPage.TabIndex = 34;
             this.btnPreviousPage.UseVisualStyleBackColor = true;
-            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            //this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // button2
             // 
@@ -161,7 +161,7 @@
             this.button2.Size = new System.Drawing.Size(42, 33);
             this.button2.TabIndex = 34;
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            //this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panelPageController
             // 
@@ -190,7 +190,7 @@
             this.Name = "FormAddConferenceCountry";
             this.Text = "FormAddConferenceCountry";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceCountry_FormClosing);
-            this.Load += new System.EventHandler(this.FormAddConferenceCountry_Load);
+            //this.Load += new System.EventHandler(this.FormAddConferenceCountry_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCountries)).EndInit();
             this.panelPageController.ResumeLayout(false);
             this.ResumeLayout(false);
