@@ -16,9 +16,11 @@ namespace ConferencePlanner.WinUi.View
         public int id = 0;
         private readonly ICountryRepository countryRepository;
         private readonly IConferenceLocationRepository conferenceLocationRepository;
-        private BindingSource bsCountries = new BindingSource();
-
         public List<CountryModel> countries { get; set; }
+        public int range = 0;
+        public int step = 4;
+        public int shown = 4;
+        public int maxrange;
 
         public FormAddConferenceCountry(ICountryRepository _countryRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
@@ -32,20 +34,15 @@ namespace ConferencePlanner.WinUi.View
         {
             countries = countryRepository.GetCountry();
 
-            bsCountries.AllowNew = true;
-            bsCountries.DataSource = null;
-            bsCountries.DataSource = countries;
-
-            dgvCountries.DataSource = bsCountries;
-
+            this.dgvCountries.ColumnCount = 4;
             this.dgvCountries.Columns[1].Visible = false;
 
-
-            dgvCountries.Columns[0].HeaderText = "Country";
-            dgvCountries.Columns[1].HeaderText = "Id";
-            dgvCountries.Columns[2].HeaderText = "Code";
-            dgvCountries.Columns[3].HeaderText = "Nationality";
+            dgvCountries.Columns[0].Name = "Country";
             dgvCountries.Columns[1].Name = "Id";
+            dgvCountries.Columns[2].Name = "Code";
+            dgvCountries.Columns[3].Name = "Nationality";
+            maxrange = countries.Count;
+            WireUpCountries();
 
 
         }
@@ -54,24 +51,45 @@ namespace ConferencePlanner.WinUi.View
         {
             countries = countryRepository.GetCountry(keyword);
 
-            bsCountries.AllowNew = true;
-            bsCountries.DataSource = null;
-            bsCountries.DataSource = countries;
-
-            dgvCountries.DataSource = bsCountries;
-
+            this.dgvCountries.ColumnCount = 4;
             this.dgvCountries.Columns[1].Visible = false;
 
-
-
-
-            dgvCountries.Columns[0].HeaderText = "Name";
-            dgvCountries.Columns[1].HeaderText = "Id";
-            dgvCountries.Columns[2].HeaderText = "Code";
-            dgvCountries.Columns[3].HeaderText = "Nationality";
+            dgvCountries.Columns[0].Name = "Country";
+            dgvCountries.Columns[1].Name = "Id";
+            dgvCountries.Columns[2].Name = "Code";
+            dgvCountries.Columns[3].Name = "Nationality";
+            maxrange = countries.Count;
+            WireUpCountries();
         }
 
+        public void WireUpCountries()
+        {
+            dgvCountries.Rows.Clear();
+            for (int i = range; i < step; i++)
+            {
+                if (i >= maxrange)
+                {
+                    Console.WriteLine("breaked");
+                    break;
+                }
+                else
+                {
+                    dgvCountries.Rows.Add(countries[i].CountryName,
+                            countries[i].CountryId,
+                            countries[i].CountryCode,
+                            countries[i].CountryNationality);
+                }
+                if (countries.Count <= (int)comboBoxPagesNumber.SelectedItem)
+                {
+                    button2.Enabled = false;
+                }
+                else if (step < maxrange)
+                {
+                    button2.Enabled = true;
+                }
 
+            }
+        }
         private void dgvCountries_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int countryId;
@@ -141,6 +159,46 @@ namespace ConferencePlanner.WinUi.View
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
              id= Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dgvCountries.Rows.Clear();
+            range = step;
+            step += shown;
+            btnPreviousPage.Visible = true;
+            if (step >= maxrange)
+            {
+                button2.Enabled = false;
+            }
+            Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
+            WireUpCountries();
+
+        }
+
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            dgvCountries.Rows.Clear();
+            step = range;
+            range -= shown;
+            btnPreviousPage.Visible = true;
+            if (range == 0)
+            {
+                btnPreviousPage.Visible = false;
+            }
+            Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
+            WireUpCountries();
+        }
+
+        private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvCountries.Rows.Clear();
+            range = 0;
+            step = (int)comboBoxPagesNumber.SelectedItem;
+            shown = (int)comboBoxPagesNumber.SelectedItem;
+            btnPreviousPage.Visible = false;
+            WireUpCountries();
+
         }
     }
 }
