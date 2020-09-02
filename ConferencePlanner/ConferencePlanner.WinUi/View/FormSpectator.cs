@@ -395,7 +395,10 @@ namespace ConferencePlanner.WinUi.View
                     string speakerName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceMainSpeaker"].FormattedValue.ToString();
                     int speakerId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["SpeakerId"].FormattedValue.ToString());
                     FormSpeakerDetails formSpeakerDetail = new FormSpeakerDetails(conferenceRepository, speakerId);
-                    
+                    formSpeakerDetail.ShowSpeakerDetails();
+                   FormSpeakerDetails frmSpeakerDetails = new FormSpeakerDetails();
+                   frmSpeakerDetails.Focus();
+
                 }
                 else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonJoinColumn")
                 {
