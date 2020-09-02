@@ -1,11 +1,15 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi.View
@@ -28,9 +32,20 @@ namespace ConferencePlanner.WinUi.View
             LoadCities(1);
         }
 
-        private void LoadCities(int districtId)
+        private async Task LoadCities(int districtId)
         {
-            cities = conferenceCityRepository.GetConferenceCities(districtId);
+            HttpClient httpClient = HttpClientFactory.Create();
+            var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                var content = httpResponseMessage.Content;
+                var data = await content.ReadAsStringAsync();
+
+                cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
+            }
+            //cities = conferenceCityRepository.GetConferenceCities(districtId);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
@@ -62,13 +77,13 @@ namespace ConferencePlanner.WinUi.View
                     {
                         int indexCity = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        conferenceCityRepository.updateCity(indexCity, nameCity, 1);
+                        conferenceCityRepository.UpdateCity(indexCity, nameCity, 1);
                         cities[e.RowIndex].ConferenceCityName = nameCity;
                     }
                     else
                     {
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        conferenceCityRepository.insertCity(nameCity, 1);
+                        conferenceCityRepository.InsertCity(nameCity, 1);
                         dgvCities.Rows.Clear();
                         if (txtSearch.Text == null)
                             LoadCities(1);
