@@ -482,5 +482,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             sqlCommand.ExecuteNonQuery();
         }
+
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
+        {
+            throw new NotImplementedException();
+        }
     }
 };
