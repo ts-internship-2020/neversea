@@ -8,5 +8,6 @@ namespace ConferencePlanner.Abstraction.Model
     {
         public string ConferenceCityName { get; set; }
         public int ConferenceCityId { get; set; }
+        public int ConferenceDistrictId { get; set; }
     }
 }
