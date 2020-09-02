@@ -42,7 +42,7 @@ namespace ConferencePlanner.Api.Controllers
         [Route("/InsertCity")]
         public IActionResult InsertCity([FromBody]ConferenceCityModel cityModel)
         {   
-            _getCityRepository.InsertCity(cityModel.ConferenceCityName, cityModel.ConferenceDistrictId);
+            _getCityRepository.insertCity(cityModel.ConferenceCityName, cityModel.ConferenceDistrictId);
             return Ok();
         }
 
@@ -50,7 +50,7 @@ namespace ConferencePlanner.Api.Controllers
         [Route("/UpdateCity")]
         public IActionResult UpdateCity([FromBody] ConferenceCityModel cityModel)
         {
-            _getCityRepository.UpdateCity(cityModel.ConferenceCityId, cityModel.ConferenceCityName, cityModel.ConferenceDistrictId);
+            _getCityRepository.updateCity(cityModel.ConferenceCityId, cityModel.ConferenceCityName, cityModel.ConferenceDistrictId);
             return Ok();
         }
         [HttpDelete]

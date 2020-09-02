@@ -16,7 +16,7 @@ namespace ConferencePlanner.Abstraction.Repository
         void ModifySpectatorStatusWithdraw(string spectatorEmail, int conferenceId);
         void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId);
 
-        public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances);
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances);
         public SpeakerModel getSelectSpeakerDetails(int speakerId);
 
         public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate);
