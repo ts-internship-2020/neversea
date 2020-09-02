@@ -19,7 +19,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             dbContext = _dbContext;
         }
 
-        public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances)
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendanceModels)
         {
             List<Conference> conferences = dbContext.Conference
                                             .Include(c => c.DictionaryConferenceType)
