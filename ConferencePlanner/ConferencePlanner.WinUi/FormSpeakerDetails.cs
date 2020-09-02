@@ -77,7 +77,7 @@ namespace ConferencePlanner.WinUi
                 picBoxLike5.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
-            this.Hide();
+           
         }
 
 

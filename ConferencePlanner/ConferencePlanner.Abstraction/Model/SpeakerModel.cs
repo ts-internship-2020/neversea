@@ -12,7 +12,7 @@ namespace ConferencePlanner.Abstraction.Model
 
             public String DictionarySpeakerNationality { get; set; }
 
-            public float DictionarySpeakerRating { get; set; }
+            public double DictionarySpeakerRating { get; set; }
 
             public string DictionarySpeakerImage { get; set; }
 
