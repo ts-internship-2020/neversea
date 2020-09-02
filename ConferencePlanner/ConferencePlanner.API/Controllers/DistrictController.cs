@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using ConferencePlanner.Abstraction.Model;
+using ConferencePlanner.Abstraction.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace ConferencePlanner.Api.Controllers
 {
@@ -11,6 +14,20 @@ namespace ConferencePlanner.Api.Controllers
     [ApiController]
     public class DistrictController : ControllerBase
     {
-      //  private readonly IGetDemoRepository _getDemoRepository;
+        private readonly ILogger<HomeController> _logger;
+        private readonly IDistrictRepository _getDistrictRepository;
+        public DistrictController(ILogger<HomeController> logger, IDistrictRepository getDistrictRepository)
+        {
+            _logger = logger;
+            _getDistrictRepository = getDistrictRepository;
+        }
+
+        [HttpGet]
+        public IActionResult GetDistricts()
+        {
+            List<DistrictModel> districtModel = _getDistrictRepository.GetDistricts();
+            return Ok(districtModel);
+        }
     }
 }
+
