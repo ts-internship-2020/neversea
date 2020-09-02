@@ -28,6 +28,13 @@ namespace ConferencePlanner.Api.Controllers
             List<DistrictModel> districtModel = _getDistrictRepository.GetDistricts();
             return Ok(districtModel);
         }
+        [HttpGet]
+        [Route("getDistrictsFiltred")]
+        public IActionResult GetDistricts(string keyword)
+        {
+            List<DistrictModel> districtModel = _getDistrictRepository.GetDistricts(keyword);
+            return Ok(districtModel);
+        }
     }
 }
 

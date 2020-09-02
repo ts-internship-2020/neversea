@@ -23,11 +23,11 @@ namespace ConferencePlanner.Repository.Ef.Repository
             List<DistrictModel> districtsModel = new List<DistrictModel>();
             districts = _dbContext.DictionaryDistrict.ToList();
 
-            districtsModel = districts.Select(c => new DistrictModel()
+            districtsModel = districts.Select(d => new DistrictModel()
             {
-                DistrictId = c.DictionaryDistrictId,
-                DistrictName = c.DictionaryDistrictName,
-                DistrictCode=c.DictionaryDistrictCode
+                DistrictId = d.DictionaryDistrictId,
+                DistrictName = d.DictionaryDistrictName,
+                DistrictCode=d.DictionaryDistrictCode
             }).ToList();
 
 
@@ -37,13 +37,13 @@ namespace ConferencePlanner.Repository.Ef.Repository
         {
             List<DictionaryDistrict> districts = new List<DictionaryDistrict>();
             List<DistrictModel> districtsModel = new List<DistrictModel>();
-            districts = _dbContext.DictionaryDistrict.ToList();
+            districts = _dbContext.DictionaryDistrict.Where(d => d.DictionaryDistrictCode.Contains(keyword) || d.DictionaryDistrictName.Contains(keyword)).ToList();
 
-            districtsModel = districts.Select(c => new DistrictModel()
+            districtsModel = districts.Select(d => new DistrictModel()
             {
-                 DistrictId= c.DictionaryDistrictId,
-                DistrictName = c.DictionaryDistrictName,
-                DistrictCode=c.DictionaryDistrictCode
+                 DistrictId= d.DictionaryDistrictId,
+                DistrictName = d.DictionaryDistrictName,
+                DistrictCode=d.DictionaryDistrictCode
             }).ToList();
 
 
