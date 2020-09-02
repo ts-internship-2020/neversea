@@ -73,7 +73,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             List<DictionaryDistrict> districts = new List<DictionaryDistrict>();
             districts = _dbContext.DictionaryDistrict.ToList();
             id = districts.Max(d => d.DictionaryDistrictId);
-            id += 1;
+            id ++;
 
             _dbContext.DictionaryDistrict.Add(new DictionaryDistrict()
             {
