@@ -54,16 +54,51 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
         public void DeleteSpeaker(int speakerId)
         {
+            DictionarySpeaker speakerDeleted = _dbContext.DictionarySpeaker
+                            .Where(s => s.DictionarySpeakerId == speakerId)
+                            .FirstOrDefault();
+            _dbContext.DictionarySpeaker.Remove(speakerDeleted);
 
+            _dbContext.SaveChanges();
         }
-        public void InsertSpeaker(string speakerName, string speakerNationality, float speakerRating, string speakerImage)
+        public void InsertSpeaker(string speakerName, string speakerNationality, double speakerRating, string speakerImage)
         {
+            int id = 0;
+            List<DictionarySpeaker> speakers = new List<DictionarySpeaker>();
+            speakers = _dbContext.DictionarySpeaker.ToList();
+            id = speakers.Max(d => d.DictionarySpeakerId);
+            id += 1;
 
+            int countryId = _dbContext.DictionaryCountry
+                        .Where(c => c.DictionaryCountryNationality == speakerNationality)
+                        .Select(c => c.DictionaryCountryId)
+                        .FirstOrDefault();
+
+            _dbContext.DictionarySpeaker.Add(new DictionarySpeaker()
+            {
+               DictionarySpeakerId = id,
+               DictionarySpeakerName = speakerName,
+               DictionaryCountryId = countryId,
+               DictionarySpeakerRating = speakerRating,
+               DictionarySpeakerImage = speakerImage
+
+            });
+            _dbContext.SaveChanges();
         }
 
-        public void UpdateSpeaker(int speakerId, string speakerName, string speakerNationality, float speakerRating, string speakerImage)
+        public void UpdateSpeaker(int speakerId, string speakerName, string speakerNationality, double speakerRating, string speakerImage)
         {
-
+            int countryId = _dbContext.DictionaryCountry
+                            .Where(c => c.DictionaryCountryNationality == speakerNationality)
+                            .Select(c => c.DictionaryCountryId)
+                            .FirstOrDefault();
+            
+            DictionarySpeaker speakerEdited = _dbContext.DictionarySpeaker.Find(speakerId);
+            speakerEdited.DictionarySpeakerName = speakerName;
+            speakerEdited.DictionaryCountryId = countryId;
+            speakerEdited.DictionarySpeakerRating = speakerRating;
+            speakerEdited.DictionarySpeakerImage = speakerImage;
+            _dbContext.SaveChanges();
         }
 
     }

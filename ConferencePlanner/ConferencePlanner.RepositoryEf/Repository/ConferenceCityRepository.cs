@@ -53,13 +53,16 @@ namespace ConferencePlanner.Repository.Ef.Repository
             return citiesModel;
         }
 
-        public void updateCity(int index, string city, int districtId)
+        public void UpdateCity(int index, string city, int districtId)
         {
-
+            DictionaryCity cityEdited = _dbContext.DictionaryCity.Find(index);
+            cityEdited.DictionaryCityName = city;
+            cityEdited.DictionaryDistrictId = districtId;
+            _dbContext.SaveChanges();
         }
             
         
-        public void insertCity(string city, int districtId)
+        public void InsertCity(string city, int districtId)
         {
             int id = 0;
             List<DictionaryCity> cities = new List<DictionaryCity>();
@@ -79,7 +82,13 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
         public void DeleteCity(int cityId, int districtId)
         {
+            DictionaryCity cityDeleted = _dbContext.DictionaryCity
+                            .Where(c => c.DictionaryCityId == cityId)
+                            .Where(c => c.DictionaryDistrictId == districtId)
+                            .FirstOrDefault();
+            _dbContext.DictionaryCity.Remove(cityDeleted);
 
+            _dbContext.SaveChanges();
         }
     }
 }

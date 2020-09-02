@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 namespace ConferencePlanner.Repository.Ef.Repository
 {
@@ -54,15 +55,38 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
         public void DeleteCountry(int countryId)
         {
+            DictionaryCountry countryDeleted = _dbContext.DictionaryCountry
+                            .Where(c => c.DictionaryCountryId == countryId)
+                            .FirstOrDefault();
+            _dbContext.DictionaryCountry.Remove(countryDeleted);
 
+            _dbContext.SaveChanges();
         }
         public void UpdateCountry(int countryId, string countryName, string countryCode, string nationality)
         {
-             
+            DictionaryCountry countryEdited = _dbContext.DictionaryCountry.Find(countryId);
+            countryEdited.DictionaryCountryName = countryName;
+            countryEdited.DictionaryCountryCode = countryCode;
+            countryEdited.DictionaryCountryNationality = nationality;
+            _dbContext.SaveChanges();
         }
         public void InsertCountry(string countryName, string countryCode, string nationality)
         {
+            int id = 0;
+            List<DictionaryCountry> countries = new List<DictionaryCountry>();
+            countries = _dbContext.DictionaryCountry.ToList();
+            id = countries.Max(c => c.DictionaryCountryId);
+            id += 1;
+            
+            _dbContext.DictionaryCountry.Add(new DictionaryCountry()
+            {
+                DictionaryCountryId = id,
+                DictionaryCountryName = countryName,
+                DictionaryCountryCode = countryCode,
+                DictionaryCountryNationality = nationality
+            });
 
+            _dbContext.SaveChanges();
         }
     }
 }

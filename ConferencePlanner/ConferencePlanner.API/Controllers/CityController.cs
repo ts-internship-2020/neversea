@@ -39,11 +39,27 @@ namespace ConferencePlanner.Api.Controllers
         }
 
         [HttpPost]
-        [Route("/insertCity")]
-        public IActionResult insertCity(string city, int districtId)
-        {
-            _getCityRepository.insertCity(city, districtId);
+        [Route("/InsertCity")]
+        public IActionResult InsertCity([FromBody]ConferenceCityModel cityModel)
+        {   
+            _getCityRepository.InsertCity(cityModel.ConferenceCityName, cityModel.ConferenceDistrictId);
             return Ok();
         }
+
+        [HttpPost]
+        [Route("/UpdateCity")]
+        public IActionResult UpdateCity([FromBody] ConferenceCityModel cityModel)
+        {
+            _getCityRepository.UpdateCity(cityModel.ConferenceCityId, cityModel.ConferenceCityName, cityModel.ConferenceDistrictId);
+            return Ok();
+        }
+        [HttpDelete]
+        [Route("/DeleteCity")]
+        public IActionResult DeleteCity([FromBody] ConferenceCityModel cityModel)
+        {
+            _getCityRepository.DeleteCity(cityModel.ConferenceCityId, cityModel.ConferenceDistrictId);
+            return Ok();
+        }
+
     }
 }
