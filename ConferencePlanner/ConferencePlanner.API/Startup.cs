@@ -43,7 +43,7 @@ namespace ConferencePlanner.Api
 
             services.AddScoped<IGetDemoRepository, GetDemoRepository>();
             services.AddScoped<IConferenceRepository, ConferenceRepository>();
-
+            services.AddScoped<IConferenceLocationRepository, ConferenceLocationRepository>();
             services.AddScoped<ICountryRepository, ConferenceCountryRepository>();
             services.AddScoped<IConferenceCityRepository, ConferenceCityRepository>();
             services.AddScoped<IDistrictRepository, ConferenceDistrictRepository>();

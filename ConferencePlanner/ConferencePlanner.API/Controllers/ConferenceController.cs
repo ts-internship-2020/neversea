@@ -21,11 +21,13 @@ namespace ConferencePlanner.Api.Controllers
         }
 
         [HttpGet]
-        [Route("conferences/")]
-        public IActionResult GetDemo([FromRoute] string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendanceModels)
+        [Route("conferences")]
+        public IActionResult GetDemo([FromRoute] string spectatorEmail, DateTime startDate, DateTime endDate)
         {
-            List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(spectatorEmail, startDate, endDate, conferenceAttendanceModels);
+            List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(spectatorEmail, startDate, endDate);
             return Ok(conferenceModels);
         }
+
+
     }
 }
