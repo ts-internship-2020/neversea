@@ -9,8 +9,6 @@ namespace ConferencePlanner.Abstraction.Repository
     public interface IConferenceSpeakerRepository
     {
         public List<SpeakerModel> GetConferenceSpeakers();
-        //public void updateSpeaker(int speakerId, string speakerName, string speakerNationality, float speakerRating, string speakerImage);
-        //public void insertSpeaker(string speakerName, string speakerNationality, float speakerRating, string speakerImage);
         public List<SpeakerModel> GetConferenceSpeakers(string keyword);
         void DeleteSpeaker(int speakerId);
         public void InsertSpeaker(string speakerName, string speakerNationality, float speakerRating, string speakerImage);

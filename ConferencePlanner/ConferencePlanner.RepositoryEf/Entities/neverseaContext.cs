@@ -218,7 +218,7 @@ namespace ConferencePlanner.Repository.Ef.Entities
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    entity.Property(e => e.DictionarySpeakerNationality).HasMaxLength(25);
+                   //entity.Property(e => e.DictionarySpeakerNationality).HasMaxLength(25);
 
                     entity.HasOne(d => d.DictionaryCountry)
                         .WithMany(p => p.DictionarySpeaker)
