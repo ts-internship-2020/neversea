@@ -42,7 +42,10 @@ namespace ConferencePlanner.Api
                 });
 
             services.AddScoped<IGetDemoRepository, GetDemoRepository>();
+            //services.AddScoped<IConferenceRepository, ConferenceRepository>();
 
+            services.AddScoped<ICountryRepository, ConferenceCountryRepository>();
+            services.AddScoped<IConferenceCityRepository, ConferenceCityRepository>();
             services.AddSwagger();
         }
 

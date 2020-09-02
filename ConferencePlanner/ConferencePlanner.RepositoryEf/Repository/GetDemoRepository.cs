@@ -1,31 +1,40 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ef.Entities;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks.Dataflow;
+using System.Threading.Tasks;
 
 namespace ConferencePlanner.Repository.Ef.Repository
 {
     public class GetDemoRepository : IGetDemoRepository
     {
-        private readonly neverseaContext _neverseaContext;
+        private readonly neverseaContext _dbContext;
 
         public GetDemoRepository(neverseaContext dbContext)
         {
-            _neverseaContext = dbContext;
+            _dbContext = dbContext;
         }
 
         public List<DemoModel> GetDemo(string name)
-        {
-            List<Demo> demos = _neverseaContext.Demo.ToList();
-            List<Conference> conferences = _neverseaContext.Conference.Include(x => x.ConferenceXspeaker).ToList(); //join Include
+        {   
+            List<Demo> demos = _dbContext.Demo.ToList();
+
+            //List<Conference> conferences = _dbContext.Conference.ToList();
+
+            //Conference conference = _dbContext.Conference.FirstOrDefault();
+
+            //List<ConferenceModel> conferenceModels = conferences.Select(a => new ConferenceModel()
+            //{ ConferenceId = a.ConferenceId, ConferenceName = a.ConferenceName }).ToList();
+
+
             List<DemoModel> demoModels = demos.Select(a => new DemoModel() { Id = a.Id, Name = a.Name }).ToList();
-            Conference conference = _neverseaContext.Conference.FirstOrDefault();
+
             return demoModels;
         }
+        
     }
 }

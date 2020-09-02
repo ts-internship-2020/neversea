@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Button btnPreviousPage;
+            System.Windows.Forms.Button btnBackDistrict;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddConferenceDistrict));
-            System.Windows.Forms.Button btnNext;
+            System.Windows.Forms.Button btnNextDistrict;
             System.Windows.Forms.Panel panelPagesControl;
             this.dgvDistricts = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -38,49 +38,47 @@
             this.comboBoxPagesNumber = new System.Windows.Forms.ComboBox();
             this.btnPagesNumber = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnNextDistrict = new System.Windows.Forms.Button();
-            this.btnBackDistrict = new System.Windows.Forms.Button();
-            btnPreviousPage = new System.Windows.Forms.Button();
-            btnNext = new System.Windows.Forms.Button();
+            btnBackDistrict = new System.Windows.Forms.Button();
+            btnNextDistrict = new System.Windows.Forms.Button();
             panelPagesControl = new System.Windows.Forms.Panel();
             panelPagesControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDistricts)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnPreviousPage
+            // btnBackDistrict
             // 
-            btnPreviousPage.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            btnPreviousPage.FlatAppearance.BorderSize = 0;
-            btnPreviousPage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            btnPreviousPage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            btnPreviousPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnPreviousPage.Image = ((System.Drawing.Image)(resources.GetObject("btnPreviousPage.Image")));
-            btnPreviousPage.Location = new System.Drawing.Point(9, 7);
-            btnPreviousPage.Name = "btnPreviousPage";
-            btnPreviousPage.Size = new System.Drawing.Size(42, 33);
-            btnPreviousPage.TabIndex = 34;
-            btnPreviousPage.UseVisualStyleBackColor = true;
-            btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            btnBackDistrict.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            btnBackDistrict.FlatAppearance.BorderSize = 0;
+            btnBackDistrict.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            btnBackDistrict.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            btnBackDistrict.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBackDistrict.Image = ((System.Drawing.Image)(resources.GetObject("btnBackDistrict.Image")));
+            btnBackDistrict.Location = new System.Drawing.Point(9, 7);
+            btnBackDistrict.Name = "btnBackDistrict";
+            btnBackDistrict.Size = new System.Drawing.Size(42, 33);
+            btnBackDistrict.TabIndex = 34;
+            btnBackDistrict.UseVisualStyleBackColor = true;
+            btnBackDistrict.Click += new System.EventHandler(this.btnBackDistrict_Click);
             // 
-            // btnNext
+            // btnNextDistrict
             // 
-            btnNext.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            btnNext.FlatAppearance.BorderSize = 0;
-            btnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            btnNext.Location = new System.Drawing.Point(52, 7);
-            btnNext.Name = "btnNext";
-            btnNext.Size = new System.Drawing.Size(42, 33);
-            btnNext.TabIndex = 34;
-            btnNext.UseVisualStyleBackColor = true;
-            btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            btnNextDistrict.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            btnNextDistrict.FlatAppearance.BorderSize = 0;
+            btnNextDistrict.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            btnNextDistrict.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            btnNextDistrict.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnNextDistrict.Image = ((System.Drawing.Image)(resources.GetObject("btnNextDistrict.Image")));
+            btnNextDistrict.Location = new System.Drawing.Point(52, 7);
+            btnNextDistrict.Name = "btnNextDistrict";
+            btnNextDistrict.Size = new System.Drawing.Size(42, 33);
+            btnNextDistrict.TabIndex = 34;
+            btnNextDistrict.UseVisualStyleBackColor = true;
+            btnNextDistrict.Click += new System.EventHandler(this.btnNextDistrict_Click);
             // 
             // panelPagesControl
             // 
-            panelPagesControl.Controls.Add(btnPreviousPage);
-            panelPagesControl.Controls.Add(btnNext);
+            panelPagesControl.Controls.Add(btnBackDistrict);
+            panelPagesControl.Controls.Add(btnNextDistrict);
             panelPagesControl.Location = new System.Drawing.Point(663, 179);
             panelPagesControl.Name = "panelPagesControl";
             panelPagesControl.Size = new System.Drawing.Size(102, 46);
@@ -145,7 +143,6 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
-            this.comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnPagesNumber
@@ -177,26 +174,6 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
-            // btnNextDistrict
-            // 
-            this.btnNextDistrict.Location = new System.Drawing.Point(532, 201);
-            this.btnNextDistrict.Name = "btnNextDistrict";
-            this.btnNextDistrict.Size = new System.Drawing.Size(75, 23);
-            this.btnNextDistrict.TabIndex = 36;
-            this.btnNextDistrict.Text = "Next";
-            this.btnNextDistrict.UseVisualStyleBackColor = true;
-            this.btnNextDistrict.Click += new System.EventHandler(this.btnNextDistrict_Click);
-            // 
-            // btnBackDistrict
-            // 
-            this.btnBackDistrict.Location = new System.Drawing.Point(437, 201);
-            this.btnBackDistrict.Name = "btnBackDistrict";
-            this.btnBackDistrict.Size = new System.Drawing.Size(75, 23);
-            this.btnBackDistrict.TabIndex = 37;
-            this.btnBackDistrict.Text = "Back";
-            this.btnBackDistrict.UseVisualStyleBackColor = true;
-            this.btnBackDistrict.Click += new System.EventHandler(this.btnBackDistrict_Click);
-            // 
             // FormAddConferenceDistrict
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -204,8 +181,6 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(824, 271);
-            this.Controls.Add(this.btnBackDistrict);
-            this.Controls.Add(this.btnNextDistrict);
             this.Controls.Add(panelPagesControl);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPagesNumber);
@@ -234,10 +209,8 @@
         private System.Windows.Forms.ComboBox comboBoxPagesNumber;
         private System.Windows.Forms.Button btnPagesNumber;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnPreviousPage;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Panel panelPagesControl;
-        private System.Windows.Forms.Button btnNextDistrict;
         private System.Windows.Forms.Button btnBackDistrict;
+        private System.Windows.Forms.Button btnNextDistrict;
+        private System.Windows.Forms.Panel panelPagesControl;
     }
 }
