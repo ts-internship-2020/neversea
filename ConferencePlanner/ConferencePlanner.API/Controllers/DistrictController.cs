@@ -38,23 +38,23 @@ namespace ConferencePlanner.Api.Controllers
         }
         [HttpPost]
         [Route("insertDistrict")]
-        public IActionResult InsertDistrict(string districtName, string districtCode, int countryId)
+        public IActionResult InsertDistrict([FromBody] DistrictModel districtModel)
         {
-            _getDistrictRepository.InsertDistrict(districtName,districtCode,countryId);
+            _getDistrictRepository.InsertDistrict(districtModel.DistrictName,districtModel.DistrictCode,districtModel.CountryId);
             return Ok();
         }
         [HttpPut]
         [Route("updateDistrict")]
-        public IActionResult UpdateDistrict(int districtId, string districtName, string districtCode, int countryId)
+        public IActionResult UpdateDistrict([FromBody] DistrictModel districtModel)
         {
-            _getDistrictRepository.UpdateDistrict(districtId,districtName, districtCode, countryId);
+            _getDistrictRepository.UpdateDistrict(districtModel.DistrictId, districtModel.DistrictName, districtModel.DistrictCode, districtModel.CountryId);
             return Ok();
         }
         [HttpDelete]
         [Route("deleteDistrict")]
-        public IActionResult DeleteDistrict(int districtId, int countryId)
+        public IActionResult DeleteDistrict([FromBody] DistrictModel districtModel)
         {
-            _getDistrictRepository.DeleteDistrict(districtId, countryId);
+            _getDistrictRepository.DeleteDistrict(districtModel.DistrictId, districtModel.CountryId);
                 return Ok();
         }
     }
