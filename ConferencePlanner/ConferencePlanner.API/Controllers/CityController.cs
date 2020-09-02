@@ -23,10 +23,27 @@ namespace ConferencePlanner.Api.Controllers
         }
 
         [HttpGet]
+        [Route("/GetConfereceCitiesById")]
         public IActionResult GetConferenceCities(int districtId)
         {
             List<ConferenceCityModel> cityModel = _getCityRepository.GetConferenceCities(districtId);
             return Ok(cityModel);
+        }
+
+        [HttpGet]
+        [Route("/GetConfereceCitiesByIdAndKeyword")]
+        public IActionResult GetConferenceCities(int districtId, string keyword)
+        {
+            List<ConferenceCityModel> cityModel = _getCityRepository.GetConferenceCities(districtId, keyword);
+            return Ok(cityModel);
+        }
+
+        [HttpPost]
+        [Route("/insertCity")]
+        public IActionResult insertCity(string city, int districtId)
+        {
+            _getCityRepository.insertCity(city, districtId);
+            return Ok();
         }
     }
 }

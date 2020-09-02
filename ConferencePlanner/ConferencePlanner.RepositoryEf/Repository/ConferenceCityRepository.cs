@@ -22,7 +22,9 @@ namespace ConferencePlanner.Repository.Ef.Repository
         {
             List<DictionaryCity> cities = new List<DictionaryCity>();
             List<ConferenceCityModel> citiesModel = new List<ConferenceCityModel>();
-            cities = _dbContext.DictionaryCity.ToList();
+            cities = _dbContext.DictionaryCity
+                .Where(dc => dc.DictionaryDistrictId == districtId)
+                .ToList();
 
             citiesModel = cities.Select(c => new ConferenceCityModel()
             {
@@ -30,14 +32,17 @@ namespace ConferencePlanner.Repository.Ef.Repository
                 ConferenceCityName = c.DictionaryCityName
             }).ToList();
 
-
             return citiesModel;
         }
+
         public List<ConferenceCityModel> GetConferenceCities(int districtId, string keyword)
         {
             List<DictionaryCity> cities = new List<DictionaryCity>();
             List<ConferenceCityModel> citiesModel = new List<ConferenceCityModel>();
-            cities = _dbContext.DictionaryCity.ToList();
+            cities = _dbContext.DictionaryCity
+                .Where(dc => dc.DictionaryDistrictId == districtId)
+                .Where(dc => dc.DictionaryCityName.Contains(keyword))
+                .ToList();
 
             citiesModel = cities.Select(c => new ConferenceCityModel()
             {
@@ -45,15 +50,31 @@ namespace ConferencePlanner.Repository.Ef.Repository
                 ConferenceCityName = c.DictionaryCityName
             }).ToList();
 
-
             return citiesModel;
         }
+
         public void updateCity(int index, string city, int districtId)
         {
 
         }
+            
+        
         public void insertCity(string city, int districtId)
         {
+            int id = 0;
+            List<DictionaryCity> cities = new List<DictionaryCity>();
+            cities = _dbContext.DictionaryCity.ToList();
+            id = cities.Max(d => d.DictionaryCityId);
+            id += 1;
+
+            _dbContext.DictionaryCity.Add(new DictionaryCity()
+            {
+                DictionaryCityId = id,
+                DictionaryCityName = city,
+                DictionaryDistrictId = districtId
+            });
+
+            _dbContext.SaveChanges();
 
         }
         public void DeleteCity(int cityId, int districtId)

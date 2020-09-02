@@ -22,10 +22,16 @@ namespace ConferencePlanner.Api.Controllers
             _getCountryRepository = getCountryRepository;
         }
 
-        [HttpGet]
+        [HttpGet("~/[controller]/")]
         public IActionResult GetCountry()
         {
             List<CountryModel> countryModel = _getCountryRepository.GetCountry();
+            return Ok(countryModel);
+        }
+        [HttpGet("~/[controller]/keyword")]
+        public IActionResult GetCountry(string keyword)
+        {
+            List<CountryModel> countryModel = _getCountryRepository.GetCountry(keyword);
             return Ok(countryModel);
         }
     }

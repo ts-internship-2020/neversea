@@ -25,5 +25,10 @@ namespace ConferencePlanner.Repository.Ef.Entities
         public virtual Location Location { get; set; }
         public virtual ICollection<ConferenceAttendance> ConferenceAttendance { get; set; }
         public virtual ICollection<ConferenceXspeaker> ConferenceXspeaker { get; set; }
+
+        /*public static implicit operator Conference(Conference v)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

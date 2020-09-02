@@ -37,7 +37,10 @@ namespace ConferencePlanner.Repository.Ef.Repository
         {
             List<DictionaryCountry> countries = new List<DictionaryCountry>();
             List<CountryModel> countriesModel = new List<CountryModel>();
-            countries = _dbContext.DictionaryCountry.ToList();
+            countries = _dbContext.DictionaryCountry
+                .Where(c => c.DictionaryCountryName
+                    .Contains(keyword))
+                .ToList();
 
             countriesModel = countries.Select(c => new CountryModel()
             {
