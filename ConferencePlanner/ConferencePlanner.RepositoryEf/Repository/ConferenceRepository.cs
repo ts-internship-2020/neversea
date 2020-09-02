@@ -19,7 +19,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             dbContext = _dbContext;
         }
 
-        public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances)
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendanceModels)
         {
             List<Conference> conferences = dbContext.Conference
                                             .Include(c => c.DictionaryConferenceType)
@@ -57,9 +57,60 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                                                 .FirstOrDefault()
                                                                                 .DictionarySpeaker.DictionarySpeakerId,   
                                                                 ConferenceOrganiserEmail = m.OrganiserEmail
-                                                              }).ToList();
+                                                              })
+                                                        .ToList();
 
            
+            return conferenceModels;
+        }
+
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
+        {
+            List<Conference> conferences = dbContext.Conference
+                                            .Include(c => c.DictionaryConferenceType)
+                                            .Include(c => c.DictionaryConferenceCategory)
+                                            .Include(c => c.ConferenceXspeaker)
+                                                 .ThenInclude(cxs => cxs.DictionarySpeaker)
+                                            .Include(c => c.Location)
+                                                .ThenInclude(l => l.DictionaryCity)
+                                                    .ThenInclude(ci => ci.DictionaryDistrict)
+                                                        .ThenInclude(di => di.DictionaryCountry)
+                                            .Include(c => c.ConferenceAttendance)
+                                                .ThenInclude(ca => ca.DictionaryParticipantStatus)
+                                            .ToList();
+
+            List<ConferenceModel> conferenceModels = conferences
+                                                        .Where(c => c.StartDate >= startDate && c.EndDate <= endDate)
+                                                        .OrderBy(c => c.ConferenceAttendance
+                                                                            .Where(ca => ca.ParticipantEmailAddress == spectatorEmail)
+                                                                            .Select(ca => ca.DictionaryParticipantStatus.DictionaryParticipantStatusName)
+                                                                            .FirstOrDefault())
+                                                            .ThenBy(c => c.ConferenceName)
+                                                        .Select(m => new ConferenceModel()
+                                                        {
+                                                            ConferenceName = m.ConferenceName,
+                                                            ConferenceId = m.ConferenceId,
+                                                            ConferenceStartDate = m.StartDate,
+                                                            ConferenceEndDate = m.EndDate,
+                                                            ConferenceType = m.DictionaryConferenceType.DictionaryConferenceTypeName,
+                                                            ConferenceCategory = m.DictionaryConferenceCategory.DictionaryConferenceCategoryName,
+                                                            ConferenceMainSpeaker = m.ConferenceXspeaker
+                                                                                         .Where(x => x.IsMain)
+                                                                                         .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
+                                                                                         .FirstOrDefault(),             
+                                                            ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
+                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict
+                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
+                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryCountry.DictionaryCountryName,
+                                                            SpeakerId = m.ConferenceXspeaker
+                                                                                .Where(x => x.IsMain)
+                                                                                .Select(x => x.DictionarySpeakerId)
+                                                                                .FirstOrDefault(),
+                                                            ConferenceOrganiserEmail = m.OrganiserEmail
+                                                        })
+                                                        .ToList();
+
+
             return conferenceModels;
         }
 
