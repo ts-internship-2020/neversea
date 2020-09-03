@@ -76,7 +76,7 @@ namespace ConferencePlanner.Api.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("join")]
         public IActionResult ModifySpectatorStatusJoin([FromBody] ConferenceAttendance conferenceAttendance)
         {
@@ -87,7 +87,7 @@ namespace ConferencePlanner.Api.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("withdraw")]
         public IActionResult ModifySpectatorStatusWithdraw([FromBody] ConferenceAttendance conferenceAttendance)
         {

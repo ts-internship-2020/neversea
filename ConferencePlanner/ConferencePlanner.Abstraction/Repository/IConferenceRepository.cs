@@ -16,6 +16,8 @@ namespace ConferencePlanner.Abstraction.Repository
         public void InsertConferenceXSpeaker(int _conferenceId, int _speakerId);
         void ModifySpectatorStatusWithdraw(string spectatorEmail, int conferenceId);
         void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId);
+        public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate);
+
 
         public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances);
         public SpeakerModel getSelectSpeakerDetails(int speakerId);

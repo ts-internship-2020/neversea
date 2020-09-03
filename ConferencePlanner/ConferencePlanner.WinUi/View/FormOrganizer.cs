@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 using MimeKit;
 using Newtonsoft.Json;
 using System;
@@ -57,17 +58,9 @@ namespace ConferencePlanner.WinUi.View
             //List<ConferenceModel> conferences = new List<ConferenceModel>();
             List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
-            HttpClient httpClient = HttpClientFactory.Create();
-            var url = "http://localhost:2794/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+            var url = $"http://localhost:2794/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
 
-            if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var content = httpResponseMessage.Content;
-                var data = await content.ReadAsStringAsync();
-
-                Conferences = (List<ConferenceModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceModel>>(data);
-            }
+            Conferences = await HttpClientOperations.GetOperation<ConferenceModel>(url);
 
             //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
 
@@ -197,12 +190,13 @@ namespace ConferencePlanner.WinUi.View
         }
 
 
-        private void dtpStart_ValueChanged_1(object sender, EventArgs e)
+        private async Task dtpStart_ValueChanged_1(object sender, EventArgs e)
         {
             Console.WriteLine(dtpStart.Value);
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
-            Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
+            await LoadConferences(dtpStart.Value, dtpEnd.Value);
+            //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
             Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
             range = 0;

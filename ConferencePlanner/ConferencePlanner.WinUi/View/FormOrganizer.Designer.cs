@@ -84,7 +84,7 @@ namespace ConferencePlanner.WinUi.View
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(117, 23);
             this.dtpStart.TabIndex = 4;
-            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged_1);
+            //this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged_1);
             // 
             // dtpEnd
             // 

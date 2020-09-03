@@ -17,6 +17,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
         {
             _dbContext = dbContext;
         }
+
         public List<ConferenceAttendanceModel> GetConferenceAttendance()
         {
             List<ConferenceAttendanceModel> conferenceAttendanceModels = new List<ConferenceAttendanceModel>();

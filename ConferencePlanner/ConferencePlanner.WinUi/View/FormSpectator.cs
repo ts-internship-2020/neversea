@@ -1,6 +1,7 @@
 ﻿using BarcodeLib;
 using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Drawing.Imaging;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,8 +23,6 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormSpectator : Form
     {
-
-       public HttpClient httpClient = new HttpClient();
         private Form activeForm;
         private readonly IConferenceRepository conferenceRepository;
         public string emailCopyFromMainForm;
@@ -64,23 +64,13 @@ namespace ConferencePlanner.WinUi.View
             List<ConferenceModel> conferences = new List<ConferenceModel>();
             List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
-            HttpClient httpClient = HttpClientFactory.Create();
-            var url = "http://localhost:2794/api/Conference/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url); 
+            var urlGetConference = $"http://localhost:2794/api/Conference/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
+            conferences = await HttpClientOperations.GetOperation<ConferenceModel>(urlGetConference);
 
-            if(httpResponseMessage.StatusCode == HttpStatusCode.OK)
-            {
-                var content = httpResponseMessage.Content;
-                var data = await content.ReadAsStringAsync();
+            var urlGetConferenceAttendance = "http://localhost:2794/api/ConferenceAttendance/GetConferenceAttendance";
+            conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
-                conferences = (List<ConferenceModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceModel>>(data);
-            }
-
-
-
-            conferenceAttendances = conferenceAttendanceRepository.GetConferenceAttendance();
-
-
+            //conferenceAttendances = conferenceAttendanceRepository.GetConferenceAttendance();
             //conferences = conferenceRepository.GetConference(emailCopyFromMainForm, startDate, endDate, conferenceAttendances);
 
             dgvSpectator.DataSource = null;
@@ -287,23 +277,23 @@ namespace ConferencePlanner.WinUi.View
 
 
 
-        private void dtpStart_CloseUp(Object sender, EventArgs e)
+        private async Task dtpStart_CloseUp(Object sender, EventArgs e)
         {
             dgvSpectator.DataSource = null;
             dtpEnd.MinDate = dtpStart.Value;
             DateTime startDate = dtpStart.Value;
             DateTime endDate = dtpEnd.Value;
 
-            WireUpSpectator(startDate, endDate);
+            await WireUpSpectator(startDate, endDate);
         }
 
-        private void dtpEnd_CloseUp(Object sender, EventArgs e)
+        private async Task dtpEnd_CloseUp(Object sender, EventArgs e)
         {
             dgvSpectator.DataSource = null;
             DateTime startDate = dtpStart.Value;
             DateTime endDate = dtpEnd.Value;
 
-            WireUpSpectator(startDate, endDate);
+            await WireUpSpectator(startDate, endDate);
         }
 
         //private void dgvSpectator_CellContentClick(object sender, DataGridViewCellEventArgs e)
