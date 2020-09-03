@@ -34,7 +34,7 @@ namespace ConferencePlanner.WinUi.Utilities
             else
             {
                 throw new Exception("Couldn't load " + typeof(T).ToString());
-                return returnedList;
+               //return returnedList;
             }
         }
 
