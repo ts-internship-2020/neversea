@@ -15,11 +15,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.Security.ExchangeActiveSyncProvisioning;
+using Windows.Web.Http;
 
 namespace ConferencePlanner.WinUi.View
 {
     public partial class FormSpectator : Form
     {
+
+       public HttpClient httpClient = new HttpClient();
         private Form activeForm;
         private readonly IConferenceRepository conferenceRepository;
         public string emailCopyFromMainForm;
@@ -572,5 +575,20 @@ namespace ConferencePlanner.WinUi.View
                 }
             }
         }
+
+        //public async System.Threading.Tasks.Task<List<string>> getStrtingTestAsync(string path)
+        //{
+        //    List<string> listStrings = null;
+
+        //    HttpResponseMessage msg = await httpClient.GetAsync(path);
+
+        //    if (msg.IsSuccessStatusCode)
+        //    {
+        //        listStrings = await msg.Content.ReadAsStringAsync<List<string>>();
+        //    }
+
+        //    return listStrings;
+        //}
+
     }
 }

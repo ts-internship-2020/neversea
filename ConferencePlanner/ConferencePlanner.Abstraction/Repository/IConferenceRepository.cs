@@ -22,7 +22,7 @@ namespace ConferencePlanner.Abstraction.Repository
 
         public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate);
 
-        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate);
+        //public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate);
 
         public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId);
 
