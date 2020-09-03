@@ -20,7 +20,7 @@ namespace ConferencePlanner.Abstraction.Repository
         public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate);
 
 
-        public List<ConferenceModel> GetConference(string name, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances);
+        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances);
         public SpeakerModel getSelectSpeakerDetails(int speakerId);
 
         public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate);
