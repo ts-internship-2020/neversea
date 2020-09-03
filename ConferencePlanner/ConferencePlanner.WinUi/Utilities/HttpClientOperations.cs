@@ -64,10 +64,10 @@ namespace ConferencePlanner.WinUi.Utilities
             };
             var response = await httpClient.SendAsync(request);
         }
-        public static async void PutOperation<T>(string url, T obj)
+        /*public static async void PutOperation<T>(string url, T obj)
         {
             await httpClient.PostAsJsonAsync(url, obj);
-        }
+        }*/
 
     }
 }
