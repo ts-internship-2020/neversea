@@ -13,19 +13,19 @@ namespace ConferencePlanner.Api.Controllers
     [ApiController]
     public class ConferenceController : Controller
     {
-        private readonly IGetDemoRepository _getDemoRepository;
-        public ConferenceController(IGetDemoRepository getDemoRepository)
+        private readonly IConferenceRepository conferenceRepository;
+
+        public ConferenceController(IConferenceRepository _conferenceRepository)
         {
-           
-            _getDemoRepository = getDemoRepository;
+            conferenceRepository = _conferenceRepository;
         }
 
         [HttpGet]
-        [Route("{DemoName}")]
-        public IActionResult GetDemo([FromRoute] string demoName)
+        [Route("conferences")]
+        public IActionResult GetDemo([FromRoute] string spectatorEmail, DateTime startDate, DateTime endDate)
         {
-            List<DemoModel> demoModels = _getDemoRepository.GetDemo(demoName);
-            return Ok(demoModels);
+            List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(spectatorEmail, startDate, endDate);
+            return Ok(conferenceModels);
         }
 
 

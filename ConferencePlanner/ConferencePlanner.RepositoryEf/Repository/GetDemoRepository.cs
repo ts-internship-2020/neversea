@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConferencePlanner.Repository.Ef.Repository
 {
@@ -28,5 +30,6 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
             return demoModels;
         }
+        
     }
 }

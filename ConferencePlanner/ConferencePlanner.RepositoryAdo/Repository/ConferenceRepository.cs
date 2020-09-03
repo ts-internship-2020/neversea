@@ -22,20 +22,6 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
         }
 
-        public void ModifySpectatorStatusAttend(string conferenceName, string spectatorEmail)
-        {
-            SqlParameter[] parameters = new SqlParameter[2];
-            parameters[0] = new SqlParameter("@Name", conferenceName);
-            parameters[1] = new SqlParameter("@Email", spectatorEmail);
-
-
-
-            SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = $"update ConferenceAttendance set DictionaryParticipantStatusId = 2" +
-                $" where ParticipantEmailAddress = '@Email' and ConferenceId = (SELECT c.ConferenceId from Conference c where c.ConferenceName like '@Name')";
-            sqlCommand.ExecuteNonQuery();
-        }
-
 
         public void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId)
         {

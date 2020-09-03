@@ -59,6 +59,7 @@ namespace ConferencePlanner.WinUi.View
         }
         private void WireUpCategories()
         {
+            comboBoxPagesNumber.SelectedIndex = 0;
             dgvConferenceCategories.Rows.Clear();
             for (int i = range; i < step; i++)
             {
@@ -90,16 +91,16 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if ((int)dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value != 0)
+                if ((dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value != null) && (Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value.ToString()) != 0))
                 {
                     conferenceCategoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value.ToString());
                     conferenceCategoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells[0].Value.ToString();
                     conferenceCategoryRepository.UpdateConferenceCategory(conferenceCategoryId, conferenceCategoryName);
+                    LoadConferenceCategories();
                 }
                 else
                 {
                     conferenceCategoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells[0].Value.ToString();
-
                     conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
                     dgvConferenceCategories.Rows.Clear();
                     LoadConferenceCategories();

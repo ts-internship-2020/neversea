@@ -99,18 +99,19 @@ namespace ConferencePlanner.WinUi.View
 
             try
             {
-                if ((int)dgvCountries.Rows[e.RowIndex].Cells[1].Value != 0)
+                if (dgvCountries.Rows[e.RowIndex].Cells["Id"].Value != null)
                 {
                     countryId = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells[1].Value.ToString());
-                    countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
                     countryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
+                    LoadCountries();
                 }
 
                 else
                 {
-                    countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
                     countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
                     nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
 
@@ -152,7 +153,28 @@ namespace ConferencePlanner.WinUi.View
 
         private void FormAddConferenceCountry_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormAddConferenceGeneral.countryId = id;
+            LoadCountries();
+
+            for (int i = 0; i < dgvCountries.Rows.Count - 1; i++)
+            {
+                foreach(DataGridViewColumn column in dgvCountries.Columns)
+                {
+                    if(dgvCountries.Rows[i].Cells[column.Name] == null)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                }
+            }
+
+            if (e.Cancel == true)
+            {
+                MessageBox.Show("You must fill in all the fields.");
+            }
+            else 
+            {
+                FormAddConferenceGeneral.countryId = id;
+            }
 
         }
 

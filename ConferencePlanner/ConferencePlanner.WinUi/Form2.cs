@@ -419,12 +419,12 @@ namespace ConferencePlanner.WinUi
                     {
                         int indexCity = Convert.ToInt32(dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
                         string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        _getConferenceCityRepository.updateCity(indexCity, nameCity, 1);
+                        _getConferenceCityRepository.UpdateCity(indexCity, nameCity, 1);
                     }
                     else
                     {
                         string nameCity = dgvCity.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        _getConferenceCityRepository.insertCity(nameCity, 1);
+                        _getConferenceCityRepository.InsertCity(nameCity, 1);
                         dgvCity.Rows.Clear();
                         LoadCities();
                     }
