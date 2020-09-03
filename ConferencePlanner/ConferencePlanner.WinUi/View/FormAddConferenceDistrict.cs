@@ -68,12 +68,9 @@ namespace ConferencePlanner.WinUi.View
             WireUpDistricts();
         }
 
-
-
         private void LoadDistricts(string keyword)
         {
            
-
             districts = districtRepository.GetDistricts(keyword);
 
             dgvDistricts.ColumnCount = 4;
