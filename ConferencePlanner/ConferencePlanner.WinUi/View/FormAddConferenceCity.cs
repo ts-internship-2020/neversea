@@ -98,6 +98,7 @@ namespace ConferencePlanner.WinUi.View
                         {
                             LoadCities(1, txtSearch.Text);
                         }
+                        
                     }
                 }
                 catch

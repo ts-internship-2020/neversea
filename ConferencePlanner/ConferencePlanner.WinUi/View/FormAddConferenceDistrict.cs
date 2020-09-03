@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net.Http;
+using ConferencePlanner.WinUi.Utilities;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -125,10 +126,16 @@ namespace ConferencePlanner.WinUi.View
                 {
                     districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
                     districtCode = dgvDistricts.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    //countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
+                   // countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
 
+                    DistrictModel model = new DistrictModel();
+                    model.DistrictName = districtCode;
+                    model.DistrictCode = districtCode;
+                    model.CountryId = 1;
+                   // model.CountryId = countryId;
 
-                    districtRepository.InsertDistrict(districtName, districtCode, 1);
+                    HttpClientOperations.PostOperation<DistrictModel>("http://localhost:5000/api/District/insertDistrict", model);
+                    // districtRepository.InsertDistrict(districtName, districtCode, 1);
                     dgvDistricts.Rows.Clear();
                     LoadDistricts();
                 }
@@ -146,7 +153,11 @@ namespace ConferencePlanner.WinUi.View
                 int selectedIndex = dgvDistricts.SelectedRows[0].Index;
                 int districtId = Convert.ToInt32(dgvDistricts[0, selectedIndex].Value);
                 int countryId = Convert.ToInt32(dgvDistricts[3, selectedIndex].Value);
-                districtRepository.DeleteDistrict(districtId, countryId);
+                DistrictModel model = new DistrictModel();
+                model.DistrictId = districtId;
+                model.CountryId = countryId;
+                HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:5000/api/District/deleteDistrict", model);
+                // districtRepository.DeleteDistrict(districtId, countryId);
                 LoadDistricts();
             }
         }

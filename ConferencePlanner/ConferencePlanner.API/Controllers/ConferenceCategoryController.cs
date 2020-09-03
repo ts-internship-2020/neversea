@@ -50,17 +50,17 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPut]
         [Route("UpdateCategory")]
-        public IActionResult putConferenceCategories(int conferenceTypeId, string conferenceTypeName)
+        public IActionResult putConferenceCategories([FromBody] ConferenceCategoryModel model)
         {
-            _conferenceCategoryRepository.UpdateConferenceCategory(conferenceTypeId, conferenceTypeName);
+            _conferenceCategoryRepository.UpdateConferenceCategory(model.conferenceCategoryId,model.conferenceCategoryName);
             return Ok();
         }
 
         [HttpDelete]
         [Route("DeleteCategory")]
-        public IActionResult deleteConferenceCategories(int conferenceTypeId)
+        public IActionResult deleteConferenceCategories([FromBody] ConferenceCategoryModel model)
         {
-            _conferenceCategoryRepository.DeleteConferenceCategory(conferenceTypeId);
+            _conferenceCategoryRepository.DeleteConferenceCategory(model.conferenceCategoryId);
             return Ok();
         }
     }

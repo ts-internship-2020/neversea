@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,8 +136,11 @@ namespace ConferencePlanner.WinUi.View
                 else
                 {
                     conferenceTypeName = dgvConferenceTypes.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    ConferenceTypeModel model = new ConferenceTypeModel();
+                    model.conferenceTypeName = conferenceTypeName;
 
-                    conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
+                    HttpClientOperations.PostOperation<ConferenceTypeModel>("http://localhost:5000/api/ConferenceType/PostConferenceType", model);
+                    // conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
                     LoadConferenceTypes();
                 }
             }

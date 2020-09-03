@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -101,7 +102,11 @@ namespace ConferencePlanner.WinUi.View
                 else
                 {
                     conferenceCategoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
+                    ConferenceCategoryModel model = new ConferenceCategoryModel();
+                    model.conferenceCategoryName = conferenceCategoryName;
+                    
+                    HttpClientOperations.PostOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/InsertCategory", model);
+                    // conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
                     dgvConferenceCategories.Rows.Clear();
                     LoadConferenceCategories();
                 }
@@ -187,7 +192,7 @@ namespace ConferencePlanner.WinUi.View
             WireUpCategories();
         }
 
-        private async Task<List<ConferenceCategoryModel>> GetResponse()
+       /* private async Task<List<ConferenceCategoryModel>> GetResponse()
         {
             List<ConferenceCategoryModel> model = null;
             ConferenceCategoryModel model1 = new ConferenceCategoryModel();
@@ -213,6 +218,6 @@ namespace ConferencePlanner.WinUi.View
 
 
 
-        }
+        }*/
     }
 }

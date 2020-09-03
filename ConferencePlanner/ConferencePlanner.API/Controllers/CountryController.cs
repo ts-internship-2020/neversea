@@ -40,25 +40,25 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("/InsertCountry")]
-        public IActionResult InsertCountry([FromBody]DictionaryCountry countryModel)
+        public IActionResult InsertCountry([FromBody] CountryModel countryModel)
         {
-            _getCountryRepository.InsertCountry(countryModel.DictionaryCountryName, countryModel.DictionaryCountryCode, countryModel.DictionaryCountryNationality);
+            _getCountryRepository.InsertCountry(countryModel.CountryName, countryModel.CountryCode, countryModel.CountryNationality);
             return Ok();
         }
 
         [HttpPost]
         [Route("/UpdateCountry")]
-        public IActionResult UpdateCountry([FromBody] DictionaryCountry countryModel)
+        public IActionResult UpdateCountry([FromBody] CountryModel countryModel)
         {
-            _getCountryRepository.UpdateCountry(countryModel.DictionaryCountryId, countryModel.DictionaryCountryName, countryModel.DictionaryCountryCode, countryModel.DictionaryCountryNationality);
+            _getCountryRepository.UpdateCountry(countryModel.CountryId, countryModel.CountryName, countryModel.CountryCode, countryModel.CountryNationality);
             return Ok();
         }
 
         [HttpDelete]
         [Route("/DeleteCountry")]
-        public IActionResult DeleteCountry([FromBody] DictionaryCountry countryModel)
+        public IActionResult DeleteCountry([FromBody] CountryModel countryModel)
         {
-            _getCountryRepository.DeleteCountry(countryModel.DictionaryCountryId);
+            _getCountryRepository.DeleteCountry(countryModel.CountryId);
             return Ok();
         }
     }

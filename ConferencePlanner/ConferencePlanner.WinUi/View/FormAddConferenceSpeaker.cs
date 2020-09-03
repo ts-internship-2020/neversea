@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -195,7 +196,13 @@ namespace ConferencePlanner.WinUi.View
                     speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
 
 
-                    conferenceSpeakerRepository.InsertSpeaker(speakerName, speakerNationality, speakerRating, speakerImage);
+                    // conferenceSpeakerRepository.InsertSpeaker(speakerName, speakerNationality, speakerRating, speakerImage);
+                    SpeakerModel model = new SpeakerModel();
+                    model.DictionarySpeakerName = speakerName;
+                    model.DictionarySpeakerNationality = speakerNationality;
+                    model.DictionarySpeakerRating = speakerRating;
+                    model.DictionarySpeakerImage = speakerImage;
+                    HttpClientOperations.PostOperation<SpeakerModel>("http://localhost:5000/InsertSpeaker", model);
                     dgvSpeakers.Rows.Clear();
                 }
 
