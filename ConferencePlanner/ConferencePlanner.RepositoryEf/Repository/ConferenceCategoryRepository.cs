@@ -59,9 +59,9 @@ namespace ConferencePlanner.Repository.Ef.Repository
         {
 
             List<DictionaryConferenceCategory> dictionaryConferenceCategories = new List<DictionaryConferenceCategory>();
-            dictionaryConferenceCategories = _dbContext.DictionaryConferenceCategory.ToList();
+            dictionaryConferenceCategories = _dbContext.DictionaryConferenceCategory.Where(c => c.DictionaryConferenceCategoryName.Contains(searchKey)).ToList();
 
-            List<ConferenceCategoryModel> conferenceCategoryModels = dictionaryConferenceCategories.Select(a => new ConferenceCategoryModel() { conferenceCategoryId = a.DictionaryConferenceCategoryId, conferenceCategoryName = a.DictionaryConferenceCategoryName }).Where(a => a.conferenceCategoryName.Contains(searchKey)).ToList();
+            List<ConferenceCategoryModel> conferenceCategoryModels = dictionaryConferenceCategories.Select(a => new ConferenceCategoryModel() { conferenceCategoryId = a.DictionaryConferenceCategoryId, conferenceCategoryName = a.DictionaryConferenceCategoryName }).ToList();
             return conferenceCategoryModels;
       
         }

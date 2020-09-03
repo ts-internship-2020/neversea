@@ -31,9 +31,11 @@ namespace ConferencePlanner.WinUi.View
             LoadConferenceTypes();
         }
 
-        public void LoadConferenceTypes()
+        public async void LoadConferenceTypes()
         {
-            conferenceTypes = conferenceTypeRepository.getConferenceTypes();
+            //conferenceTypes = conferenceTypeRepository.getConferenceTypes();
+            var url = "http://localhost:5000/api/ConferenceType/GetAllTypes";
+            conferenceTypes = await HttpClientOperations.GetOperation<ConferenceTypeModel>(url);
             maxrange = conferenceTypes.Count;
             dgvConferenceTypes.ColumnCount = 2;
             dgvConferenceTypes.Columns[0].Name = "Type";
@@ -42,9 +44,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpCities();
         }
 
-        public void LoadConferenceTypes(string keyword)
+        public async void LoadConferenceTypes(string keyword)
         {
-            conferenceTypes = conferenceTypeRepository.getConferenceTypes(keyword);
+            var url = "http://localhost:5000/api/ConferenceType/GetTypesByKeyword?keyword="+keyword;
+            conferenceTypes = await HttpClientOperations.GetOperation<ConferenceTypeModel>(url);
+            //conferenceTypes = conferenceTypeRepository.getConferenceTypes(keyword);
             maxrange = conferenceTypes.Count;
             dgvConferenceTypes.ColumnCount = 2;
             dgvConferenceTypes.Columns[0].Name = "Type";
@@ -88,7 +92,15 @@ namespace ConferencePlanner.WinUi.View
             btnPrevious.Visible = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            LoadConferenceTypes(keyword);
+            if (keyword == "")
+            {
+                LoadConferenceTypes();
+            }
+            else
+            {
+                LoadConferenceTypes(keyword);
+            }
+            
         }
 
         private void dgvConferenceType_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -136,8 +148,11 @@ namespace ConferencePlanner.WinUi.View
                 else
                 {
                     conferenceTypeName = dgvConferenceTypes.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    ConferenceTypeModel model = new ConferenceTypeModel();
+                    model.conferenceTypeName = conferenceTypeName;
 
-                    conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
+                    HttpClientOperations.PostOperation<ConferenceTypeModel>("http://localhost:5000/api/ConferenceType/PostConferenceType", model);
+                    // conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
                     LoadConferenceTypes();
                 }
             }

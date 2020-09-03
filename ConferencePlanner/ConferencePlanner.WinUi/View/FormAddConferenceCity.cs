@@ -90,7 +90,12 @@ namespace ConferencePlanner.WinUi.View
                     {
                         int indexCity = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        conferenceCityRepository.UpdateCity(indexCity, nameCity, 1);
+                        //conferenceCityRepository.UpdateCity(indexCity, nameCity, 1);
+                        ConferenceCityModel cityUpdated = new ConferenceCityModel();
+                        cityUpdated.ConferenceCityName = nameCity;
+                        cityUpdated.ConferenceCityId = indexCity;
+                        cityUpdated.ConferenceDistrictId = 1;
+                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:5000/UpdateCity", cityUpdated);
                         cities[e.RowIndex].ConferenceCityName = nameCity;
                     }
                     else
@@ -108,6 +113,7 @@ namespace ConferencePlanner.WinUi.View
                         {
                             LoadCities(1, txtSearch.Text);
                         }
+                        
                     }
                 }
                 catch

@@ -207,6 +207,10 @@ namespace ConferencePlanner.Repository.Ef.Repository
             dbContext.SaveChanges();
         }
 
+        public void InsertConference(ConferenceModel conference, int locationId)
+        {
+            throw new NotImplementedException();
+        }
 
         public void InsertConferenceXSpeaker(ConferenceModel _model, int _speakerId)
         {

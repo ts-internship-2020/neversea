@@ -34,12 +34,14 @@ namespace ConferencePlanner.WinUi.View
             
         }
 
-        private void LoadConferenceCategories()
+        private async void LoadConferenceCategories()
         {
-            List<ConferenceCategoryModel> categs = new List<ConferenceCategoryModel>();
+            //List<ConferenceCategoryModel> categs = new List<ConferenceCategoryModel>();
             //categs = GetResponse();
-           //conferenceCategories = GetResponse();
-           conferenceCategories = conferenceCategoryRepository.GetConferenceCategories();
+            //conferenceCategories = GetResponse();
+            //conferenceCategories = conferenceCategoryRepository.GetConferenceCategories();
+            var url = "http://localhost:5000/api/ConferenceCategory/GetAllCategories";
+            conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
             dgvConferenceCategories.ColumnCount = 2;
             dgvConferenceCategories.Columns[0].Name = "Category";
             dgvConferenceCategories.Columns[1].Name = "Id";
@@ -48,9 +50,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpCategories();
         }
 
-        public void LoadConferenceCategories(string keyword)
+        public async void LoadConferenceCategories(string keyword)
         {
-            conferenceCategories = conferenceCategoryRepository.GetConferenceCategories(keyword);
+            var url = "http://localhost:5000/api/ConferenceCategory/GetCategoryByKeyword?keyword="+keyword;
+            conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
+            //conferenceCategories = conferenceCategoryRepository.GetConferenceCategories(keyword);
             dgvConferenceCategories.ColumnCount = 2;
             dgvConferenceCategories.Columns[0].Name = "Category";
             dgvConferenceCategories.Columns[1].Name = "Id";
@@ -96,13 +100,21 @@ namespace ConferencePlanner.WinUi.View
                 {
                     conferenceCategoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells[1].Value.ToString());
                     conferenceCategoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    conferenceCategoryRepository.UpdateConferenceCategory(conferenceCategoryId, conferenceCategoryName);
+                    ConferenceCategoryModel categoryUpdated = new ConferenceCategoryModel();
+                    categoryUpdated.conferenceCategoryId = conferenceCategoryId;
+                    categoryUpdated.conferenceCategoryName = conferenceCategoryName;
+                    HttpClientOperations.PutOperation<ConferenceCategoryModel>("http://localhost:5000/UpdateCategory", categoryUpdated);
+                    //conferenceCategoryRepository.UpdateConferenceCategory(conferenceCategoryId, conferenceCategoryName);
                     LoadConferenceCategories();
                 }
                 else
                 {
                     conferenceCategoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
+                    ConferenceCategoryModel model = new ConferenceCategoryModel();
+                    model.conferenceCategoryName = conferenceCategoryName;
+                    
+                    HttpClientOperations.PostOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/InsertCategory", model);
+                    // conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
                     dgvConferenceCategories.Rows.Clear();
                     LoadConferenceCategories();
                 }
@@ -137,7 +149,15 @@ namespace ConferencePlanner.WinUi.View
             btnPrevious.Visible = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            LoadConferenceCategories(keyword);
+            if (keyword == "")
+            {
+                LoadConferenceCategories();
+            }
+            else
+            {
+                LoadConferenceCategories(keyword);
+            }
+            
         }
 
         private void dgvConferenceCategories_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -193,7 +213,7 @@ namespace ConferencePlanner.WinUi.View
             WireUpCategories();
         }
 
-        private async Task<List<ConferenceCategoryModel>> GetResponse()
+       /* private async Task<List<ConferenceCategoryModel>> GetResponse()
         {
             List<ConferenceCategoryModel> model = null;
             ConferenceCategoryModel model1 = new ConferenceCategoryModel();
@@ -219,6 +239,6 @@ namespace ConferencePlanner.WinUi.View
 
 
 
-        }
+        }*/
     }
 }

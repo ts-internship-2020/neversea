@@ -48,10 +48,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpCountries();
         }
 
-        private void LoadCountries(string keyword)
+        private async void LoadCountries(string keyword)
         {
-            countries = countryRepository.GetCountry(keyword);
-
+            //countries = countryRepository.GetCountry(keyword);
+            var url = "http://localhost:5000/GetCountryByKeyword?keyword="+keyword;
+            countries = await HttpClientOperations.GetOperation<CountryModel>(url);
             this.dgvCountries.ColumnCount = 4;
             this.dgvCountries.Columns[1].Visible = false;
 
@@ -115,8 +116,12 @@ namespace ConferencePlanner.WinUi.View
                     countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
                     countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
                     nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
-
-                    countryRepository.InsertCountry(countryName, countryCode, nationality);
+                    CountryModel country = new CountryModel();
+                    country.CountryName = countryName;
+                    country.CountryNationality = nationality;
+                    country.CountryCode = countryCode;
+                    HttpClientOperations.PostOperation<CountryModel>("http://localhost:5000/InsertCountry", country);
+                    // countryRepository.InsertCountry(countryName, countryCode, nationality);
                     dgvCountries.Rows.Clear();
                     LoadCountries();
                 }
@@ -132,7 +137,15 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearchBar_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearchBar.Text;
-            LoadCountries(keyword);
+            if (keyword == "")
+            {
+                LoadCountries();
+            }
+            else
+            {
+                LoadCountries(keyword);
+            }
+           
         }
 
         private void btnDeleteSelected_MouseClick(object sender, MouseEventArgs e)

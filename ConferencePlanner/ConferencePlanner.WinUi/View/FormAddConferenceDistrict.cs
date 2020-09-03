@@ -45,18 +45,8 @@ namespace ConferencePlanner.WinUi.View
 
         private async void LoadDistricts()
         {
-            //HttpClient httpClient = HttpClientFactory.Create();
-            //var url = "http://localhost:2794/api/District";
-            //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-            //if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
-            //{
-            //    var content = httpResponseMessage.Content;
-            //    var data = await content.ReadAsStringAsync();
-
-            //    districts = (List < DistrictModel >) JsonConvert.DeserializeObject<IEnumerable<DistrictModel>>(data);
-            //}
             //districts = districtRepository.GetDistricts();
-            var url = "http://localhost:2794/api/District";
+            var url = "http://localhost:5000/api/District";
             districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
@@ -71,11 +61,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpDistricts();
         }
 
-        private void LoadDistricts(string keyword)
+        private async void LoadDistricts(string keyword)
         {
-           
-            districts = districtRepository.GetDistricts(keyword);
-
+            //districts = districtRepository.GetDistricts(keyword);
+            var url = "http://localhost:5000/api/District/getDistrictsFiltered?keyword="+keyword;
+            districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
             this.dgvDistricts.Columns[3].Visible = false;
             this.dgvDistricts.Columns[0].Visible = false;
@@ -119,7 +109,15 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text;
-            LoadDistricts(keyword);
+            if (keyword == "")
+            {
+                LoadDistricts();
+            }
+            else
+            {
+                LoadDistricts(keyword);
+            }
+            
         }
 
         private void dgvDistricts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -144,10 +142,16 @@ namespace ConferencePlanner.WinUi.View
                 {
                     districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
                     districtCode = dgvDistricts.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    //countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
+                   // countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
 
+                    DistrictModel model = new DistrictModel();
+                    model.DistrictName = districtCode;
+                    model.DistrictCode = districtCode;
+                    model.CountryId = 1;
+                   // model.CountryId = countryId;
 
-                    districtRepository.InsertDistrict(districtName, districtCode, 1);
+                    HttpClientOperations.PostOperation<DistrictModel>("http://localhost:5000/api/District/insertDistrict", model);
+                    // districtRepository.InsertDistrict(districtName, districtCode, 1);
                     dgvDistricts.Rows.Clear();
                     LoadDistricts();
                 }
@@ -165,15 +169,11 @@ namespace ConferencePlanner.WinUi.View
                 int selectedIndex = dgvDistricts.SelectedRows[0].Index;
                 int districtId = Convert.ToInt32(dgvDistricts[0, selectedIndex].Value);
                 int countryId = Convert.ToInt32(dgvDistricts[3, selectedIndex].Value);
-                 //districtRepository.DeleteDistrict(districtId, countryId);
-                
                 DistrictModel model = new DistrictModel();
-
                 model.DistrictId = districtId;
                 model.CountryId = countryId;
-
                 HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:5000/api/District/deleteDistrict", model);
-              
+                // districtRepository.DeleteDistrict(districtId, countryId);
                 LoadDistricts();
             }
 
