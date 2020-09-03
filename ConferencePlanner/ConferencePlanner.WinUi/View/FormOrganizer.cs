@@ -58,7 +58,7 @@ namespace ConferencePlanner.WinUi.View
             List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = "http://localhost:2794/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
+            var url = "http://localhost:5000/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
             if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)

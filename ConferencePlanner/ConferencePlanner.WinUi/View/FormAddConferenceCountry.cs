@@ -48,10 +48,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpCountries();
         }
 
-        private void LoadCountries(string keyword)
+        private async void LoadCountries(string keyword)
         {
-            countries = countryRepository.GetCountry(keyword);
-
+            //countries = countryRepository.GetCountry(keyword);
+            var url = "http://localhost:5000/GetCountryByKeyword?keyword="+keyword;
+            countries = await HttpClientOperations.GetOperation<CountryModel>(url);
             this.dgvCountries.ColumnCount = 4;
             this.dgvCountries.Columns[1].Visible = false;
 
@@ -132,7 +133,15 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearchBar_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearchBar.Text;
-            LoadCountries(keyword);
+            if (keyword == "")
+            {
+                LoadCountries();
+            }
+            else
+            {
+                LoadCountries(keyword);
+            }
+           
         }
 
         private void btnDeleteSelected_MouseClick(object sender, MouseEventArgs e)

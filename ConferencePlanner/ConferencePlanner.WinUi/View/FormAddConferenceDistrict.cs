@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net.Http;
+using ConferencePlanner.WinUi.Utilities;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -37,9 +38,11 @@ namespace ConferencePlanner.WinUi.View
             LoadDistricts();
         }
 
-        private void LoadDistricts()
+        private async void LoadDistricts()
         {
-            districts = districtRepository.GetDistricts();
+            //districts = districtRepository.GetDistricts();
+            var url = "http://localhost:5000/api/District";
+            districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
             this.dgvDistricts.Columns[3].Visible = false;
@@ -53,10 +56,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpDistricts();
         }
 
-        private void LoadDistricts(string keyword)
+        private async void LoadDistricts(string keyword)
         {
-            districts = districtRepository.GetDistricts(keyword);
-
+            //districts = districtRepository.GetDistricts(keyword);
+            var url = "http://localhost:5000/api/District/getDistrictsFiltered?keyword="+keyword;
+            districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
             this.dgvDistricts.Columns[3].Visible = false;
             this.dgvDistricts.Columns[0].Visible = false;
@@ -100,7 +104,15 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text;
-            LoadDistricts(keyword);
+            if (keyword == "")
+            {
+                LoadDistricts();
+            }
+            else
+            {
+                LoadDistricts(keyword);
+            }
+            
         }
 
         private void dgvDistricts_CellEndEdit(object sender, DataGridViewCellEventArgs e)

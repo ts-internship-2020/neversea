@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -27,9 +28,11 @@ namespace ConferencePlanner.WinUi.View
             InitializeComponent();
             LoadSpeakers();
         }
-        private void LoadSpeakers()
+        private async void LoadSpeakers()
         {
-            speakers = conferenceSpeakerRepository.GetConferenceSpeakers();
+            //speakers = conferenceSpeakerRepository.GetConferenceSpeakers();
+            var url = "http://localhost:5000/GetConferenceSpeakers";
+            speakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
             dgvSpeakers.ColumnCount = 5;
             dgvSpeakers.Columns[0].Name = "Id";
             dgvSpeakers.Columns[1].Name = "Name";
@@ -41,10 +44,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpSpeakers();
         }
 
-        private void LoadSpeakers(string keyword)
+        private async void LoadSpeakers(string keyword)
         {
-            List<SpeakerModel> speakers = new List<SpeakerModel>();
-            speakers = conferenceSpeakerRepository.GetConferenceSpeakers(keyword);
+            //speakers = conferenceSpeakerRepository.GetConferenceSpeakers(keyword);
+            var url = "http://localhost:5000/GetConferenceSpeakersByKeyword?keyword="+keyword;
+            speakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
             maxrange = speakers.Count;
             
             WireUpSpeakers();
@@ -94,7 +98,14 @@ namespace ConferencePlanner.WinUi.View
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             string keyword = txtSearch.Text;
-            LoadSpeakers(keyword);
+            if (keyword == "")
+            {
+                LoadSpeakers();
+            }
+            else
+            {
+                LoadSpeakers(keyword);
+            }
         }
 
         private void dgvSpeakers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
