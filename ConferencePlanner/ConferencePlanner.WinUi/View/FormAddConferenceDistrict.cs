@@ -13,6 +13,7 @@ using Windows.Web.Http;
 using HttpClient = System.Net.Http.HttpClient;
 using HttpResponseMessage = System.Net.Http.HttpResponseMessage;
 using Newtonsoft.Json;
+using ConferencePlanner.WinUi.Utilities;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -42,19 +43,21 @@ namespace ConferencePlanner.WinUi.View
             LoadDistricts();
         }
 
-        private async Task LoadDistricts()
+        private async void LoadDistricts()
         {
-            HttpClient httpClient = HttpClientFactory.Create();
-            var url = "http://localhost:2794/api/District";
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-            if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var content = httpResponseMessage.Content;
-                var data = await content.ReadAsStringAsync();
+            //HttpClient httpClient = HttpClientFactory.Create();
+            //var url = "http://localhost:2794/api/District";
+            //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+            //if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            //{
+            //    var content = httpResponseMessage.Content;
+            //    var data = await content.ReadAsStringAsync();
 
-                districts = (List < DistrictModel >) JsonConvert.DeserializeObject<IEnumerable<DistrictModel>>(data);
-            }
+            //    districts = (List < DistrictModel >) JsonConvert.DeserializeObject<IEnumerable<DistrictModel>>(data);
+            //}
             //districts = districtRepository.GetDistricts();
+            var url = "http://localhost:2794/api/District";
+            districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
             this.dgvDistricts.Columns[3].Visible = false;
@@ -162,9 +165,18 @@ namespace ConferencePlanner.WinUi.View
                 int selectedIndex = dgvDistricts.SelectedRows[0].Index;
                 int districtId = Convert.ToInt32(dgvDistricts[0, selectedIndex].Value);
                 int countryId = Convert.ToInt32(dgvDistricts[3, selectedIndex].Value);
-                districtRepository.DeleteDistrict(districtId, countryId);
+                 //districtRepository.DeleteDistrict(districtId, countryId);
+                
+                DistrictModel model = new DistrictModel();
+
+                model.DistrictId = districtId;
+                model.CountryId = countryId;
+
+                HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:5000/api/District/deleteDistrict", model);
+              
                 LoadDistricts();
             }
+
         }
 
         private void dgvDistricts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
