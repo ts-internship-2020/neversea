@@ -63,8 +63,10 @@ namespace ConferencePlanner.WinUi.Utilities
                 Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")
             };
             var response = await httpClient.SendAsync(request);
-
-
+        }
+        public static async void PutOperation<T>(string url, T obj)
+        {
+            await httpClient.PostAsJsonAsync(url, obj);
         }
 
     }

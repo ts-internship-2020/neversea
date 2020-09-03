@@ -36,10 +36,6 @@ namespace ConferencePlanner.WinUi.View
 
         private async void LoadConferenceCategories()
         {
-            //List<ConferenceCategoryModel> categs = new List<ConferenceCategoryModel>();
-            //categs = GetResponse();
-            //conferenceCategories = GetResponse();
-            //conferenceCategories = conferenceCategoryRepository.GetConferenceCategories();
             var url = "http://localhost:5000/api/ConferenceCategory/GetAllCategories";
             conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
             dgvConferenceCategories.ColumnCount = 2;
@@ -103,9 +99,11 @@ namespace ConferencePlanner.WinUi.View
                     ConferenceCategoryModel categoryUpdated = new ConferenceCategoryModel();
                     categoryUpdated.conferenceCategoryId = conferenceCategoryId;
                     categoryUpdated.conferenceCategoryName = conferenceCategoryName;
-                    HttpClientOperations.PutOperation<ConferenceCategoryModel>("http://localhost:5000/UpdateCategory", categoryUpdated);
+                    HttpClientOperations.PutOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/UpdateCategory", categoryUpdated);
+
                     //conferenceCategoryRepository.UpdateConferenceCategory(conferenceCategoryId, conferenceCategoryName);
-                    LoadConferenceCategories();
+                    //conferenceCategories[e.RowIndex].conferenceCategoryName = conferenceCategoryName;
+                    //dgvConferenceCategories.Rows[e.RowIndex].Cells[e.ColumnIndex] = conferenceCategoryName;                    LoadConferenceCategories();
                 }
                 else
                 {

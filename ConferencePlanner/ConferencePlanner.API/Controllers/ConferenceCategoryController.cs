@@ -48,7 +48,7 @@ namespace ConferencePlanner.Api.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("UpdateCategory")]
         public IActionResult putConferenceCategories([FromBody] ConferenceCategoryModel model)
         {
