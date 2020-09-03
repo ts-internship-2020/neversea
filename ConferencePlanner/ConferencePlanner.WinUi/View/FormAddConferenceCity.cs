@@ -33,7 +33,7 @@ namespace ConferencePlanner.WinUi.View
             LoadCities(1);
         }
 
-        private async Task LoadCities(int districtId)
+        private async void LoadCities(int districtId)
         {
             //HttpClient httpClient = HttpClientFactory.Create();
             //var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
@@ -47,8 +47,12 @@ namespace ConferencePlanner.WinUi.View
             //    cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
             //}
             //cities = conferenceCityRepository.GetConferenceCities(districtId);
-            var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
+
+            var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
+                + districtId.ToString();
+
             cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
+            Console.WriteLine("Lista cities are marimea " + cities.Count);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
@@ -117,11 +121,21 @@ namespace ConferencePlanner.WinUi.View
             step = (int)comboBoxPagesCount.SelectedItem;
             shown = (int)comboBoxPagesCount.SelectedItem;
             string keyword = txtSearch.Text;
-            LoadCities(1, keyword); // de inlocuit cu district Id ul selectat
+            if (keyword == "")
+            {
+                LoadCities(1);
+            }
+            else
+            {
+                LoadCities(1, keyword); // de inlocuit cu district Id ul selectat
+            }
         }
-        private void LoadCities(int districtId, string keyword)
-        { 
-            cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
+        private async void LoadCities(int districtId, string keyword)
+        {
+            var url = "http://localhost:5000/GetConfereceCitiesByIdAndKeyword?districtId="+districtId.ToString()+"&keyword="+keyword;
+            cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
+            Console.WriteLine("Lista cities are marimea " + cities.Count);
+            //cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";

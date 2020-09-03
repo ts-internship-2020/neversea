@@ -15,7 +15,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.Security.ExchangeActiveSyncProvisioning;
-using Windows.Web.Http;
 
 namespace ConferencePlanner.WinUi.View
 {

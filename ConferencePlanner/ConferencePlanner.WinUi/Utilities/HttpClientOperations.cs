@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
+using ConferencePlanner.Abstraction.Model;
 
 namespace ConferencePlanner.WinUi.Utilities
 {
@@ -23,6 +24,7 @@ namespace ConferencePlanner.WinUi.Utilities
                 var content = httpResponseMessage.Content; 
                 var data = await content.ReadAsStringAsync();
                 returnedList = (List<T>)JsonConvert.DeserializeObject<IEnumerable<T>>(data);
+                Console.WriteLine("Lista returnata are marimea " + returnedList.Count);
                 return returnedList;
             } 
             else
