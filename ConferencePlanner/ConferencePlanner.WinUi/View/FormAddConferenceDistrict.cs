@@ -8,6 +8,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Windows.Web.Http;
+using HttpClient = System.Net.Http.HttpClient;
+using HttpResponseMessage = System.Net.Http.HttpResponseMessage;
+using Newtonsoft.Json;
 using ConferencePlanner.WinUi.Utilities;
 
 namespace ConferencePlanner.WinUi.View
@@ -38,9 +43,21 @@ namespace ConferencePlanner.WinUi.View
             LoadDistricts();
         }
 
-        private void LoadDistricts()
+        private async void LoadDistricts()
         {
-            districts = districtRepository.GetDistricts();
+            //HttpClient httpClient = HttpClientFactory.Create();
+            //var url = "http://localhost:2794/api/District";
+            //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+            //if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            //{
+            //    var content = httpResponseMessage.Content;
+            //    var data = await content.ReadAsStringAsync();
+
+            //    districts = (List < DistrictModel >) JsonConvert.DeserializeObject<IEnumerable<DistrictModel>>(data);
+            //}
+            //districts = districtRepository.GetDistricts();
+            var url = "http://localhost:2794/api/District";
+            districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
             this.dgvDistricts.Columns[3].Visible = false;
@@ -56,6 +73,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void LoadDistricts(string keyword)
         {
+           
             districts = districtRepository.GetDistricts(keyword);
 
             dgvDistricts.ColumnCount = 4;
@@ -160,6 +178,7 @@ namespace ConferencePlanner.WinUi.View
                 // districtRepository.DeleteDistrict(districtId, countryId);
                 LoadDistricts();
             }
+
         }
 
         private void dgvDistricts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

@@ -22,7 +22,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
         }
 
+        public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId)
+        {
 
+        }
+        public void InsertConferenceXSpeaker(int _conferenceId, int _speakerId)
+        {
+
+        }
         public void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
@@ -73,7 +80,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
-            public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
+        public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             string sqlStartDate = startDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
@@ -113,7 +120,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             sqlDataReader.Close();
             return conferences;
-        }
+        } 
 
         public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances)
         {

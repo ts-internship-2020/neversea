@@ -220,7 +220,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvSpeakers.SelectedRows[0].Index;
                 int speakerId = Convert.ToInt32(dgvSpeakers[0, selectedIndex].Value);
-                conferenceSpeakerRepository.DeleteSpeaker(speakerId);
+                //conferenceSpeakerRepository.DeleteSpeaker(speakerId);
+                SpeakerModel model = new SpeakerModel();
+
+                model.DictionarySpeakerId = speakerId;
+
+                HttpClientOperations.DeleteOperation<SpeakerModel>("", model);
                 LoadSpeakers();
             }
         }

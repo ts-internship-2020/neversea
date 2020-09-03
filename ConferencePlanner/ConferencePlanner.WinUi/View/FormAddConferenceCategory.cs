@@ -124,7 +124,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvConferenceCategories.SelectedRows[0].Index;
                 int conferenceCategoryId = Convert.ToInt32(dgvConferenceCategories[1, selectedIndex].Value);
-                conferenceCategoryRepository.DeleteConferenceCategory(conferenceCategoryId);
+                //conferenceCategoryRepository.DeleteConferenceCategory(conferenceCategoryId);
+                ConferenceCategoryModel model = new ConferenceCategoryModel();
+
+                model.conferenceCategoryId = conferenceCategoryId;
+
+                HttpClientOperations.DeleteOperation<ConferenceCategoryModel>("http://localhost:2794/api/ConferenceCategory/DeleteCategory", model);
                 LoadConferenceCategories();
             }
         }

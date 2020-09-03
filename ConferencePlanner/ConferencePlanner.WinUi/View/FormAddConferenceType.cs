@@ -156,7 +156,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvConferenceTypes.SelectedRows[0].Index;
                 int conferenceTypeId = Convert.ToInt32(dgvConferenceTypes[1, selectedIndex].Value);
-                conferenceTypeRepository.DeleteConferenceType(conferenceTypeId);
+               // conferenceTypeRepository.DeleteConferenceType(conferenceTypeId);
+                ConferenceTypeModel model = new ConferenceTypeModel();
+
+                model.conferenceTypeId = conferenceTypeId;
+
+                HttpClientOperations.DeleteOperation<ConferenceTypeModel>("http://localhost:2794/api/ConferenceType/DeleteConferenceType", model);
                 LoadConferenceTypes();
             }
         }
