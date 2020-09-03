@@ -28,6 +28,7 @@ namespace ConferencePlanner.WinUi.Utilities
                 var content = httpResponseMessage.Content; 
                 var data = await content.ReadAsStringAsync();
                 returnedList = (List<T>)JsonConvert.DeserializeObject<IEnumerable<T>>(data);
+                Console.WriteLine("Lista returnata are marimea " + returnedList.Count);
                 return returnedList;
             } 
             else
