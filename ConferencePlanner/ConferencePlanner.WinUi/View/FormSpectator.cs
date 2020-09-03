@@ -63,10 +63,10 @@ namespace ConferencePlanner.WinUi.View
             List<ConferenceModel> conferences = new List<ConferenceModel>();
             List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
-            var urlGetConference = $"http://localhost:2794/api/Conference/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
+            var urlGetConference = $"http://localhost:5000/api/Conference/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
             conferences = await HttpClientOperations.GetOperation<ConferenceModel>(urlGetConference);
 
-            var urlGetConferenceAttendance = "http://localhost:2794/api/ConferenceAttendance/GetConferenceAttendance";
+            var urlGetConferenceAttendance = "http://localhost:5000/api/ConferenceAttendance/GetConferenceAttendance";
             conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
             //conferenceAttendances = conferenceAttendanceRepository.GetConferenceAttendance();
