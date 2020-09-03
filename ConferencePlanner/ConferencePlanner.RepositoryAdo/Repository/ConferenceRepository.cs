@@ -496,5 +496,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return conferences;
         }
 
+        public void InsertConferenceXSpeaker(int _conferenceId, int _speakerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId)
+        {
+            throw new NotImplementedException();
+        }
     }
 };

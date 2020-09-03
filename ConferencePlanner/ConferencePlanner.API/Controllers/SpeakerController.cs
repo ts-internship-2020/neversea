@@ -39,21 +39,21 @@ namespace ConferencePlanner.Api.Controllers
         }
         [HttpPost]
         [Route("/InsertSpeaker")]
-        public IActionResult InsertSpeaker([FromBody] DictionarySpeaker speakerModel, string speakerNationality)
+        public IActionResult InsertSpeaker([FromBody] SpeakerModel speakerModel)
         {
-            _getSpeakerRepository.InsertSpeaker(speakerModel.DictionarySpeakerName, speakerNationality, speakerModel.DictionarySpeakerRating, speakerModel.DictionarySpeakerImage);
+            _getSpeakerRepository.InsertSpeaker(speakerModel.DictionarySpeakerName, speakerModel.DictionarySpeakerNationality, speakerModel.DictionarySpeakerRating, speakerModel.DictionarySpeakerImage);
             return Ok();
         }
         [HttpPost]
         [Route("/UpdateSpeaker")]
-        public IActionResult UpdateSpeaker([FromBody] DictionarySpeaker speakerModel, string speakerNationality)
+        public IActionResult UpdateSpeaker([FromBody] SpeakerModel speakerModel)
         {
-            _getSpeakerRepository.UpdateSpeaker(speakerModel.DictionarySpeakerId, speakerModel.DictionarySpeakerName, speakerNationality, speakerModel.DictionarySpeakerRating, speakerModel.DictionarySpeakerImage);
+            _getSpeakerRepository.UpdateSpeaker(speakerModel.DictionarySpeakerId, speakerModel.DictionarySpeakerName, speakerModel.DictionarySpeakerNationality, speakerModel.DictionarySpeakerRating, speakerModel.DictionarySpeakerImage);
             return Ok();
         }
         [HttpDelete]
         [Route("/DeleteSpeaker")]
-        public IActionResult DeleteSpeaker([FromBody]DictionarySpeaker speakerModel)
+        public IActionResult DeleteSpeaker([FromBody] SpeakerModel speakerModel)
         {
             _getSpeakerRepository.DeleteSpeaker(speakerModel.DictionarySpeakerId);
             return Ok();

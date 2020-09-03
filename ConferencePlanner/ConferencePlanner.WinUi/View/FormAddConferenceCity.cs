@@ -68,7 +68,13 @@ namespace ConferencePlanner.WinUi.View
                 int selectedIndex = dgvCities.SelectedRows[0].Index;
                 int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
                 //int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
-                conferenceCityRepository.DeleteCity(cityId, 1);
+                // conferenceCityRepository.DeleteCity(cityId, 1);
+                ConferenceCityModel model = new ConferenceCityModel();
+
+                model.ConferenceCityId = cityId;
+
+                HttpClientOperations.DeleteOperation<ConferenceCityModel>("http://localhost:2794/DeleteCity", model);
+               
                 dgvCities.Rows.Clear();
                 LoadCities(1);
             }
@@ -85,11 +91,11 @@ namespace ConferencePlanner.WinUi.View
                         int indexCity = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
                         //conferenceCityRepository.UpdateCity(indexCity, nameCity, 1);
-                        ConferenceCityModel city = new ConferenceCityModel();
-                        city.ConferenceCityId = indexCity;
-                        city.ConferenceCityName = nameCity;
-                        city.ConferenceDistrictId = 1;
-                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:5000/InsertCity", city);
+                        ConferenceCityModel cityUpdated = new ConferenceCityModel();
+                        cityUpdated.ConferenceCityName = nameCity;
+                        cityUpdated.ConferenceCityId = indexCity;
+                        cityUpdated.ConferenceDistrictId = 1;
+                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:5000/UpdateCity", cityUpdated);
                         cities[e.RowIndex].ConferenceCityName = nameCity;
                     }
                     else
@@ -107,6 +113,7 @@ namespace ConferencePlanner.WinUi.View
                         {
                             LoadCities(1, txtSearch.Text);
                         }
+                        
                     }
                 }
                 catch

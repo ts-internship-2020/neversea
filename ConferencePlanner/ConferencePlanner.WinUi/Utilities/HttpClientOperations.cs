@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http.Formatting;
+using System.Web.Http;
 using ConferencePlanner.Abstraction.Model;
 
 namespace ConferencePlanner.WinUi.Utilities
@@ -16,11 +17,8 @@ namespace ConferencePlanner.WinUi.Utilities
     {
         public static HttpClient httpClient = HttpClientFactory.Create();
 
-
         public static async Task<List<T>> GetOperation<T>(string url)
         {
-            //HttpClient httpClient = HttpClientFactory.Create();
-
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
             List<T> returnedList = new List<T>(); 
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
@@ -52,35 +50,23 @@ namespace ConferencePlanner.WinUi.Utilities
 
         public static async void PostOperation<T>(string url, T obj)
         {
-            // HttpClient httpClient = HttpClientFactory.Create();
-
-            //  var encodedContent = new FormUrlEncodedContent(T);
-            
-                
-          
-                //city.ConferenceCityName = "TestSwagger";
-                //city.ConferenceDistrictId = 1; 
-                
-                var response = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
-            
-            
-
-            
-
-
+            var response = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
         }
         public static async void DeleteOperation<T>(string url, T obj)
         {
             HttpClient httpClient = HttpClientFactory.Create();
-            
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Delete,
-                    RequestUri = new Uri(url),
-                    Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")
-                };
-                var response = await httpClient.SendAsync(request);
-            
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url),
+                Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")
+            };
+            var response = await httpClient.SendAsync(request);
+
+        public static async void PutOperation<T>(string url, T obj)
+        {
+            await httpClient.PostAsJsonAsync(url, obj);
         }
     }
 }
