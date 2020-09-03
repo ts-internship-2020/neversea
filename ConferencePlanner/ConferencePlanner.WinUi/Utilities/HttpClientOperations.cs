@@ -7,14 +7,19 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.Http.Formatting;
+using ConferencePlanner.Abstraction.Model;
 
 namespace ConferencePlanner.WinUi.Utilities
 {
     public class HttpClientOperations
     {
+        public static HttpClient httpClient = HttpClientFactory.Create();
+
+
         public static async Task<List<T>> GetOperation<T>(string url)
         {
-            HttpClient httpClient = HttpClientFactory.Create();
+            //HttpClient httpClient = HttpClientFactory.Create();
 
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
             List<T> returnedList = new List<T>(); 
@@ -62,5 +67,25 @@ namespace ConferencePlanner.WinUi.Utilities
         }
 
 
+
+        public static async void PostOperation<T>(string url, T obj)
+        {
+            // HttpClient httpClient = HttpClientFactory.Create();
+
+            //  var encodedContent = new FormUrlEncodedContent(T);
+            
+                
+          
+                //city.ConferenceCityName = "TestSwagger";
+                //city.ConferenceDistrictId = 1; 
+                
+                var response = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
+            
+            
+
+            
+
+
+        }
     }
 }
