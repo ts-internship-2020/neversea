@@ -90,7 +90,11 @@ namespace ConferencePlanner.WinUi.View
                     else
                     {
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        conferenceCityRepository.InsertCity(nameCity, 1);
+                        // conferenceCityRepository.InsertCity(nameCity, 1);
+                        ConferenceCityModel city = new ConferenceCityModel();
+                        city.ConferenceCityName = nameCity;
+                        city.ConferenceDistrictId = 1;
+                        HttpClientOperations.PostOperation<ConferenceCityModel>("http://localhost:5000/InsertCity", city);
                         dgvCities.Rows.Clear();
                         if (txtSearch.Text == null)
                             LoadCities(1);
@@ -102,7 +106,7 @@ namespace ConferencePlanner.WinUi.View
                 }
                 catch
                 {
-
+                    
                 }
             }
         }
