@@ -79,7 +79,7 @@
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(117, 23);
             this.dtpStart.TabIndex = 4;
-            this.dtpStart.CloseUp += new System.EventHandler(this.dtpStart_CloseUp);
+            //this.dtpStart.CloseUp += new System.EventHandler(this.dtpStart_CloseUp);
             // 
             // dtpEnd
             // 
@@ -90,7 +90,7 @@
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(126, 23);
             this.dtpEnd.TabIndex = 5;
-            this.dtpEnd.CloseUp += new System.EventHandler(this.dtpEnd_CloseUp);
+            //this.dtpEnd.CloseUp += new System.EventHandler(this.dtpEnd_CloseUp);
             // 
             // btnPrevious
             // 

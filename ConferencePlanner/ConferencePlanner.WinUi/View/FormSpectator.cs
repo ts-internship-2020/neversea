@@ -41,7 +41,7 @@ namespace ConferencePlanner.WinUi.View
             dtpStart.Value = now.AddMonths(-1);
             dtpEnd.Value = now.AddMonths(1);
 
-            WireUpSpectator(dtpStart.Value, dtpEnd.Value);
+            //WireUpSpectator(dtpStart.Value, dtpEnd.Value);
 
             btnPrevious.Visible = false;
             foreach (DataGridViewRow row in dgvSpectator.Rows)
@@ -268,11 +268,12 @@ namespace ConferencePlanner.WinUi.View
             base.OnLoad(e);
             LoadTheme();
 
+
         }
 
-        private void FormSpectator_Load(object sender, EventArgs e)
+        private async Task FormSpectator_Load(object sender, EventArgs e)
         {
-
+            await WireUpSpectator(dtpStart.Value, dtpEnd.Value);
         }
 
 

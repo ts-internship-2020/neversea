@@ -80,7 +80,12 @@ namespace ConferencePlanner.WinUi.View
                     {
                         int indexCity = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString());
                         string nameCity = dgvCities.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                        conferenceCityRepository.UpdateCity(indexCity, nameCity, 1);
+                        //conferenceCityRepository.UpdateCity(indexCity, nameCity, 1);
+                        ConferenceCityModel city = new ConferenceCityModel();
+                        city.ConferenceCityId = indexCity;
+                        city.ConferenceCityName = nameCity;
+                        city.ConferenceDistrictId = 1;
+                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:5000/InsertCity", city);
                         cities[e.RowIndex].ConferenceCityName = nameCity;
                     }
                     else

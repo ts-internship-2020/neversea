@@ -12,6 +12,7 @@ namespace ConferencePlanner.Abstraction.Repository
         void InsertParticipant(int conferenceId, string spectatorEmail, int spectatorCode);
 
         public void InsertConference(ConferenceModel model);
+        public void InsertConference(ConferenceModel model, int locationId);
         public void InsertConferenceXSpeaker(ConferenceModel model, int speakerId);
         public void InsertConferenceXSpeaker(int _conferenceId, int _speakerId);
         void ModifySpectatorStatusWithdraw(string spectatorEmail, int conferenceId);
