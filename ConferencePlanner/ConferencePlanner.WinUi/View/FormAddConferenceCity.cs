@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -34,18 +35,20 @@ namespace ConferencePlanner.WinUi.View
 
         private async Task LoadCities(int districtId)
         {
-            HttpClient httpClient = HttpClientFactory.Create();
-            var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+            //HttpClient httpClient = HttpClientFactory.Create();
+            //var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
+            //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
-            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
-            {
-                var content = httpResponseMessage.Content;
-                var data = await content.ReadAsStringAsync();
+            //if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            //{
+            //    var content = httpResponseMessage.Content;
+            //    var data = await content.ReadAsStringAsync();
 
-                cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
-            }
+            //    cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
+            //}
             //cities = conferenceCityRepository.GetConferenceCities(districtId);
+            var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
+            cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
