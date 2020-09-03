@@ -288,7 +288,7 @@ namespace ConferencePlanner.WinUi.View
             locId = _conferenceLocationRepository.GetLocationId(location.CityId, conference.ConferenceLocation);
             
 
-            //conferenceRepository.InsertConference(conference, locId);
+           // conferenceRepository.InsertConference(conference, locId);
         }
     }
 }

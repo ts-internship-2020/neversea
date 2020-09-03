@@ -41,9 +41,9 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("PostConferenceType")]
-        public IActionResult insertConferenceType(string keyword)
+        public IActionResult insertConferenceType([FromBody] ConferenceTypeModel model)
         {
-            _conferenceTypeRepository.InsertConferenceType(keyword);
+            _conferenceTypeRepository.InsertConferenceType(model.conferenceTypeName);
             
             return Ok();
         }
@@ -51,17 +51,17 @@ namespace ConferencePlanner.Api.Controllers
         [HttpDelete]
         [Route("DeleteConferenceType")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult deleteConferenceType(int id)
+        public IActionResult deleteConferenceType([FromBody] ConferenceTypeModel model)
         {
-            _conferenceTypeRepository.DeleteConferenceType(id);
+            _conferenceTypeRepository.DeleteConferenceType(model.conferenceTypeId);
             return Ok();
         }
 
         [HttpPut]
         [Route("UpdateConferenceType")]
-        public IActionResult updateConferenceType(int conferenceTypeId, string conferenceTypeName)
+        public IActionResult updateConferenceType([FromBody] ConferenceTypeModel model)
         {
-            _conferenceTypeRepository.UpdateConferenceType(conferenceTypeId, conferenceTypeName);
+            _conferenceTypeRepository.UpdateConferenceType( model.conferenceTypeId ,model.conferenceTypeName);
             return Ok();
         }
     }

@@ -110,7 +110,11 @@ namespace ConferencePlanner.WinUi.View
                 else
                 {
                     conferenceCategoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
+                    ConferenceCategoryModel model = new ConferenceCategoryModel();
+                    model.conferenceCategoryName = conferenceCategoryName;
+                    
+                    HttpClientOperations.PostOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/InsertCategory", model);
+                    // conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
                     dgvConferenceCategories.Rows.Clear();
                     LoadConferenceCategories();
                 }
@@ -128,7 +132,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvConferenceCategories.SelectedRows[0].Index;
                 int conferenceCategoryId = Convert.ToInt32(dgvConferenceCategories[1, selectedIndex].Value);
-                conferenceCategoryRepository.DeleteConferenceCategory(conferenceCategoryId);
+                //conferenceCategoryRepository.DeleteConferenceCategory(conferenceCategoryId);
+                ConferenceCategoryModel model = new ConferenceCategoryModel();
+
+                model.conferenceCategoryId = conferenceCategoryId;
+
+                HttpClientOperations.DeleteOperation<ConferenceCategoryModel>("http://localhost:2794/api/ConferenceCategory/DeleteCategory", model);
                 LoadConferenceCategories();
             }
         }
@@ -204,7 +213,7 @@ namespace ConferencePlanner.WinUi.View
             WireUpCategories();
         }
 
-        private async Task<List<ConferenceCategoryModel>> GetResponse()
+       /* private async Task<List<ConferenceCategoryModel>> GetResponse()
         {
             List<ConferenceCategoryModel> model = null;
             ConferenceCategoryModel model1 = new ConferenceCategoryModel();
@@ -230,6 +239,6 @@ namespace ConferencePlanner.WinUi.View
 
 
 
-        }
+        }*/
     }
 }

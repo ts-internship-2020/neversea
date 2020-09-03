@@ -96,8 +96,8 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
                 DictionaryDistrictId = d.DictionaryDistrictId,
                 DictionaryCountryId = d.DictionaryCountryId
-            }).Where(d => d.DictionaryDistrictId == districtId && d.DictionaryCountryId==countryId).ToList();
-
+            }).Where(d => d.DictionaryDistrictId == districtId ).ToList();
+          //  && d.DictionaryCountryId == countryId
             List<DistrictModel> maxId = dictionaryDistrict.Select(d => new DistrictModel()
 
             {

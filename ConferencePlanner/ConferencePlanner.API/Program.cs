@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,5 +23,11 @@ namespace ConferencePlanner.Api
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+        public static async Task Main1(string[] args)
+        {
+            using var client = new HttpClient();
+            var content = await client.GetStringAsync("http://neversea.me");
+            Console.WriteLine(content);
+        }
     }
 }

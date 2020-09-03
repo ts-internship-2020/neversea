@@ -40,6 +40,17 @@ namespace ConferencePlanner.WinUi.Utilities
         {
             var response = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
         }
+        public static async void DeleteOperation<T>(string url, T obj)
+        {
+            HttpClient httpClient = HttpClientFactory.Create();
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url),
+                Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")
+            };
+            var response = await httpClient.SendAsync(request);
 
         public static async void PutOperation<T>(string url, T obj)
         {

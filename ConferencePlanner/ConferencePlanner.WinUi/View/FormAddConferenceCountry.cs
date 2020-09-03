@@ -116,8 +116,12 @@ namespace ConferencePlanner.WinUi.View
                     countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
                     countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
                     nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
-
-                    countryRepository.InsertCountry(countryName, countryCode, nationality);
+                    CountryModel country = new CountryModel();
+                    country.CountryName = countryName;
+                    country.CountryNationality = nationality;
+                    country.CountryCode = countryCode;
+                    HttpClientOperations.PostOperation<CountryModel>("http://localhost:5000/InsertCountry", country);
+                    // countryRepository.InsertCountry(countryName, countryCode, nationality);
                     dgvCountries.Rows.Clear();
                     LoadCountries();
                 }
@@ -150,7 +154,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvCountries.SelectedRows[0].Index;
                 int countryId = Convert.ToInt32(dgvCountries[1, selectedIndex].Value);
-                countryRepository.DeleteCountry(countryId);
+                //countryRepository.DeleteCountry(countryId);
+                CountryModel model = new CountryModel();
+
+                model.CountryId = countryId;
+
+                HttpClientOperations.DeleteOperation<CountryModel>("", model);
                 LoadCountries();
             }   
 

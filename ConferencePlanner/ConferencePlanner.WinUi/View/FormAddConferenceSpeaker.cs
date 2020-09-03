@@ -206,7 +206,13 @@ namespace ConferencePlanner.WinUi.View
                     speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
 
 
-                    conferenceSpeakerRepository.InsertSpeaker(speakerName, speakerNationality, speakerRating, speakerImage);
+                    // conferenceSpeakerRepository.InsertSpeaker(speakerName, speakerNationality, speakerRating, speakerImage);
+                    SpeakerModel model = new SpeakerModel();
+                    model.DictionarySpeakerName = speakerName;
+                    model.DictionarySpeakerNationality = speakerNationality;
+                    model.DictionarySpeakerRating = speakerRating;
+                    model.DictionarySpeakerImage = speakerImage;
+                    HttpClientOperations.PostOperation<SpeakerModel>("http://localhost:5000/InsertSpeaker", model);
                     dgvSpeakers.Rows.Clear();
                 }
 
@@ -224,7 +230,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvSpeakers.SelectedRows[0].Index;
                 int speakerId = Convert.ToInt32(dgvSpeakers[0, selectedIndex].Value);
-                conferenceSpeakerRepository.DeleteSpeaker(speakerId);
+                //conferenceSpeakerRepository.DeleteSpeaker(speakerId);
+                SpeakerModel model = new SpeakerModel();
+
+                model.DictionarySpeakerId = speakerId;
+
+                HttpClientOperations.DeleteOperation<SpeakerModel>("", model);
                 LoadSpeakers();
             }
         }

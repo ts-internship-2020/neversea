@@ -148,8 +148,11 @@ namespace ConferencePlanner.WinUi.View
                 else
                 {
                     conferenceTypeName = dgvConferenceTypes.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    ConferenceTypeModel model = new ConferenceTypeModel();
+                    model.conferenceTypeName = conferenceTypeName;
 
-                    conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
+                    HttpClientOperations.PostOperation<ConferenceTypeModel>("http://localhost:5000/api/ConferenceType/PostConferenceType", model);
+                    // conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
                     LoadConferenceTypes();
                 }
             }
@@ -165,7 +168,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvConferenceTypes.SelectedRows[0].Index;
                 int conferenceTypeId = Convert.ToInt32(dgvConferenceTypes[1, selectedIndex].Value);
-                conferenceTypeRepository.DeleteConferenceType(conferenceTypeId);
+               // conferenceTypeRepository.DeleteConferenceType(conferenceTypeId);
+                ConferenceTypeModel model = new ConferenceTypeModel();
+
+                model.conferenceTypeId = conferenceTypeId;
+
+                HttpClientOperations.DeleteOperation<ConferenceTypeModel>("http://localhost:2794/api/ConferenceType/DeleteConferenceType", model);
                 LoadConferenceTypes();
             }
         }
