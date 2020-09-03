@@ -20,15 +20,15 @@ namespace ConferencePlanner.WinUi.Utilities
         public static async Task<List<T>> GetOperation<T>(string url)
         {
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-            List<T> returnedList = new List<T>(); 
+            List<T> returnedList = new List<T>();
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
-                var content = httpResponseMessage.Content; 
+                var content = httpResponseMessage.Content;
                 var data = await content.ReadAsStringAsync();
                 returnedList = (List<T>)JsonConvert.DeserializeObject<IEnumerable<T>>(data);
                 Console.WriteLine("Lista returnata are marimea " + returnedList.Count);
                 return returnedList;
-            } 
+            }
             else
             {
                 throw new Exception("Couldn't load " + typeof(T).ToString());
@@ -51,10 +51,11 @@ namespace ConferencePlanner.WinUi.Utilities
                 Content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")
             };
             var response = await httpClient.SendAsync(request);
-
+        }
         public static async void PutOperation<T>(string url, T obj)
         {
             await httpClient.PostAsJsonAsync(url, obj);
         }
+
     }
 }
