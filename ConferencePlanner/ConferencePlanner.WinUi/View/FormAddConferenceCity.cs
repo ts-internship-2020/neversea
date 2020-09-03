@@ -68,7 +68,13 @@ namespace ConferencePlanner.WinUi.View
                 int selectedIndex = dgvCities.SelectedRows[0].Index;
                 int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
                 //int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
-                conferenceCityRepository.DeleteCity(cityId, 1);
+                // conferenceCityRepository.DeleteCity(cityId, 1);
+                ConferenceCityModel model = new ConferenceCityModel();
+
+                model.ConferenceCityId = cityId;
+
+                HttpClientOperations.DeleteOperation<ConferenceCityModel>("http://localhost:2794/DeleteCity", model);
+               
                 dgvCities.Rows.Clear();
                 LoadCities(1);
             }

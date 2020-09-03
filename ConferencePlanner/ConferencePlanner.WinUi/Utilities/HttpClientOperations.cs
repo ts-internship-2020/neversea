@@ -51,10 +51,6 @@ namespace ConferencePlanner.WinUi.Utilities
                 
                 var response = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
             
-            
-
-            
-
 
         }
         public static async void DeleteOperation<T>(string url, T obj)

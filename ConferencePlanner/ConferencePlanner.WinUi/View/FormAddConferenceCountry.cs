@@ -141,7 +141,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvCountries.SelectedRows[0].Index;
                 int countryId = Convert.ToInt32(dgvCountries[1, selectedIndex].Value);
-                countryRepository.DeleteCountry(countryId);
+                //countryRepository.DeleteCountry(countryId);
+                CountryModel model = new CountryModel();
+
+                model.CountryId = countryId;
+
+                HttpClientOperations.DeleteOperation<CountryModel>("", model);
                 LoadCountries();
             }   
 
