@@ -45,7 +45,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return speakers;
         }
 
-        public void UpdateSpeaker(int speakerId, string speakerName, string speakerNationality, float speakerRating, string speakerImage)
+        public void UpdateSpeaker(int speakerId, string speakerName, string speakerNationality, double speakerRating, string speakerImage)
         {
 
             SqlCommand sqlCommand = new SqlCommand("spSpeakers_Update", sqlConnection);
@@ -61,7 +61,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
-        public void InsertSpeaker(string speakerName, string speakerNationality, float speakerRating, string speakerImage)
+        public void InsertSpeaker(string speakerName, string speakerNationality, double speakerRating, string speakerImage)
         {
             SqlCommand sqlCommandMaxId = sqlConnection.CreateCommand();
             sqlCommandMaxId.CommandText = $"SELECT MAX(DictionarySpeakerId) AS DictionarySpeakerId " +

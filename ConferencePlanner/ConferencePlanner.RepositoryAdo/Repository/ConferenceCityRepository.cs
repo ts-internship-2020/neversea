@@ -40,7 +40,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
             }
             return cities;
         }
-        public void updateCity(int index, string city, int districtId)
+        public void UpdateCity(int index, string city, int districtId)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 Console.WriteLine("nu am putut face update");
             }
         }
-        public void insertCity(string city, int districtId)
+        public void InsertCity(string city, int districtId)
         {
             SqlCommand sqlCommandMaxIndex = sqlConnection.CreateCommand();
             sqlCommandMaxIndex.CommandText = $"select Max(DictionaryCityId) as DictionaryCityId " +
