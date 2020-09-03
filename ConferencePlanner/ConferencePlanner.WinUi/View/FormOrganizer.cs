@@ -1,13 +1,17 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using MimeKit;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+//using Windows.Web.Http;
 
 namespace ConferencePlanner.WinUi.View
 {
@@ -34,6 +38,58 @@ namespace ConferencePlanner.WinUi.View
 
             DateTime initialStart = DateTime.Parse("01.01.1900 00:00:00");
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
+
+            //WireUpOrganiser();
+
+            DataGridViewButtonColumn buttonEditColumn = new DataGridViewButtonColumn
+            {
+                HeaderText = "Edit",
+                Name = "buttonEditColumn",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true
+            };
+            dgvOrganiser.Columns.Add(buttonEditColumn);
+        }
+
+        private async Task LoadConferences(DateTime _startDate, DateTime _endDate)
+        {
+
+            //List<ConferenceModel> conferences = new List<ConferenceModel>();
+            List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
+
+            HttpClient httpClient = HttpClientFactory.Create();
+            var url = "http://localhost:2794/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+
+            if (httpResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var content = httpResponseMessage.Content;
+                var data = await content.ReadAsStringAsync();
+
+                Conferences = (List<ConferenceModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceModel>>(data);
+            }
+
+            //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
+
+            comboBoxPagesNumber.SelectedIndex = 0;
+            //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
+
+            maxrange = Conferences.Count;
+            btnPrevious.Visible = false;
+            dgvOrganiser.ColumnCount = 8;
+            dgvOrganiser.Columns[0].Name = "Id";
+            dgvOrganiser.Columns[1].Name = "Title";
+            dgvOrganiser.Columns[2].Name = "StartDate";
+            dgvOrganiser.Columns[3].Name = "EndDate";
+            dgvOrganiser.Columns[4].Name = "Type";
+            dgvOrganiser.Columns[5].Name = "Category";
+            dgvOrganiser.Columns[6].Name = "Address";
+            dgvOrganiser.Columns[7].Name = "Speaker";
+            this.dgvOrganiser.Columns[0].Visible = false;
+        }
+
+        /*private void LoadConferences()
+        {
             Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
 
             comboBoxPagesNumber.SelectedIndex = 0;
@@ -51,17 +107,7 @@ namespace ConferencePlanner.WinUi.View
             dgvOrganiser.Columns[6].Name = "Address";
             dgvOrganiser.Columns[7].Name = "Speaker";
             this.dgvOrganiser.Columns[0].Visible = false;
-            WireUpOrganiser();
-
-            DataGridViewButtonColumn buttonEditColumn = new DataGridViewButtonColumn
-            {
-                HeaderText = "Edit",
-                Name = "buttonEditColumn",
-                Text = "Edit",
-                UseColumnTextForButtonValue = true
-            };
-            dgvOrganiser.Columns.Add(buttonEditColumn);
-        }
+        }*/
 
         protected override void OnLoad(EventArgs e)
         {
@@ -69,14 +115,15 @@ namespace ConferencePlanner.WinUi.View
             LoadTheme();
         }
 
-        private void FormSpectator_Load(object sender, EventArgs e)
+        private async Task FormSpectator_Load(object sender, EventArgs e)
         {
             DateTime initialStart = DateTime.Parse("01.01.1900 00:00:00");
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
-            Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
+            //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
+            await LoadConferences(initialStart, initialEnd);
 
-           //comboBoxPagesNumber.SelectedIndex = 0;
-            Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
+            comboBoxPagesNumber.SelectedIndex = 0;
+            //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
 
             maxrange = Conferences.Count;
             btnPrevious.Visible = false;
@@ -103,7 +150,8 @@ namespace ConferencePlanner.WinUi.View
         }
 
         private void WireUpOrganiser()
-        { 
+        {
+
             for (int i = range; i < step; i++)
             {
                 if (i >= maxrange)

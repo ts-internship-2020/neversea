@@ -22,7 +22,7 @@ namespace ConferencePlanner.Api.Controllers
         }
 
         [HttpGet]
-        [Route("all/{spectatorEmail}")]
+        [Route("all/spectator/{spectatorEmail}")]
         public IActionResult GetConferences([FromRoute] string spectatorEmail, DateTime startDate, DateTime endDate)
         {
             List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(spectatorEmail, startDate, endDate);
@@ -30,7 +30,7 @@ namespace ConferencePlanner.Api.Controllers
         }
 
         [HttpGet]
-        [Route("organized/all/{organizerEmail}")]
+        [Route("all/organizer/{organizerEmail}")]
         public IActionResult GetConferenceBetweenDates([FromRoute] string organizerEmail, DateTime startDate, DateTime endDate)
         {
             List<ConferenceModel> conferenceModels = conferenceRepository.GetConferenceBetweenDates(organizerEmail, startDate, endDate);

@@ -1,6 +1,7 @@
 ﻿using BarcodeLib;
 using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +9,10 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 
@@ -49,7 +52,107 @@ namespace ConferencePlanner.WinUi.View
 
         }
 
-        private void WireUpSpectator(DateTime startDate, DateTime endDate)
+        private async Task WireUpSpectator(DateTime _startDate, DateTime _endDate)
+        {
+            btnNext.Visible = false;
+            dgvSpectator.Rows.Clear();
+            dgvSpectator.Columns.Clear();
+
+            List<ConferenceModel> conferences = new List<ConferenceModel>();
+            List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
+
+            HttpClient httpClient = HttpClientFactory.Create();
+            var url = "http://localhost:2794/api/Conference/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url); 
+
+            if(httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                var content = httpResponseMessage.Content;
+                var data = await content.ReadAsStringAsync();
+
+                conferences = (List<ConferenceModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceModel>>(data);
+            }
+
+
+
+            conferenceAttendances = conferenceAttendanceRepository.GetConferenceAttendance();
+
+
+            //conferences = conferenceRepository.GetConference(emailCopyFromMainForm, startDate, endDate, conferenceAttendances);
+
+            dgvSpectator.DataSource = null;
+            dgvSpectator.DataSource = conferences;
+
+            dgvSpectator.Columns[0].HeaderText = "Title";
+            dgvSpectator.Columns[1].HeaderText = "Id";
+            dgvSpectator.Columns[2].HeaderText = "Starts";
+            dgvSpectator.Columns[3].HeaderText = "Ends";
+            dgvSpectator.Columns[4].HeaderText = "Type";
+            dgvSpectator.Columns[5].HeaderText = "Category";
+            dgvSpectator.Columns[6].HeaderText = "Speaker";
+            dgvSpectator.Columns[7].HeaderText = "Location";
+            dgvSpectator.Columns[8].HeaderText = "SpeakerId";
+            dgvSpectator.Columns[9].HeaderText = "OrganiserEmail";
+
+            this.dgvSpectator.Columns[7].Visible = false;
+            this.dgvSpectator.Columns[9].Visible = false;
+            this.dgvSpectator.Columns[1].Visible = false;
+            this.dgvSpectator.Columns[8].Visible = false;
+            this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
+            dgvSpectator.Columns[2].Name = "StartDate";
+            dgvSpectator.Columns[3].Name = "EndDate";
+
+            // Image img = Properties.Resources.icons8_cancel_32px;
+            Image img2 = Properties.Resources.icons8_add_user_group_man_man_20;
+            DataGridViewImageColumn buttonJoinColumn = new DataGridViewImageColumn
+            {
+                HeaderText = "Join",
+                Name = "buttonJoinColumn",
+                ToolTipText = "Join Conference",
+                Image = img2,
+                Description = "Press to Join"
+
+
+
+            };
+
+            comboBoxPagesNumber.SelectedIndex = 0;
+
+
+            dgvSpectator.Columns.Add(buttonJoinColumn);
+
+            DataGridViewImageColumn buttonAttendColumn = new DataGridViewImageColumn
+            {
+                HeaderText = "Attend",
+                Name = "buttonAttendColumn",
+                ToolTipText = "Attend Conference",
+                Image = Properties.Resources.icons8_event_accepted_20,
+                Description = "Press to Attend"
+
+
+            };
+
+
+            dgvSpectator.Columns.Add(buttonAttendColumn);
+
+
+            DataGridViewImageColumn buttonWithdrawColumn = new DataGridViewImageColumn
+            {
+                HeaderText = "Withdraw",
+                Name = "buttonWithdrawColumn",
+                ToolTipText = "Withdraw from conference",
+                DividerWidth = 0,
+                Image = Properties.Resources.icons8_xbox_x_20,
+                Description = "Press to Withdraw"
+
+            };
+
+            dgvSpectator.Columns.Add(buttonWithdrawColumn);
+
+
+        }
+
+        /*private void WireUpSpectator(DateTime startDate, DateTime endDate)
         {
             btnNext.Visible = false;
             dgvSpectator.Rows.Clear();
@@ -133,7 +236,7 @@ namespace ConferencePlanner.WinUi.View
             dgvSpectator.Columns.Add(buttonWithdrawColumn);
 
          
-        }
+        }*/
 
         private void OpenChildForm(Form childForm)
         {
@@ -376,6 +479,11 @@ namespace ConferencePlanner.WinUi.View
             image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image.jpeg", ImageFormat.Jpeg);
 
             return image;
+        }
+
+        private async Task InsertParticipantAsync(int conferenceId, string spectatorEmail, int participantStatusCode)
+        {
+
         }
 
         private void dgvSpectator_CellContentClick_2(object sender, DataGridViewCellEventArgs e)
