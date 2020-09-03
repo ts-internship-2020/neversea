@@ -1,11 +1,15 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConferencePlanner.WinUi.View
@@ -26,11 +30,15 @@ namespace ConferencePlanner.WinUi.View
             conferenceCategoryRepository = _conferenceCategoryRepository;
             InitializeComponent();
             LoadConferenceCategories();
+            
         }
 
         private void LoadConferenceCategories()
         {
-            conferenceCategories = conferenceCategoryRepository.GetConferenceCategories();
+            List<ConferenceCategoryModel> categs = new List<ConferenceCategoryModel>();
+            //categs = GetResponse();
+           //conferenceCategories = GetResponse();
+           conferenceCategories = conferenceCategoryRepository.GetConferenceCategories();
             dgvConferenceCategories.ColumnCount = 2;
             dgvConferenceCategories.Columns[0].Name = "Category";
             dgvConferenceCategories.Columns[1].Name = "Id";
@@ -176,6 +184,34 @@ namespace ConferencePlanner.WinUi.View
             shown = (int)comboBoxPagesNumber.SelectedItem;
             btnPrevious.Visible = false;
             WireUpCategories();
+        }
+
+        private async Task<List<ConferenceCategoryModel>> GetResponse()
+        {
+            List<ConferenceCategoryModel> model = null;
+            ConferenceCategoryModel model1 = new ConferenceCategoryModel();
+            HttpClient client = new HttpClient();
+            HttpResponseMessage s = await client.GetAsync("http://localhost:2794/api/ConferenceCategory/GetAllCategories");
+            if (s.IsSuccessStatusCode)
+            {
+
+               
+                var responseBody = await s.Content.ReadAsStringAsync();
+                model = JsonConvert.DeserializeObject<List<ConferenceCategoryModel>>(responseBody);
+                Console.WriteLine(model);
+                return model;
+               
+                
+
+
+            }
+            else
+            {
+                throw new Exception("NO");
+            }
+
+
+
         }
     }
 }

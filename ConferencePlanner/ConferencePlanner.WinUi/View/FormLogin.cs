@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -94,6 +95,11 @@ namespace ConferencePlanner.WinUi.View
             this.tb_email.Enter += new EventHandler(tb_email_Enter);
             this.tb_email.Leave += new EventHandler(tb_email_Leave);
             tb_email_SetText();
+
+
+
+      
+           
         }
 
         private void tb_email_Leave(object sender, EventArgs e)
