@@ -13,13 +13,14 @@ namespace ConferencePlanner.Repository.Ef.Repository
     {
 
         private readonly neverseaContext dbContext;
+        private readonly IConferenceLocationRepository conferenceLocationRepository;
 
         public ConferenceRepository(neverseaContext _dbContext)
         {
             dbContext = _dbContext;
         }
 
-        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendanceModels)
+        public List<ConferenceModel> GetConference(string _spectatorEmail, DateTime _startDate, DateTime _endDate, List<ConferenceAttendanceModel> _conferenceAttendanceModels)
         {
             List<Conference> conferences = dbContext.Conference
                                             .Include(c => c.DictionaryConferenceType)
@@ -34,8 +35,8 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                  .ToList();
 
             List<ConferenceModel> conferenceModels = conferences
-                                                        .Where(c => c.StartDate >= startDate && c.EndDate <= endDate)
-                                                        .OrderBy(c => c.ConferenceAttendance.FirstOrDefault().DictionaryParticipantStatus).ThenBy(c => c.ConferenceName)
+                                                        .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate)
+                                                        .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().DictionaryParticipantStatus).ThenBy(c => c.ConferenceName)
                                                         .Select(m => new ConferenceModel()
                                                               {
                                                                 ConferenceName = m.ConferenceName,
@@ -64,7 +65,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             return conferenceModels;
         }
 
-        public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
+        public List<ConferenceModel> GetConference(string _spectatorEmail, DateTime _startDate, DateTime _endDate)
         {
             List<Conference> conferences = dbContext.Conference
                                             .Include(c => c.DictionaryConferenceType)
@@ -80,12 +81,8 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                             .ToList();
 
             List<ConferenceModel> conferenceModels = conferences
-                                                        .Where(c => c.StartDate >= startDate && c.EndDate <= endDate)
-                                                        .OrderBy(c => c.ConferenceAttendance
-                                                                            .Where(ca => ca.ParticipantEmailAddress == spectatorEmail)
-                                                                            .Select(ca => ca.DictionaryParticipantStatus.DictionaryParticipantStatusName)
-                                                                            .FirstOrDefault())
-                                                            .ThenBy(c => c.ConferenceName)
+                                                        .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate)
+                                                        .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).Select(ca => ca.DictionaryParticipantStatusId).FirstOrDefault())
                                                         .Select(m => new ConferenceModel()
                                                         {
                                                             ConferenceName = m.ConferenceName,
@@ -114,7 +111,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             return conferenceModels;
         }
 
-        public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
+        public List<ConferenceModel> GetConferenceBetweenDates(string _emailOrganiser, DateTime _startDate, DateTime _endDate)
         {
             List<Conference> conferences = dbContext.Conference
                                 .Include(c => c.DictionaryConferenceType)
@@ -125,7 +122,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                      .ToList();
 
             List<ConferenceModel> conferenceModels = conferences
-                                            .Where(c => c.StartDate >= startDate && c.EndDate <= endDate && c.OrganiserEmail == emailOrganiser)
+                                            .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate && c.OrganiserEmail == _emailOrganiser)
                                             .OrderBy(c => c.StartDate).ThenBy(c => c.ConferenceName)
                                             .Select(m => new ConferenceModel()
                                             {
@@ -137,13 +134,13 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                 ConferenceCategory = m.DictionaryConferenceCategory.DictionaryConferenceCategoryName,
                                                 ConferenceMainSpeaker = m.ConferenceXspeaker
                                                                              .Where(x => x.IsMain)
-                                                                             .FirstOrDefault()
-                                                                             .DictionarySpeaker.DictionarySpeakerName,
+                                                                             .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
+                                                                             .FirstOrDefault(),
                                                 ConferenceLocation = m.Location.LocationAddress,
                                                 SpeakerId = m.ConferenceXspeaker
                                                                     .Where(x => x.IsMain)
-                                                                    .FirstOrDefault()
-                                                                    .DictionarySpeaker.DictionarySpeakerId,
+                                                                    .Select(x => x.DictionarySpeakerId)
+                                                                    .FirstOrDefault(),
                                                 ConferenceOrganiserEmail = m.OrganiserEmail
                                             }).ToList();
 
@@ -151,13 +148,13 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
 
 
-        public SpeakerModel getSelectSpeakerDetails(int speakerId)
+        public SpeakerModel getSelectSpeakerDetails(int _speakerId)
         {
             List<DictionarySpeaker> speakers = dbContext.DictionarySpeaker
                                                     .Include(s => s.DictionaryCountry)
                                                     .ToList();
             SpeakerModel speakerModel = speakers
-                                                  .Where(s => s.DictionarySpeakerId == speakerId)
+                                                  .Where(s => s.DictionarySpeakerId == _speakerId)
                                                   .Select(m => new SpeakerModel()
                                                   {
                                                       DictionarySpeakerName = m.DictionarySpeakerName,
@@ -170,46 +167,53 @@ namespace ConferencePlanner.Repository.Ef.Repository
             return speakerModel; 
         }
 
-        public void InsertConference(ConferenceModel model)
+        public void InsertConference(ConferenceModel _model)
         {
+            int conferenceTypeId = dbContext.DictionaryConferenceType
+                                       .Where(d => d.DictionaryConferenceTypeName == _model.ConferenceType)
+                                       .Select(d => d.DictionaryConferenceTypeId)
+                                       .FirstOrDefault();
+
             var conference = new Conference
             {
-                ConferenceName = model.ConferenceName, 
-                StartDate = model.ConferenceStartDate, 
-                EndDate = model.ConferenceEndDate, 
-                OrganiserEmail = model.ConferenceOrganiserEmail, 
-                LocationId = Int32.Parse(model.ConferenceLocation), 
-                DictionaryConferenceTypeId = Int32.Parse(model.ConferenceType), 
-                DictionaryConferenceCategoryId = Int32.Parse(model.ConferenceCategory)
+                ConferenceName = _model.ConferenceName, 
+                StartDate = _model.ConferenceStartDate, 
+                EndDate = _model.ConferenceEndDate, 
+                OrganiserEmail = _model.ConferenceOrganiserEmail, 
+                LocationId = Int32.Parse(_model.ConferenceLocation), 
+                DictionaryConferenceTypeId = conferenceTypeId, 
+                DictionaryConferenceCategoryId = Int32.Parse(_model.ConferenceCategory)
             };
 
             dbContext.Conference.Add(conference);
             dbContext.SaveChanges();
         }
 
-        public void InsertConference(ConferenceModel model, int locationId)
+        public void InsertConference(string _conferenceName, DateTime _startDate, DateTime _endDate, string _organiserEmail, int _locationId, int _conferenceTypeId, int _conferenceCategoryId)
         {
+
             var conference = new Conference
             {
-                ConferenceName = model.ConferenceName,
-                StartDate = model.ConferenceStartDate,
-                EndDate = model.ConferenceEndDate,
-                OrganiserEmail = model.ConferenceOrganiserEmail,
-                LocationId = locationId,
-                DictionaryConferenceTypeId = Int32.Parse(model.ConferenceType),
-                DictionaryConferenceCategoryId = Int32.Parse(model.ConferenceCategory)
+                ConferenceName = _conferenceName,
+                StartDate = _startDate,
+                EndDate = _endDate,
+                OrganiserEmail = _organiserEmail,
+                LocationId = _locationId,
+                DictionaryConferenceTypeId = _conferenceTypeId,
+                DictionaryConferenceCategoryId = _conferenceCategoryId
             };
 
             dbContext.Conference.Add(conference);
             dbContext.SaveChanges();
         }
 
-        public void InsertConferenceXSpeaker(ConferenceModel model, int speakerId)
+
+        public void InsertConferenceXSpeaker(ConferenceModel _model, int _speakerId)
         {
             var conferenceXSpeaker = new ConferenceXspeaker
             {
-                DictionarySpeakerId = speakerId,
-                ConferenceId = model.ConferenceId,
+                DictionarySpeakerId = _speakerId,
+                ConferenceId = _model.ConferenceId,
                 IsMain = true
             };
 
@@ -217,13 +221,29 @@ namespace ConferencePlanner.Repository.Ef.Repository
             dbContext.SaveChanges();
         }
 
-        public void InsertParticipant(int conferenceId, string spectatorEmail, int spectatorCode)
+        public void InsertConferenceXSpeaker(int _conferenceId, int _speakerId)
+        {
+            var conferenceXSpeaker = new ConferenceXspeaker
+            {
+                DictionarySpeakerId = _speakerId,
+                ConferenceId = _conferenceId,
+                IsMain = true
+            };
+
+            dbContext.ConferenceXspeaker.Add(conferenceXSpeaker);
+            dbContext.SaveChanges();
+        }
+
+
+
+        public void InsertParticipant(int _conferenceId, string _spectatorEmail, int _spectatorCode)
         {
             var conferenceAttendance = new ConferenceAttendance
             {
-                ConferenceId = conferenceId, 
-                ParticipantEmailAddress = spectatorEmail, 
-                DictionaryParticipantStatusId = 2
+                ConferenceId = _conferenceId, 
+                ParticipantEmailAddress = _spectatorEmail, 
+                DictionaryParticipantStatusId = 2, 
+                ParticipationCode = null
             };
 
             dbContext.ConferenceAttendance.Add(conferenceAttendance);
@@ -231,9 +251,9 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
 
 
-        public void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId)
+        public void ModifySpectatorStatusJoin(string _spectatorEmail, int _conferenceId)
         {
-            var entryToUpdate = dbContext.ConferenceAttendance.FirstOrDefault(a => a.ConferenceId == conferenceId && a.ParticipantEmailAddress == spectatorEmail);
+            var entryToUpdate = dbContext.ConferenceAttendance.FirstOrDefault(a => a.ConferenceId == _conferenceId && a.ParticipantEmailAddress == _spectatorEmail);
             
             if (entryToUpdate != null)
             {
@@ -244,9 +264,9 @@ namespace ConferencePlanner.Repository.Ef.Repository
             }
         }
 
-        public void ModifySpectatorStatusWithdraw(string spectatorEmail, int conferenceId)
+        public void ModifySpectatorStatusWithdraw(string _spectatorEmail, int _conferenceId)
         {
-            var entryToUpdate = dbContext.ConferenceAttendance.FirstOrDefault(a => a.ConferenceId == conferenceId && a.ParticipantEmailAddress == spectatorEmail);
+            var entryToUpdate = dbContext.ConferenceAttendance.FirstOrDefault(a => a.ConferenceId == _conferenceId && a.ParticipantEmailAddress == _spectatorEmail);
 
             if (entryToUpdate != null)
             {

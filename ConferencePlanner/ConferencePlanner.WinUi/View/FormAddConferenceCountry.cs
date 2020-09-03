@@ -1,5 +1,6 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.WinUi.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,9 +31,11 @@ namespace ConferencePlanner.WinUi.View
             LoadCountries();
         }
 
-        private void LoadCountries()
+        private async void LoadCountries()
         {
-            countries = countryRepository.GetCountry();
+            //countries = countryRepository.GetCountry();
+            var url = "http://localhost:5000/GetCountry";
+            countries = await HttpClientOperations.GetOperation<CountryModel>(url);
 
             this.dgvCountries.ColumnCount = 4;
             this.dgvCountries.Columns[1].Visible = false;
@@ -43,8 +46,6 @@ namespace ConferencePlanner.WinUi.View
             dgvCountries.Columns[3].Name = "Nationality";
             maxrange = countries.Count;
             WireUpCountries();
-
-
         }
 
         private void LoadCountries(string keyword)

@@ -22,7 +22,14 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlConnection = SqlConnection;
         }
 
+        public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId)
+        {
 
+        }
+        public void InsertConferenceXSpeaker(int _conferenceId, int _speakerId)
+        {
+
+        }
         public void ModifySpectatorStatusJoin(string spectatorEmail, int conferenceId)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
