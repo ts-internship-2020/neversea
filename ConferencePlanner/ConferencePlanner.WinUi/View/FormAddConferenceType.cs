@@ -174,6 +174,7 @@ namespace ConferencePlanner.WinUi.View
                 model.conferenceTypeId = conferenceTypeId;
 
                 HttpClientOperations.DeleteOperation<ConferenceTypeModel>("http://localhost:2794/api/ConferenceType/DeleteConferenceType", model);
+                dgvConferenceTypes.Rows.Clear();
                 LoadConferenceTypes();
             }
         }

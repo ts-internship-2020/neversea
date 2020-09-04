@@ -138,6 +138,7 @@ namespace ConferencePlanner.WinUi.View
                 model.conferenceCategoryId = conferenceCategoryId;
 
                 HttpClientOperations.DeleteOperation<ConferenceCategoryModel>("http://localhost:2794/api/ConferenceCategory/DeleteCategory", model);
+                dgvConferenceCategories.Rows.Clear();
                 LoadConferenceCategories();
             }
         }

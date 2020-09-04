@@ -46,7 +46,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadDistricts()
         {
             //districts = districtRepository.GetDistricts();
-            var url = "http://localhost:5000/api/District";
+            var url = "http://localhost:2794/api/District";
             districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
@@ -174,6 +174,7 @@ namespace ConferencePlanner.WinUi.View
                 model.CountryId = countryId;
                 HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:5000/api/District/deleteDistrict", model);
                 // districtRepository.DeleteDistrict(districtId, countryId);
+                dgvDistricts.Rows.Clear();
                 LoadDistricts();
             }
 

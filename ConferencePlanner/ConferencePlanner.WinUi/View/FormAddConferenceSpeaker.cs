@@ -236,6 +236,7 @@ namespace ConferencePlanner.WinUi.View
                 model.DictionarySpeakerId = speakerId;
 
                 HttpClientOperations.DeleteOperation<SpeakerModel>("", model);
+                dgvSpeakers.Rows.Clear();
                 LoadSpeakers();
             }
         }
