@@ -135,7 +135,14 @@ namespace ConferencePlanner.WinUi.View
                     districtName = dgvDistricts.Rows[e.RowIndex].Cells[1].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[1].Value.ToString();
                     districtCode = dgvDistricts.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvDistricts.Rows[e.RowIndex].Cells[2].Value.ToString();
                     countryId = dgvDistricts.Rows[e.RowIndex].Cells[3].Value == null ? 0 : Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
-                    districtRepository.UpdateDistrict(districtId, districtName, districtCode, countryId);
+                    DistrictModel model = new DistrictModel();
+                    model.DistrictId = districtId;
+                    model.DistrictName = districtCode;
+                    model.DistrictCode = districtCode;
+                    model.CountryId = 1;
+                    model.CountryId = countryId;
+                    HttpClientOperations.PutOperation<DistrictModel>("http://localhost:5000/api/District/updateDistrict", model);
+                    //districtRepository.UpdateDistrict(districtId, districtName, districtCode, countryId);
                 }
 
                 else
@@ -145,11 +152,10 @@ namespace ConferencePlanner.WinUi.View
                    // countryId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells[3].Value.ToString());
 
                     DistrictModel model = new DistrictModel();
-                    model.DistrictName = districtCode;
+                    model.DistrictName = districtName;
                     model.DistrictCode = districtCode;
                     model.CountryId = 1;
                    // model.CountryId = countryId;
-
                     HttpClientOperations.PostOperation<DistrictModel>("http://localhost:5000/api/District/insertDistrict", model);
                     // districtRepository.InsertDistrict(districtName, districtCode, 1);
                     dgvDistricts.Rows.Clear();

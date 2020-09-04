@@ -43,7 +43,7 @@ namespace ConferencePlanner.Api.Controllers
             _getDistrictRepository.InsertDistrict(districtModel.DistrictName,districtModel.DistrictCode,districtModel.CountryId);
             return Ok();
         }
-        [HttpPut]
+        [HttpPost]
         [Route("updateDistrict")]
         public IActionResult UpdateDistrict([FromBody] DistrictModel districtModel)
         {
