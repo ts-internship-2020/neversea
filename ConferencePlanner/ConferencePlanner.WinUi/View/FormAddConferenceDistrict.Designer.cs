@@ -74,6 +74,7 @@
             btnNextDistrict.Size = new System.Drawing.Size(42, 33);
             btnNextDistrict.TabIndex = 34;
             btnNextDistrict.UseVisualStyleBackColor = true;
+            btnNextDistrict.Visible = false;
             btnNextDistrict.Click += new System.EventHandler(this.btnNextDistrict_Click);
             // 
             // panelPagesControl
