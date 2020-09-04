@@ -100,7 +100,7 @@ namespace ConferencePlanner.WinUi.View
                     categoryUpdated.conferenceCategoryId = conferenceCategoryId;
                     categoryUpdated.conferenceCategoryName = conferenceCategoryName;
                     HttpClientOperations.PutOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/UpdateCategory", categoryUpdated);
-
+                    dgvConferenceCategories[e.ColumnIndex,e.RowIndex].Value = conferenceCategoryName;
                     //conferenceCategoryRepository.UpdateConferenceCategory(conferenceCategoryId, conferenceCategoryName);
                     //conferenceCategories[e.RowIndex].conferenceCategoryName = conferenceCategoryName;
                     //dgvConferenceCategories.Rows[e.RowIndex].Cells[e.ColumnIndex] = conferenceCategoryName;                    LoadConferenceCategories();

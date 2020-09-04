@@ -107,8 +107,17 @@ namespace ConferencePlanner.WinUi.View
                     countryName = dgvCountries.Rows[e.RowIndex].Cells[0].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[0].Value.ToString();
                     countryCode = dgvCountries.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[2].Value.ToString();
                     nationality = dgvCountries.Rows[e.RowIndex].Cells[3].Value == null ? "" : dgvCountries.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    countryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
-                    LoadCountries();
+                    //countryRepository.UpdateCountry(countryId, countryName, countryCode, nationality);
+                    CountryModel country = new CountryModel();
+                    country.CountryId = countryId;
+                    country.CountryName = countryName;
+                    country.CountryNationality = nationality;
+                    country.CountryCode = countryCode;
+                    HttpClientOperations.PutOperation<CountryModel>("http://localhost:5000/UpdateCountry", country);
+                    dgvCountries.Rows[e.RowIndex].Cells[0].Value = countryName;
+                    dgvCountries.Rows[e.RowIndex].Cells[2].Value = countryCode;
+                    dgvCountries.Rows[e.RowIndex].Cells[3].Value = nationality;
+
                 }
 
                 else
