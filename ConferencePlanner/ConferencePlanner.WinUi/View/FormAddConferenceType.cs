@@ -187,6 +187,7 @@ namespace ConferencePlanner.WinUi.View
         private void dgvConferenceTypes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            FormAddConferenceGeneral.conference.ConferenceType = typeId.ToString();
         }
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)

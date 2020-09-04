@@ -45,12 +45,12 @@ namespace ConferencePlanner.WinUi.View
 
             //    cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
             //}
-            //cities = conferenceCityRepository.GetConferenceCities(districtId);
+            cities = conferenceCityRepository.GetConferenceCities(districtId);
 
             var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
                 + districtId.ToString();
 
-            cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
+            //cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
             Console.WriteLine("Lista cities are marimea " + cities.Count);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
@@ -194,6 +194,7 @@ namespace ConferencePlanner.WinUi.View
         private void dgvCities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            FormAddConferenceGeneral.location.CityId = locationId;
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
