@@ -219,7 +219,7 @@ namespace ConferencePlanner.WinUi.View
             btnPreviousPage.Visible = true;
             if (step >= maxrange)
             {
-                button2.Enabled = false;
+                button2.Visible = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpCountries();

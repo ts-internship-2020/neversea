@@ -75,11 +75,11 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (conferenceTypes.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                    button2.Enabled = false;
+                    button2.Visible = false;
                 }
                 else if (step < maxrange)
                 {
-                    button2.Enabled = true;
+                    button2.Visible = true;
                 }
             }
 
@@ -203,7 +203,7 @@ namespace ConferencePlanner.WinUi.View
             btnPrevious.Visible = true;
             if (step >= maxrange)
             {
-                button2.Enabled = false;
+                button2.Visible = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpCities();

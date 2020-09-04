@@ -205,7 +205,7 @@ namespace ConferencePlanner.WinUi.View
             btnPreviousPage.Visible = true;
             if (step >= maxrange)
             {
-                btnNextPage.Enabled = false;
+                btnNextPage.Visible = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpCities();

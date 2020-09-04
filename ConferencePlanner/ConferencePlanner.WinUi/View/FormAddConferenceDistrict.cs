@@ -97,11 +97,11 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (districts.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                   // btnNextDistrict.Enabled = false;
+                   btnNextDistrict.Visible = false;
                 }
                 else if (step < maxrange)
                 {
-                    //btnNextDistrict.Enabled = true;
+                   btnNextDistrict.Visible = true;
                 }
             }
         }
@@ -232,7 +232,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-           // btnBackDistrict.Visible = false;
+            btnBackDistrict.Visible = false;
             WireUpDistricts();
         }
 
@@ -241,10 +241,10 @@ namespace ConferencePlanner.WinUi.View
             dgvDistricts.Rows.Clear();
             range = step;
             step += shown;
-            //btnBackDistrict.Visible = true;
+            btnBackDistrict.Visible = true;
             if (step >= maxrange)
             {
-                //btnNextDistrict.Enabled = false;
+                btnNextDistrict.Visible = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpDistricts();
@@ -256,10 +256,10 @@ namespace ConferencePlanner.WinUi.View
             dgvDistricts.Rows.Clear();
             step = range;
             range -= shown;
-            //btnBackDistrict.Visible = true;
+            btnBackDistrict.Visible = true;
             if (range == 0)
             {
-               // btnBackDistrict.Visible = false;
+               btnBackDistrict.Visible = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpDistricts();
