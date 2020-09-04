@@ -22,18 +22,24 @@ namespace ConferencePlanner.Api.Controllers
         }
 
         [HttpGet]
-        [Route("all/spectator/{spectatorEmail}")]
-        public IActionResult getConference([FromRoute] string spectatorEmail, DateTime startDate, DateTime endDate)
+        [Route("all/spectator/{email}")]
+        public IActionResult getConference([FromRoute] string email, string startDateStr, string endDateStr)
         {
-            List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(spectatorEmail, startDate, endDate);
+            DateTime startDate = Convert.ToDateTime(startDateStr);
+            DateTime endDate = Convert.ToDateTime(endDateStr);
+
+            List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(email, startDate, endDate);
             return Ok(conferenceModels);
         }
 
         [HttpGet]
-        [Route("all/organizer/{organizerEmail}")]
-        public IActionResult getConferenceBetweenDates([FromRoute] string organizerEmail, DateTime startDate, DateTime endDate)
+        [Route("all/organizer/{email}")]
+        public IActionResult getConferenceBetweenDates([FromRoute] string email, string startDateStr, string endDateStr)
         {
-            List<ConferenceModel> conferenceModels = conferenceRepository.GetConferenceBetweenDates(organizerEmail, startDate, endDate);
+            DateTime startDate = Convert.ToDateTime(startDateStr);
+            DateTime endDate = Convert.ToDateTime(endDateStr);
+
+            List<ConferenceModel> conferenceModels = conferenceRepository.GetConferenceBetweenDates(email, startDate, endDate);
             return Ok(conferenceModels);
         }
 

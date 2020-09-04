@@ -96,7 +96,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                                                          .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
                                                                                          .FirstOrDefault(),             
                                                             ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
-                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict
+                                                                                        + ", " + m.Location.DictionaryCity.DictionaryCityName
                                                                                         + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
                                                                                         + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryCountry.DictionaryCountryName,
                                                             SpeakerId = m.ConferenceXspeaker

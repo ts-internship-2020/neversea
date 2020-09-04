@@ -101,8 +101,6 @@ namespace ConferencePlanner.WinUi
                 
             };
 
-         
-
             dgvConferences.Columns.Add(buttonJoinColumn);
 
             DataGridViewImageColumn buttonAttendColumn = new DataGridViewImageColumn
