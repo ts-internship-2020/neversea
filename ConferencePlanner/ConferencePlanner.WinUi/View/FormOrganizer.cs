@@ -194,6 +194,9 @@ namespace ConferencePlanner.WinUi.View
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
 
+            DateTime _startDate = dtpStart.Value;
+            DateTime _endDate = dtpEnd.Value;
+
             var url = $"http://localhost:2794/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
             Conferences = await HttpClientOperations.GetOperation<ConferenceModel>(url);
 
