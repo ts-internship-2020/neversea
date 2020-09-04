@@ -28,12 +28,12 @@ namespace ConferencePlanner.WinUi.View
             startDate = dtpStart.Value;
             endDate = dtpEnd.Value;
             address = txtLocation.Text.ToString();
-            FormAddConferenceGeneral.conference.ConferenceName = title;
-            FormAddConferenceGeneral.conference.ConferenceOrganiserEmail = email;
+            FormAddConferenceGeneral.conferenceModel.ConferenceName = title;
+            FormAddConferenceGeneral.conferenceModel.ConferenceOrganiserEmail = email;
 
-            FormAddConferenceGeneral.conference.ConferenceStartDate = startDate;
-            FormAddConferenceGeneral.conference.ConferenceEndDate = endDate;
-            FormAddConferenceGeneral.conference.ConferenceLocation = address;
+            FormAddConferenceGeneral.conferenceModel.ConferenceStartDate = startDate;
+            FormAddConferenceGeneral.conferenceModel.ConferenceEndDate = endDate;
+            FormAddConferenceGeneral.conferenceModel.ConferenceLocation = address;
 
 
         }

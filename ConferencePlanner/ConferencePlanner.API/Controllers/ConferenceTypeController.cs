@@ -32,7 +32,7 @@ namespace ConferencePlanner.Api.Controllers
 
         
         [HttpGet]
-        [Route("GetFiltredTypes")]
+        [Route("GetTypesByKeyword")]
         public IActionResult getConferenceTypes(string keyword)
         {
             List<ConferenceTypeModel> conferenceTypeModels = _conferenceTypeRepository.getConferenceTypes(keyword);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.Repository.Ef.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,9 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("AddSpeakerInConference")]
-        public IActionResult postConferenceXSpeaker([FromBody] ConferenceXSpeakerModel model)
+        public IActionResult postConferenceXSpeaker([FromBody] ConferenceXspeaker conferenceXspeaker)
         {
-            _conferenceXSpeakerRepository.AddSpeaker(model.conferenceId, model.speakerId, model.isMain);
+            _conferenceXSpeakerRepository.AddSpeaker(conferenceXspeaker.ConferenceId, conferenceXspeaker.DictionarySpeakerId, conferenceXspeaker.IsMain);
             return Ok();
         }
 

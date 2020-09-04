@@ -154,6 +154,8 @@
             this.btnPrevious.Size = new System.Drawing.Size(42, 33);
             this.btnPrevious.TabIndex = 34;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Visible = true;
+            this.btnPrevious.Enabled = false;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // button3
@@ -169,6 +171,7 @@
             this.button3.Size = new System.Drawing.Size(42, 33);
             this.button3.TabIndex = 34;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel1

@@ -32,7 +32,7 @@ namespace ConferencePlanner.Api.Controllers
 
 
         [HttpGet]
-        [Route("GetFiltredCategories")]
+        [Route("GetCategoryByKeyword")]
         public IActionResult getConferenceCategories(string keyword)
         {
             List<ConferenceCategoryModel> conferenceCategoryModels = _conferenceCategoryRepository.GetConferenceCategories(keyword);
@@ -48,7 +48,7 @@ namespace ConferencePlanner.Api.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("UpdateCategory")]
         public IActionResult putConferenceCategories([FromBody] ConferenceCategoryModel model)
         {

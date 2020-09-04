@@ -17,6 +17,7 @@ namespace ConferencePlanner.WinUi.View
        
 
         public int speakerId = 0;
+        public string speakerName = "";
         List<SpeakerModel> speakers = new List<SpeakerModel>();
         public int range = 0;
         public int step = 4;
@@ -28,9 +29,11 @@ namespace ConferencePlanner.WinUi.View
             InitializeComponent();
             LoadSpeakers();
         }
-        private void LoadSpeakers()
+        private async void LoadSpeakers()
         {
-            speakers = conferenceSpeakerRepository.GetConferenceSpeakers();
+            //speakers = conferenceSpeakerRepository.GetConferenceSpeakers();
+            var url = "http://localhost:5000/GetConferenceSpeakers";
+            speakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
             dgvSpeakers.ColumnCount = 5;
             dgvSpeakers.Columns[0].Name = "Id";
             dgvSpeakers.Columns[1].Name = "Name";
@@ -42,10 +45,11 @@ namespace ConferencePlanner.WinUi.View
             WireUpSpeakers();
         }
 
-        private void LoadSpeakers(string keyword)
+        private async void LoadSpeakers(string keyword)
         {
-            List<SpeakerModel> speakers = new List<SpeakerModel>();
-            speakers = conferenceSpeakerRepository.GetConferenceSpeakers(keyword);
+            //speakers = conferenceSpeakerRepository.GetConferenceSpeakers(keyword);
+            var url = "http://localhost:5000/GetConferenceSpeakersByKeyword?keyword="+keyword;
+            speakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
             maxrange = speakers.Count;
             
             WireUpSpeakers();
@@ -91,11 +95,18 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             range = 0;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             string keyword = txtSearch.Text;
-            LoadSpeakers(keyword);
+            if (keyword == "")
+            {
+                LoadSpeakers();
+            }
+            else
+            {
+                LoadSpeakers(keyword);
+            }
         }
 
         private void dgvSpeakers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -127,7 +138,8 @@ namespace ConferencePlanner.WinUi.View
             } 
             else
             {
-                FormAddConferenceGeneral.conference.ConferenceMainSpeaker = speakerId.ToString();
+                FormAddConferenceGeneral.conferenceModel.SpeakerId = speakerId;
+                FormAddConferenceGeneral.conferenceModel.ConferenceMainSpeaker = speakerName;
             }
 
         }
@@ -137,7 +149,7 @@ namespace ConferencePlanner.WinUi.View
             dgvSpeakers.Rows.Clear();
             range = step;
             step += shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (step >= maxrange)
             {
                 button3.Enabled = false;
@@ -152,10 +164,10 @@ namespace ConferencePlanner.WinUi.View
             dgvSpeakers.Rows.Clear();
             step = range;
             range -= shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (range == 0)
             {
-                btnPrevious.Visible = false;
+                btnPrevious.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpSpeakers();
@@ -167,7 +179,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             WireUpSpeakers();
         }
 
@@ -225,7 +237,7 @@ namespace ConferencePlanner.WinUi.View
                 int speakerId = Convert.ToInt32(dgvSpeakers[0, selectedIndex].Value);
                 //conferenceSpeakerRepository.DeleteSpeaker(speakerId);
                 SpeakerModel model = new SpeakerModel();
-
+                
                 model.DictionarySpeakerId = speakerId;
 
                 HttpClientOperations.DeleteOperation<SpeakerModel>("", model);

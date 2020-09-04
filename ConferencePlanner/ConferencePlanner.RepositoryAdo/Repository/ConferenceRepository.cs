@@ -492,9 +492,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            List<ConferenceModel> conferences = new List<ConferenceModel>();
+            return conferences;
         }
 
-  
     }
 };
