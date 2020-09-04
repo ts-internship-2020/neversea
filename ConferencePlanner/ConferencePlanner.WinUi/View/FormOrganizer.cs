@@ -144,7 +144,7 @@ namespace ConferencePlanner.WinUi.View
             //List<ConferenceModel> conferences = new List<ConferenceModel>();
             List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
-            var url = $"http://localhost:2794/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDateStr}&endDateStr={_endDateStr}";
+            var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDateStr}&endDateStr={_endDateStr}";
 
             conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
 

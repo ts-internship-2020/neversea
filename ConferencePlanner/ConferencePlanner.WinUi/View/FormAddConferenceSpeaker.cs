@@ -32,7 +32,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadSpeakers()
         {
             //speakers = conferenceSpeakerRepository.GetConferenceSpeakers();
-            var url = "http://localhost:2794/GetConferenceSpeakers";
+            var url = "http://localhost:5000/GetConferenceSpeakers";
             speakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
             dgvSpeakers.ColumnCount = 5;
             dgvSpeakers.Columns[0].Name = "Id";
@@ -48,7 +48,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadSpeakers(string keyword)
         {
             //speakers = conferenceSpeakerRepository.GetConferenceSpeakers(keyword);
-            var url = "http://localhost:2794/GetConferenceSpeakersByKeyword?keyword=" + keyword;
+            var url = "http://localhost:5000/GetConferenceSpeakersByKeyword?keyword=" + keyword;
             speakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
             maxrange = speakers.Count;
             
@@ -111,7 +111,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvSpeakers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
+            if (dgvSpeakers.Rows[e.RowIndex].Cells["Name"].FormattedValue.ToString() != null)
             {
                 speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
             }
@@ -217,7 +217,7 @@ namespace ConferencePlanner.WinUi.View
                     model.DictionarySpeakerNationality = speakerNationality;
                     model.DictionarySpeakerRating = speakerRating;
                     model.DictionarySpeakerImage = speakerImage;
-                    HttpClientOperations.PostOperation<SpeakerModel>("http://localhost:2794/InsertSpeaker", model);
+                    HttpClientOperations.PostOperation<SpeakerModel>("http://localhost:5000/InsertSpeaker", model);
                     dgvSpeakers.Rows.Clear();
                 }
 
@@ -240,7 +240,7 @@ namespace ConferencePlanner.WinUi.View
                 
                 model.DictionarySpeakerId = speakerId;
 
-                HttpClientOperations.DeleteOperation<SpeakerModel>("", model);
+                HttpClientOperations.DeleteOperation<SpeakerModel>("http://localhost:5000/DeleteSpeaker", model);
                 LoadSpeakers();
             }
         }
