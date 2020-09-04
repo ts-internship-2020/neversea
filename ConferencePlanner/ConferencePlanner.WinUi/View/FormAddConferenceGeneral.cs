@@ -1,12 +1,18 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ado.Repository;
+using ConferencePlanner.Repository.Ef.Entities;
+using ConferencePlanner.WinUi.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
@@ -22,7 +28,8 @@ namespace ConferencePlanner.WinUi.View
         public static int countryId = new int();
        // public static int typeId = new int();
         public static LocationModel location = new LocationModel();
-        public static ConferenceModel conference = new ConferenceModel();
+        public static ConferenceModel conferenceModel = new ConferenceModel();
+        public static Conference conference = new Conference();
         private readonly IConferenceRepository conferenceRepository;
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
         private readonly ICountryRepository countryRepository;
@@ -52,23 +59,7 @@ namespace ConferencePlanner.WinUi.View
 
 
             InitializeComponent();
-            //LoadTheme();
             OpenChildForm(new FormAddConferenceGeneralDetails(), sender);
-        }
-
-
-        private void LoadTheme()
-        {
-            foreach (Control btns in this.Controls)
-            {
-                if (btns.GetType() == typeof(Button))
-                {
-                    Button btn = (Button)btns;
-                    btn.BackColor = ThemeColor.PrimaryColor;
-                    btn.ForeColor = Color.White;
-                    btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-                }
-            }
         }
 
 
@@ -371,14 +362,55 @@ namespace ConferencePlanner.WinUi.View
         {
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
-            
-            _conferenceLocationRepository.InsertLocation(location.CityId, locationAddress);
-            locId = _conferenceLocationRepository.GetLocationId(location.CityId, conference.ConferenceLocation);
-            
+            var urlLocation = "http://localhost:2794/location/new";
 
-           // conferenceRepository.InsertConference(conference, locId);
+            Location locationModel = new Location{ DictionaryCityId = location.CityId, LocationAddress = locationAddress };
+
+            HttpClientOperations.PostOperation<Location>(urlLocation, locationModel);
+
+            locId = await GetLocationId(location.CityId, conferenceModel.ConferenceLocation);
+
+            var urlConference = "http://localhost:2794/api/Conference/new";
+
+            Conference conferenceToAdd = new Conference
+            { ConferenceId = conferenceModel.ConferenceId,
+              ConferenceName = conferenceModel.ConferenceName, 
+              StartDate = conferenceModel.ConferenceStartDate, 
+              EndDate = conferenceModel.ConferenceEndDate, 
+              OrganiserEmail = conferenceModel.ConferenceOrganiserEmail, 
+              LocationId = locId, 
+              DictionaryConferenceCategoryId = 1, 
+              DictionaryConferenceTypeId = 1};
+
+            HttpClientOperations.PostOperation(urlConference, conferenceToAdd);
+
+            ConferenceXspeaker mainSpeakerToAdd = new ConferenceXspeaker
+            { DictionarySpeakerId = conferenceModel.SpeakerId, 
+              ConferenceId = conferenceModel.ConferenceId, 
+              IsMain = true};
+
+            var urlSpeaker = "http://localhost:2794//api/ConferenceXSpeaker/AddSpeakerInConference";
+
+            HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);
+        }
+
+        private async Task<int> GetLocationId(int cityId, string locationAddress)
+        {
+            int locationId = 0;
+            HttpClient httpClient = HttpClientFactory.Create();
+            var url = $"http://localhost:2794/location/getid?cityId={cityId}&address={locationAddress}";
+            HttpResponseMessage res = await httpClient.GetAsync(url);
+
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                var content = res.Content;
+                var data = await content.ReadAsStringAsync();
+                locationId = Convert.ToInt32(JsonConvert.DeserializeObject(data));
+            }
+
+            return locationId;
         }
         public void Alert(string msg)
         {

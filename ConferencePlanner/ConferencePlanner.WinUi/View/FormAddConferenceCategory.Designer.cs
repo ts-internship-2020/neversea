@@ -98,6 +98,7 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged_1);
             // 
             // btnPagesNumber
@@ -142,6 +143,8 @@
             this.btnPrevious.Size = new System.Drawing.Size(42, 33);
             this.btnPrevious.TabIndex = 34;
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Visible = true;
+            this.btnPrevious.Enabled = false;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // button2
@@ -157,6 +160,7 @@
             this.button2.Size = new System.Drawing.Size(42, 33);
             this.button2.TabIndex = 34;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panelPageController

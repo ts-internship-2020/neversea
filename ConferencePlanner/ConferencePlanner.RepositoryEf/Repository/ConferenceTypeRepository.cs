@@ -52,9 +52,9 @@ namespace ConferencePlanner.Repository.Ef.Repository
         public List<ConferenceTypeModel> getConferenceTypes(string keyword)
         {
             List<DictionaryConferenceType> dictionaryConferenceTypes = new List<DictionaryConferenceType>();
-            dictionaryConferenceTypes = _dbContext.DictionaryConferenceType.ToList();
+            dictionaryConferenceTypes = _dbContext.DictionaryConferenceType.Where(a => a.DictionaryConferenceTypeName.Contains(keyword)).ToList();
 
-            List<ConferenceTypeModel> conferenceTypeModels = dictionaryConferenceTypes.Select(a => new ConferenceTypeModel() { conferenceTypeId = a.DictionaryConferenceTypeId, conferenceTypeName = a.DictionaryConferenceTypeName }).Where(a=> a.conferenceTypeName.Contains( keyword)).ToList();
+            List<ConferenceTypeModel> conferenceTypeModels = dictionaryConferenceTypes.Select(a => new ConferenceTypeModel() { conferenceTypeId = a.DictionaryConferenceTypeId, conferenceTypeName = a.DictionaryConferenceTypeName }).ToList();
             return conferenceTypeModels;
         }
 

@@ -84,7 +84,6 @@ namespace ConferencePlanner.WinUi.View
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(117, 23);
             this.dtpStart.TabIndex = 4;
-            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged_1);
             // 
             // dtpEnd
             // 
@@ -190,6 +189,7 @@ namespace ConferencePlanner.WinUi.View
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormOrganizer";
             this.Text = "Your Conferences";
+            this.Load += new System.EventHandler(this.FormOrganizer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrganiser)).EndInit();
             this.ResumeLayout(false);
 

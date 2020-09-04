@@ -34,7 +34,7 @@ namespace ConferencePlanner.WinUi.View
         public async void LoadConferenceTypes()
         {
             //conferenceTypes = conferenceTypeRepository.getConferenceTypes();
-            var url = "http://localhost:5000/api/ConferenceType/GetAllTypes";
+            var url = "http://localhost:2794/api/ConferenceType/GetAllTypes";
             conferenceTypes = await HttpClientOperations.GetOperation<ConferenceTypeModel>(url);
             maxrange = conferenceTypes.Count;
             dgvConferenceTypes.ColumnCount = 2;
@@ -46,7 +46,7 @@ namespace ConferencePlanner.WinUi.View
 
         public async void LoadConferenceTypes(string keyword)
         {
-            var url = "http://localhost:5000/api/ConferenceType/GetTypesByKeyword?keyword="+keyword;
+            var url = "http://localhost:2794/api/ConferenceType/GetTypesByKeyword?keyword=" + keyword;
             conferenceTypes = await HttpClientOperations.GetOperation<ConferenceTypeModel>(url);
             //conferenceTypes = conferenceTypeRepository.getConferenceTypes(keyword);
             maxrange = conferenceTypes.Count;
@@ -89,7 +89,7 @@ namespace ConferencePlanner.WinUi.View
             string keyword = txtSearch.Text;
            
             range = 0;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             if (keyword == "")
@@ -151,7 +151,7 @@ namespace ConferencePlanner.WinUi.View
                     ConferenceTypeModel model = new ConferenceTypeModel();
                     model.conferenceTypeName = conferenceTypeName;
 
-                    HttpClientOperations.PostOperation<ConferenceTypeModel>("http://localhost:5000/api/ConferenceType/PostConferenceType", model);
+                    HttpClientOperations.PostOperation<ConferenceTypeModel>("http://localhost:2794/api/ConferenceType/PostConferenceType", model);
                     // conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
                     LoadConferenceTypes();
                 }
@@ -192,7 +192,8 @@ namespace ConferencePlanner.WinUi.View
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormAddConferenceGeneral.conference.ConferenceType = typeId.ToString();
+            FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
+            FormAddConferenceGeneral.conferenceModel.ConferenceType = typeId.ToString();
 
         }
 
@@ -201,7 +202,7 @@ namespace ConferencePlanner.WinUi.View
             dgvConferenceTypes.Rows.Clear();
             range = step;
             step += shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (step >= maxrange)
             {
                 button2.Enabled = false;
@@ -216,10 +217,10 @@ namespace ConferencePlanner.WinUi.View
             dgvConferenceTypes.Rows.Clear();
             step = range;
             range -= shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (range == 0)
             {
-                btnPrevious.Visible = false;
+                btnPrevious.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpCities();
@@ -231,7 +232,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             WireUpCities();
         }
     }

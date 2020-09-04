@@ -492,17 +492,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            List<ConferenceModel> conferences = new List<ConferenceModel>();
+            return conferences;
         }
 
-        //public void InsertConferenceXSpeaker(int _conferenceId, int _speakerId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 };

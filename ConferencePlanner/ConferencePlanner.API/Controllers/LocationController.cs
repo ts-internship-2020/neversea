@@ -32,5 +32,15 @@ namespace ConferencePlanner.Api.Controllers
         }
 
 
+        [HttpGet]
+        [Route("/location/getid")]
+        public IActionResult GetId(int cityId, string address)
+        {
+            int locationId = conferenceLocationRepository.GetLocationId(cityId, address);
+
+            return Ok(locationId);
+        }
+
+
     }
 }

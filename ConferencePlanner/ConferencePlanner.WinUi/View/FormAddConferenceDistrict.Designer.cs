@@ -38,6 +38,8 @@
             this.comboBoxPagesNumber = new System.Windows.Forms.ComboBox();
             this.btnPagesNumber = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             btnBackDistrict = new System.Windows.Forms.Button();
             btnNextDistrict = new System.Windows.Forms.Button();
             panelPagesControl = new System.Windows.Forms.Panel();
@@ -48,6 +50,7 @@
             // btnBackDistrict
             // 
             btnBackDistrict.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            btnBackDistrict.Enabled = false;
             btnBackDistrict.FlatAppearance.BorderSize = 0;
             btnBackDistrict.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             btnBackDistrict.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -174,6 +177,26 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDelete_MouseClick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(564, 196);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "-->";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(479, 195);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "<--";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormAddConferenceDistrict
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -181,6 +204,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(824, 271);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(panelPagesControl);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnPagesNumber);
@@ -212,5 +237,7 @@
         private System.Windows.Forms.Button btnBackDistrict;
         private System.Windows.Forms.Button btnNextDistrict;
         private System.Windows.Forms.Panel panelPagesControl;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

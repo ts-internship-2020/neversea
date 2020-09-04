@@ -20,26 +20,38 @@ namespace ConferencePlanner.WinUi.Utilities
         public static async Task<List<T>> GetOperation<T>(string url)
         {
             HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-            List<T> returnedList = new List<T>(); 
+            List<T> returnedList = new List<T>();
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
-                var content = httpResponseMessage.Content; 
+                var content = httpResponseMessage.Content;
                 var data = await content.ReadAsStringAsync();
                 returnedList = (List<T>)JsonConvert.DeserializeObject<IEnumerable<T>>(data);
                 Console.WriteLine("Lista returnata are marimea " + returnedList.Count);
                 return returnedList;
-            } 
+            }
             else
             {
                 throw new Exception("Couldn't load " + typeof(T).ToString());
-               //return returnedList;
+                return returnedList;
             }
         }
+
+        public static async void PutOperation<T>(string url, T obj)
+        {
+            HttpClient httpClient = HttpClientFactory.Create();
+
+            HttpResponseMessage res;
+
+            res = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
+        }
+
 
         public static async void PostOperation<T>(string url, T obj)
         {
             var response = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
         }
+
+
         public static async void DeleteOperation<T>(string url, T obj)
         {
             HttpClient httpClient = HttpClientFactory.Create();
@@ -52,9 +64,11 @@ namespace ConferencePlanner.WinUi.Utilities
             };
             var response = await httpClient.SendAsync(request);
         }
-        public static async void PutOperation<T>(string url, T obj)
+        /*public static async void PutOperation<T>(string url, T obj)
         {
             await httpClient.PostAsJsonAsync(url, obj);
-        }
+        }*/
+
     }
 }
+

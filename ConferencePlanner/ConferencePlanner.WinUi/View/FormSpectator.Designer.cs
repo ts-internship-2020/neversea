@@ -57,9 +57,9 @@
             this.dgvSpectator.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvSpectator.Size = new System.Drawing.Size(828, 474);
             this.dgvSpectator.TabIndex = 0;
-          //  this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_1);
-            this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
+            this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
+
             // 
             // panelSpeaker
             // 
@@ -79,7 +79,6 @@
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(117, 23);
             this.dtpStart.TabIndex = 4;
-            this.dtpStart.CloseUp += new System.EventHandler(this.dtpStart_CloseUp);
             // 
             // dtpEnd
             // 
@@ -90,7 +89,6 @@
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(126, 23);
             this.dtpEnd.TabIndex = 5;
-            this.dtpEnd.CloseUp += new System.EventHandler(this.dtpEnd_CloseUp);
             // 
             // btnPrevious
             // 
@@ -153,6 +151,7 @@
             this.btnNext.Size = new System.Drawing.Size(61, 58);
             this.btnNext.TabIndex = 12;
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Visible = false;
             // 
             // comboBoxPagesNumber
             // 
@@ -169,6 +168,7 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndex = 0;
             // 
             // FormSpectator
             // 
@@ -188,6 +188,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormSpectator";
             this.Text = "Conferences to Attend";
+            this.Load += new System.EventHandler(this.FormSpectator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpectator)).EndInit();
             this.ResumeLayout(false);
 

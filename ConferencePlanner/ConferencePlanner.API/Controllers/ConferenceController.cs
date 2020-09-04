@@ -21,25 +21,31 @@ namespace ConferencePlanner.Api.Controllers
             conferenceRepository = _conferenceRepository;
         }
 
-        //[HttpGet]
-        //[Route("all/spectator/{spectatorEmail}")]
-        //public IActionResult GetConferences([FromRoute] string spectatorEmail, DateTime startDate, DateTime endDate)
-        //{
-        //    List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(spectatorEmail, startDate, endDate);
-        //    return Ok(conferenceModels);
-        //}
+        [HttpGet]
+        [Route("all/spectator/{email}")]
+        public IActionResult getConference([FromRoute] string email, string startDateStr, string endDateStr)
+        {
+            DateTime startDate = Convert.ToDateTime(startDateStr);
+            DateTime endDate = Convert.ToDateTime(endDateStr);
+
+            List<ConferenceModel> conferenceModels = conferenceRepository.GetConference(email, startDate, endDate);
+            return Ok(conferenceModels);
+        }
 
         [HttpGet]
-        [Route("all/organizer/{organizerEmail}")]
-        public IActionResult GetConferenceBetweenDates([FromRoute] string organizerEmail, DateTime startDate, DateTime endDate)
+        [Route("all/organizer/{email}")]
+        public IActionResult getConferenceBetweenDates([FromRoute] string email, string startDateStr, string endDateStr)
         {
-            List<ConferenceModel> conferenceModels = conferenceRepository.GetConferenceBetweenDates(organizerEmail, startDate, endDate);
+            DateTime startDate = Convert.ToDateTime(startDateStr);
+            DateTime endDate = Convert.ToDateTime(endDateStr);
+
+            List<ConferenceModel> conferenceModels = conferenceRepository.GetConferenceBetweenDates(email, startDate, endDate);
             return Ok(conferenceModels);
         }
 
         [HttpPost]
         [Route("new")]
-        public IActionResult InsertConference([FromBody] Conference conference)
+        public IActionResult postConference([FromBody] Conference conference)
         {
             string conferenceName = conference.ConferenceName;
             DateTime startDate = conference.StartDate;
@@ -55,7 +61,7 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("/Participant/new")]
-        public IActionResult InsertParticipant([FromBody] ConferenceAttendance conferenceAttendance)
+        public IActionResult postParticipant([FromBody] ConferenceAttendance conferenceAttendance)
         {
             int conferenceId = conferenceAttendance.ConferenceId;
             string spectatorEmail = conferenceAttendance.ParticipantEmailAddress;
@@ -67,7 +73,7 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("speaker/new")]
-        public IActionResult InsertConferenceXSpeaker([FromBody] ConferenceXspeaker conferenceXSpeaker)
+        public IActionResult postConferenceXSpeaker([FromBody] ConferenceXspeaker conferenceXSpeaker)
         {
             int conferenceId = conferenceXSpeaker.ConferenceId;
             int speakerId = conferenceXSpeaker.DictionarySpeakerId;
@@ -76,9 +82,9 @@ namespace ConferencePlanner.Api.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("join")]
-        public IActionResult ModifySpectatorStatusJoin([FromBody] ConferenceAttendance conferenceAttendance)
+        public IActionResult putParticipantStatusJoin([FromBody] ConferenceAttendance conferenceAttendance)
         {
             string spectatorEmail = conferenceAttendance.ParticipantEmailAddress;
             int conferenceId = conferenceAttendance.ConferenceId;
@@ -87,9 +93,9 @@ namespace ConferencePlanner.Api.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("withdraw")]
-        public IActionResult ModifySpectatorStatusWithdraw([FromBody] ConferenceAttendance conferenceAttendance)
+        public IActionResult putParticipantStatusWithdraw([FromBody] ConferenceAttendance conferenceAttendance)
         {
             string spectatorEmail = conferenceAttendance.ParticipantEmailAddress;
             int conferenceId = conferenceAttendance.ConferenceId;

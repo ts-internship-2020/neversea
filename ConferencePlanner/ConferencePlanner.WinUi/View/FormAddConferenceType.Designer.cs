@@ -134,6 +134,7 @@
             // btnPrevious
             // 
             this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnPrevious.Enabled = false;
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;

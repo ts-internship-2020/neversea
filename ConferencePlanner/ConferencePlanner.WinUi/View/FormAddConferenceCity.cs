@@ -36,6 +36,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadCities(int districtId)
         {
             //HttpClient httpClient = HttpClientFactory.Create();
+            //var url = "http://localhost:2794/GetConfereceCitiesById?districtId=1";
             //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
             //if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
@@ -47,11 +48,10 @@ namespace ConferencePlanner.WinUi.View
             //}
             cities = conferenceCityRepository.GetConferenceCities(districtId);
 
-            var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
+            var url = "http://localhost:2794/GetConfereceCitiesById?districtId="
                 + districtId.ToString();
 
-            //cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
-            Console.WriteLine("Lista cities are marimea " + cities.Count);
+            cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
@@ -66,8 +66,6 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvCities.SelectedRows[0].Index;
                 int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
-                //int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
-                // conferenceCityRepository.DeleteCity(cityId, 1);
                 ConferenceCityModel model = new ConferenceCityModel();
 
                 model.ConferenceCityId = cityId;
@@ -94,7 +92,7 @@ namespace ConferencePlanner.WinUi.View
                         cityUpdated.ConferenceCityName = nameCity;
                         cityUpdated.ConferenceCityId = indexCity;
                         cityUpdated.ConferenceDistrictId = 1;
-                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:5000/UpdateCity", cityUpdated);
+                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:2794/UpdateCity", cityUpdated);
                         cities[e.RowIndex].ConferenceCityName = nameCity;
                     }
                     else
@@ -104,7 +102,7 @@ namespace ConferencePlanner.WinUi.View
                         ConferenceCityModel city = new ConferenceCityModel();
                         city.ConferenceCityName = nameCity;
                         city.ConferenceDistrictId = 1;
-                        HttpClientOperations.PostOperation<ConferenceCityModel>("http://localhost:5000/InsertCity", city);
+                        HttpClientOperations.PostOperation<ConferenceCityModel>("http://localhost:2794/InsertCity", city);
                         dgvCities.Rows.Clear();
                         if (txtSearch.Text == null)
                             LoadCities(1);
@@ -132,7 +130,7 @@ namespace ConferencePlanner.WinUi.View
             Console.WriteLine("text changed");
             
             range = 0;
-            btnPreviousPage.Visible = false;
+            btnPreviousPage.Enabled = false;
             step = (int)comboBoxPagesCount.SelectedItem;
             shown = (int)comboBoxPagesCount.SelectedItem;
             string keyword = txtSearch.Text;
@@ -147,7 +145,7 @@ namespace ConferencePlanner.WinUi.View
         }
         private async void LoadCities(int districtId, string keyword)
         {
-            var url = "http://localhost:5000/GetConfereceCitiesByIdAndKeyword?districtId="+districtId.ToString()+"&keyword="+keyword;
+            var url = "http://localhost:2794/GetConfereceCitiesByIdAndKeyword?districtId=" + districtId.ToString()+"&keyword="+keyword;
             cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
             Console.WriteLine("Lista cities are marimea " + cities.Count);
             //cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
@@ -202,7 +200,7 @@ namespace ConferencePlanner.WinUi.View
             dgvCities.Rows.Clear();
             range = step;
             step += shown;
-            btnPreviousPage.Visible = true;
+            btnPreviousPage.Enabled = true;
             if (step >= maxrange)
             {
                 btnNextPage.Enabled = false;
@@ -216,10 +214,10 @@ namespace ConferencePlanner.WinUi.View
             dgvCities.Rows.Clear();
             step = range;
             range -= shown;
-            btnPreviousPage.Visible = true;
+            btnPreviousPage.Enabled = true;
             if (range == 0)
             {
-                btnPreviousPage.Visible = false;
+                btnPreviousPage.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpCities();
@@ -231,7 +229,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesCount.SelectedItem;
             shown = (int)comboBoxPagesCount.SelectedItem;
-            btnPreviousPage.Visible = false;
+            btnPreviousPage.Enabled = false;
             WireUpCities();
         }
     }

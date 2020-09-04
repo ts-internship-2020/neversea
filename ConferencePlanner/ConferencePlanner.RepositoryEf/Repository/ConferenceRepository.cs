@@ -96,7 +96,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                                                          .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
                                                                                          .FirstOrDefault(),             
                                                             ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
-                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict
+                                                                                        + ", " + m.Location.DictionaryCity.DictionaryCityName
                                                                                         + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
                                                                                         + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryCountry.DictionaryCountryName,
                                                             SpeakerId = m.ConferenceXspeaker
@@ -207,9 +207,26 @@ namespace ConferencePlanner.Repository.Ef.Repository
             dbContext.SaveChanges();
         }
 
-        public void InsertConference(ConferenceModel conference, int locationId)
+        public void InsertConference(ConferenceModel _model, int locationId)
         {
-            throw new NotImplementedException();
+            int conferenceTypeId = dbContext.DictionaryConferenceType
+                           .Where(d => d.DictionaryConferenceTypeName == _model.ConferenceType)
+                           .Select(d => d.DictionaryConferenceTypeId)
+                           .FirstOrDefault();
+
+            var conference = new Conference
+            {
+                ConferenceName = _model.ConferenceName,
+                StartDate = _model.ConferenceStartDate,
+                EndDate = _model.ConferenceEndDate,
+                OrganiserEmail = _model.ConferenceOrganiserEmail,
+                LocationId = locationId,
+                DictionaryConferenceTypeId = conferenceTypeId,
+                DictionaryConferenceCategoryId = Int32.Parse(_model.ConferenceCategory)
+            };
+
+            dbContext.Conference.Add(conference);
+            dbContext.SaveChanges();
         }
 
         public void InsertConferenceXSpeaker(ConferenceModel _model, int _speakerId)

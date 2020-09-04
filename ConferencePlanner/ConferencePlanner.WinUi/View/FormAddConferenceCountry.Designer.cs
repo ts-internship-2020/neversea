@@ -143,6 +143,7 @@
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(42, 33);
             this.btnPreviousPage.TabIndex = 34;
+            this.btnPreviousPage.Enabled = false;
             this.btnPreviousPage.UseVisualStyleBackColor = true;
             this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
