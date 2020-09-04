@@ -17,6 +17,7 @@ namespace ConferencePlanner.WinUi.View
        
 
         public int speakerId = 0;
+        public string speakerName = "";
         List<SpeakerModel> speakers = new List<SpeakerModel>();
         public int range = 0;
         public int step = 4;
@@ -111,7 +112,7 @@ namespace ConferencePlanner.WinUi.View
         private void dgvSpeakers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-
+            speakerName = dgvSpeakers.Rows[e.RowIndex].Cells["Name"].FormattedValue.ToString();
         }
 
         private void FormAddConferenceSpeaker_FormClosing(object sender, FormClosingEventArgs e)
@@ -134,7 +135,8 @@ namespace ConferencePlanner.WinUi.View
             } 
             else
             {
-                FormAddConferenceGeneral.conferenceModel.ConferenceMainSpeaker = speakerId.ToString();
+                FormAddConferenceGeneral.conferenceModel.SpeakerId = speakerId;
+                FormAddConferenceGeneral.conferenceModel.ConferenceMainSpeaker = speakerName;
             }
 
         }
@@ -232,7 +234,7 @@ namespace ConferencePlanner.WinUi.View
                 int speakerId = Convert.ToInt32(dgvSpeakers[0, selectedIndex].Value);
                 //conferenceSpeakerRepository.DeleteSpeaker(speakerId);
                 SpeakerModel model = new SpeakerModel();
-
+                
                 model.DictionarySpeakerId = speakerId;
 
                 HttpClientOperations.DeleteOperation<SpeakerModel>("", model);

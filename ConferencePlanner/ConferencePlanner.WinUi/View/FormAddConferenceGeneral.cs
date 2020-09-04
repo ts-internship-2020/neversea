@@ -295,6 +295,15 @@ namespace ConferencePlanner.WinUi.View
               DictionaryConferenceTypeId = 1};
 
             HttpClientOperations.PostOperation(urlConference, conferenceToAdd);
+
+            ConferenceXspeaker mainSpeakerToAdd = new ConferenceXspeaker
+            { DictionarySpeakerId = conferenceModel.SpeakerId, 
+              ConferenceId = conferenceModel.ConferenceId, 
+              IsMain = true};
+
+            var urlSpeaker = "http://localhost:5000//api/ConferenceXSpeaker/AddSpeakerInConference";
+
+            HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);
         }
 
         private async Task<int> GetLocationId(int cityId, string locationAddress)
