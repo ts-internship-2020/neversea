@@ -56,7 +56,7 @@ namespace ConferencePlanner.WinUi.View
             //    districts = (List < DistrictModel >) JsonConvert.DeserializeObject<IEnumerable<DistrictModel>>(data);
             //}
             //districts = districtRepository.GetDistricts();
-            var url = "http://localhost:2794/api/District";
+            var url = "http://localhost:5000/api/District";
             districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
@@ -188,9 +188,9 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvDistricts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null) { 
             DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-
+            }
         }
 
         private void FormAddConferenceDistrict_FormClosing(object sender, FormClosingEventArgs e)

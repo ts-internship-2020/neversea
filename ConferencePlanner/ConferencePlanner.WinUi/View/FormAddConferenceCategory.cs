@@ -151,8 +151,12 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvConferenceCategories_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-        }
+
+            if (dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
+            {
+                categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            }
+            }
 
         private void FormAddConferenceCategory_FormClosing(object sender, FormClosingEventArgs e)
         {

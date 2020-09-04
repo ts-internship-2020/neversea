@@ -100,8 +100,11 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvSpeakers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-
+            if (dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
+            {
+                speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            }
+        
         }
 
         private void FormAddConferenceSpeaker_FormClosing(object sender, FormClosingEventArgs e)

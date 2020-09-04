@@ -190,7 +190,9 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString() != null) { 
              id= Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+             }
         }
 
         private void button2_Click(object sender, EventArgs e)
