@@ -178,7 +178,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvDistricts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null) { 
             DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
             FormAddConferenceGeneral.districtId = DistrictId;
         }

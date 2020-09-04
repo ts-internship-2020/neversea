@@ -172,7 +172,7 @@ namespace ConferencePlanner.WinUi.View
             HttpClient httpClient = HttpClientFactory.Create();
             var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsParticipating?email={spectatorEmail}&id={confId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
-            bool isParticipant = false;
+            bool isParticipant = true;
 
             if (res.StatusCode == HttpStatusCode.OK)
             {

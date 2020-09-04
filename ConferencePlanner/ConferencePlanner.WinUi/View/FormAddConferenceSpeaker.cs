@@ -111,8 +111,11 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvSpeakers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-            speakerName = dgvSpeakers.Rows[e.RowIndex].Cells["Name"].FormattedValue.ToString();
+            if (dgvSpeakers.Rows[e.RowIndex].Cells["Name"].FormattedValue.ToString() != null)
+            {
+                speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            }
+        
         }
 
         private void FormAddConferenceSpeaker_FormClosing(object sender, FormClosingEventArgs e)
@@ -238,7 +241,6 @@ namespace ConferencePlanner.WinUi.View
                 model.DictionarySpeakerId = speakerId;
 
                 HttpClientOperations.DeleteOperation<SpeakerModel>("http://localhost:5000/DeleteSpeaker", model);
-                dgvSpeakers.Rows.Clear();
                 LoadSpeakers();
             }
         }
