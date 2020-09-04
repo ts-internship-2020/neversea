@@ -52,7 +52,7 @@ namespace ConferencePlanner.WinUi.View
 
             this.dgvDistricts.Columns[3].Visible = false;
             this.dgvDistricts.Columns[0].Visible = false;
-
+            button2.Enabled = false;
             dgvDistricts.Columns[0].Name = "Id";
             dgvDistricts.Columns[1].Name = "District";
             dgvDistricts.Columns[2].Name = "Code";
@@ -69,7 +69,7 @@ namespace ConferencePlanner.WinUi.View
             dgvDistricts.ColumnCount = 4;
             this.dgvDistricts.Columns[3].Visible = false;
             this.dgvDistricts.Columns[0].Visible = false;
-
+            
             dgvDistricts.Columns[0].Name = "Id";
             dgvDistricts.Columns[1].Name = "District";
             dgvDistricts.Columns[2].Name = "Code";
@@ -78,7 +78,7 @@ namespace ConferencePlanner.WinUi.View
             WireUpDistricts();
         }
         private void WireUpDistricts()
-        {
+        {   
             comboBoxPagesNumber.SelectedIndex = 0;
             dgvDistricts.Rows.Clear();
             for (int i = range; i < step; i++)
@@ -97,11 +97,11 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (districts.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                   btnNextDistrict.Visible = false;
+                  button1.Visible = false;
                 }
                 else if (step < maxrange)
                 {
-                   //btnNextDistrict.Visible = true;
+                  button2.Visible = true;
                 }
             }
         }
@@ -195,36 +195,22 @@ namespace ConferencePlanner.WinUi.View
         {
             FormAddConferenceGeneral.districtId = DistrictId;
         }
-
-        private void btnNext_Click(object sender, EventArgs e)
+        private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvDistricts.Rows.Clear();
-            range = step;
-            step += shown;
-            btnBackDistrict.Visible = true;
-            if (step >= maxrange)
-            {
-                btnNextDistrict.Enabled = false;
-            }
-            Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
+            range = 0;
+            step = (int)comboBoxPagesNumber.SelectedItem;
+            shown = (int)comboBoxPagesNumber.SelectedItem;
+            //btnBackDistrict.Visible = false;
             WireUpDistricts();
-
         }
-
-        private void btnPreviousPage_Click(object sender, EventArgs e)
+        private void btnBackDistrict_Click(object sender, EventArgs e)
         {
-            dgvDistricts.Rows.Clear();
-            step = range;
-            range -= shown;
-            btnBackDistrict.Visible = true;
-            if (range == 0)
-            {
-                btnBackDistrict.Visible = false;
-            }
-            Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
-            WireUpDistricts();
 
         }
+        private void btnNextDistrict_Click(object sender, EventArgs e)
+        {
+    
 
         private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -236,30 +222,29 @@ namespace ConferencePlanner.WinUi.View
             WireUpDistricts();
         }
 
-        private void btnNextDistrict_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             dgvDistricts.Rows.Clear();
             range = step;
             step += shown;
-            btnBackDistrict.Visible = true;
+            button2.Enabled = true;
             if (step >= maxrange)
             {
-                btnNextDistrict.Visible = false;
+                button1.Enabled = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpDistricts();
-
         }
 
-        private void btnBackDistrict_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             dgvDistricts.Rows.Clear();
             step = range;
             range -= shown;
-            btnBackDistrict.Visible = true;
+            button1.Enabled = true;
             if (range == 0)
             {
-               btnBackDistrict.Visible = false;
+                button2.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpDistricts();

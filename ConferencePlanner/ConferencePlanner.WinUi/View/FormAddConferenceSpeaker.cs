@@ -74,11 +74,11 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (speakers.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                    button3.Visible = false;
+                    button3.Enabled = false;
                 }
                 else if (step < maxrange)
                 {
-                    button3.Visible = true;
+                    button3.Enabled = true;
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             range = 0;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             string keyword = txtSearch.Text;
@@ -146,10 +146,10 @@ namespace ConferencePlanner.WinUi.View
             dgvSpeakers.Rows.Clear();
             range = step;
             step += shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (step >= maxrange)
             {
-                button3.Visible = false;
+                button3.Enabled = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpSpeakers();
@@ -161,10 +161,10 @@ namespace ConferencePlanner.WinUi.View
             dgvSpeakers.Rows.Clear();
             step = range;
             range -= shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (range == 0)
             {
-                btnPrevious.Visible = false;
+                btnPrevious.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpSpeakers();
@@ -176,7 +176,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             WireUpSpeakers();
         }
 

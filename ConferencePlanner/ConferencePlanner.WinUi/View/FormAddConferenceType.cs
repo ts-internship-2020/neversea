@@ -75,11 +75,11 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (conferenceTypes.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                    button2.Visible = false;
+                    button2.Enabled = false;
                 }
                 else if (step < maxrange)
                 {
-                    button2.Visible = true;
+                    button2.Enabled = true;
                 }
             }
 
@@ -89,7 +89,7 @@ namespace ConferencePlanner.WinUi.View
             string keyword = txtSearch.Text;
            
             range = 0;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             if (keyword == "")
@@ -200,10 +200,10 @@ namespace ConferencePlanner.WinUi.View
             dgvConferenceTypes.Rows.Clear();
             range = step;
             step += shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (step >= maxrange)
             {
-                button2.Visible = false;
+                button2.Enabled = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpCities();
@@ -215,10 +215,10 @@ namespace ConferencePlanner.WinUi.View
             dgvConferenceTypes.Rows.Clear();
             step = range;
             range -= shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (range == 0)
             {
-                btnPrevious.Visible = false;
+                btnPrevious.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpCities();
@@ -230,7 +230,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             WireUpCities();
         }
     }
