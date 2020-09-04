@@ -59,23 +59,7 @@
             this.dgvSpectator.TabIndex = 0;
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
             this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
-            this.dgvSpectator.Columns[0].HeaderText = "Title";
-            this.dgvSpectator.Columns[1].HeaderText = "Id";
-            this.dgvSpectator.Columns[2].HeaderText = "Starts";
-            this.dgvSpectator.Columns[3].HeaderText = "Ends";
-            this.dgvSpectator.Columns[4].HeaderText = "Type";
-            this.dgvSpectator.Columns[5].HeaderText = "Category";
-            this.dgvSpectator.Columns[6].HeaderText = "Speaker";
-            this.dgvSpectator.Columns[7].HeaderText = "Location";
-            this.dgvSpectator.Columns[8].HeaderText = "SpeakerId";
-            this.dgvSpectator.Columns[9].HeaderText = "OrganiserEmail";
-            this.dgvSpectator.Columns[7].Visible = false;
-            this.dgvSpectator.Columns[9].Visible = false;
-            this.dgvSpectator.Columns[1].Visible = false;
-            this.dgvSpectator.Columns[8].Visible = false;
-            this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
-            this.dgvSpectator.Columns[2].Name = "StartDate";
-            this.dgvSpectator.Columns[3].Name = "EndDate";
+
             // 
             // panelSpeaker
             // 

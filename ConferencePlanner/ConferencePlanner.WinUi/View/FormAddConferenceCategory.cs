@@ -36,7 +36,7 @@ namespace ConferencePlanner.WinUi.View
 
         private async void LoadConferenceCategories()
         {
-            var url = "http://localhost:5000/api/ConferenceCategory/GetAllCategories";
+            var url = "http://localhost:2794/api/ConferenceCategory/GetAllCategories";
             conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
             dgvConferenceCategories.ColumnCount = 2;
             dgvConferenceCategories.Columns[0].Name = "Category";
@@ -48,7 +48,7 @@ namespace ConferencePlanner.WinUi.View
 
         public async void LoadConferenceCategories(string keyword)
         {
-            var url = "http://localhost:5000/api/ConferenceCategory/GetCategoryByKeyword?keyword="+keyword;
+            var url = "http://localhost:2794/api/ConferenceCategory/GetCategoryByKeyword?keyword=" + keyword;
             conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
             //conferenceCategories = conferenceCategoryRepository.GetConferenceCategories(keyword);
             dgvConferenceCategories.ColumnCount = 2;
@@ -99,7 +99,7 @@ namespace ConferencePlanner.WinUi.View
                     ConferenceCategoryModel categoryUpdated = new ConferenceCategoryModel();
                     categoryUpdated.conferenceCategoryId = conferenceCategoryId;
                     categoryUpdated.conferenceCategoryName = conferenceCategoryName;
-                    HttpClientOperations.PutOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/UpdateCategory", categoryUpdated);
+                    HttpClientOperations.PutOperation<ConferenceCategoryModel>("http://localhost:2794/api/ConferenceCategory/UpdateCategory", categoryUpdated);
 
                     //conferenceCategoryRepository.UpdateConferenceCategory(conferenceCategoryId, conferenceCategoryName);
                     //conferenceCategories[e.RowIndex].conferenceCategoryName = conferenceCategoryName;
@@ -111,7 +111,7 @@ namespace ConferencePlanner.WinUi.View
                     ConferenceCategoryModel model = new ConferenceCategoryModel();
                     model.conferenceCategoryName = conferenceCategoryName;
                     
-                    HttpClientOperations.PostOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/InsertCategory", model);
+                    HttpClientOperations.PostOperation<ConferenceCategoryModel>("http://localhost:2794/api/ConferenceCategory/InsertCategory", model);
                     // conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
                     dgvConferenceCategories.Rows.Clear();
                     LoadConferenceCategories();

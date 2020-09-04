@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Web.Http;
@@ -31,6 +32,8 @@ namespace ConferencePlanner.WinUi.View
         private readonly IConferenceRepository conferenceRepository;
         public string emailCopyFromMainForm;
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
+        List<ConferenceModel> conferenceModels = new List<ConferenceModel>();
+        List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
 
         public FormSpectator(IConferenceRepository _conferenceRepository, string emailCopy, IConferenceAttendanceRepository _conferenceAttendanceRepository)
@@ -43,23 +46,48 @@ namespace ConferencePlanner.WinUi.View
 
         }
 
+
         private async void WireUpSpectator(DateTime _startDate, DateTime _endDate)
         {
 
             dgvSpectator.Rows.Clear();
             dgvSpectator.Columns.Clear();
 
-            List<ConferenceModel> conferences = new List<ConferenceModel>();
-            List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
-            var urlGetConference = $"http://localhost:5000/api/Conference/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
-            conferences = await HttpClientOperations.GetOperation<ConferenceModel>(urlGetConference);
+            string startDateStr = _startDate.ToString("yyyy-MM-dd");
+            string endDateStr = _endDate.ToString("yyyy-MM-dd");
 
-            var urlGetConferenceAttendance = "http://localhost:5000/api/ConferenceAttendance/GetConferenceAttendance";
+            string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
+
+
+
+            var urlGetConference = $"http://localhost:2794/api/Conference/all/spectator/{encodedEmail}?startDateStr={startDateStr}&endDateStr={endDateStr}";
+
+            conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(urlGetConference);
+
+            var urlGetConferenceAttendance = "http://localhost:2794/api/ConferenceAttendance/GetConferenceAttendance";
             conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
             dgvSpectator.DataSource = null;
-            dgvSpectator.DataSource = conferences;
+            dgvSpectator.DataSource = conferenceModels;
+
+            this.dgvSpectator.Columns[0].HeaderText = "Title";
+            this.dgvSpectator.Columns[1].HeaderText = "Id";
+            this.dgvSpectator.Columns[2].HeaderText = "Starts";
+            this.dgvSpectator.Columns[3].HeaderText = "Ends";
+            this.dgvSpectator.Columns[4].HeaderText = "Type";
+            this.dgvSpectator.Columns[5].HeaderText = "Category";
+            this.dgvSpectator.Columns[6].HeaderText = "Speaker";
+            this.dgvSpectator.Columns[7].HeaderText = "Location";
+            this.dgvSpectator.Columns[8].HeaderText = "SpeakerId";
+            this.dgvSpectator.Columns[9].HeaderText = "OrganiserEmail";
+            this.dgvSpectator.Columns[7].Visible = false;
+            this.dgvSpectator.Columns[9].Visible = false;
+            this.dgvSpectator.Columns[1].Visible = false;
+            this.dgvSpectator.Columns[8].Visible = false;
+            this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
+            this.dgvSpectator.Columns[2].Name = "StartDate";
+            this.dgvSpectator.Columns[3].Name = "EndDate";
 
             // Image img = Properties.Resources.icons8_cancel_32px;
             Image img2 = Properties.Resources.icons8_add_user_group_man_man_20;
@@ -123,11 +151,11 @@ namespace ConferencePlanner.WinUi.View
 
         private async void FormSpectator_Load(object sender, EventArgs e)
         {
+            dtpStart.Value = DateTime.Now.AddMonths(-1);
+            dtpEnd.Value = DateTime.Now.AddMonths(1);
+
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
 
-            DateTime now = DateTime.Now;
-            dtpStart.Value = now.AddMonths(-1);
-            dtpEnd.Value = now.AddMonths(1);
 
             btnPrevious.Visible = false;
             foreach (DataGridViewRow row in dgvSpectator.Rows)
@@ -142,7 +170,7 @@ namespace ConferencePlanner.WinUi.View
         private async Task<bool> IsParticipating(string spectatorEmail, int confId)
         {
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsParticipating?email={spectatorEmail}&id={confId}";
+            var url = $"http://localhost:2794/api/ConferenceAttendance/GetIsParticipating?email={spectatorEmail}&id={confId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
             bool isParticipant = false;
 
@@ -228,7 +256,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void InsertParticipant(int _conferenceId, string _spectatorEmail, int _participantStatusCode)
         {
-            var url = "http://localhost:5000/Participant/new";
+            var url = "http://localhost:2794/Participant/new";
 
             HttpClientOperations.PostOperation<Object>(url, new {conferenceId = _conferenceId, spectatorEmail = _spectatorEmail, participantStatusCode = _participantStatusCode});
         }
@@ -236,7 +264,7 @@ namespace ConferencePlanner.WinUi.View
         private async Task<bool> IsWithdrawn(string spectatorEmail, int conferenceId)
         {
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsWithdrawn?email={spectatorEmail}&id={conferenceId}";
+            var url = $"http://localhost:2794/api/ConferenceAttendance/GetIsWithdrawn?email={spectatorEmail}&id={conferenceId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
             bool isWithdrawn = false;
 
@@ -316,7 +344,7 @@ namespace ConferencePlanner.WinUi.View
                 {
                     dgvSpectator.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    var url = $"http://localhost:5000/api/Conference/withdraw";
+                    var url = $"http://localhost:2794/api/Conference/withdraw";
 
                     HttpClientOperations.PutOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId });
 
