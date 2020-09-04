@@ -61,11 +61,11 @@ namespace ConferencePlanner.WinUi.View
 
 
 
-            var urlGetConference = $"http://localhost:2794/api/Conference/all/spectator/{encodedEmail}?startDateStr={startDateStr}&endDateStr={endDateStr}";
+            var urlGetConference = $"http://localhost:5000/api/Conference/all/spectator/{encodedEmail}?startDateStr={startDateStr}&endDateStr={endDateStr}";
 
             conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(urlGetConference);
 
-            var urlGetConferenceAttendance = "http://localhost:2794/api/ConferenceAttendance/GetConferenceAttendance";
+            var urlGetConferenceAttendance = "http://localhost:5000/api/ConferenceAttendance/GetConferenceAttendance";
             conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
             dgvSpectator.DataSource = null;
@@ -170,7 +170,7 @@ namespace ConferencePlanner.WinUi.View
         private async Task<bool> IsParticipating(string spectatorEmail, int confId)
         {
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:2794/api/ConferenceAttendance/GetIsParticipating?email={spectatorEmail}&id={confId}";
+            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsParticipating?email={spectatorEmail}&id={confId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
             bool isParticipant = false;
 
@@ -256,7 +256,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void InsertParticipant(int _conferenceId, string _spectatorEmail, int _participantStatusCode)
         {
-            var url = "http://localhost:2794/Participant/new";
+            var url = "http://localhost:5000/Participant/new";
 
             HttpClientOperations.PostOperation<Object>(url, new {conferenceId = _conferenceId, spectatorEmail = _spectatorEmail, participantStatusCode = _participantStatusCode});
         }
@@ -264,7 +264,7 @@ namespace ConferencePlanner.WinUi.View
         private async Task<bool> IsWithdrawn(string spectatorEmail, int conferenceId)
         {
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:2794/api/ConferenceAttendance/GetIsWithdrawn?email={spectatorEmail}&id={conferenceId}";
+            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsWithdrawn?email={spectatorEmail}&id={conferenceId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
             bool isWithdrawn = false;
 
@@ -344,7 +344,7 @@ namespace ConferencePlanner.WinUi.View
                 {
                     dgvSpectator.CurrentRow.Selected = true;
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
-                    var url = $"http://localhost:2794/api/Conference/withdraw";
+                    var url = $"http://localhost:5000/api/Conference/withdraw";
 
                     HttpClientOperations.PutOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId });
 

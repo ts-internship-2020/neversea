@@ -261,41 +261,44 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            tabCount++;
+            switchTabs(tabCount, sender);
 
-            if (tabCount == 1)
-            {
-                tabCount++;
-                switchTabs(tabCount, sender);
-            }
-            else if (tabCount == 2)
-            {
-                if (countryId == 0)
-                {
+            // in lucru pt validari
+            //if (tabCount == 1)
+            //{
+            //    tabCount++;
+            //    switchTabs(tabCount, sender);
+            //}
+            //else if (tabCount == 2)
+            //{
+            //    if (countryId == 0)
+            //    {
 
-                    this.Alert("Select a Country");
-                }
-                else
-                {
-                    tabCount++;
-                    switchTabs(tabCount, sender);
-                }
-            }
-            else if (tabCount == 3)
-            {
-                if (districtId == 0)
-                {
+            //        this.Alert("Select a Country");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
+            //else if (tabCount == 3)
+            //{
+            //    if (districtId == 0)
+            //    {
 
-                    this.Alert("Select a District");
-                }
-                else
-                {
-                    tabCount++;
-                    switchTabs(tabCount, sender);
-                }
-            }
+            //        this.Alert("Select a District");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
             //else if (tabCount == 4)
             //{
-                
+
             //    if (districtId==0)
             //    {
 
@@ -309,7 +312,7 @@ namespace ConferencePlanner.WinUi.View
             //}
             //else if (tabCount == 5)
             //{
-               
+
             //    if (districtId == 0)
             //    {
 
@@ -347,8 +350,6 @@ namespace ConferencePlanner.WinUi.View
             //        switchTabs(tabCount, sender);
             //    }
             //}
-
-
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -364,7 +365,7 @@ namespace ConferencePlanner.WinUi.View
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            var urlLocation = "http://localhost:2794/location/new";
+            var urlLocation = "http://localhost:5000/location/new";
 
             Location locationModel = new Location{ DictionaryCityId = location.CityId, LocationAddress = locationAddress };
 
@@ -372,7 +373,7 @@ namespace ConferencePlanner.WinUi.View
 
             locId = await GetLocationId(location.CityId, conferenceModel.ConferenceLocation);
 
-            var urlConference = "http://localhost:2794/api/Conference/new";
+            var urlConference = "http://localhost:5000/api/Conference/new";
 
             Conference conferenceToAdd = new Conference
             { ConferenceId = conferenceModel.ConferenceId,
@@ -391,7 +392,7 @@ namespace ConferencePlanner.WinUi.View
               ConferenceId = conferenceModel.ConferenceId, 
               IsMain = true};
 
-            var urlSpeaker = "http://localhost:2794//api/ConferenceXSpeaker/AddSpeakerInConference";
+            var urlSpeaker = "http://localhost:5000//api/ConferenceXSpeaker/AddSpeakerInConference";
 
             HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);
         }
@@ -400,7 +401,7 @@ namespace ConferencePlanner.WinUi.View
         {
             int locationId = 0;
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:2794/location/getid?cityId={cityId}&address={locationAddress}";
+            var url = $"http://localhost:5000/location/getid?cityId={cityId}&address={locationAddress}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
 
             if (res.StatusCode == HttpStatusCode.OK)

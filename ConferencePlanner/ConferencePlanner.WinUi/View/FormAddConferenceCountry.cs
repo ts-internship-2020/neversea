@@ -51,7 +51,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadCountries(string keyword)
         {
             //countries = countryRepository.GetCountry(keyword);
-            var url = "http://localhost:2794/GetCountryByKeyword?keyword="+keyword;
+            var url = "http://localhost:5000/GetCountryByKeyword?keyword=" + keyword;
             countries = await HttpClientOperations.GetOperation<CountryModel>(url);
             this.dgvCountries.ColumnCount = 4;
             this.dgvCountries.Columns[1].Visible = false;
@@ -170,7 +170,7 @@ namespace ConferencePlanner.WinUi.View
 
                 model.CountryId = countryId;
 
-                HttpClientOperations.DeleteOperation<CountryModel>("http://localhost:2794/DeleteCountry", model);
+                HttpClientOperations.DeleteOperation<CountryModel>("http://localhost:5000/DeleteCountry", model);
                 dgvCountries.Rows.Clear();
                 LoadCountries();
             }   
