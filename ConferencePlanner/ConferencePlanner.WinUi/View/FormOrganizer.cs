@@ -52,7 +52,7 @@ namespace ConferencePlanner.WinUi.View
             dgvOrganiser.Columns.Add(buttonEditColumn);
         }
 
-        private async Task LoadConferences(DateTime _startDate, DateTime _endDate)
+        private async void LoadConferences(DateTime _startDate, DateTime _endDate)
         {
 
             //List<ConferenceModel> conferences = new List<ConferenceModel>();
@@ -108,12 +108,12 @@ namespace ConferencePlanner.WinUi.View
             LoadTheme();
         }
 
-        private async Task FormSpectator_Load(object sender, EventArgs e)
+        private void FormSpectator_Load(object sender, EventArgs e)
         {
             DateTime initialStart = DateTime.Parse("01.01.1900 00:00:00");
             DateTime initialEnd = DateTime.Parse("01.01.2100 00:00:00");
             //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
-            await LoadConferences(initialStart, initialEnd);
+            LoadConferences(initialStart, initialEnd);
 
             comboBoxPagesNumber.SelectedIndex = 0;
             //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, initialStart, initialEnd);
@@ -182,21 +182,21 @@ namespace ConferencePlanner.WinUi.View
                 if (btns.GetType() == typeof(Button))
                 {
                     Button btn = (Button)btns;
-                    /*btn.BackColor = ThemeColor.PrimaryColor;
-                    btn.ForeColor = Color.White;*/
                     btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
                 }
             }
         }
 
 
-        private async Task dtpStart_ValueChanged_1(object sender, EventArgs e)
+        private async void dtpStart_ValueChanged_1(object sender, EventArgs e)
         {
             Console.WriteLine(dtpStart.Value);
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
-            await LoadConferences(dtpStart.Value, dtpEnd.Value);
-            //Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
+
+            var url = $"http://localhost:2794/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
+            Conferences = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+
             Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
             range = 0;
@@ -260,7 +260,6 @@ namespace ConferencePlanner.WinUi.View
                 Form2 editConferenceForm = new Form2(_conferenceRepository, conf);
                 editConferenceForm.ShowDialog();
             }
-
         }
 
         private void btnNext_Click_1(object sender, EventArgs e)
@@ -302,11 +301,16 @@ namespace ConferencePlanner.WinUi.View
             WireUpOrganiser();
         }
 
-        private void dtpEnd_ValueChanged_1(object sender, EventArgs e)
+        private async void dtpEnd_ValueChanged_1(object sender, EventArgs e)
         {
+            DateTime _startDate = dtpStart.Value;
+            DateTime _endDate = dtpStart.Value;
             dgvOrganiser.Rows.Clear();
             Conferences.Clear();
-            Conferences = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, dtpStart.Value, dtpEnd.Value);
+
+            var url = $"http://localhost:2794/api/Conference/organized/all/{emailCopyFromMainForm}?startDate={_startDate}&endDate={_endDate}";
+            Conferences = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+
             Console.WriteLine(Conferences.Count);
             maxrange = Conferences.Count;
             range = 0;

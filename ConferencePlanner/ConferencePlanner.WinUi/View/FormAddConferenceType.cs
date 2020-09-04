@@ -190,7 +190,8 @@ namespace ConferencePlanner.WinUi.View
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormAddConferenceGeneral.conference.ConferenceType = typeId.ToString();
+            FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
+            FormAddConferenceGeneral.conferenceModel.ConferenceType = typeId.ToString();
 
         }
 

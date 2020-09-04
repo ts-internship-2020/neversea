@@ -170,7 +170,8 @@ namespace ConferencePlanner.WinUi.View
 
         private void FormAddConferenceCategory_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormAddConferenceGeneral.conference.ConferenceCategory = categoryId.ToString();
+            FormAddConferenceGeneral.conference.DictionaryConferenceCategoryId = categoryId;
+            FormAddConferenceGeneral.conferenceModel.ConferenceCategory = categoryId.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -42,16 +42,16 @@ namespace ConferencePlanner.WinUi.Utilities
 
             HttpResponseMessage res;
 
-            res = await httpClient.PutAsync(url, obj, new JsonMediaTypeFormatter());
-
+            res = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
         }
-
 
 
         public static async void PostOperation<T>(string url, T obj)
         {
             var response = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
         }
+
+
         public static async void DeleteOperation<T>(string url, T obj)
         {
             HttpClient httpClient = HttpClientFactory.Create();

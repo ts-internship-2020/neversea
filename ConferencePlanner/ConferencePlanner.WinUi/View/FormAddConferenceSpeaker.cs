@@ -134,7 +134,7 @@ namespace ConferencePlanner.WinUi.View
             } 
             else
             {
-                FormAddConferenceGeneral.conference.ConferenceMainSpeaker = speakerId.ToString();
+                FormAddConferenceGeneral.conferenceModel.ConferenceMainSpeaker = speakerId.ToString();
             }
 
         }
