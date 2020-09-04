@@ -30,7 +30,7 @@ namespace ConferencePlanner.Api.Controllers
             return Ok(districtModel);
         }
         [HttpGet]
-        [Route("getDistrictsFiltered")]
+        [Route("GetDistrictByKeyword")]
         public IActionResult GetDistricts(string keyword)
         {
             List<DistrictModel> districtModel = _getDistrictRepository.GetDistricts(keyword);

@@ -36,7 +36,6 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadCities(int districtId)
         {
             //HttpClient httpClient = HttpClientFactory.Create();
-            //var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
             //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
             //if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
