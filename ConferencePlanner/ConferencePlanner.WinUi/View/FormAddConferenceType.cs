@@ -34,7 +34,7 @@ namespace ConferencePlanner.WinUi.View
         public async void LoadConferenceTypes()
         {
             //conferenceTypes = conferenceTypeRepository.getConferenceTypes();
-            var url = "http://localhost:2794/api/ConferenceType/GetAllTypes";
+            var url = "http://localhost:5000/api/ConferenceType/GetAllTypes";
             conferenceTypes = await HttpClientOperations.GetOperation<ConferenceTypeModel>(url);
             maxrange = conferenceTypes.Count;
             dgvConferenceTypes.ColumnCount = 2;
@@ -46,7 +46,7 @@ namespace ConferencePlanner.WinUi.View
 
         public async void LoadConferenceTypes(string keyword)
         {
-            var url = "http://localhost:2794/api/ConferenceType/GetTypesByKeyword?keyword=" + keyword;
+            var url = "http://localhost:5000/api/ConferenceType/GetTypesByKeyword?keyword=" + keyword;
             conferenceTypes = await HttpClientOperations.GetOperation<ConferenceTypeModel>(url);
             //conferenceTypes = conferenceTypeRepository.getConferenceTypes(keyword);
             maxrange = conferenceTypes.Count;
@@ -151,7 +151,7 @@ namespace ConferencePlanner.WinUi.View
                     ConferenceTypeModel model = new ConferenceTypeModel();
                     model.conferenceTypeName = conferenceTypeName;
 
-                    HttpClientOperations.PostOperation<ConferenceTypeModel>("http://localhost:2794/api/ConferenceType/PostConferenceType", model);
+                    HttpClientOperations.PostOperation<ConferenceTypeModel>("http://localhost:5000/api/ConferenceType/PostConferenceType", model);
                     // conferenceTypeRepository.InsertConferenceType(conferenceTypeName);
                     LoadConferenceTypes();
                 }
@@ -173,7 +173,7 @@ namespace ConferencePlanner.WinUi.View
 
                 model.conferenceTypeId = conferenceTypeId;
 
-                HttpClientOperations.DeleteOperation<ConferenceTypeModel>("http://localhost:2794/api/ConferenceType/DeleteConferenceType", model);
+                HttpClientOperations.DeleteOperation<ConferenceTypeModel>("http://localhost:5000/api/ConferenceType/DeleteConferenceType", model);
                 LoadConferenceTypes();
             }
         }
@@ -185,7 +185,10 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvConferenceTypes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            if (dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
+            {
+                typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            }
         }
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)

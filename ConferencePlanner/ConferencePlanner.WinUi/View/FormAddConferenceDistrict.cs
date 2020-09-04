@@ -37,7 +37,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadDistricts()
         {
             //districts = districtRepository.GetDistricts();
-            var url = "http://localhost:2794/api/District";
+            var url = "http://localhost:5000/api/District";
             districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
@@ -56,7 +56,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadDistricts(string keyword)
         {
             //districts = districtRepository.GetDistricts(keyword);
-            var url = "http://localhost:2794/api/District/getDistrictsFiltered?keyword=" + keyword;
+            var url = "http://localhost:5000/api/District/getDistrictsFiltered?keyword=" + keyword;
             districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
             this.dgvDistricts.Columns[3].Visible = false;
@@ -144,7 +144,7 @@ namespace ConferencePlanner.WinUi.View
                     model.CountryId = 1;
                     // model.CountryId = countryId;
 
-                    HttpClientOperations.PostOperation<DistrictModel>("http://localhost:2794/api/District/insertDistrict", model);
+                    HttpClientOperations.PostOperation<DistrictModel>("http://localhost:5000/api/District/insertDistrict", model);
                     // districtRepository.InsertDistrict(districtName, districtCode, 1);
                     dgvDistricts.Rows.Clear();
                     LoadDistricts();
@@ -166,7 +166,7 @@ namespace ConferencePlanner.WinUi.View
                 DistrictModel model = new DistrictModel();
                 model.DistrictId = districtId;
                 model.CountryId = countryId;
-                HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:2794/api/District/deleteDistrict", model);
+                HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:5000/api/District/deleteDistrict", model);
                 // districtRepository.DeleteDistrict(districtId, countryId);
                 LoadDistricts();
             }
@@ -180,9 +180,9 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvDistricts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null) { 
             DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-
+            }
         }
 
         private void FormAddConferenceDistrict_FormClosing(object sender, FormClosingEventArgs e)

@@ -34,7 +34,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadCountries()
         {
             //countries = countryRepository.GetCountry();
-            var url = "http://localhost:2794/GetCountry";
+            var url = "http://localhost:5000/GetCountry";
             countries = await HttpClientOperations.GetOperation<CountryModel>(url);
 
             this.dgvCountries.ColumnCount = 4;
@@ -51,7 +51,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadCountries(string keyword)
         {
             //countries = countryRepository.GetCountry(keyword);
-            var url = "http://localhost:2794/GetCountryByKeyword?keyword="+keyword;
+            var url = "http://localhost:5000/GetCountryByKeyword?keyword="+keyword;
             countries = await HttpClientOperations.GetOperation<CountryModel>(url);
             this.dgvCountries.ColumnCount = 4;
             this.dgvCountries.Columns[1].Visible = false;
@@ -209,7 +209,9 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString() != null) { 
              id= Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+             }
         }
 
         private void button2_Click(object sender, EventArgs e)
