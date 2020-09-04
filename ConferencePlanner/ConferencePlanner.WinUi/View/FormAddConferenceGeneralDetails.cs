@@ -28,7 +28,7 @@ namespace ConferencePlanner.WinUi.View
             startDate = dtpStart.Value;
             endDate = dtpEnd.Value;
             address = txtLocation.Text.ToString();
-            FormAddConferenceGeneral.conference.ConferenceName = title;
+            FormAddConferenceGeneral.conferenceModel.ConferenceName = title;
             FormAddConferenceGeneral.conferenceModel.ConferenceOrganiserEmail = email;
 
             FormAddConferenceGeneral.conferenceModel.ConferenceStartDate = startDate;
