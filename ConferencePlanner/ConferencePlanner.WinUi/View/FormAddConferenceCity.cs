@@ -35,24 +35,10 @@ namespace ConferencePlanner.WinUi.View
 
         private async void LoadCities(int districtId)
         {
-            //HttpClient httpClient = HttpClientFactory.Create();
-            //var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
-            //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
-
-            //if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
-            //{
-            //    var content = httpResponseMessage.Content;
-            //    var data = await content.ReadAsStringAsync();
-
-            //    cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
-            //}
-            //cities = conferenceCityRepository.GetConferenceCities(districtId);
-
             var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
                 + districtId.ToString();
 
             cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
-            Console.WriteLine("Lista cities are marimea " + cities.Count);
             dgvCities.ColumnCount = 2;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
@@ -67,8 +53,6 @@ namespace ConferencePlanner.WinUi.View
             {
                 int selectedIndex = dgvCities.SelectedRows[0].Index;
                 int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
-                //int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
-                // conferenceCityRepository.DeleteCity(cityId, 1);
                 ConferenceCityModel model = new ConferenceCityModel();
 
                 model.ConferenceCityId = cityId;
@@ -133,7 +117,7 @@ namespace ConferencePlanner.WinUi.View
             Console.WriteLine("text changed");
             
             range = 0;
-            btnPreviousPage.Visible = false;
+            btnPreviousPage.Enabled = false;
             step = (int)comboBoxPagesCount.SelectedItem;
             shown = (int)comboBoxPagesCount.SelectedItem;
             string keyword = txtSearch.Text;
@@ -202,10 +186,10 @@ namespace ConferencePlanner.WinUi.View
             dgvCities.Rows.Clear();
             range = step;
             step += shown;
-            btnPreviousPage.Visible = true;
+            btnPreviousPage.Enabled = true;
             if (step >= maxrange)
             {
-                btnNextPage.Visible = false;
+                btnNextPage.Enabled = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpCities();
@@ -216,10 +200,10 @@ namespace ConferencePlanner.WinUi.View
             dgvCities.Rows.Clear();
             step = range;
             range -= shown;
-            btnPreviousPage.Visible = true;
+            btnPreviousPage.Enabled = true;
             if (range == 0)
             {
-                btnPreviousPage.Visible = false;
+                btnPreviousPage.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpCities();
@@ -231,7 +215,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesCount.SelectedItem;
             shown = (int)comboBoxPagesCount.SelectedItem;
-            btnPreviousPage.Visible = false;
+            btnPreviousPage.Enabled = false;
             WireUpCities();
         }
     }

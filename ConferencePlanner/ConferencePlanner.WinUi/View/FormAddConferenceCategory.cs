@@ -60,7 +60,7 @@ namespace ConferencePlanner.WinUi.View
         }
         private void WireUpCategories()
         {
-            comboBoxPagesNumber.SelectedIndex = 0;
+            
             dgvConferenceCategories.Rows.Clear();
             for (int i = range; i < step; i++)
             {
@@ -76,11 +76,11 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (conferenceCategories.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                    button2.Visible = false;
+                    button2.Enabled = false;
                 }
                 else if (step < maxrange)
                 {
-                    button2.Visible = true;
+                    button2.Enabled = true;
                 }
             }
 
@@ -144,7 +144,7 @@ namespace ConferencePlanner.WinUi.View
         {
             string keyword = txtSearch.Text;
             range = 0;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             if (keyword == "")
@@ -179,10 +179,10 @@ namespace ConferencePlanner.WinUi.View
             dgvConferenceCategories.Rows.Clear();
             range = step;
             step += shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (step >= maxrange)
             {
-                button2.Visible = false;
+                button2.Enabled = false;
             }
             WireUpCategories();
 
@@ -193,10 +193,10 @@ namespace ConferencePlanner.WinUi.View
             dgvConferenceCategories.Rows.Clear();
             step = range;
             range -= shown;
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
             if (range == 0)
             {
-                btnPrevious.Visible = false;
+                btnPrevious.Enabled = false;
             }
             WireUpCategories();
 
@@ -208,7 +208,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPrevious.Visible = false;
+            btnPrevious.Enabled = false;
             WireUpCategories();
         }
 

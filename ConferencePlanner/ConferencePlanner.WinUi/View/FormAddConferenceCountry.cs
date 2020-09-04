@@ -203,7 +203,6 @@ namespace ConferencePlanner.WinUi.View
             {
                 FormAddConferenceGeneral.countryId = id;
             }
-
         }
 
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -216,10 +215,10 @@ namespace ConferencePlanner.WinUi.View
             dgvCountries.Rows.Clear();
             range = step;
             step += shown;
-            btnPreviousPage.Visible = true;
+            btnPreviousPage.Enabled = true;
             if (step >= maxrange)
             {
-                button2.Visible = false;
+                button2.Enabled = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpCountries();
@@ -231,10 +230,10 @@ namespace ConferencePlanner.WinUi.View
             dgvCountries.Rows.Clear();
             step = range;
             range -= shown;
-            btnPreviousPage.Visible = true;
+            btnPreviousPage.Enabled = true;
             if (range == 0)
             {
-                btnPreviousPage.Visible = false;
+                btnPreviousPage.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpCountries();
@@ -246,7 +245,7 @@ namespace ConferencePlanner.WinUi.View
             range = 0;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPreviousPage.Visible = false;
+            btnPreviousPage.Enabled = false;
             WireUpCountries();
 
         }
