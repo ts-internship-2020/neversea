@@ -73,11 +73,11 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (speakers.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                    button3.Enabled = false;
+                    button3.Visible = false;
                 }
                 else if (step < maxrange)
                 {
-                    button3.Enabled = true;
+                    button3.Visible = true;
                 }
             }
         }
@@ -147,7 +147,7 @@ namespace ConferencePlanner.WinUi.View
             btnPrevious.Visible = true;
             if (step >= maxrange)
             {
-                button3.Enabled = false;
+                button3.Visible = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpSpeakers();

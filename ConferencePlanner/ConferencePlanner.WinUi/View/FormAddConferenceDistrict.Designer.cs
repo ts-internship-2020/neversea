@@ -58,6 +58,7 @@
             btnBackDistrict.Size = new System.Drawing.Size(42, 33);
             btnBackDistrict.TabIndex = 34;
             btnBackDistrict.UseVisualStyleBackColor = true;
+            btnBackDistrict.Visible = false;
             btnBackDistrict.Click += new System.EventHandler(this.btnBackDistrict_Click);
             // 
             // btnNextDistrict
