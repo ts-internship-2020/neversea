@@ -1,6 +1,7 @@
 ﻿using BarcodeLib;
 using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
+using ConferencePlanner.Repository.Ef.Entities;
 using ConferencePlanner.WinUi.Utilities;
 using Newtonsoft.Json;
 using System;
@@ -35,6 +36,11 @@ namespace ConferencePlanner.WinUi.View
         List<ConferenceModel> conferenceModels = new List<ConferenceModel>();
         List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
 
+        public int range = 0;
+        public int step = 4;
+        public int shown = 4;
+        public int maxRange;
+
 
         public FormSpectator(IConferenceRepository _conferenceRepository, string emailCopy, IConferenceAttendanceRepository _conferenceAttendanceRepository)
         {
@@ -44,15 +50,128 @@ namespace ConferencePlanner.WinUi.View
 
             InitializeComponent();
 
+            //boBoxPagesNumber.SelectedIndex = 0;
         }
 
-
-        private async void WireUpSpectator(DateTime _startDate, DateTime _endDate)
+        private DataGridViewImageColumn GetActionButton(string action)
         {
+            DataGridViewImageColumn buttonToAdd = new DataGridViewImageColumn();
 
+            if (action == "join")
+            {
+                buttonToAdd.HeaderText = "Join";
+                buttonToAdd.Name = "buttonJoinColumn";
+                buttonToAdd.ToolTipText = "Join Conference";
+                buttonToAdd.Image = Properties.Resources.icons8_add_user_group_man_man_20;
+                buttonToAdd.Description = "Press to Join";
+            }
+
+            else if (action == "attend")
+            {
+                buttonToAdd.HeaderText = "Attend";
+                buttonToAdd.Name = "buttonAttendColumn";
+                buttonToAdd.ToolTipText = "Attend Conference";
+                buttonToAdd.Image = Properties.Resources.icons8_event_accepted_20;
+                buttonToAdd.Description = "Press to Attend";
+            }
+
+            else if (action == "withdraw")
+            {
+                buttonToAdd.HeaderText = "Withdraw";
+                buttonToAdd.Name = "buttonWithdrawColumn";
+                buttonToAdd.ToolTipText = "Withdraw from conference";
+                buttonToAdd.DividerWidth = 0;
+                buttonToAdd.Image = Properties.Resources.icons8_xbox_x_20;
+                buttonToAdd.Description = "Press to Withdraw";
+            }
+
+            return buttonToAdd;
+        }
+
+        private void InsertPaginatedList(List<ConferenceModel> _conferenceModels, int _range, int _step, int _shown)
+        {
             dgvSpectator.Rows.Clear();
             dgvSpectator.Columns.Clear();
 
+            maxRange = _conferenceModels.Count;
+
+            if(maxRange <= _step)
+            {
+                btnNext.Visible = true;
+            }
+
+
+            this.dgvSpectator.ColumnCount = 10;
+
+            for (int i = _range; i < _step; i++)
+            {
+                if (i >= maxRange)
+                {
+                    btnNext.Visible = false;
+                    break;
+                }
+                else
+                {
+                    btnNext.Visible = true;
+                    dgvSpectator.Rows.Add(_conferenceModels[i].ConferenceName,
+                            _conferenceModels[i].ConferenceId,
+                            _conferenceModels[i].ConferenceStartDate,
+                            _conferenceModels[i].ConferenceEndDate,
+                            _conferenceModels[i].ConferenceType,
+                            _conferenceModels[i].ConferenceCategory,
+                            _conferenceModels[i].ConferenceMainSpeaker,
+                            _conferenceModels[i].ConferenceLocation,
+                            _conferenceModels[i].SpeakerId,
+                            _conferenceModels[i].ConferenceOrganiserEmail);
+
+                    this.dgvSpectator.Columns[7].Visible = false;
+                    this.dgvSpectator.Columns[9].Visible = false;
+                    this.dgvSpectator.Columns[1].Visible = false;
+                    this.dgvSpectator.Columns[8].Visible = false;
+
+                    this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
+                    this.dgvSpectator.Columns[2].Name = "StartDate";
+                    this.dgvSpectator.Columns[3].Name = "EndDate";
+
+                }
+
+            }
+
+            dgvSpectator.Columns.Add(GetActionButton("join"));
+            dgvSpectator.Columns.Add(GetActionButton("attend"));
+            dgvSpectator.Columns.Add(GetActionButton("withdraw"));
+
+            FormatHeaders();
+
+        }
+
+        private void FormatHeaders()
+        {
+            this.dgvSpectator.Columns[0].HeaderText = "Title";
+            this.dgvSpectator.Columns[1].HeaderText = "Id";
+            this.dgvSpectator.Columns[2].HeaderText = "Starts";
+            this.dgvSpectator.Columns[3].HeaderText = "Ends";
+            this.dgvSpectator.Columns[4].HeaderText = "Type";
+            this.dgvSpectator.Columns[5].HeaderText = "Category";
+            this.dgvSpectator.Columns[6].HeaderText = "Speaker";
+            this.dgvSpectator.Columns[7].HeaderText = "Location";
+            this.dgvSpectator.Columns[8].HeaderText = "SpeakerId";
+            this.dgvSpectator.Columns[9].HeaderText = "OrganiserEmail";
+
+            this.dgvSpectator.Columns[0].Name = "conferenceName";
+            this.dgvSpectator.Columns[1].Name = "conferenceId";
+            this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
+            this.dgvSpectator.Columns[2].Name = "StartDate";
+            this.dgvSpectator.Columns[3].Name = "EndDate";
+
+            this.dgvSpectator.Columns[7].Visible = false;
+            this.dgvSpectator.Columns[9].Visible = false;
+            this.dgvSpectator.Columns[1].Visible = false;
+            this.dgvSpectator.Columns[8].Visible = false;
+        }
+
+        private async void WireUpSpectator(DateTime _startDate, DateTime _endDate)
+        {
 
             string startDateStr = _startDate.ToString("yyyy-MM-dd");
             string endDateStr = _endDate.ToString("yyyy-MM-dd");
@@ -65,68 +184,11 @@ namespace ConferencePlanner.WinUi.View
 
             conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(urlGetConference);
 
+            InsertPaginatedList(conferenceModels, range, step, shown);
+
             var urlGetConferenceAttendance = "http://localhost:5000/api/ConferenceAttendance/GetConferenceAttendance";
             conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
-            dgvSpectator.DataSource = null;
-            dgvSpectator.DataSource = conferenceModels;
-
-            this.dgvSpectator.Columns[0].HeaderText = "Title";
-            this.dgvSpectator.Columns[1].HeaderText = "Id";
-            this.dgvSpectator.Columns[2].HeaderText = "Starts";
-            this.dgvSpectator.Columns[3].HeaderText = "Ends";
-            this.dgvSpectator.Columns[4].HeaderText = "Type";
-            this.dgvSpectator.Columns[5].HeaderText = "Category";
-            this.dgvSpectator.Columns[6].HeaderText = "Speaker";
-            this.dgvSpectator.Columns[7].HeaderText = "Location";
-            this.dgvSpectator.Columns[8].HeaderText = "SpeakerId";
-            this.dgvSpectator.Columns[9].HeaderText = "OrganiserEmail";
-            this.dgvSpectator.Columns[7].Visible = false;
-            this.dgvSpectator.Columns[9].Visible = false;
-            this.dgvSpectator.Columns[1].Visible = false;
-            this.dgvSpectator.Columns[8].Visible = false;
-            this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
-            this.dgvSpectator.Columns[2].Name = "StartDate";
-            this.dgvSpectator.Columns[3].Name = "EndDate";
-
-            // Image img = Properties.Resources.icons8_cancel_32px;
-            Image img2 = Properties.Resources.icons8_add_user_group_man_man_20;
-            DataGridViewImageColumn buttonJoinColumn = new DataGridViewImageColumn
-            {
-                HeaderText = "Join",
-                Name = "buttonJoinColumn",
-                ToolTipText = "Join Conference",
-                Image = img2,
-                Description = "Press to Join"
-            };
-
-            dgvSpectator.Columns.Add(buttonJoinColumn);
-
-            DataGridViewImageColumn buttonAttendColumn = new DataGridViewImageColumn
-            {
-                HeaderText = "Attend",
-                Name = "buttonAttendColumn",
-                ToolTipText = "Attend Conference",
-                Image = Properties.Resources.icons8_event_accepted_20,
-                Description = "Press to Attend"
-            };
-
-
-            dgvSpectator.Columns.Add(buttonAttendColumn);
-
-
-            DataGridViewImageColumn buttonWithdrawColumn = new DataGridViewImageColumn
-            {
-                HeaderText = "Withdraw",
-                Name = "buttonWithdrawColumn",
-                ToolTipText = "Withdraw from conference",
-                DividerWidth = 0,
-                Image = Properties.Resources.icons8_xbox_x_20,
-                Description = "Press to Withdraw"
-
-            };
-
-            dgvSpectator.Columns.Add(buttonWithdrawColumn);
         }
 
 
@@ -157,7 +219,7 @@ namespace ConferencePlanner.WinUi.View
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
 
 
-            btnPrevious.Visible = false;
+           btnPrevious.Visible = false;
             foreach (DataGridViewRow row in dgvSpectator.Rows)
             {
                 int confId = Convert.ToInt32(row.Cells["conferenceId"].FormattedValue.ToString());
@@ -170,7 +232,9 @@ namespace ConferencePlanner.WinUi.View
         private async Task<bool> IsParticipating(string spectatorEmail, int confId)
         {
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsParticipating?email={spectatorEmail}&id={confId}";
+
+            string encodedEmail = HttpUtility.UrlEncode(spectatorEmail);
+            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsParticipating?email={encodedEmail}&id={confId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
             bool isParticipant = true;
 
@@ -189,7 +253,6 @@ namespace ConferencePlanner.WinUi.View
 
         private void dtpStart_CloseUp(Object sender, EventArgs e)
         {
-            dgvSpectator.DataSource = null;
             dtpEnd.MinDate = dtpStart.Value;
             DateTime startDate = dtpStart.Value;
             DateTime endDate = dtpEnd.Value;
@@ -199,17 +262,10 @@ namespace ConferencePlanner.WinUi.View
 
         private void dtpEnd_CloseUp(Object sender, EventArgs e)
         {
-            dgvSpectator.DataSource = null;
             DateTime startDate = dtpStart.Value;
             DateTime endDate = dtpEnd.Value;
 
             WireUpSpectator(startDate, endDate);
-        }
-
-
-        private void dgvSpectator_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dgvSpectator.ClearSelection();
         }
 
         private void sendEmail(string name, string email, string subject, string confName, long code)
@@ -232,9 +288,6 @@ namespace ConferencePlanner.WinUi.View
                 IsBodyHtml = true,
             };
 
-
-
-
             Image img = generateBarcode(code);
             Attachment attachment1 = new Attachment(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image.jpeg");
             mailMessage1.Attachments.Add(attachment1);
@@ -256,15 +309,17 @@ namespace ConferencePlanner.WinUi.View
 
         private void InsertParticipant(int _conferenceId, string _spectatorEmail, int _participantStatusCode)
         {
-            var url = "http://localhost:2794/Participant/new";
+            var url = "http://localhost:5000/Participant/new";
 
-            HttpClientOperations.PostOperation<Object>(url, new {conferenceId = _conferenceId, spectatorEmail = _spectatorEmail, participantStatusCode = _participantStatusCode});
+            HttpClientOperations.PostOperation<Object>(url, new ConferenceAttendance {ConferenceId = _conferenceId, ParticipantEmailAddress = _spectatorEmail, DictionaryParticipantStatusId = _participantStatusCode});
         }
 
         private async Task<bool> IsWithdrawn(string spectatorEmail, int conferenceId)
         {
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsWithdrawn?email={spectatorEmail}&id={conferenceId}";
+            string encodedEmail = HttpUtility.UrlEncode(spectatorEmail);
+
+            var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsWithdrawn?email={encodedEmail}&id={conferenceId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
             bool isWithdrawn = false;
 
@@ -361,6 +416,44 @@ namespace ConferencePlanner.WinUi.View
                     }
                 }
             }
+        }
+
+        private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            step = (int)comboBoxPagesNumber.SelectedItem;
+            shown = (int)comboBoxPagesNumber.SelectedItem;
+            InsertPaginatedList(conferenceModels, 0, step, shown);
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            range = step;
+            step += shown;
+
+            btnPrevious.Visible = true;
+
+            if (step >= maxRange)
+            {
+                btnNext.Visible = false;
+            }
+
+
+            InsertPaginatedList(conferenceModels, range, step, shown);
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            step = range;
+            range -= shown;
+
+            btnPrevious.Visible = true;
+
+            if (range == 0)
+            {
+                btnPrevious.Visible = false;
+            }
+
+            InsertPaginatedList(conferenceModels, range, step, shown);
         }
 
         //public async System.Threading.Tasks.Task<List<string>> getStrtingTestAsync(string path)

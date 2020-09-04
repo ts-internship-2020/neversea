@@ -39,16 +39,17 @@ namespace ConferencePlanner.Repository.Ef.Repository
         {
             List<ConferenceAttendanceModel> conferenceAttendanceModels = new List<ConferenceAttendanceModel>();
             List<ConferenceAttendance> conferenceAttendance = new List<ConferenceAttendance>();
+
             conferenceAttendance = _dbContext.ConferenceAttendance.ToList();
-            conferenceAttendanceModels = conferenceAttendance.Select(a => new ConferenceAttendanceModel()
+            conferenceAttendanceModels = conferenceAttendance.Where(a => a.ParticipantEmailAddress == email && a.ConferenceId == id).Select(a => new ConferenceAttendanceModel()
             {
                 ParticipantEmailAddress = a.ParticipantEmailAddress,
                 ConferenceId = a.ConferenceId,
                 DictionaryParticipantStatusId = a.DictionaryParticipantStatusId,
                 ParticipationCode = a.ParticipationCode
-            }).Where(a=>a.ParticipantEmailAddress == email && a.ConferenceId == id).ToList();
+            }).ToList();
 
-            if(conferenceAttendanceModels != null)
+            if(conferenceAttendanceModels.Count != 0)
             {
                 return true;
             }
@@ -65,15 +66,15 @@ namespace ConferencePlanner.Repository.Ef.Repository
             List<ConferenceAttendanceModel> conferenceAttendanceModels = new List<ConferenceAttendanceModel>();
             List<ConferenceAttendance> conferenceAttendance = new List<ConferenceAttendance>();
             conferenceAttendance = _dbContext.ConferenceAttendance.ToList();
-            conferenceAttendanceModels = conferenceAttendance.Select(a => new ConferenceAttendanceModel()
+            conferenceAttendanceModels = conferenceAttendance.Where(a => a.ParticipantEmailAddress == email && a.ConferenceId == id).Select(a => new ConferenceAttendanceModel()
             {
                 ParticipantEmailAddress = a.ParticipantEmailAddress,
                 ConferenceId = a.ConferenceId,
                 DictionaryParticipantStatusId = a.DictionaryParticipantStatusId,
                 ParticipationCode = a.ParticipationCode
-            }).Where(a => a.ParticipantEmailAddress == email && a.ConferenceId == id).ToList();
+            }).ToList();
             
-            if(conferenceAttendanceModels != null)
+            if(conferenceAttendanceModels.Count != 0)
             {
                 id = conferenceAttendanceModels[0].DictionaryParticipantStatusId;
              
