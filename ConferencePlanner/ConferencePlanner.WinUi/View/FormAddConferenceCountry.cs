@@ -170,7 +170,8 @@ namespace ConferencePlanner.WinUi.View
 
                 model.CountryId = countryId;
 
-                HttpClientOperations.DeleteOperation<CountryModel>("", model);
+                HttpClientOperations.DeleteOperation<CountryModel>("http://localhost:5000/DeleteCountry", model);
+                dgvCountries.Rows.Clear();
                 LoadCountries();
             }   
 
@@ -183,7 +184,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void FormAddConferenceCountry_FormClosing(object sender, FormClosingEventArgs e)
         {
-            LoadCountries();
+          //  LoadCountries();
 
             for (int i = 0; i < dgvCountries.Rows.Count - 1; i++)
             {
@@ -203,13 +204,14 @@ namespace ConferencePlanner.WinUi.View
             }
             else 
             {
-                FormAddConferenceGeneral.countryId = id;
+                
             }
         }
 
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
              id= Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+            FormAddConferenceGeneral.countryId = id;
         }
 
         private void button2_Click(object sender, EventArgs e)

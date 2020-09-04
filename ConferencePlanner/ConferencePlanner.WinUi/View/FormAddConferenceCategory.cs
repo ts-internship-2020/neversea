@@ -36,7 +36,7 @@ namespace ConferencePlanner.WinUi.View
 
         private async void LoadConferenceCategories()
         {
-            var url = "http://localhost:2794/api/ConferenceCategory/GetAllCategories";
+            var url = "http://localhost:5000/api/ConferenceCategory/GetAllCategories";
             conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
             dgvConferenceCategories.ColumnCount = 2;
             dgvConferenceCategories.Columns[0].Name = "Category";
@@ -48,7 +48,7 @@ namespace ConferencePlanner.WinUi.View
 
         public async void LoadConferenceCategories(string keyword)
         {
-            var url = "http://localhost:2794/api/ConferenceCategory/GetCategoryByKeyword?keyword=" + keyword;
+            var url = "http://localhost:5000/api/ConferenceCategory/GetCategoryByKeyword?keyword=" + keyword;
             conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
             //conferenceCategories = conferenceCategoryRepository.GetConferenceCategories(keyword);
             dgvConferenceCategories.ColumnCount = 2;
@@ -111,7 +111,7 @@ namespace ConferencePlanner.WinUi.View
                     ConferenceCategoryModel model = new ConferenceCategoryModel();
                     model.conferenceCategoryName = conferenceCategoryName;
                     
-                    HttpClientOperations.PostOperation<ConferenceCategoryModel>("http://localhost:2794/api/ConferenceCategory/InsertCategory", model);
+                    HttpClientOperations.PostOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/InsertCategory", model);
                     // conferenceCategoryRepository.InsertConferenceCategory(conferenceCategoryName);
                     dgvConferenceCategories.Rows.Clear();
                     LoadConferenceCategories();
@@ -135,7 +135,8 @@ namespace ConferencePlanner.WinUi.View
 
                 model.conferenceCategoryId = conferenceCategoryId;
 
-                HttpClientOperations.DeleteOperation<ConferenceCategoryModel>("http://localhost:2794/api/ConferenceCategory/DeleteCategory", model);
+                HttpClientOperations.DeleteOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/DeleteCategory", model);
+                dgvConferenceCategories.Rows.Clear();
                 LoadConferenceCategories();
             }
         }
@@ -165,8 +166,12 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvConferenceCategories_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-        }
+
+            if (dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
+            {
+                categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            }
+            }
 
         private void FormAddConferenceCategory_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -212,29 +217,29 @@ namespace ConferencePlanner.WinUi.View
             WireUpCategories();
         }
 
-       /* private async Task<List<ConferenceCategoryModel>> GetResponse()
-        {
-            List<ConferenceCategoryModel> model = null;
-            ConferenceCategoryModel model1 = new ConferenceCategoryModel();
-            HttpClient client = new HttpClient();
-            HttpResponseMessage s = await client.GetAsync("http://localhost:2794/api/ConferenceCategory/GetAllCategories");
-            if (s.IsSuccessStatusCode)
-            {
-
-               
-                var responseBody = await s.Content.ReadAsStringAsync();
-                model = JsonConvert.DeserializeObject<List<ConferenceCategoryModel>>(responseBody);
-                Console.WriteLine(model);
-                return model;
-               
-                
+        /* private async Task<List<ConferenceCategoryModel>> GetResponse()
+         {
+             List<ConferenceCategoryModel> model = null;
+             ConferenceCategoryModel model1 = new ConferenceCategoryModel();
+             HttpClient client = new HttpClient();
+             HttpResponseMessage s = await client.GetAsync("http://localhost:5000/api/ConferenceCategory/GetAllCategories");
+             if (s.IsSuccessStatusCode)
+             {
 
 
-            }
-            else
-            {
-                throw new Exception("NO");
-            }
+                 var responseBody = await s.Content.ReadAsStringAsync();
+                 model = JsonConvert.DeserializeObject<List<ConferenceCategoryModel>>(responseBody);
+                 Console.WriteLine(model);
+                 return model;
+
+
+
+
+             }
+             else
+             {
+                 throw new Exception("NO");
+             }
 
 
 

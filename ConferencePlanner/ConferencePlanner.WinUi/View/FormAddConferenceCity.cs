@@ -36,7 +36,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadCities(int districtId)
         {
             //HttpClient httpClient = HttpClientFactory.Create();
-            //var url = "http://localhost:2794/GetConfereceCitiesById?districtId=1";
+            //var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
             //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
             //if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
@@ -46,9 +46,9 @@ namespace ConferencePlanner.WinUi.View
 
             //    cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
             //}
-            //cities = conferenceCityRepository.GetConferenceCities(districtId);
+            cities = conferenceCityRepository.GetConferenceCities(districtId);
 
-            var url = "http://localhost:2794/GetConfereceCitiesById?districtId="
+            var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
                 + districtId.ToString();
 
             cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
@@ -70,7 +70,7 @@ namespace ConferencePlanner.WinUi.View
 
                 model.ConferenceCityId = cityId;
 
-                HttpClientOperations.DeleteOperation<ConferenceCityModel>("http://localhost:2794/DeleteCity", model);
+                HttpClientOperations.DeleteOperation<ConferenceCityModel>("http://localhost:5000/DeleteCity", model);
                
                 dgvCities.Rows.Clear();
                 LoadCities(1);
@@ -92,7 +92,7 @@ namespace ConferencePlanner.WinUi.View
                         cityUpdated.ConferenceCityName = nameCity;
                         cityUpdated.ConferenceCityId = indexCity;
                         cityUpdated.ConferenceDistrictId = 1;
-                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:2794/UpdateCity", cityUpdated);
+                        HttpClientOperations.PutOperation<ConferenceCityModel>("http://localhost:5000/UpdateCity", cityUpdated);
                         cities[e.RowIndex].ConferenceCityName = nameCity;
                     }
                     else
@@ -102,7 +102,7 @@ namespace ConferencePlanner.WinUi.View
                         ConferenceCityModel city = new ConferenceCityModel();
                         city.ConferenceCityName = nameCity;
                         city.ConferenceDistrictId = 1;
-                        HttpClientOperations.PostOperation<ConferenceCityModel>("http://localhost:2794/InsertCity", city);
+                        HttpClientOperations.PostOperation<ConferenceCityModel>("http://localhost:5000/InsertCity", city);
                         dgvCities.Rows.Clear();
                         if (txtSearch.Text == null)
                             LoadCities(1);
@@ -145,7 +145,7 @@ namespace ConferencePlanner.WinUi.View
         }
         private async void LoadCities(int districtId, string keyword)
         {
-            var url = "http://localhost:2794/GetConfereceCitiesByIdAndKeyword?districtId=" + districtId.ToString()+"&keyword="+keyword;
+            var url = "http://localhost:5000/GetConfereceCitiesByIdAndKeyword?districtId=" + districtId.ToString()+"&keyword="+keyword;
             cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
             Console.WriteLine("Lista cities are marimea " + cities.Count);
             //cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
@@ -192,6 +192,7 @@ namespace ConferencePlanner.WinUi.View
         private void dgvCities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            FormAddConferenceGeneral.location.CityId = locationId;
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)

@@ -37,13 +37,14 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadDistricts()
         {
             //districts = districtRepository.GetDistricts();
-            var url = "http://localhost:2794/api/District";
+            var url = "http://localhost:5000/api/District";
             districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
             this.dgvDistricts.Columns[3].Visible = false;
             this.dgvDistricts.Columns[0].Visible = false;
-            button2.Enabled = false;
+            btnPrevious.Enabled = false;
+            //btnBackDistrict.Enabled = false;
             dgvDistricts.Columns[0].Name = "Id";
             dgvDistricts.Columns[1].Name = "District";
             dgvDistricts.Columns[2].Name = "Code";
@@ -55,7 +56,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadDistricts(string keyword)
         {
             //districts = districtRepository.GetDistricts(keyword);
-            var url = "http://localhost:2794/api/District/getDistrictsFiltered?keyword=" + keyword;
+            var url = "http://localhost:5000/api/District/getDistrictsFiltered?keyword=" + keyword;
             districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
             this.dgvDistricts.Columns[3].Visible = false;
@@ -88,11 +89,13 @@ namespace ConferencePlanner.WinUi.View
                 }
                 if (districts.Count <= (int)comboBoxPagesNumber.SelectedItem)
                 {
-                    button1.Visible = false;
+                    //btnNextDistrict.Visible = false;
+                    btnNext.Visible = false;
                 }
                 else if (step < maxrange)
                 {
-                    button2.Visible = true;
+                    //btnBackDistrict.Visible = true;
+                    btnPrevious.Visible = true;
                 }
             }
         }
@@ -169,8 +172,9 @@ namespace ConferencePlanner.WinUi.View
                 DistrictModel model = new DistrictModel();
                 model.DistrictId = districtId;
                 model.CountryId = countryId;
-                HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:2794/api/District/deleteDistrict", model);
+                HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:5000/api/District/deleteDistrict", model);
                 // districtRepository.DeleteDistrict(districtId, countryId);
+                dgvDistricts.Rows.Clear();
                 LoadDistricts();
             }
 
@@ -183,9 +187,11 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvDistricts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-
+            if (dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
+            {
+                DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                FormAddConferenceGeneral.districtId = DistrictId;
+            }
         }
 
         private void FormAddConferenceDistrict_FormClosing(object sender, FormClosingEventArgs e)
@@ -210,29 +216,32 @@ namespace ConferencePlanner.WinUi.View
 
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnNext_Click(object sender, EventArgs e)
         {
             dgvDistricts.Rows.Clear();
             range = step;
             step += shown;
-            button2.Enabled = true;
+            //btnBackDistrict.Enabled = true;
+            btnPrevious.Enabled = true;
             if (step >= maxrange)
             {
-                button1.Enabled = false;
+                //btnNextDistrict.Enabled = false;
+                btnNext.Enabled = false;
             }
             Console.WriteLine("Am dat Next: range=" + range + " si step=" + step);
             WireUpDistricts();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnPrevious_Click(object sender, EventArgs e)
         {
             dgvDistricts.Rows.Clear();
             step = range;
             range -= shown;
-            button1.Enabled = true;
+            btnNext.Enabled = true;
             if (range == 0)
             {
-                button2.Enabled = false;
+                btnPrevious.Enabled = false;
+                //btnBackDistrict.Enabled = false;
             }
             Console.WriteLine("Am dat Back: range=" + range + " si step=" + step);
             WireUpDistricts();
