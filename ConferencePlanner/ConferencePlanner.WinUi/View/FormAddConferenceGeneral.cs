@@ -22,7 +22,7 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceGeneral : Form
     {
         public static int districtId = new int();
-        public  int locId = 0;
+        public   int locId = 0;
         //public static int locationId = new int();
         public static string locationAddress = new string("");
         public static int countryId = new int();
@@ -261,95 +261,102 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            tabCount++;
-            switchTabs(tabCount, sender);
+            //tabCount++;
+            //switchTabs(tabCount, sender);
 
             // in lucru pt validari
-            //if (tabCount == 1)
-            //{
-            //    tabCount++;
-            //    switchTabs(tabCount, sender);
-            //}
-            //else if (tabCount == 2)
-            //{
-            //    if (countryId == 0)
-            //    {
+            if (tabCount == 1)
+            {
+                if (conferenceModel.ConferenceName == null || conferenceModel.ConferenceOrganiserEmail == null || conferenceModel.ConferenceLocation == null)
+                {
+                    this.Alert("Fill in all fields");
+                }
+                else
+                {
+                    tabCount++;
+                    switchTabs(tabCount, sender);
+                }
+            }
+            else if (tabCount == 2)
+            {
+                if (countryId == 0)
+                {
 
-            //        this.Alert("Select a Country");
-            //    }
-            //    else
-            //    {
-            //        tabCount++;
-            //        switchTabs(tabCount, sender);
-            //    }
-            //}
-            //else if (tabCount == 3)
-            //{
-            //    if (districtId == 0)
-            //    {
+                    this.Alert("Select a Country");
+                }
+                else
+                {
+                    tabCount++;
+                    switchTabs(tabCount, sender);
+                }
+            }
+            else if (tabCount == 3)
+            {
+                if (districtId == 0)
+                {
 
-            //        this.Alert("Select a District");
-            //    }
-            //    else
-            //    {
-            //        tabCount++;
-            //        switchTabs(tabCount, sender);
-            //    }
-            //}
-            //else if (tabCount == 4)
-            //{
+                    this.Alert("Select a District");
+                }
+                else
+                {
+                    tabCount++;
+                    switchTabs(tabCount, sender);
+                }
+            }
+            else if (tabCount == 4)
+            {
 
-            //    if (districtId==0)
-            //    {
+                if (location.CityId== 0)
+                {
 
-            //        this.Alert("Select a City");
-            //    }
-            //    else
-            //    {
-            //        tabCount++;
-            //        switchTabs(tabCount, sender);
-            //    }
-            //}
-            //else if (tabCount == 5)
-            //{
+                    this.Alert("Select a City");
+                }
+                else
+                {
+                    tabCount++;
+                    switchTabs(tabCount, sender);
+                }
+            }
+            else if (tabCount == 5)
+            {
 
-            //    if (districtId == 0)
-            //    {
+                if (conference.DictionaryConferenceTypeId == 0)
+                {
 
-            //        this.Alert("Select a Type");
-            //    }
-            //    else
-            //    {
-            //        tabCount++;
-            //        switchTabs(tabCount, sender);
-            //    }
-            //}
-            //else if (tabCount == 6)
-            //{
-            //    if (locId == 0)
-            //    {
+                    this.Alert("Select a Type");
+                }
+                else
+                {
+                    tabCount++;
+                    switchTabs(tabCount, sender);
+                }
+            }
+            else if (tabCount == 6)
+            {
+                if (conference.DictionaryConferenceCategoryId == 0)
+                {
 
-            //        this.Alert("Select a Category");
-            //    }
-            //    else
-            //    {
-            //        tabCount++;
-            //        switchTabs(tabCount, sender);
-            //    }
-            //}
-            //else if (tabCount == 7)
-            //{
-            //    if (locId == 0)
-            //    {
+                    this.Alert("Select a Category");
+                }
+                else
+                {
+                    tabCount++;
+                    switchTabs(tabCount, sender);
+                }
+            }
+            else if (tabCount == 7)
+            {
+                if (conferenceModel.SpeakerId == 0)
+                {
 
-            //        this.Alert("Select a Speaker");
-            //    }
-            //    else
-            //    {
-            //        tabCount++;
-            //        switchTabs(tabCount, sender);
-            //    }
-            //}
+                    this.Alert("Select a Speaker");
+                }
+                else
+                {
+                    //tabCount++;
+                    //switchTabs(tabCount, sender);
+                }
+            }
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)

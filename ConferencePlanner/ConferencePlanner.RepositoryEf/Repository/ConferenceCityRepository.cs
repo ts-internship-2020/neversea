@@ -80,11 +80,12 @@ namespace ConferencePlanner.Repository.Ef.Repository
             _dbContext.SaveChanges();
 
         }
-        public void DeleteCity(int cityId, int districtId)
+        public void DeleteCity(int cityId,int districtId)
         {
+            
             DictionaryCity cityDeleted = _dbContext.DictionaryCity
                             .Where(c => c.DictionaryCityId == cityId)
-                            .Where(c => c.DictionaryDistrictId == districtId)
+                            .Where(c=>c.DictionaryDistrictId==districtId)
                             .FirstOrDefault();
             _dbContext.DictionaryCity.Remove(cityDeleted);
 

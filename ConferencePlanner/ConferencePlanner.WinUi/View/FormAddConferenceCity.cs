@@ -51,31 +51,18 @@ namespace ConferencePlanner.WinUi.View
             var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
                 + districtId.ToString();
 
-            cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
-            dgvCities.ColumnCount = 2;
+            //cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
+            dgvCities.ColumnCount = 3;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
+            dgvCities.Columns[2].Name = "DistrictId";
             this.dgvCities.Columns[0].Visible = false;
+            this.dgvCities.Columns[2].Visible = false;
             maxrange = cities.Count;
             WireUpCities();
         }
 
-        private void btnDelete_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (dgvCities.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dgvCities.SelectedRows[0].Index;
-                int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
-                ConferenceCityModel model = new ConferenceCityModel();
-
-                model.ConferenceCityId = cityId;
-
-                HttpClientOperations.DeleteOperation<ConferenceCityModel>("http://localhost:5000/DeleteCity", model);
-               
-                dgvCities.Rows.Clear();
-                LoadCities(1);
-            }
-        }
+       
         private void dgvCities_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -149,10 +136,12 @@ namespace ConferencePlanner.WinUi.View
             cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
             Console.WriteLine("Lista cities are marimea " + cities.Count);
             //cities = conferenceCityRepository.GetConferenceCities(districtId, keyword);
-            dgvCities.ColumnCount = 2;
+            dgvCities.ColumnCount = 3;
             dgvCities.Columns[0].Name = "Id";
             dgvCities.Columns[1].Name = "City";
+            dgvCities.Columns[2].Name = "DistrictId";
             this.dgvCities.Columns[0].Visible = false;
+            this.dgvCities.Columns[2].Visible = false;
             maxrange = cities.Count;
             WireUpCities();
         }
@@ -170,7 +159,7 @@ namespace ConferencePlanner.WinUi.View
                 else
                 {   
                     dgvCities.Rows.Add(cities[i].ConferenceCityId,
-                            cities[i].ConferenceCityName);
+                            cities[i].ConferenceCityName,cities[i].ConferenceDistrictId);
                 }
                 if (cities.Count <= (int)comboBoxPagesCount.SelectedItem)
                 {
@@ -181,6 +170,26 @@ namespace ConferencePlanner.WinUi.View
                     btnNextPage.Enabled = true;
                 }
 
+            }
+        }
+
+        private void btnDelete_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (dgvCities.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvCities.SelectedRows[0].Index;
+                int cityId = Convert.ToInt32(dgvCities[0, selectedIndex].Value);
+                int districtId = Convert.ToInt32(dgvCities[2, selectedIndex].Value);
+
+                ConferenceCityModel model = new ConferenceCityModel();
+
+                model.ConferenceCityId = cityId;
+                model.ConferenceDistrictId = districtId;
+
+                HttpClientOperations.DeleteOperation<ConferenceCityModel>("http://localhost:5000/DeleteCity", model);
+
+                dgvCities.Rows.Clear();
+                WireUpCities();
             }
         }
 

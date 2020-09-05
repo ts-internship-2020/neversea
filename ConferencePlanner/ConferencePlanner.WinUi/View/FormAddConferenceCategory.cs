@@ -170,8 +170,9 @@ namespace ConferencePlanner.WinUi.View
             if (dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
             {
                 categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                FormAddConferenceGeneral.conference.DictionaryConferenceCategoryId = categoryId;
             }
-            }
+        }
 
         private void FormAddConferenceCategory_FormClosing(object sender, FormClosingEventArgs e)
         {

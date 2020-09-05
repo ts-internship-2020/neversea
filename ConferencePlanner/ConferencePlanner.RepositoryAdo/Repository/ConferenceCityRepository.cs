@@ -22,8 +22,8 @@ namespace ConferencePlanner.Repository.Ado.Repository
             List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
 
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
-            sqlCommand.CommandText = "SELECT DictionaryCityId, DictionaryCityName " +
-                                     "FROM DictionaryCity " +
+            sqlCommand.CommandText = "SELECT DictionaryCityId, DictionaryCityName,DictionaryDistrictId " +
+                                     "FROM DictionaryCity "+
                                      "WHERE DictionaryDistrictId = '1'";
             SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
@@ -35,6 +35,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
                     {
                         ConferenceCityId = sqlDataReader.GetInt32("DictionaryCityId"),
                         ConferenceCityName = sqlDataReader.GetString("DictionaryCityName"),
+                        ConferenceDistrictId = sqlDataReader.GetInt32("DictionaryDistrictId")
                     });
                 }
             }

@@ -151,6 +151,7 @@ namespace ConferencePlanner.WinUi.View
 
         private async void FormSpectator_Load(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             dtpStart.Value = DateTime.Now.AddMonths(-1);
             dtpEnd.Value = DateTime.Now.AddMonths(1);
 
@@ -165,6 +166,7 @@ namespace ConferencePlanner.WinUi.View
                 if (!(await IsParticipating(emailCopyFromMainForm, confId)))
                     row.Cells["buttonJoinColumn"].Style.BackColor = System.Drawing.Color.Khaki;
             }
+            Cursor.Current = Cursors.Default;
         }
 
         private async Task<bool> IsParticipating(string spectatorEmail, int confId)

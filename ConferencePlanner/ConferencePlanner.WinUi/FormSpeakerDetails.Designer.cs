@@ -68,6 +68,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -91,7 +92,7 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -159,7 +160,7 @@
             // 
             // picBoxSpeaker
             // 
-            this.picBoxSpeaker.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.picBoxSpeaker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picBoxSpeaker.BackColor = System.Drawing.Color.Transparent;
             this.picBoxSpeaker.Location = new System.Drawing.Point(280, 40);
             this.picBoxSpeaker.Name = "picBoxSpeaker";
@@ -170,6 +171,7 @@
             // 
             // lblName
             // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoSize = true;
             this.lblName.BackColor = System.Drawing.Color.Transparent;
             this.lblName.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -181,7 +183,7 @@
             // 
             // lblNationality
             // 
-            this.lblNationality.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblNationality.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNationality.AutoSize = true;
             this.lblNationality.BackColor = System.Drawing.Color.Transparent;
             this.lblNationality.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -193,7 +195,7 @@
             // 
             // lblRating
             // 
-            this.lblRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRating.AutoSize = true;
             this.lblRating.BackColor = System.Drawing.Color.Transparent;
             this.lblRating.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;

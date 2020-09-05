@@ -36,9 +36,9 @@ namespace ConferencePlanner.WinUi.View
 
         private async void LoadDistricts()
         {
-            //districts = districtRepository.GetDistricts();
+            districts = districtRepository.GetDistricts();
             var url = "http://localhost:5000/api/District";
-            districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
+           // districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
             this.dgvDistricts.Columns[3].Visible = false;

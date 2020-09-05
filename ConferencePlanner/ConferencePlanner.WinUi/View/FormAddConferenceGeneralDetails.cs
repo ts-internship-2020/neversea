@@ -35,7 +35,24 @@ namespace ConferencePlanner.WinUi.View
             FormAddConferenceGeneral.conferenceModel.ConferenceEndDate = endDate;
             FormAddConferenceGeneral.conferenceModel.ConferenceLocation = address;
 
+        }
 
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            title = txtTitle.Text.ToString();
+            FormAddConferenceGeneral.conferenceModel.ConferenceName = title;
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            email = txtEmail.Text.ToString();
+            FormAddConferenceGeneral.conferenceModel.ConferenceOrganiserEmail = email;
+        }
+
+        private void txtLocation_TextChanged(object sender, EventArgs e)
+        {
+            address = txtLocation.Text.ToString();
+            FormAddConferenceGeneral.conferenceModel.ConferenceLocation = address;
         }
     }
 }

@@ -51,11 +51,11 @@
             // 
             this.lb_msgText.AutoSize = true;
             this.lb_msgText.BackColor = System.Drawing.Color.Transparent;
-            this.lb_msgText.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_msgText.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_msgText.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lb_msgText.Location = new System.Drawing.Point(73, 24);
+            this.lb_msgText.Location = new System.Drawing.Point(64, 26);
             this.lb_msgText.Name = "lb_msgText";
-            this.lb_msgText.Size = new System.Drawing.Size(143, 27);
+            this.lb_msgText.Size = new System.Drawing.Size(149, 26);
             this.lb_msgText.TabIndex = 1;
             this.lb_msgText.Text = "Message Text";
             // 
@@ -66,7 +66,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(264, 18);
+            this.button1.Location = new System.Drawing.Point(251, 18);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(47, 43);
             this.button1.TabIndex = 2;
@@ -82,7 +82,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(21, 24);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(37, 37);
             this.pictureBox1.TabIndex = 3;
@@ -94,14 +94,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(323, 77);
+            this.ClientSize = new System.Drawing.Size(298, 68);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lb_msgText);
             this.Controls.Add(this.lb_msgNotification);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(1100, 650);
+            this.Location = new System.Drawing.Point(1100, 660);
             this.Name = "FormAlert";
             this.Text = "Form1";
             this.TopMost = true;

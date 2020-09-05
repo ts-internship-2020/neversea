@@ -55,7 +55,6 @@ namespace ConferencePlanner.Repository.Ado.Repository
                 }
             }
 
-
             return ConferenceDistrict;
         }
         public List<DistrictModel> GetDistricts(string keyword)
