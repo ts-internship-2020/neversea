@@ -57,6 +57,7 @@
             this.dgvSpectator.Size = new System.Drawing.Size(753, 474);
             this.dgvSpectator.TabIndex = 0;
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
+            this.dgvSpectator.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSpectator_CellFormatting);
             // 
             // dtpStart
             // 

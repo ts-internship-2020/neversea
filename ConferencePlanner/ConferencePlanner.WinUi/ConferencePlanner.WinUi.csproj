@@ -21,6 +21,7 @@
     <None Remove="Resources\icoane\btnSave_64.png" />
     <None Remove="Resources\icoane\btnSearch_32.png" />
     <None Remove="Resources\icoane\btnSpectator_64.png" />
+    <None Remove="Resources\transparent_image.png" />
     <None Remove="View\icoane\btnDeleteSelected_48.png" />
     <None Remove="View\icoane\btnExit_32.png" />
     <None Remove="View\icoane\btnFromTo_48.png" />
@@ -75,6 +76,10 @@
     <ProjectReference Include="..\ConferencePlanner.RepositoryAdo\ConferencePlanner.Repository.Ado.csproj" />
     <ProjectReference Include="..\ConferencePlanner.RepositoryApi\ConferencePlanner.Repository.Api.csproj" />
     <ProjectReference Include="..\ConferencePlanner.RepositoryEf\ConferencePlanner.Repository.Ef.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\transparent_image.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -134,6 +134,7 @@
             // 
             // btnNext
             // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -148,6 +149,7 @@
             // 
             // btnPrevious
             // 
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;

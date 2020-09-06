@@ -56,6 +56,7 @@ namespace ConferencePlanner.WinUi.View
         private DataGridViewImageColumn GetActionButton(string action)
         {
             DataGridViewImageColumn buttonToAdd = new DataGridViewImageColumn();
+            buttonToAdd.DefaultCellStyle.NullValue = null; 
 
             if (action == "join")
             {
@@ -103,6 +104,12 @@ namespace ConferencePlanner.WinUi.View
 
             this.dgvSpectator.ColumnCount = 10;
 
+            dgvSpectator.Columns.Add(GetActionButton("join"));
+            dgvSpectator.Columns.Add(GetActionButton("attend"));
+            dgvSpectator.Columns.Add(GetActionButton("withdraw"));
+
+
+
             for (int i = _range; i < _step; i++)
             {
                 if (i >= maxRange)
@@ -137,11 +144,12 @@ namespace ConferencePlanner.WinUi.View
 
             }
 
-            dgvSpectator.Columns.Add(GetActionButton("join"));
-            dgvSpectator.Columns.Add(GetActionButton("attend"));
-            dgvSpectator.Columns.Add(GetActionButton("withdraw"));
+
+
+            //dgvSpectator.Columns[10].DefaultCellStyle.NullValue = null;
 
             FormatHeaders();
+
 
         }
 
@@ -463,6 +471,17 @@ namespace ConferencePlanner.WinUi.View
 
             InsertPaginatedList(conferenceModels, range, step, shown);
         }
+
+
+        private void dgvSpectator_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.dgvSpectator.Rows[e.RowIndex].IsNewRow && e.ColumnIndex == 9)
+            {
+                e.Value = Properties.Resources.icons8_add_user_group_man_man_20;
+            }
+
+        }
+
 
         //public async System.Threading.Tasks.Task<List<string>> getStrtingTestAsync(string path)
         //{
