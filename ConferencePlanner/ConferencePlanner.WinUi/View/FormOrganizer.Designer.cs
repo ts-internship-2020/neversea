@@ -56,6 +56,8 @@ namespace ConferencePlanner.WinUi.View
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(61, 58);
             this.btnPrevious.TabIndex = 7;
+            this.btnPrevious.Visible = true;
+            this.btnPrevious.Enabled = false;
             this.btnPrevious.UseVisualStyleBackColor = true;
             this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click_1);
             // 
@@ -153,6 +155,7 @@ namespace ConferencePlanner.WinUi.View
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged_1);
             // 
             // btnFromTo
@@ -189,7 +192,7 @@ namespace ConferencePlanner.WinUi.View
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormOrganizer";
             this.Text = "Your Conferences";
-            this.Load += new System.EventHandler(this.FormOrganizer_Load);
+            //this.Load += new System.EventHandler(this.FormOrganizer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrganiser)).EndInit();
             this.ResumeLayout(false);
 

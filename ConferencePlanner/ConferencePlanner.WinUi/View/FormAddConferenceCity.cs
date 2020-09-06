@@ -36,7 +36,7 @@ namespace ConferencePlanner.WinUi.View
         private async void LoadCities(int districtId)
         {
             //HttpClient httpClient = HttpClientFactory.Create();
-            //var url = "http://localhost:2794/GetConfereceCitiesById?districtId=1";
+            //var url = "http://localhost:5000/GetConfereceCitiesById?districtId=1";
             //HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
 
             //if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
@@ -46,7 +46,7 @@ namespace ConferencePlanner.WinUi.View
 
             //    cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
             //}
-            //cities = conferenceCityRepository.GetConferenceCities(districtId);
+            cities = conferenceCityRepository.GetConferenceCities(districtId);
 
             var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
                 + districtId.ToString();
@@ -191,10 +191,8 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvCities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
-            {
-                locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-            }
+            locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            FormAddConferenceGeneral.location.CityId = locationId;
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)

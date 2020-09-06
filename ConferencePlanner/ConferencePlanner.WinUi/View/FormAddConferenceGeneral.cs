@@ -14,15 +14,19 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+
 
 namespace ConferencePlanner.WinUi.View
 {
     public partial class FormAddConferenceGeneral : Form
     {
         public static int districtId = new int();
-        public int locId = 0;
+        public  int locId = 0;
+        //public static int locationId = new int();
         public static string locationAddress = new string("");
         public static int countryId = new int();
+       // public static int typeId = new int();
         public static LocationModel location = new LocationModel();
         public static ConferenceModel conferenceModel = new ConferenceModel();
         public static Conference conference = new Conference();
@@ -213,17 +217,19 @@ namespace ConferencePlanner.WinUi.View
                     break;
                 case 2:
                     {
+                        FormAddConferenceCountry formAddConferenceCountry = new FormAddConferenceCountry(countryRepository, _conferenceLocationRepository);
 
-                        
-                        FormAddConferenceCountry formAddConferenceCountry = new FormAddConferenceCountry(countryRepository,_conferenceLocationRepository);
                         OpenChildForm(formAddConferenceCountry, sender);
-                        btnPrevious.Visible = true;
+                            btnPrevious.Visible = true;
+                        
                     }
                     break;
                 case 3:
                     {
-                        FormAddConferenceDistrict formAddConferenceDistrict = new FormAddConferenceDistrict(districtRepository,_conferenceLocationRepository);
-                        OpenChildForm(formAddConferenceDistrict, sender);
+                        FormAddConferenceDistrict formAddConferenceDistrict = new FormAddConferenceDistrict(districtRepository, _conferenceLocationRepository);
+  
+                            OpenChildForm(formAddConferenceDistrict, sender);
+                        
                     }
                     break;
                 case 4:
@@ -256,9 +262,94 @@ namespace ConferencePlanner.WinUi.View
         private void btnNext_Click(object sender, EventArgs e)
         {
             tabCount++;
-
             switchTabs(tabCount, sender);
 
+            // in lucru pt validari
+            //if (tabCount == 1)
+            //{
+            //    tabCount++;
+            //    switchTabs(tabCount, sender);
+            //}
+            //else if (tabCount == 2)
+            //{
+            //    if (countryId == 0)
+            //    {
+
+            //        this.Alert("Select a Country");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
+            //else if (tabCount == 3)
+            //{
+            //    if (districtId == 0)
+            //    {
+
+            //        this.Alert("Select a District");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
+            //else if (tabCount == 4)
+            //{
+
+            //    if (districtId==0)
+            //    {
+
+            //        this.Alert("Select a City");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
+            //else if (tabCount == 5)
+            //{
+
+            //    if (districtId == 0)
+            //    {
+
+            //        this.Alert("Select a Type");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
+            //else if (tabCount == 6)
+            //{
+            //    if (locId == 0)
+            //    {
+
+            //        this.Alert("Select a Category");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
+            //else if (tabCount == 7)
+            //{
+            //    if (locId == 0)
+            //    {
+
+            //        this.Alert("Select a Speaker");
+            //    }
+            //    else
+            //    {
+            //        tabCount++;
+            //        switchTabs(tabCount, sender);
+            //    }
+            //}
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -274,7 +365,7 @@ namespace ConferencePlanner.WinUi.View
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            var urlLocation = "http://localhost:2794/location/new";
+            var urlLocation = "http://localhost:5000/location/new";
 
             Location locationModel = new Location{ DictionaryCityId = location.CityId, LocationAddress = locationAddress };
 
@@ -282,7 +373,7 @@ namespace ConferencePlanner.WinUi.View
 
             locId = await GetLocationId(location.CityId, conferenceModel.ConferenceLocation);
 
-            var urlConference = "http://localhost:2794/api/Conference/new";
+            var urlConference = "http://localhost:5000/api/Conference/new";
 
             Conference conferenceToAdd = new Conference
             { ConferenceId = conferenceModel.ConferenceId,
@@ -301,7 +392,7 @@ namespace ConferencePlanner.WinUi.View
               ConferenceId = conferenceModel.ConferenceId, 
               IsMain = true};
 
-            var urlSpeaker = "http://localhost:2794//api/ConferenceXSpeaker/AddSpeakerInConference";
+            var urlSpeaker = "http://localhost:5000//api/ConferenceXSpeaker/AddSpeakerInConference";
 
             HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);
         }
@@ -310,7 +401,7 @@ namespace ConferencePlanner.WinUi.View
         {
             int locationId = 0;
             HttpClient httpClient = HttpClientFactory.Create();
-            var url = $"http://localhost:2794/location/getid?cityId={cityId}&address={locationAddress}";
+            var url = $"http://localhost:5000/location/getid?cityId={cityId}&address={locationAddress}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
 
             if (res.StatusCode == HttpStatusCode.OK)
@@ -321,6 +412,11 @@ namespace ConferencePlanner.WinUi.View
             }
 
             return locationId;
+        }
+        public void Alert(string msg)
+        {
+            FormAlert frm = new FormAlert();
+            frm.ShowAlert(msg);
         }
     }
 }

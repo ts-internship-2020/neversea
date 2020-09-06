@@ -30,7 +30,7 @@ namespace ConferencePlanner.Api.Controllers
             return Ok(districtModel);
         }
         [HttpGet]
-        [Route("getDistrictsFiltered")]
+        [Route("GetDistrictByKeyword")]
         public IActionResult GetDistricts(string keyword)
         {
             List<DistrictModel> districtModel = _getDistrictRepository.GetDistricts(keyword);
@@ -43,7 +43,7 @@ namespace ConferencePlanner.Api.Controllers
             _getDistrictRepository.InsertDistrict(districtModel.DistrictName,districtModel.DistrictCode,districtModel.CountryId);
             return Ok();
         }
-        [HttpPut]
+        [HttpPost]
         [Route("updateDistrict")]
         public IActionResult UpdateDistrict([FromBody] DistrictModel districtModel)
         {

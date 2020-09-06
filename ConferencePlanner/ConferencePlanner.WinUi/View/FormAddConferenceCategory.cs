@@ -136,6 +136,7 @@ namespace ConferencePlanner.WinUi.View
                 model.conferenceCategoryId = conferenceCategoryId;
 
                 HttpClientOperations.DeleteOperation<ConferenceCategoryModel>("http://localhost:5000/api/ConferenceCategory/DeleteCategory", model);
+                dgvConferenceCategories.Rows.Clear();
                 LoadConferenceCategories();
             }
         }
@@ -216,29 +217,29 @@ namespace ConferencePlanner.WinUi.View
             WireUpCategories();
         }
 
-       /* private async Task<List<ConferenceCategoryModel>> GetResponse()
-        {
-            List<ConferenceCategoryModel> model = null;
-            ConferenceCategoryModel model1 = new ConferenceCategoryModel();
-            HttpClient client = new HttpClient();
-            HttpResponseMessage s = await client.GetAsync("http://localhost:2794/api/ConferenceCategory/GetAllCategories");
-            if (s.IsSuccessStatusCode)
-            {
-
-               
-                var responseBody = await s.Content.ReadAsStringAsync();
-                model = JsonConvert.DeserializeObject<List<ConferenceCategoryModel>>(responseBody);
-                Console.WriteLine(model);
-                return model;
-               
-                
+        /* private async Task<List<ConferenceCategoryModel>> GetResponse()
+         {
+             List<ConferenceCategoryModel> model = null;
+             ConferenceCategoryModel model1 = new ConferenceCategoryModel();
+             HttpClient client = new HttpClient();
+             HttpResponseMessage s = await client.GetAsync("http://localhost:5000/api/ConferenceCategory/GetAllCategories");
+             if (s.IsSuccessStatusCode)
+             {
 
 
-            }
-            else
-            {
-                throw new Exception("NO");
-            }
+                 var responseBody = await s.Content.ReadAsStringAsync();
+                 model = JsonConvert.DeserializeObject<List<ConferenceCategoryModel>>(responseBody);
+                 Console.WriteLine(model);
+                 return model;
+
+
+
+
+             }
+             else
+             {
+                 throw new Exception("NO");
+             }
 
 
 

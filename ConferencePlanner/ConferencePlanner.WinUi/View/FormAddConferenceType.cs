@@ -174,6 +174,7 @@ namespace ConferencePlanner.WinUi.View
                 model.conferenceTypeId = conferenceTypeId;
 
                 HttpClientOperations.DeleteOperation<ConferenceTypeModel>("http://localhost:5000/api/ConferenceType/DeleteConferenceType", model);
+                dgvConferenceTypes.Rows.Clear();
                 LoadConferenceTypes();
             }
         }
@@ -185,10 +186,8 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvConferenceTypes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
-            {
-                typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-            }
+            typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
         }
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)

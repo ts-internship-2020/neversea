@@ -472,3 +472,6 @@ namespace ConferencePlanner.WinUi.View
 
     }
 }
+
+
+

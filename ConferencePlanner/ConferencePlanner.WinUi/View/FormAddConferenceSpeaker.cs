@@ -200,7 +200,14 @@ namespace ConferencePlanner.WinUi.View
                     speakerNationality = dgvSpeakers.Rows[e.RowIndex].Cells[2].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[2].Value.ToString();
                     speakerRating = dgvSpeakers.Rows[e.RowIndex].Cells[3].Value == null ? 0 : float.Parse(dgvSpeakers.Rows[e.RowIndex].Cells[3].Value.ToString());
                     speakerImage = dgvSpeakers.Rows[e.RowIndex].Cells[4].Value == null ? "" : dgvSpeakers.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    conferenceSpeakerRepository.UpdateSpeaker(speakerId, speakerName, speakerNationality, speakerRating, speakerImage);
+                    SpeakerModel model = new SpeakerModel();
+                    model.DictionarySpeakerId = speakerId;
+                    model.DictionarySpeakerName = speakerName;
+                    model.DictionarySpeakerNationality = speakerNationality;
+                    model.DictionarySpeakerRating = speakerRating;
+                    model.DictionarySpeakerImage = speakerImage;
+                    HttpClientOperations.PutOperation<SpeakerModel>("http://localhost:5000/UpdateSpeaker", model);
+                    //conferenceSpeakerRepository.UpdateSpeaker(speakerId, speakerName, speakerNationality, speakerRating, speakerImage);
                 }
 
                 else
