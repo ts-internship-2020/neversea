@@ -36,7 +36,12 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
             List<ConferenceModel> conferenceModels = conferences
                                                         .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate)
-                                                        //.OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().DictionaryParticipantStatus).ThenBy(c => c.ConferenceName)
+                                                        //.OrderByDescending(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail && ca.DictionaryParticipantStatusId != 0))
+                                                        .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).OrderBy(ca => ca.DictionaryParticipantStatusId != 0).ThenBy(ca => ca.DictionaryParticipantStatus.DictionaryParticipantStatusName))
+                                                       // .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().OrderBy(ca => ca.DictionaryParticipantStatus.HasValue)).ThenBy(c => c.ConferenceName)
+                                                      //.OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().DictionaryParticipantStatus.OrderBy(ca => ca.DictionaryParticipantStatus.HasValue)).ThenBy(c => c.ConferenceName)
+                                                                                                               //.OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().DictionaryParticipantStatus.OrderBy(ca => ca.DictionaryParticipantStatus.HasValue)).ThenBy(c => c.ConferenceName).OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().DictionaryParticipantStatus.OrderBy(ca => ca.DictionaryParticipantStatus.HasValue)).ThenBy(c => c.ConferenceName)
+
                                                         .Select(m => new ConferenceModel()
                                                               {
                                                                 ConferenceName = m.ConferenceName,
@@ -82,7 +87,8 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
             List<ConferenceModel> conferenceModels = conferences
                                                         .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate)
-                                                        .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).Select(ca => ca.DictionaryParticipantStatusId).FirstOrDefault())
+                                                        .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).OrderByDescending(ca => ca.ParticipantEmailAddress == _spectatorEmail ? 1 : 0).Select(x => x.DictionaryParticipantStatus.DictionaryParticipantStatusName).FirstOrDefault())
+                                                        // merge .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).Select(x => x.DictionaryParticipantStatus.DictionaryParticipantStatusName).FirstOrDefault())
                                                         .Select(m => new ConferenceModel()
                                                         {
                                                             ConferenceName = m.ConferenceName,
@@ -94,7 +100,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                             ConferenceMainSpeaker = m.ConferenceXspeaker
                                                                                          .Where(x => x.IsMain)
                                                                                          .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
-                                                                                         .FirstOrDefault(),             
+                                                                                         .FirstOrDefault(),
                                                             ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
                                                                                         + ", " + m.Location.DictionaryCity.DictionaryCityName
                                                                                         + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
@@ -106,6 +112,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                             ConferenceOrganiserEmail = m.OrganiserEmail
                                                         })
                                                         .ToList();
+                                                       
 
 
             return conferenceModels;
