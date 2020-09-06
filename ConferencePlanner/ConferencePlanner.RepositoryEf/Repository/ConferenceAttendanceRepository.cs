@@ -41,7 +41,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             List<ConferenceAttendance> conferenceAttendance = new List<ConferenceAttendance>();
 
             conferenceAttendance = _dbContext.ConferenceAttendance.ToList();
-            conferenceAttendanceModels = conferenceAttendance.Where(a => a.ParticipantEmailAddress == email && a.ConferenceId == id).Select(a => new ConferenceAttendanceModel()
+            conferenceAttendanceModels = conferenceAttendance.Where(a => a.ParticipantEmailAddress == email && a.ConferenceId == id && a.DictionaryParticipantStatusId != 3).Select(a => new ConferenceAttendanceModel()
             {
                 ParticipantEmailAddress = a.ParticipantEmailAddress,
                 ConferenceId = a.ConferenceId,
