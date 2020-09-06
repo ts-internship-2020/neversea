@@ -36,7 +36,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
             List<ConferenceModel> conferenceModels = conferences
                                                         .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate)
-                                                        .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().DictionaryParticipantStatus).ThenBy(c => c.ConferenceName)
+                                                        //.OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).FirstOrDefault().DictionaryParticipantStatus).ThenBy(c => c.ConferenceName)
                                                         .Select(m => new ConferenceModel()
                                                               {
                                                                 ConferenceName = m.ConferenceName,
@@ -279,6 +279,19 @@ namespace ConferencePlanner.Repository.Ef.Repository
             if (entryToUpdate != null)
             {
                 entryToUpdate.DictionaryParticipantStatusId = 1;
+
+                dbContext.ConferenceAttendance.Update(entryToUpdate);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void ModifySpectatorStatusAttend(string _spectatorEmail, int _conferenceId)
+        {
+            var entryToUpdate = dbContext.ConferenceAttendance.FirstOrDefault(a => a.ConferenceId == _conferenceId && a.ParticipantEmailAddress == _spectatorEmail);
+
+            if (entryToUpdate != null)
+            {
+                entryToUpdate.DictionaryParticipantStatusId = 2;
 
                 dbContext.ConferenceAttendance.Update(entryToUpdate);
                 dbContext.SaveChanges();

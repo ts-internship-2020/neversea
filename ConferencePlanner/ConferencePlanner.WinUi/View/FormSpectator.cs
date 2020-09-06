@@ -386,9 +386,17 @@ namespace ConferencePlanner.WinUi.View
                         else
                         {
                             dgvSpectator.CurrentRow.Selected = true;
-                            InsertParticipant(confId, emailCopyFromMainForm, 1);
-                            string conferenceName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
-                            //sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, 1);
+                            if(await IsWithdrawn(emailCopyFromMainForm, confId))
+                            {
+                                string url = "http://localhost:5000/api/Conference/attend";
+                                HttpClientOperations.PutAsyncOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
+                            }
+                            else
+                            {
+                                InsertParticipant(confId, emailCopyFromMainForm, 1);
+                                string conferenceName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
+                                //sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, 1);
+                            }
                             dgvSpectator.Rows[e.RowIndex].Cells["buttonAttendColumn"].Style.BackColor = System.Drawing.Color.Khaki;
                         }
                     }
@@ -401,7 +409,7 @@ namespace ConferencePlanner.WinUi.View
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                     var url = $"http://localhost:5000/api/Conference/withdraw";
 
-                    HttpClientOperations.PutOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId });
+                    //HttpClientOperations.PutOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
 
                     dgvSpectator.CurrentRow.Selected = true;
 
@@ -412,7 +420,7 @@ namespace ConferencePlanner.WinUi.View
                     else
                     {
                         dgvSpectator.CurrentRow.Selected = true;
-                        HttpClientOperations.PutOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId });
+                        HttpClientOperations.PutAsyncOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
                     }
                 }
             }
