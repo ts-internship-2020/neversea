@@ -89,7 +89,7 @@ namespace ConferencePlanner.WinUi
             switch (this.action)
             {
                 case enmAction.wait:
-                    timer1.Interval = 5000;
+                    timer1.Interval = 2500;
                     action = enmAction.close;
                     break;
 

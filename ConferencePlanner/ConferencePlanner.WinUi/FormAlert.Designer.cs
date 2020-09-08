@@ -51,11 +51,11 @@
             // 
             this.lb_msgText.AutoSize = true;
             this.lb_msgText.BackColor = System.Drawing.Color.Transparent;
-            this.lb_msgText.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_msgText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_msgText.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lb_msgText.Location = new System.Drawing.Point(64, 26);
+            this.lb_msgText.Location = new System.Drawing.Point(55, 18);
             this.lb_msgText.Name = "lb_msgText";
-            this.lb_msgText.Size = new System.Drawing.Size(149, 26);
+            this.lb_msgText.Size = new System.Drawing.Size(130, 24);
             this.lb_msgText.TabIndex = 1;
             this.lb_msgText.Text = "Message Text";
             // 
@@ -66,7 +66,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(251, 18);
+            this.button1.Location = new System.Drawing.Point(239, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(47, 43);
             this.button1.TabIndex = 2;

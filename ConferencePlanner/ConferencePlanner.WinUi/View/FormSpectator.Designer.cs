@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSpectator));
             this.dgvSpectator = new System.Windows.Forms.DataGridView();
             this.panelSpeaker = new System.Windows.Forms.Panel();
@@ -38,6 +39,7 @@
             this.btnFromTo = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.comboBoxPagesNumber = new System.Windows.Forms.ComboBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpectator)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,6 +60,8 @@
             this.dgvSpectator.Size = new System.Drawing.Size(828, 474);
             this.dgvSpectator.TabIndex = 0;
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
+            this.dgvSpectator.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellMouseLeave);
+            this.dgvSpectator.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSpectator_CellMouseMove);
             this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
             // 
             // panelSpeaker
@@ -168,6 +172,10 @@
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
             // FormSpectator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -203,5 +211,6 @@
         private System.Windows.Forms.Button btnFromTo;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.ComboBox comboBoxPagesNumber;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

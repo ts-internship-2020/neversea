@@ -49,7 +49,7 @@ namespace ConferencePlanner.WinUi.View
 
         private async void WireUpSpectator(DateTime _startDate, DateTime _endDate)
         {
-
+            this.dgvSpectator.Cursor= Cursors.WaitCursor;
             dgvSpectator.Rows.Clear();
             dgvSpectator.Columns.Clear();
 
@@ -127,6 +127,7 @@ namespace ConferencePlanner.WinUi.View
             };
 
             dgvSpectator.Columns.Add(buttonWithdrawColumn);
+            this.dgvSpectator.Cursor = Cursors.Default;
         }
 
 
@@ -140,23 +141,27 @@ namespace ConferencePlanner.WinUi.View
                     btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
                 }
             }
+
         }
 
 
         protected override void OnLoad(EventArgs e)
         {
+            
             base.OnLoad(e);
             LoadTheme();
+           
         }
 
         private async void FormSpectator_Load(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
             dtpStart.Value = DateTime.Now.AddMonths(-1);
             dtpEnd.Value = DateTime.Now.AddMonths(1);
-
+            this.dgvSpectator.Cursor = Cursors.WaitCursor;
+            Cursor.Current = Cursors.WaitCursor;
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
-
+            this.dgvSpectator.Cursor = Cursors.Default;
+            
 
             btnPrevious.Visible = false;
             foreach (DataGridViewRow row in dgvSpectator.Rows)
@@ -166,7 +171,7 @@ namespace ConferencePlanner.WinUi.View
                 if (!(await IsParticipating(emailCopyFromMainForm, confId)))
                     row.Cells["buttonJoinColumn"].Style.BackColor = System.Drawing.Color.Khaki;
             }
-            Cursor.Current = Cursors.Default;
+            
         }
 
         private async Task<bool> IsParticipating(string spectatorEmail, int confId)
@@ -181,7 +186,7 @@ namespace ConferencePlanner.WinUi.View
                 var content = res.Content;
                 var data = await content.ReadAsStringAsync();
                 isParticipant = Convert.ToBoolean(JsonConvert.DeserializeObject(data));
-                
+
             }
 
             return isParticipant;
@@ -191,12 +196,14 @@ namespace ConferencePlanner.WinUi.View
 
         private void dtpStart_CloseUp(Object sender, EventArgs e)
         {
+            
             dgvSpectator.DataSource = null;
             dtpEnd.MinDate = dtpStart.Value;
             DateTime startDate = dtpStart.Value;
             DateTime endDate = dtpEnd.Value;
-
+            Cursor.Current = Cursors.WaitCursor;
             WireUpSpectator(startDate, endDate);
+            Cursor.Current = Cursors.Default;
         }
 
         private void dtpEnd_CloseUp(Object sender, EventArgs e)
@@ -204,14 +211,17 @@ namespace ConferencePlanner.WinUi.View
             dgvSpectator.DataSource = null;
             DateTime startDate = dtpStart.Value;
             DateTime endDate = dtpEnd.Value;
-
+            Cursor.Current = Cursors.WaitCursor;
             WireUpSpectator(startDate, endDate);
+            Cursor.Current = Cursors.Default;
         }
 
 
         private void dgvSpectator_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            
             dgvSpectator.ClearSelection();
+            
         }
 
         private void sendEmail(string name, string email, string subject, string confName, long code)
@@ -260,7 +270,7 @@ namespace ConferencePlanner.WinUi.View
         {
             var url = "http://localhost:5000/Participant/new";
 
-            HttpClientOperations.PostOperation<Object>(url, new {conferenceId = _conferenceId, spectatorEmail = _spectatorEmail, participantStatusCode = _participantStatusCode});
+            HttpClientOperations.PostOperation<Object>(url, new { conferenceId = _conferenceId, spectatorEmail = _spectatorEmail, participantStatusCode = _participantStatusCode });
         }
 
         private async Task<bool> IsWithdrawn(string spectatorEmail, int conferenceId)
@@ -365,6 +375,44 @@ namespace ConferencePlanner.WinUi.View
             }
         }
 
+        private void dgvSpectator_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                if (e.RowIndex == -1) return;
+
+                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                {
+                    if (e.RowIndex == -1) return;
+
+                    toolTip1.Show("Click for speaker details", dgvSpectator);
+                }
+            }
+        }
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            
+        }
+
+        private void dgvSpectator_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                if (e.RowIndex == -1) return;
+
+                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                {
+                    if (e.RowIndex == -1) return;
+
+                    toolTip1.Hide(dgvSpectator);
+                }
+            }
+        }
+
         //public async System.Threading.Tasks.Task<List<string>> getStrtingTestAsync(string path)
         //{
         //    List<string> listStrings = null;
@@ -375,8 +423,7 @@ namespace ConferencePlanner.WinUi.View
         //    {
         //        listStrings = await msg.Content.ReadAsStringAsync<List<string>>();
         //    }
-
-        //    return listStrings;
+                //    return listStrings;
         //}
 
     }

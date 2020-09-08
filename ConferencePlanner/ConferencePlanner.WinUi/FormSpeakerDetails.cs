@@ -77,9 +77,8 @@ namespace ConferencePlanner.WinUi
                 picBoxLike5.Image = Properties.Resources.icons8_facebook_like_48px_1;
 
             }
-           
-        }
 
+        }
 
         public enum enmAction
         {
@@ -95,7 +94,7 @@ namespace ConferencePlanner.WinUi
         {
             timer1.Interval = 1;
             action = enmAction.close;
-           
+
         }
         public void ShowSpeakerDetails()
         {
@@ -128,44 +127,44 @@ namespace ConferencePlanner.WinUi
             }
         }
 
-            private void timer1_Tick_1(object sender, EventArgs e)
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
             {
+                switch (this.action)
                 {
-                    switch (this.action)
-                    {
-                        case enmAction.wait:
-                            timer1.Interval = 5000;
-                            action = enmAction.close;
-                            break;
+                    case enmAction.wait:
+                        timer1.Interval = 4000;
+                        action = enmAction.close;
+                        break;
 
-                        case enmAction.start:
-                            timer1.Interval = 1;
-                            this.Opacity += 0.1;
-                            if (this.x < this.Location.X)
+                    case enmAction.start:
+                        timer1.Interval = 1;
+                        this.Opacity += 0.1;
+                        if (this.x < this.Location.X)
+                        {
+                            this.Left--;
+                        }
+                        else
+                        {
+                            if (this.Opacity == 1.0)
                             {
-                                this.Left--;
+                                action = enmAction.wait;
                             }
-                            else
-                            {
-                                if (this.Opacity == 1.0)
-                                {
-                                    action = enmAction.wait;
-                                }
-                            }
-                            break;
-                        case enmAction.close:
-                            timer1.Interval = 1;
-                            this.Opacity -= 0.1;
+                        }
+                        break;
+                    case enmAction.close:
+                        timer1.Interval = 1;
+                        this.Opacity -= 0.1;
 
-                            this.Left -= 3;
-                            if (base.Opacity == 0.0)
-                            {
-                                base.Close();
-                            }
-                            break;
-                    }
+                        this.Left -= 3;
+                        if (base.Opacity == 0.0)
+                        {
+                            base.Close();
+                        }
+                        break;
                 }
             }
-
         }
+
     }
+}
