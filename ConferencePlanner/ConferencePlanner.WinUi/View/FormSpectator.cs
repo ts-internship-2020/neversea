@@ -171,6 +171,8 @@ namespace ConferencePlanner.WinUi.View
             this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
             this.dgvSpectator.Columns[2].Name = "StartDate";
             this.dgvSpectator.Columns[3].Name = "EndDate";
+            this.dgvSpectator.Columns[8].Name = "SpeakerId";
+
 
             this.dgvSpectator.Columns[7].Visible = false;
             this.dgvSpectator.Columns[9].Visible = false;

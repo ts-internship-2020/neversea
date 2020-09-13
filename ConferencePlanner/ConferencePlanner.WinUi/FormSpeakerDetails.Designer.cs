@@ -59,10 +59,10 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(79, 1);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(93, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 27);
+            this.label1.Size = new System.Drawing.Size(216, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Speaker Information";
             // 
@@ -70,10 +70,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(6, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 21);
+            this.label2.Size = new System.Drawing.Size(66, 22);
             this.label2.TabIndex = 1;
             this.label2.Text = "Name";
             // 
@@ -82,10 +82,10 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(6, 72);
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(6, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 21);
+            this.label3.Size = new System.Drawing.Size(108, 22);
             this.label3.TabIndex = 2;
             this.label3.Text = "Nationality";
             // 
@@ -94,10 +94,10 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(6, 100);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 21);
+            this.label4.Size = new System.Drawing.Size(70, 22);
             this.label4.TabIndex = 3;
             this.label4.Text = "Rating";
             // 
@@ -106,7 +106,7 @@
             this.picBoxLike1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike1.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike1.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike1.Image")));
-            this.picBoxLike1.Location = new System.Drawing.Point(79, 127);
+            this.picBoxLike1.Location = new System.Drawing.Point(79, 134);
             this.picBoxLike1.Name = "picBoxLike1";
             this.picBoxLike1.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike1.TabIndex = 5;
@@ -118,7 +118,7 @@
             this.picBoxLike2.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike2.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike2.Image")));
             this.picBoxLike2.InitialImage = null;
-            this.picBoxLike2.Location = new System.Drawing.Point(120, 127);
+            this.picBoxLike2.Location = new System.Drawing.Point(120, 134);
             this.picBoxLike2.Name = "picBoxLike2";
             this.picBoxLike2.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike2.TabIndex = 5;
@@ -129,7 +129,7 @@
             this.picBoxLike3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike3.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike3.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike3.Image")));
-            this.picBoxLike3.Location = new System.Drawing.Point(161, 127);
+            this.picBoxLike3.Location = new System.Drawing.Point(161, 134);
             this.picBoxLike3.Name = "picBoxLike3";
             this.picBoxLike3.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike3.TabIndex = 5;
@@ -140,7 +140,7 @@
             this.picBoxLike4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike4.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike4.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike4.Image")));
-            this.picBoxLike4.Location = new System.Drawing.Point(202, 127);
+            this.picBoxLike4.Location = new System.Drawing.Point(202, 134);
             this.picBoxLike4.Name = "picBoxLike4";
             this.picBoxLike4.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike4.TabIndex = 5;
@@ -151,7 +151,7 @@
             this.picBoxLike5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.picBoxLike5.BackColor = System.Drawing.Color.Transparent;
             this.picBoxLike5.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLike5.Image")));
-            this.picBoxLike5.Location = new System.Drawing.Point(243, 127);
+            this.picBoxLike5.Location = new System.Drawing.Point(243, 134);
             this.picBoxLike5.Name = "picBoxLike5";
             this.picBoxLike5.Size = new System.Drawing.Size(28, 23);
             this.picBoxLike5.TabIndex = 5;
@@ -161,9 +161,10 @@
             // 
             this.picBoxSpeaker.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.picBoxSpeaker.BackColor = System.Drawing.Color.Transparent;
-            this.picBoxSpeaker.Location = new System.Drawing.Point(280, 40);
+            this.picBoxSpeaker.ErrorImage = null;
+            this.picBoxSpeaker.Location = new System.Drawing.Point(287, 46);
             this.picBoxSpeaker.Name = "picBoxSpeaker";
-            this.picBoxSpeaker.Size = new System.Drawing.Size(125, 125);
+            this.picBoxSpeaker.Size = new System.Drawing.Size(104, 96);
             this.picBoxSpeaker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxSpeaker.TabIndex = 6;
             this.picBoxSpeaker.TabStop = false;
@@ -173,10 +174,11 @@
             this.lblName.AutoSize = true;
             this.lblName.BackColor = System.Drawing.Color.Transparent;
             this.lblName.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblName.Location = new System.Drawing.Point(102, 46);
+            this.lblName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblName.Location = new System.Drawing.Point(112, 46);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(2, 24);
+            this.lblName.Size = new System.Drawing.Size(2, 21);
             this.lblName.TabIndex = 7;
             // 
             // lblNationality
@@ -185,10 +187,11 @@
             this.lblNationality.AutoSize = true;
             this.lblNationality.BackColor = System.Drawing.Color.Transparent;
             this.lblNationality.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblNationality.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblNationality.Location = new System.Drawing.Point(102, 72);
+            this.lblNationality.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblNationality.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblNationality.Location = new System.Drawing.Point(112, 75);
             this.lblNationality.Name = "lblNationality";
-            this.lblNationality.Size = new System.Drawing.Size(2, 24);
+            this.lblNationality.Size = new System.Drawing.Size(2, 21);
             this.lblNationality.TabIndex = 8;
             // 
             // lblRating
@@ -197,8 +200,9 @@
             this.lblRating.AutoSize = true;
             this.lblRating.BackColor = System.Drawing.Color.Transparent;
             this.lblRating.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRating.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRating.Location = new System.Drawing.Point(102, 100);
+            this.lblRating.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblRating.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblRating.Location = new System.Drawing.Point(112, 102);
             this.lblRating.Name = "lblRating";
             this.lblRating.Size = new System.Drawing.Size(2, 21);
             this.lblRating.TabIndex = 9;
@@ -225,7 +229,7 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(386, 1);
+            this.button2.Location = new System.Drawing.Point(376, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(29, 27);
             this.button2.TabIndex = 11;
@@ -236,7 +240,6 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(417, 177);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
