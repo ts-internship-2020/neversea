@@ -57,6 +57,7 @@ namespace ConferencePlanner.WinUi.View
         {
             DataGridViewImageColumn buttonToAdd = new DataGridViewImageColumn();
             buttonToAdd.DefaultCellStyle.NullValue = null; 
+            //buttonToAdd.Image = 
 
             if (action == "join")
             {
@@ -98,7 +99,7 @@ namespace ConferencePlanner.WinUi.View
 
             if(maxRange <= _step)
             {
-                btnNext.Visible = true;
+                btnNext.Enabled = true;
             }
 
 
@@ -114,12 +115,12 @@ namespace ConferencePlanner.WinUi.View
             {
                 if (i >= maxRange)
                 {
-                    btnNext.Visible = false;
+                    btnNext.Enabled = false;
                     break;
                 }
                 else
                 {
-                    btnNext.Visible = true;
+                    btnNext.Enabled = true;
                     dgvSpectator.Rows.Add(_conferenceModels[i].ConferenceName,
                             _conferenceModels[i].ConferenceId,
                             _conferenceModels[i].ConferenceStartDate,
@@ -131,22 +132,14 @@ namespace ConferencePlanner.WinUi.View
                             _conferenceModels[i].SpeakerId,
                             _conferenceModels[i].ConferenceOrganiserEmail);
 
-                    this.dgvSpectator.Columns[7].Visible = false;
-                    this.dgvSpectator.Columns[9].Visible = false;
-                    this.dgvSpectator.Columns[1].Visible = false;
-                    this.dgvSpectator.Columns[8].Visible = false;
-
-                    this.dgvSpectator.Columns[6].Name = "conferenceMainSpeaker";
-                    this.dgvSpectator.Columns[2].Name = "StartDate";
-                    this.dgvSpectator.Columns[3].Name = "EndDate";
-
                 }
+
+                /*((DataGridViewImageColumn)this.dgvSpectator.Columns[10]).DefaultCellStyle.NullValue = null;
+                ((DataGridViewImageColumn)this.dgvSpectator.Columns[11]).DefaultCellStyle.NullValue = null;
+                ((DataGridViewImageColumn)this.dgvSpectator.Columns[12]).DefaultCellStyle.NullValue = null;*/
 
             }
 
-
-
-            //dgvSpectator.Columns[10].DefaultCellStyle.NullValue = null;
 
             FormatHeaders();
 
@@ -229,7 +222,7 @@ namespace ConferencePlanner.WinUi.View
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
 
 
-           btnPrevious.Visible = false;
+           btnPrevious.Enabled = false;
             foreach (DataGridViewRow row in dgvSpectator.Rows)
             {
                 int confId = Convert.ToInt32(row.Cells["conferenceId"].FormattedValue.ToString());
@@ -448,11 +441,11 @@ namespace ConferencePlanner.WinUi.View
             range = step;
             step += shown;
 
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
 
             if (step >= maxRange)
             {
-                btnNext.Visible = false;
+                btnNext.Enabled = false;
             }
 
 
@@ -464,11 +457,11 @@ namespace ConferencePlanner.WinUi.View
             step = range;
             range -= shown;
 
-            btnPrevious.Visible = true;
+            btnPrevious.Enabled = true;
 
             if (range == 0)
             {
-                btnPrevious.Visible = false;
+                btnPrevious.Enabled = false;
             }
 
             InsertPaginatedList(conferenceModels, range, step, shown);

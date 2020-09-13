@@ -52,9 +52,11 @@
             this.dgvSpectator.GridColor = System.Drawing.Color.Gainsboro;
             this.dgvSpectator.Location = new System.Drawing.Point(26, 99);
             this.dgvSpectator.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvSpectator.MinimumSize = new System.Drawing.Size(900, 300);
             this.dgvSpectator.Name = "dgvSpectator";
-            this.dgvSpectator.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvSpectator.Size = new System.Drawing.Size(806, 474);
+            this.dgvSpectator.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgvSpectator.ShowCellErrors = false;
+            this.dgvSpectator.Size = new System.Drawing.Size(900, 474);
             this.dgvSpectator.TabIndex = 0;
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
             this.dgvSpectator.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSpectator_CellFormatting);
@@ -84,6 +86,7 @@
             // btnPrevious
             // 
             this.btnPrevious.BackColor = System.Drawing.Color.White;
+            this.btnPrevious.Enabled = false;
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -104,7 +107,7 @@
             this.btnPagesNumber.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPagesNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPagesNumber.Image = ((System.Drawing.Image)(resources.GetObject("btnPagesNumber.Image")));
-            this.btnPagesNumber.Location = new System.Drawing.Point(680, 18);
+            this.btnPagesNumber.Location = new System.Drawing.Point(604, 19);
             this.btnPagesNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPagesNumber.Name = "btnPagesNumber";
             this.btnPagesNumber.Size = new System.Drawing.Size(40, 37);
@@ -154,7 +157,7 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(727, 23);
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(651, 27);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
