@@ -57,7 +57,6 @@ namespace ConferencePlanner.WinUi.View
         {
             DataGridViewImageColumn buttonToAdd = new DataGridViewImageColumn();
             buttonToAdd.DefaultCellStyle.NullValue = null; 
-            //buttonToAdd.Image = 
 
             if (action == "join")
             {
