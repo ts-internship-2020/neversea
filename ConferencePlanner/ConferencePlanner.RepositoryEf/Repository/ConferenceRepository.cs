@@ -86,33 +86,43 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                             .ToList();
 
             List<ConferenceModel> conferenceModels = conferences
-                                                        .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate)
-                                                        .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).OrderByDescending(ca => ca.ParticipantEmailAddress == _spectatorEmail ? 1 : 0).Select(x => x.DictionaryParticipantStatus.DictionaryParticipantStatusName).FirstOrDefault())
-                                                        // merge .OrderBy(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail).Select(x => x.DictionaryParticipantStatus.DictionaryParticipantStatusName).FirstOrDefault())
-                                                        .Select(m => new ConferenceModel()
-                                                        {
-                                                            ConferenceName = m.ConferenceName,
-                                                            ConferenceId = m.ConferenceId,
-                                                            ConferenceStartDate = m.StartDate,
-                                                            ConferenceEndDate = m.EndDate,
-                                                            ConferenceType = m.DictionaryConferenceType.DictionaryConferenceTypeName,
-                                                            ConferenceCategory = m.DictionaryConferenceCategory.DictionaryConferenceCategoryName,
-                                                            ConferenceMainSpeaker = m.ConferenceXspeaker
-                                                                                         .Where(x => x.IsMain)
-                                                                                         .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
-                                                                                         .FirstOrDefault(),
-                                                            ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
-                                                                                        + ", " + m.Location.DictionaryCity.DictionaryCityName
-                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
-                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryCountry.DictionaryCountryName,
-                                                            SpeakerId = m.ConferenceXspeaker
-                                                                                .Where(x => x.IsMain)
-                                                                                .Select(x => x.DictionarySpeakerId)
-                                                                                .FirstOrDefault(),
-                                                            ConferenceOrganiserEmail = m.OrganiserEmail
-                                                        })
-                                                        .ToList();
-                                                       
+                                            .Where(c => c.StartDate >= _startDate && c.EndDate <= _endDate)
+                                            .OrderByDescending(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail && ca.DictionaryParticipantStatusId == 2)
+                                                                                          .OrderByDescending(ca => ca.ParticipantEmailAddress == _spectatorEmail ? 1 : 0)
+                                                                                          .Select(x => x.DictionaryParticipantStatus.DictionaryParticipantStatusName)
+                                                                                          .FirstOrDefault())
+                                            .ThenByDescending(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail && ca.DictionaryParticipantStatusId == 1)
+                                                                                         .OrderByDescending(ca => ca.ParticipantEmailAddress == _spectatorEmail ? 1 : 0)
+                                                                                         .Select(x => x.DictionaryParticipantStatus.DictionaryParticipantStatusName)
+                                                                                         .FirstOrDefault())
+                                            .ThenByDescending(c => c.ConferenceAttendance.Where(ca => ca.ParticipantEmailAddress == _spectatorEmail && ca.DictionaryParticipantStatusId == 3)
+                                                                                         .OrderByDescending(ca => ca.ParticipantEmailAddress == _spectatorEmail ? 1 : 0)
+                                                                                         .Select(x => x.DictionaryParticipantStatus.DictionaryParticipantStatusName)
+                                                                                         .FirstOrDefault())      
+                                            .Select(m => new ConferenceModel()
+                                            {
+                                                ConferenceName = m.ConferenceName,
+                                                ConferenceId = m.ConferenceId,
+                                                ConferenceStartDate = m.StartDate,
+                                                ConferenceEndDate = m.EndDate,
+                                                ConferenceType = m.DictionaryConferenceType.DictionaryConferenceTypeName,
+                                                ConferenceCategory = m.DictionaryConferenceCategory.DictionaryConferenceCategoryName,
+                                                ConferenceMainSpeaker = m.ConferenceXspeaker
+                                                                             .Where(x => x.IsMain)
+                                                                             .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
+                                                                             .FirstOrDefault(),
+                                                ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
+                                                                            + ", " + m.Location.DictionaryCity.DictionaryCityName
+                                                                            + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
+                                                                            + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryCountry.DictionaryCountryName,
+                                                SpeakerId = m.ConferenceXspeaker
+                                                                    .Where(x => x.IsMain)
+                                                                    .Select(x => x.DictionarySpeakerId)
+                                                                    .FirstOrDefault(),
+                                                ConferenceOrganiserEmail = m.OrganiserEmail
+                                            })
+                                            .ToList();
+
 
 
             return conferenceModels;
