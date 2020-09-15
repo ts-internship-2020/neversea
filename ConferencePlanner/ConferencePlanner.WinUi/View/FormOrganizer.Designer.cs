@@ -82,6 +82,7 @@ namespace ConferencePlanner.WinUi.View
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(117, 23);
             this.dtpStart.TabIndex = 4;
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // dtpEnd
             // 
@@ -111,6 +112,7 @@ namespace ConferencePlanner.WinUi.View
             // 
             // dgvOrganiser
             // 
+            this.dgvOrganiser.AllowUserToAddRows = false;
             this.dgvOrganiser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -126,7 +128,6 @@ namespace ConferencePlanner.WinUi.View
             this.dgvOrganiser.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvOrganiser.Size = new System.Drawing.Size(900, 474);
             this.dgvOrganiser.TabIndex = 0;
-            this.dgvOrganiser.AllowUserToAddRows = false;
             this.dgvOrganiser.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOrganiser_DataBindingComplete);
             // 
             // comboBoxPagesNumber

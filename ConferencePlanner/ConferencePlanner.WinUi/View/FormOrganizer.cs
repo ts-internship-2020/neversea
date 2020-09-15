@@ -114,9 +114,7 @@ namespace ConferencePlanner.WinUi.View
                     btnNext.Enabled = true;
                 }
             }
-
-            dgvOrganiser.Rows[0].Cells[0].Selected = false;
-
+            //dgvOrganiser.Rows[0].Cells[0].Selected = false;
         }
 
         private void LoadTheme()
@@ -141,14 +139,15 @@ namespace ConferencePlanner.WinUi.View
             string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
             var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
 
-            conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+            //conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+            conferenceModels = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, _startDate, _endDate);
             maxrange = conferenceModels.Count;
             range = 0;
             btnPrevious.Enabled = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             btnPrevious.Enabled = false;
-
+            Console.WriteLine("Lista dintre " + _startDate.ToString() + " si " + _endDate.ToString() + " are lungimea " + conferenceModels.Count);
             WireUpOrganiser();
         }
         private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
@@ -223,20 +222,21 @@ namespace ConferencePlanner.WinUi.View
         private async void dtpEnd_ValueChanged_1(object sender, EventArgs e)
         {
             DateTime _startDate = dtpStart.Value;
-            DateTime _endDate = dtpStart.Value;
+            DateTime _endDate = dtpEnd.Value;
             dgvOrganiser.Rows.Clear();
             string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
           
             var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
 
-            conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+            //conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+            conferenceModels = _conferenceRepository.GetConferenceBetweenDates(encodedEmail, _startDate, _endDate);
             maxrange = conferenceModels.Count;
             range = 0;
             btnPrevious.Enabled = false;
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
             btnNext.Enabled = false;
-
+            Console.WriteLine("Lista dintre " + _startDate.ToString() + " si " + _endDate.ToString() + " are lungimea " + conferenceModels.Count);
             WireUpOrganiser();
         }
         private void dgvOrganiser_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -247,6 +247,27 @@ namespace ConferencePlanner.WinUi.View
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             Console.WriteLine("test");
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            dgvOrganiser.Rows.Clear();
+
+            DateTime _startDate = dtpStart.Value;
+            DateTime _endDate = dtpEnd.Value;
+            string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
+            var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
+
+            //conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+            conferenceModels = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, _startDate, _endDate);
+            maxrange = conferenceModels.Count;
+            range = 0;
+            btnPrevious.Enabled = false;
+            step = (int)comboBoxPagesNumber.SelectedItem;
+            shown = (int)comboBoxPagesNumber.SelectedItem;
+            btnPrevious.Enabled = false;
+            Console.WriteLine("Lista dintre " + _startDate.ToString() + " si " + _endDate.ToString() + " are lungimea " + conferenceModels.Count);
+            WireUpOrganiser();
         }
     }
 }
