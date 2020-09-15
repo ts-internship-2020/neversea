@@ -55,7 +55,11 @@ namespace ConferencePlanner.WinUi.View
 
         private DataGridViewImageColumn GetActionButton(string action)
         {
-            DataGridViewImageColumn buttonToAdd = new DataGridViewImageColumn();
+            //DataGridViewImageColumn buttonToAdd = new DataGridViewImageColumn();
+            DataGridViewImageColumn buttonToAdd = new DataGridViewImageColumn(false);
+            buttonToAdd.CellTemplate = new DataGridViewImageCellBlank(false);
+            buttonToAdd.DefaultCellStyle.NullValue = null;
+
             buttonToAdd.DefaultCellStyle.NullValue = null; 
 
             if (action == "join")
@@ -360,7 +364,9 @@ namespace ConferencePlanner.WinUi.View
                 {
                     DateTime sDate = Convert.ToDateTime(dgvSpectator.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToString());
                     if (e.RowIndex == -1) return;
-                    dgvSpectator.CurrentRow.Selected = true;
+                    //dgvSpectator.CurrentRow.Selected = true;
+                    dgvSpectator.CurrentRow.Selected = false;
+
 
                     if (DateTime.Now.Minute >= sDate.AddMinutes(-5).Minute && DateTime.Now.Minute <= sDate.Minute)
                     {
@@ -378,7 +384,7 @@ namespace ConferencePlanner.WinUi.View
                     if (e.RowIndex == -1) return;
                     else
                     {
-                        dgvSpectator.CurrentRow.Selected = true;
+                        dgvSpectator.CurrentRow.Selected = false;
 
                         confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                         if (await IsParticipating(emailCopyFromMainForm, confId))
@@ -387,7 +393,7 @@ namespace ConferencePlanner.WinUi.View
                         }
                         else
                         {
-                            dgvSpectator.CurrentRow.Selected = true;
+                            dgvSpectator.CurrentRow.Selected = false;
                             if(await IsWithdrawn(emailCopyFromMainForm, confId))
                             {
                                 string url = "http://localhost:5000/api/Conference/attend";
@@ -407,13 +413,13 @@ namespace ConferencePlanner.WinUi.View
 
                 else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonWithdrawColumn")
                 {
-                    dgvSpectator.CurrentRow.Selected = true;
+                    dgvSpectator.CurrentRow.Selected = false;
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                     var url = $"http://localhost:5000/api/Conference/withdraw";
 
                     //HttpClientOperations.PutOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
 
-                    dgvSpectator.CurrentRow.Selected = true;
+                    dgvSpectator.CurrentRow.Selected = false;
 
                     if (await IsWithdrawn(emailCopyFromMainForm, confId))
                     {
@@ -421,8 +427,9 @@ namespace ConferencePlanner.WinUi.View
                     }
                     else
                     {
-                        dgvSpectator.CurrentRow.Selected = true;
+                        dgvSpectator.CurrentRow.Selected = false;
                         HttpClientOperations.PutAsyncOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
+                        dgvSpectator.Rows[e.RowIndex].Cells["buttonAttendColumn"].Style.BackColor = System.Drawing.Color.White;
                     }
                 }
             }
