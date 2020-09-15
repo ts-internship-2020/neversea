@@ -65,6 +65,7 @@
             this.dgvSpectator.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSpectator_CellMouseMove);
             this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
             this.dgvSpectator.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSpectator_CellFormatting);
+            this.dgvSpectator.AllowUserToAddRows = false;
             // 
             // dtpStart
             // 
@@ -166,6 +167,7 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndex = 0;
             // 
             // toolTip1
             // 

@@ -83,10 +83,7 @@ namespace ConferencePlanner.WinUi.View
                     button2.Enabled = true;
                 }
             }
-
-            dgvConferenceCategories.FirstDisplayedCell.Selected = false;
-
-
+            //dgvConferenceCategories.FirstDisplayedCell.Selected = false;
         }
         private void dgvConferenceCategories_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {

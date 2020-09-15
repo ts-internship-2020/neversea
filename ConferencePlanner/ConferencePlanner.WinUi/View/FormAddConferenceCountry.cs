@@ -93,10 +93,7 @@ namespace ConferencePlanner.WinUi.View
                 }
 
             }
-
-            ///dgvCountries.FirstDisplayedCell.Selected = false;
-
-
+            //dgvCountries.FirstDisplayedCell.Selected = false;
         }
         private void dgvCountries_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {

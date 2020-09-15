@@ -194,7 +194,7 @@ namespace ConferencePlanner.WinUi.View
             var urlGetConferenceAttendance = "http://localhost:5000/api/ConferenceAttendance/GetConferenceAttendance";
             conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
-          
+            //dgvSpectator.Columns.Add(buttonWithdrawColumn);
             this.dgvSpectator.Cursor = Cursors.Default;
         }
 
@@ -246,12 +246,10 @@ namespace ConferencePlanner.WinUi.View
         {
             HttpClient httpClient = HttpClientFactory.Create();
 
-
             string encodedEmail = HttpUtility.UrlEncode(spectatorEmail);
             var url = $"http://localhost:5000/api/ConferenceAttendance/GetIsParticipating?email={encodedEmail}&id={confId}";
             HttpResponseMessage res = await httpClient.GetAsync(url);
             bool isParticipant = true;
-
 
             if (res.StatusCode == HttpStatusCode.OK)
             {
@@ -261,16 +259,8 @@ namespace ConferencePlanner.WinUi.View
 
             }
 
-
             return isParticipant;
         }
-
-
-
-
-
-
-
 
 
 
@@ -404,15 +394,12 @@ namespace ConferencePlanner.WinUi.View
                     }
                 }
 
-
-
                 else if (dgvSpectator.Columns[e.ColumnIndex].Name == "buttonAttendColumn")
                 {
                     if (e.RowIndex == -1) return;
                     else
                     {
                         dgvSpectator.CurrentRow.Selected = false;
-
 
                         confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                         if (await IsParticipating(emailCopyFromMainForm, confId))
@@ -422,7 +409,7 @@ namespace ConferencePlanner.WinUi.View
                         else
                         {
                             dgvSpectator.CurrentRow.Selected = false;
-                            if (await IsWithdrawn(emailCopyFromMainForm, confId))
+                            if(await IsWithdrawn(emailCopyFromMainForm, confId))
                             {
                                 string url = "http://localhost:5000/api/Conference/attend";
                                 HttpClientOperations.PutAsyncOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
@@ -445,15 +432,9 @@ namespace ConferencePlanner.WinUi.View
                     confId = Convert.ToInt32(value: dgvSpectator.Rows[e.RowIndex].Cells["conferenceId"].FormattedValue.ToString());
                     var url = $"http://localhost:5000/api/Conference/withdraw";
 
-
-
                     //HttpClientOperations.PutOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
 
-
-
                     dgvSpectator.CurrentRow.Selected = false;
-
-
 
                     if (await IsWithdrawn(emailCopyFromMainForm, confId))
                     {
@@ -469,7 +450,7 @@ namespace ConferencePlanner.WinUi.View
             }
         }
 
-                private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
@@ -520,17 +501,23 @@ namespace ConferencePlanner.WinUi.View
         private void dgvSpectator_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex == -1) return;
-
-            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            try
             {
-                if (e.RowIndex == -1) return;
-
-                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
                     if (e.RowIndex == -1) return;
 
-                    toolTip1.Show("Click for speaker details", dgvSpectator);
+                    if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                    {
+                        if (e.RowIndex == -1) return;
+
+                        toolTip1.Show("Click for speaker details", dgvSpectator);
+                    }
                 }
+            }
+            catch
+            {
+                return;
             }
         }
         private void toolTip1_Popup(object sender, PopupEventArgs e)
@@ -540,18 +527,25 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvSpectator_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1) return;
-
-            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            try
             {
                 if (e.RowIndex == -1) return;
 
-                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
                     if (e.RowIndex == -1) return;
 
-                    toolTip1.Hide(dgvSpectator);
+                    if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                    {
+                        if (e.RowIndex == -1) return;
+
+                        toolTip1.Hide(dgvSpectator);
+                    }
                 }
+            }
+            catch
+            {
+                return;
             }
         }
 
