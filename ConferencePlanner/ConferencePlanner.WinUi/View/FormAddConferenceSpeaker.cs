@@ -85,7 +85,7 @@ namespace ConferencePlanner.WinUi.View
                 }
             }
 
-            dgvSpeakers.FirstDisplayedCell.Selected = false;
+            //dgvSpeakers.FirstDisplayedCell.Selected = false;
 
         }
         private void dgvSpeakers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
