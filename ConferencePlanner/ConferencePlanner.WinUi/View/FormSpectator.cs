@@ -514,17 +514,23 @@ namespace ConferencePlanner.WinUi.View
         private void dgvSpectator_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex == -1) return;
-
-            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            try
             {
-                if (e.RowIndex == -1) return;
-
-                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
                     if (e.RowIndex == -1) return;
 
-                    toolTip1.Show("Click for speaker details", dgvSpectator);
+                    if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                    {
+                        if (e.RowIndex == -1) return;
+
+                        toolTip1.Show("Click for speaker details", dgvSpectator);
+                    }
                 }
+            }
+            catch
+            {
+                return;
             }
         }
         private void toolTip1_Popup(object sender, PopupEventArgs e)
@@ -534,18 +540,25 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvSpectator_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1) return;
-
-            if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            try
             {
                 if (e.RowIndex == -1) return;
 
-                if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                if (dgvSpectator.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
                     if (e.RowIndex == -1) return;
 
-                    toolTip1.Hide(dgvSpectator);
+                    if (dgvSpectator.Columns[e.ColumnIndex].Name == "conferenceMainSpeaker")
+                    {
+                        if (e.RowIndex == -1) return;
+
+                        toolTip1.Hide(dgvSpectator);
+                    }
                 }
+            }
+            catch
+            {
+                return;
             }
         }
 

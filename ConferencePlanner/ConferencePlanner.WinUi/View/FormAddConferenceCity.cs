@@ -168,7 +168,7 @@ namespace ConferencePlanner.WinUi.View
 
             }
 
-            dgvCities.FirstDisplayedCell.Selected = false;
+            //dgvCities.FirstDisplayedCell.Selected = false;
 
 
         }

@@ -83,7 +83,7 @@ namespace ConferencePlanner.WinUi.View
                 }
             }
 
-            dgvConferenceTypes.FirstDisplayedCell.Selected = false;
+            //dgvConferenceTypes.FirstDisplayedCell.Selected = false;
 
 
         }
