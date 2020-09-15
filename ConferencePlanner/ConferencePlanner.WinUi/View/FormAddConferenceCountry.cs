@@ -94,7 +94,7 @@ namespace ConferencePlanner.WinUi.View
 
             }
 
-            dgvCountries.FirstDisplayedCell.Selected = false;
+           // dgvCountries.FirstDisplayedCell.Selected = false;
 
 
         }

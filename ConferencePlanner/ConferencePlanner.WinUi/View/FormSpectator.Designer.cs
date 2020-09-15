@@ -61,10 +61,10 @@
             this.dgvSpectator.Size = new System.Drawing.Size(900, 474);
             this.dgvSpectator.TabIndex = 0;
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
+            this.dgvSpectator.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSpectator_CellFormatting);
             this.dgvSpectator.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellMouseLeave);
             this.dgvSpectator.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSpectator_CellMouseMove);
             this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
-            this.dgvSpectator.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSpectator_CellFormatting);
             // 
             // dtpStart
             // 
@@ -166,11 +166,11 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // toolTip1
             // 
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
-            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // FormSpectator
             // 
