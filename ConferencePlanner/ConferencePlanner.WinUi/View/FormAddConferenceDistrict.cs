@@ -99,7 +99,7 @@ namespace ConferencePlanner.WinUi.View
                 }
             }
 
-            dgvDistricts.FirstDisplayedCell.Selected = false;
+            //dgvDistricts.FirstDisplayedCell.Selected = false;
 
 
         }

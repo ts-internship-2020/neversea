@@ -194,7 +194,7 @@ namespace ConferencePlanner.WinUi.View
             var urlGetConferenceAttendance = "http://localhost:5000/api/ConferenceAttendance/GetConferenceAttendance";
             conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
-            dgvSpectator.Columns.Add(buttonWithdrawColumn);
+            //dgvSpectator.Columns.Add(buttonWithdrawColumn);
             this.dgvSpectator.Cursor = Cursors.Default;
         }
 
