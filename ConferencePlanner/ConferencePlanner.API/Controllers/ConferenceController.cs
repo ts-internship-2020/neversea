@@ -95,12 +95,23 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPut]
         [Route("withdraw")]
-        public IActionResult putParticipantStatusWithdraw([FromBody] ConferenceAttendance conferenceAttendance)
+        public IActionResult putParticipantStatusWithdraw([FromBody] ConferenceAttendanceModel conferenceAttendance)
         {
             string spectatorEmail = conferenceAttendance.ParticipantEmailAddress;
             int conferenceId = conferenceAttendance.ConferenceId;
 
             conferenceRepository.ModifySpectatorStatusWithdraw(spectatorEmail, conferenceId);
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("attend")]
+        public IActionResult putParticipantStatusAttend([FromBody] ConferenceAttendanceModel conferenceAttendance)
+        {
+            string spectatorEmail = conferenceAttendance.ParticipantEmailAddress;
+            int conferenceId = conferenceAttendance.ConferenceId;
+
+            conferenceRepository.ModifySpectatorStatusAttend(spectatorEmail, conferenceId);
             return Ok();
         }
 

@@ -43,11 +43,9 @@ namespace ConferencePlanner.WinUi.View
             conferenceCategoryRepository = _conferenceCategoryRepository;
             conferenceSpeakerRepository = _conferenceSpeakerRepository;
             _conferenceLocationRepository = conferenceLocationRepository;
-            //conferenceCityRepository = _conferenceCityRepository;
             emailCopyFromMainForm = emailCopy;
-            //_districtRepository = districtRepository;
-            InitializeComponent();
 
+            InitializeComponent();
             customizeDesign();
             random = new Random();
             this.Text = string.Empty;
@@ -223,6 +221,18 @@ namespace ConferencePlanner.WinUi.View
         private void panelTitleBar_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void panelSidebarMenu_MouseLeave(object sender, EventArgs e)
+        {
+            hideSubmenu();
+        }
+
+        private void FormHomePage_Load(object sender, EventArgs e)
+        {
+            FormSpectator formSpectator = new FormSpectator(conferenceRepository, emailCopyFromMainForm, conferenceAttendanceRepository);
+
+            OpenChildForm(formSpectator, btnSpectator);
         }
     }
 }

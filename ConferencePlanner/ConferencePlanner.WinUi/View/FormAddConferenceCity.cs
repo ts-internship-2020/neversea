@@ -107,10 +107,6 @@ namespace ConferencePlanner.WinUi.View
             }
         }
 
-        private void dgvCities_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dgvCities.ClearSelection();
-        }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {   ///SEARCH CITY
@@ -171,6 +167,10 @@ namespace ConferencePlanner.WinUi.View
                 }
 
             }
+
+            dgvCities.FirstDisplayedCell.Selected = false;
+
+
         }
 
         private void btnDelete_MouseClick(object sender, MouseEventArgs e)

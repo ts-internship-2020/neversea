@@ -98,6 +98,10 @@ namespace ConferencePlanner.WinUi.View
                     btnPrevious.Visible = true;
                 }
             }
+
+            dgvDistricts.FirstDisplayedCell.Selected = false;
+
+
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

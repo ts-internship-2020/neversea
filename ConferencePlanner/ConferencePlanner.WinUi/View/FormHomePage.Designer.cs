@@ -61,8 +61,9 @@
             this.panelSidebarMenu.Location = new System.Drawing.Point(0, 0);
             this.panelSidebarMenu.Margin = new System.Windows.Forms.Padding(4);
             this.panelSidebarMenu.Name = "panelSidebarMenu";
-            this.panelSidebarMenu.Size = new System.Drawing.Size(239, 655);
+            this.panelSidebarMenu.Size = new System.Drawing.Size(248, 610);
             this.panelSidebarMenu.TabIndex = 0;
+            this.panelSidebarMenu.MouseLeave += new System.EventHandler(this.panelSidebarMenu_MouseLeave);
             // 
             // panelOrganizerSubmenu
             // 
@@ -71,7 +72,7 @@
             this.panelOrganizerSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOrganizerSubmenu.Location = new System.Drawing.Point(0, 306);
             this.panelOrganizerSubmenu.Name = "panelOrganizerSubmenu";
-            this.panelOrganizerSubmenu.Size = new System.Drawing.Size(239, 177);
+            this.panelOrganizerSubmenu.Size = new System.Drawing.Size(248, 177);
             this.panelOrganizerSubmenu.TabIndex = 5;
             // 
             // btnAddNew
@@ -86,7 +87,7 @@
             this.btnAddNew.Location = new System.Drawing.Point(0, 79);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnAddNew.Size = new System.Drawing.Size(239, 79);
+            this.btnAddNew.Size = new System.Drawing.Size(248, 79);
             this.btnAddNew.TabIndex = 5;
             this.btnAddNew.Text = "  Add New";
             this.btnAddNew.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -106,7 +107,7 @@
             this.btnConferences.Location = new System.Drawing.Point(0, 0);
             this.btnConferences.Name = "btnConferences";
             this.btnConferences.Padding = new System.Windows.Forms.Padding(18, 0, 0, 10);
-            this.btnConferences.Size = new System.Drawing.Size(239, 79);
+            this.btnConferences.Size = new System.Drawing.Size(248, 79);
             this.btnConferences.TabIndex = 6;
             this.btnConferences.Text = "   Conferences";
             this.btnConferences.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -127,7 +128,7 @@
             this.btnOrganizer.Location = new System.Drawing.Point(0, 227);
             this.btnOrganizer.Name = "btnOrganizer";
             this.btnOrganizer.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.btnOrganizer.Size = new System.Drawing.Size(239, 79);
+            this.btnOrganizer.Size = new System.Drawing.Size(248, 79);
             this.btnOrganizer.TabIndex = 2;
             this.btnOrganizer.Text = "  Organizer";
             this.btnOrganizer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -148,7 +149,7 @@
             this.btnSpectator.Location = new System.Drawing.Point(0, 148);
             this.btnSpectator.Name = "btnSpectator";
             this.btnSpectator.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.btnSpectator.Size = new System.Drawing.Size(239, 79);
+            this.btnSpectator.Size = new System.Drawing.Size(248, 79);
             this.btnSpectator.TabIndex = 1;
             this.btnSpectator.Text = "  Spectator";
             this.btnSpectator.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -163,7 +164,7 @@
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Margin = new System.Windows.Forms.Padding(4);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(239, 148);
+            this.panelLogo.Size = new System.Drawing.Size(248, 148);
             this.panelLogo.TabIndex = 0;
             // 
             // pictureBoxLogo
@@ -172,7 +173,7 @@
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(239, 148);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(248, 148);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 0;
             this.pictureBoxLogo.TabStop = false;
@@ -186,9 +187,9 @@
             this.panelTitleBar.Controls.Add(this.lblTitle);
             this.panelTitleBar.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTitleBar.Location = new System.Drawing.Point(239, 0);
+            this.panelTitleBar.Location = new System.Drawing.Point(248, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(913, 87);
+            this.panelTitleBar.Size = new System.Drawing.Size(902, 87);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -201,7 +202,7 @@
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(876, 12);
+            this.btnClose.Location = new System.Drawing.Point(865, 12);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(25, 23);
             this.btnClose.TabIndex = 3;
@@ -217,7 +218,7 @@
             this.btnMaximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximize.Image")));
-            this.btnMaximize.Location = new System.Drawing.Point(835, 12);
+            this.btnMaximize.Location = new System.Drawing.Point(824, 12);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(25, 23);
             this.btnMaximize.TabIndex = 2;
@@ -233,7 +234,7 @@
             this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(792, 12);
+            this.btnMinimize.Location = new System.Drawing.Point(781, 12);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(25, 23);
             this.btnMinimize.TabIndex = 1;
@@ -246,7 +247,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(321, 22);
+            this.lblTitle.Location = new System.Drawing.Point(316, 22);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(264, 40);
             this.lblTitle.TabIndex = 0;
@@ -255,9 +256,10 @@
             // panelDesktop
             // 
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(239, 87);
+            this.panelDesktop.Location = new System.Drawing.Point(248, 87);
+            this.panelDesktop.MinimumSize = new System.Drawing.Size(840, 500);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(913, 568);
+            this.panelDesktop.Size = new System.Drawing.Size(902, 523);
             this.panelDesktop.TabIndex = 2;
             // 
             // FormHomePage
@@ -265,16 +267,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1152, 655);
+            this.ClientSize = new System.Drawing.Size(1150, 610);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelSidebarMenu);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1020, 620);
+            this.MinimumSize = new System.Drawing.Size(1070, 550);
             this.Name = "FormHomePage";
             this.Text = "HomePage";
+            this.Load += new System.EventHandler(this.FormHomePage_Load);
             this.panelSidebarMenu.ResumeLayout(false);
             this.panelOrganizerSubmenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);

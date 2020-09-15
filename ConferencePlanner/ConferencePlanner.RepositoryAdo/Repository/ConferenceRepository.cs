@@ -496,5 +496,9 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return conferences;
         }
 
+        public void ModifySpectatorStatusAttend(string spectatorEmail, int conferenceId)
+        {
+            List<ConferenceModel> conferences = new List<ConferenceModel>();
+        }
     }
 };

@@ -45,6 +45,17 @@ namespace ConferencePlanner.WinUi.Utilities
             res = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
         }
 
+        public static async void PutAsyncOperation<T>(string url, T obj)
+        {
+            HttpClient httpClient = HttpClientFactory.Create();
+
+            HttpResponseMessage res;
+
+            string serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            var httpContent = new StringContent(serializedObject, Encoding.UTF8, "application/json");
+            res = await httpClient.PutAsync(url, httpContent);
+        }
+
 
         public static async void PostOperation<T>(string url, T obj)
         {

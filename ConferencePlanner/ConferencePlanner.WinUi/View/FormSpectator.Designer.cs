@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSpectator));
             this.dgvSpectator = new System.Windows.Forms.DataGridView();
-            this.panelSpeaker = new System.Windows.Forms.Panel();
             this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -53,25 +52,19 @@
             this.dgvSpectator.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSpectator.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSpectator.GridColor = System.Drawing.Color.Gainsboro;
-            this.dgvSpectator.Location = new System.Drawing.Point(7, 99);
+            this.dgvSpectator.Location = new System.Drawing.Point(26, 99);
             this.dgvSpectator.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvSpectator.MinimumSize = new System.Drawing.Size(900, 300);
             this.dgvSpectator.Name = "dgvSpectator";
-            this.dgvSpectator.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvSpectator.Size = new System.Drawing.Size(828, 474);
+            this.dgvSpectator.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgvSpectator.ShowCellErrors = false;
+            this.dgvSpectator.Size = new System.Drawing.Size(900, 474);
             this.dgvSpectator.TabIndex = 0;
             this.dgvSpectator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellContentClick_2);
             this.dgvSpectator.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpectator_CellMouseLeave);
             this.dgvSpectator.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSpectator_CellMouseMove);
             this.dgvSpectator.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSpectator_DataBindingComplete);
-            // 
-            // panelSpeaker
-            // 
-            this.panelSpeaker.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.panelSpeaker.Location = new System.Drawing.Point(843, 155);
-            this.panelSpeaker.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panelSpeaker.Name = "panelSpeaker";
-            this.panelSpeaker.Size = new System.Drawing.Size(138, 150);
-            this.panelSpeaker.TabIndex = 1;
+            this.dgvSpectator.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSpectator_CellFormatting);
             // 
             // dtpStart
             // 
@@ -82,6 +75,7 @@
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(117, 23);
             this.dtpStart.TabIndex = 4;
+            this.dtpStart.CloseUp += new System.EventHandler(this.dtpStart_CloseUp);
             // 
             // dtpEnd
             // 
@@ -92,22 +86,24 @@
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(126, 23);
             this.dtpEnd.TabIndex = 5;
+            this.dtpEnd.CloseUp += new System.EventHandler(this.dtpEnd_CloseUp);
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrevious.BackColor = System.Drawing.Color.White;
+            this.btnPrevious.Enabled = false;
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
-            this.btnPrevious.Location = new System.Drawing.Point(827, 527);
+            this.btnPrevious.Location = new System.Drawing.Point(460, 15);
             this.btnPrevious.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(61, 58);
+            this.btnPrevious.Size = new System.Drawing.Size(41, 42);
             this.btnPrevious.TabIndex = 7;
             this.btnPrevious.UseVisualStyleBackColor = false;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // btnPagesNumber
             // 
@@ -116,7 +112,7 @@
             this.btnPagesNumber.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPagesNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPagesNumber.Image = ((System.Drawing.Image)(resources.GetObject("btnPagesNumber.Image")));
-            this.btnPagesNumber.Location = new System.Drawing.Point(680, 18);
+            this.btnPagesNumber.Location = new System.Drawing.Point(604, 19);
             this.btnPagesNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPagesNumber.Name = "btnPagesNumber";
             this.btnPagesNumber.Size = new System.Drawing.Size(40, 37);
@@ -141,20 +137,19 @@
             // 
             // btnNext
             // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.BackColor = System.Drawing.Color.White;
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(920, 527);
+            this.btnNext.Location = new System.Drawing.Point(509, 16);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(61, 58);
+            this.btnNext.Size = new System.Drawing.Size(38, 39);
             this.btnNext.TabIndex = 12;
             this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Visible = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // comboBoxPagesNumber
             // 
@@ -167,7 +162,7 @@
             8,
             9,
             10});
-            this.comboBoxPagesNumber.Location = new System.Drawing.Point(727, 23);
+            this.comboBoxPagesNumber.Location = new System.Drawing.Point(651, 27);
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
@@ -175,6 +170,7 @@
             // toolTip1
             // 
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // FormSpectator
             // 
@@ -189,7 +185,6 @@
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.dtpStart);
-            this.Controls.Add(this.panelSpeaker);
             this.Controls.Add(this.dgvSpectator);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormSpectator";
@@ -203,7 +198,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvSpectator;
-        private System.Windows.Forms.Panel panelSpeaker;
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.Button btnPrevious;

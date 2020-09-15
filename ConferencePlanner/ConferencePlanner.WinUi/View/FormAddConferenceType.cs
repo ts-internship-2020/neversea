@@ -83,6 +83,9 @@ namespace ConferencePlanner.WinUi.View
                 }
             }
 
+            dgvConferenceTypes.FirstDisplayedCell.Selected = false;
+
+
         }
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {

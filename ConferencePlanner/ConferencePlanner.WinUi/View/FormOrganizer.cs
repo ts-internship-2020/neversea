@@ -86,6 +86,8 @@ namespace ConferencePlanner.WinUi.View
         {
             dgvOrganiser.Rows.Clear();
 
+            comboBoxPagesNumber.SelectedIndex = 0;
+
             for (int i = range; i < step; i++)
             {
                 if (i >= maxrange)
@@ -114,7 +116,10 @@ namespace ConferencePlanner.WinUi.View
                     btnNext.Enabled = true;
                 }
             }
-    }
+
+            dgvOrganiser.Rows[0].Cells[0].Selected = false;
+
+        }
 
         private void LoadTheme()
         {

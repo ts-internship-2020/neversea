@@ -425,5 +425,16 @@ namespace ConferencePlanner.WinUi.View
             FormAlert frm = new FormAlert();
             frm.ShowAlert(msg);
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Right))
+            {
+                btnNext_Click(btnNext, new System.EventArgs());
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
     }
 }

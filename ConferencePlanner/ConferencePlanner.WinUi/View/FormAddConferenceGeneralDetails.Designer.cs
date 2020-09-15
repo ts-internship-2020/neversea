@@ -54,7 +54,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(447, 31);
+            this.label2.Location = new System.Drawing.Point(426, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 18);
             this.label2.TabIndex = 1;
@@ -62,8 +62,10 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.BackColor = System.Drawing.SystemColors.Window;
             this.txtEmail.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtEmail.Location = new System.Drawing.Point(611, 23);
+            this.txtEmail.Location = new System.Drawing.Point(590, 23);
+            this.txtEmail.MinimumSize = new System.Drawing.Size(200, 26);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(200, 26);
             this.txtEmail.TabIndex = 2;
@@ -117,7 +119,8 @@
             // txtLocation
             // 
             this.txtLocation.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtLocation.Location = new System.Drawing.Point(611, 87);
+            this.txtLocation.Location = new System.Drawing.Point(590, 87);
+            this.txtLocation.MinimumSize = new System.Drawing.Size(200, 26);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(200, 26);
             this.txtLocation.TabIndex = 2;
@@ -127,7 +130,7 @@
             // 
             this.lblLocation.AutoSize = true;
             this.lblLocation.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLocation.Location = new System.Drawing.Point(447, 95);
+            this.lblLocation.Location = new System.Drawing.Point(426, 95);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(134, 18);
             this.lblLocation.TabIndex = 1;
