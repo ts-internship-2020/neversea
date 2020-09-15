@@ -28,6 +28,7 @@ namespace ConferencePlanner.WinUi.View
             conferenceSpeakerRepository = _conferenceSpeakerRepository;
             InitializeComponent();
             LoadSpeakers();
+
         }
         private async void LoadSpeakers()
         {
@@ -43,6 +44,8 @@ namespace ConferencePlanner.WinUi.View
             this.dgvSpeakers.Columns[0].Visible = false;
             maxrange = speakers.Count;
             WireUpSpeakers();
+
+
         }
 
         private async void LoadSpeakers(string keyword)
@@ -81,6 +84,9 @@ namespace ConferencePlanner.WinUi.View
                     button3.Enabled = true;
                 }
             }
+
+            dgvSpeakers.FirstDisplayedCell.Selected = false;
+
         }
         private void dgvSpeakers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {

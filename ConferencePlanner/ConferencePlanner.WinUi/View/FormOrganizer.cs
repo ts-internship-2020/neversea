@@ -116,7 +116,10 @@ namespace ConferencePlanner.WinUi.View
                     btnNext.Enabled = true;
                 }
             }
-    }
+
+            dgvOrganiser.Rows[0].Cells[0].Selected = false;
+
+        }
 
         private void LoadTheme()
         {

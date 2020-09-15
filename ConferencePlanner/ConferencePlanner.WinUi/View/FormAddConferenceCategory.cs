@@ -84,6 +84,9 @@ namespace ConferencePlanner.WinUi.View
                 }
             }
 
+            dgvConferenceCategories.FirstDisplayedCell.Selected = false;
+
+
         }
         private void dgvConferenceCategories_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {

@@ -113,7 +113,6 @@
             this.dgvCities.TabIndex = 28;
             this.dgvCities.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellDoubleClick);
             this.dgvCities.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellEndEdit);
-            this.dgvCities.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCities_DataBindingComplete);
             // 
             // btnDelete
             // 

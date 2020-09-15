@@ -137,11 +137,10 @@ namespace ConferencePlanner.WinUi.View
 
                 }
 
-                /*((DataGridViewImageColumn)this.dgvSpectator.Columns[10]).DefaultCellStyle.NullValue = null;
-                ((DataGridViewImageColumn)this.dgvSpectator.Columns[11]).DefaultCellStyle.NullValue = null;
-                ((DataGridViewImageColumn)this.dgvSpectator.Columns[12]).DefaultCellStyle.NullValue = null;*/
-
             }
+
+            dgvSpectator.Rows[0].Cells[0].Selected = false;
+
 
 
             FormatHeaders();
