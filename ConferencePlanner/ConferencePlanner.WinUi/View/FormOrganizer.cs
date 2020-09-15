@@ -228,8 +228,8 @@ namespace ConferencePlanner.WinUi.View
           
             var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
 
-            //conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
-            conferenceModels = _conferenceRepository.GetConferenceBetweenDates(encodedEmail, _startDate, _endDate);
+            conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+            //conferenceModels = _conferenceRepository.GetConferenceBetweenDates(encodedEmail, _startDate, _endDate);
             maxrange = conferenceModels.Count;
             range = 0;
             btnPrevious.Enabled = false;
@@ -249,7 +249,7 @@ namespace ConferencePlanner.WinUi.View
             Console.WriteLine("test");
         }
 
-        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        private async void dtpStart_ValueChanged(object sender, EventArgs e)
         {
             dgvOrganiser.Rows.Clear();
 
@@ -258,8 +258,8 @@ namespace ConferencePlanner.WinUi.View
             string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
             var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
 
-            //conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
-            conferenceModels = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, _startDate, _endDate);
+            conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+            //conferenceModels = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, _startDate, _endDate);
             maxrange = conferenceModels.Count;
             range = 0;
             btnPrevious.Enabled = false;
