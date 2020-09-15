@@ -134,7 +134,6 @@ namespace ConferencePlanner.WinUi.View
                             _conferenceModels[i].ConferenceLocation,
                             _conferenceModels[i].SpeakerId,
                             _conferenceModels[i].ConferenceOrganiserEmail);
-
                 }
 
             }
@@ -454,6 +453,8 @@ namespace ConferencePlanner.WinUi.View
         {
             step = (int)comboBoxPagesNumber.SelectedItem;
             shown = (int)comboBoxPagesNumber.SelectedItem;
+            range = 0;
+            this.btnPrevious.Enabled = false;
             InsertPaginatedList(conferenceModels, 0, step, shown);
         }
 
