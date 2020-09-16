@@ -15,6 +15,7 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceCountry : Form
     {
         public int id = 0;
+        public string name;
         private readonly ICountryRepository countryRepository;
         private readonly IConferenceLocationRepository conferenceLocationRepository;
         public List<CountryModel> countries { get; set; }
@@ -212,7 +213,9 @@ namespace ConferencePlanner.WinUi.View
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
              id= Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+            name = dgvCountries.Rows[e.RowIndex].Cells["Country"].Value.ToString();
             FormAddConferenceGeneral.countryId = id;
+            FormConferenceSummary.countryName = name;
         }
 
         private void button2_Click(object sender, EventArgs e)

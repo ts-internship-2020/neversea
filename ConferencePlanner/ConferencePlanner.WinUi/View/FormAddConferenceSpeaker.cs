@@ -120,7 +120,9 @@ namespace ConferencePlanner.WinUi.View
             if (dgvSpeakers.Rows[e.RowIndex].Cells["Name"].FormattedValue.ToString() != null)
             {
                 speakerId = Convert.ToInt32(dgvSpeakers.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                speakerName = dgvSpeakers.Rows[e.RowIndex].Cells["Name"].Value.ToString();
                 FormAddConferenceGeneral.conferenceModel.SpeakerId = speakerId;
+                FormConferenceSummary.conferenceModel.ConferenceMainSpeaker = speakerName;
             }
         
         }

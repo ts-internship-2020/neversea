@@ -16,6 +16,7 @@ namespace ConferencePlanner.WinUi.View
         public static DateTime endDate;
         public static string email;
         public FormAddConferenceGeneral formGeneral;
+        public FormConferenceSummary formSummary;
         public FormAddConferenceGeneralDetails()
         {
             InitializeComponent();
@@ -28,12 +29,18 @@ namespace ConferencePlanner.WinUi.View
             startDate = dtpStart.Value;
             endDate = dtpEnd.Value;
             address = txtLocation.Text.ToString();
+
             FormAddConferenceGeneral.conferenceModel.ConferenceName = title;
             FormAddConferenceGeneral.conferenceModel.ConferenceOrganiserEmail = email;
-
             FormAddConferenceGeneral.conferenceModel.ConferenceStartDate = startDate;
             FormAddConferenceGeneral.conferenceModel.ConferenceEndDate = endDate;
             FormAddConferenceGeneral.conferenceModel.ConferenceLocation = address;
+
+            FormConferenceSummary.conferenceModel.ConferenceName = title;
+            FormConferenceSummary.conferenceModel.ConferenceOrganiserEmail = email;
+            FormConferenceSummary.conferenceModel.ConferenceStartDate = startDate;
+            FormConferenceSummary.conferenceModel.ConferenceEndDate = endDate;
+            FormConferenceSummary.conferenceModel.ConferenceLocation = address;
 
         }
 
@@ -41,6 +48,7 @@ namespace ConferencePlanner.WinUi.View
         {
             title = txtTitle.Text.ToString();
             FormAddConferenceGeneral.conferenceModel.ConferenceName = title;
+           
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
@@ -53,6 +61,18 @@ namespace ConferencePlanner.WinUi.View
         {
             address = txtLocation.Text.ToString();
             FormAddConferenceGeneral.conferenceModel.ConferenceLocation = address;
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            startDate = dtpStart.Value;
+            FormAddConferenceGeneral.conferenceModel.ConferenceStartDate = startDate;
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+            endDate = dtpEnd.Value;
+            FormAddConferenceGeneral.conferenceModel.ConferenceEndDate = endDate;
         }
     }
 }

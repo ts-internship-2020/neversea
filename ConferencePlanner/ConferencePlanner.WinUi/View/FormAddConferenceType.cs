@@ -1,6 +1,7 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.WinUi.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace ConferencePlanner.WinUi.View
     {
 
         public int typeId;
+        public string typeName;
         private readonly IConferenceTypeRepository conferenceTypeRepository;
         private BindingSource bsTypes = new BindingSource();
         public List<ConferenceTypeModel> conferenceTypes { get; set; }
@@ -190,6 +192,7 @@ namespace ConferencePlanner.WinUi.View
         private void dgvConferenceTypes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            typeName = dgvConferenceTypes.Rows[e.RowIndex].Cells["Type"].Value.ToString();
             FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
         }
 
@@ -197,6 +200,7 @@ namespace ConferencePlanner.WinUi.View
         {
             FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
             FormAddConferenceGeneral.conferenceModel.ConferenceType = typeId.ToString();
+            FormConferenceSummary.conferenceModel.ConferenceType = typeName;
 
         }
 
