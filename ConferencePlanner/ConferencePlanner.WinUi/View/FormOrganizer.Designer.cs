@@ -128,6 +128,7 @@ namespace ConferencePlanner.WinUi.View
             this.dgvOrganiser.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvOrganiser.Size = new System.Drawing.Size(900, 474);
             this.dgvOrganiser.TabIndex = 0;
+            this.dgvOrganiser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrganiser_CellContentClick);
             this.dgvOrganiser.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOrganiser_DataBindingComplete);
             // 
             // comboBoxPagesNumber
