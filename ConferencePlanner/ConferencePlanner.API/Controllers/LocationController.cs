@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ef.Entities;
 using Microsoft.AspNetCore.Http;
@@ -22,14 +23,16 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("/location/new")]
-        public IActionResult InsertConference([FromBody] Location location)
+        public IActionResult InsertConference([FromBody] LocationModel location)
         {
-            int cityId = location.DictionaryCityId;
-            string address = location.LocationAddress;
+            int cityId = location.CityId;
+            string address = location.Address;
 
             conferenceLocationRepository.InsertLocation(cityId, address);
             return Ok();
         }
+
+     
 
 
         [HttpGet]

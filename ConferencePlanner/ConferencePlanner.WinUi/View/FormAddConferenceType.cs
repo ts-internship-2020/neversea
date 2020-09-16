@@ -190,13 +190,15 @@ namespace ConferencePlanner.WinUi.View
         private void dgvConferenceTypes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             typeId = Convert.ToInt32(dgvConferenceTypes.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-            FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
+            FormAddConferenceGeneral.conferenceModel.ConferenceTypeId = typeId;
+            FormAddConferenceGeneral.conferenceModel2.ConferenceType = typeId.ToString();
+
         }
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
-            FormAddConferenceGeneral.conferenceModel.ConferenceType = typeId.ToString();
+            FormAddConferenceGeneral.conferenceModel.ConferenceTypeId = typeId;
+            FormAddConferenceGeneral.conferenceModel2.ConferenceType = typeId.ToString();
 
         }
 

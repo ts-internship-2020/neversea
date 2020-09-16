@@ -170,14 +170,17 @@ namespace ConferencePlanner.WinUi.View
             if (dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
             {
                 categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-                FormAddConferenceGeneral.conference.DictionaryConferenceCategoryId = categoryId;
+                FormAddConferenceGeneral.conferenceModel2.ConferenceCategory = categoryId.ToString();
+                FormAddConferenceGeneral.conferenceModel.ConferenceCategoryId = categoryId;
             }
         }
 
         private void FormAddConferenceCategory_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormAddConferenceGeneral.conference.DictionaryConferenceCategoryId = categoryId;
-            FormAddConferenceGeneral.conferenceModel.ConferenceCategory = categoryId.ToString();
+            FormAddConferenceGeneral.conferenceModel2.ConferenceCategory = categoryId.ToString();
+            FormAddConferenceGeneral.conferenceModel.ConferenceCategoryId = categoryId;
+
         }
 
         private void button2_Click(object sender, EventArgs e)

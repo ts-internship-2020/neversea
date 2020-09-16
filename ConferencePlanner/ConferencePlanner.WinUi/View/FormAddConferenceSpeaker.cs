@@ -146,7 +146,7 @@ namespace ConferencePlanner.WinUi.View
             else
             {
                 FormAddConferenceGeneral.conferenceModel.SpeakerId = speakerId;
-                FormAddConferenceGeneral.conferenceModel.ConferenceMainSpeaker = speakerName;
+                FormAddConferenceGeneral.conferenceModel2.ConferenceMainSpeaker = speakerName;
             }
 
         }

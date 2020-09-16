@@ -45,15 +45,15 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("new")]
-        public IActionResult postConference([FromBody] Conference conference)
+        public IActionResult postConference([FromBody] ConferenceModelDB conference)
         {
             string conferenceName = conference.ConferenceName;
-            DateTime startDate = conference.StartDate;
-            DateTime endDate = conference.EndDate;
-            string organiserEmail = conference.OrganiserEmail;
-            int locationId = conference.LocationId;
-            int conferenceTypeId = conference.DictionaryConferenceTypeId;
-            int conferenceCategoryId = conference.DictionaryConferenceCategoryId;
+            DateTime startDate = conference.ConferenceStartDate;
+            DateTime endDate = conference.ConferenceEndDate;
+            string organiserEmail = conference.ConferenceOrganiserEmail;
+            int locationId = conference.ConferenceLocationId;
+            int conferenceTypeId = conference.ConferenceTypeId;
+            int conferenceCategoryId = conference.ConferenceCategoryId;
 
             conferenceRepository.InsertConference(conferenceName, startDate, endDate, organiserEmail, locationId, conferenceTypeId, conferenceCategoryId);
             return Ok();
