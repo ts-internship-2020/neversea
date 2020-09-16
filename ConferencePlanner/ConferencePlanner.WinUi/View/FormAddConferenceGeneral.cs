@@ -261,6 +261,8 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
             //tabCount++;
             //switchTabs(tabCount, sender);
 
@@ -271,10 +273,15 @@ namespace ConferencePlanner.WinUi.View
                 {
                     this.Alert("Fill in all fields");
                 }
-                else
+                else if (Regex.IsMatch(conferenceModel.ConferenceOrganiserEmail, pattern))
                 {
                     tabCount++;
                     switchTabs(tabCount, sender);
+                    
+                }
+                else
+                {
+                    this.Alert("Invalid email");
                 }
             }
             else if (tabCount == 2)
