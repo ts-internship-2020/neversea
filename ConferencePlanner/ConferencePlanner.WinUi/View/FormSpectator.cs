@@ -529,7 +529,7 @@ namespace ConferencePlanner.WinUi.View
                         if (e.RowIndex == -1) return;
                         dgvSpectator.ShowCellToolTips = true;
                         toolTip1.Show("Click for speaker details", dgvSpectator);
-                        toolTip1.AutoPopDelay = 750;
+                        toolTip1.AutoPopDelay = 1000;
                         
                     }
                     else
