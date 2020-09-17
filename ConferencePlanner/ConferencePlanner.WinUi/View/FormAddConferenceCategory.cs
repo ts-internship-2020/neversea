@@ -19,6 +19,7 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceCategory : Form
     {  
         public int categoryId = 0;
+        public string categoryName;
         private readonly IConferenceCategoryRepository conferenceCategoryRepository;
         
         public List<ConferenceCategoryModel> conferenceCategories = new List<ConferenceCategoryModel>();
@@ -170,6 +171,9 @@ namespace ConferencePlanner.WinUi.View
             if (dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
             {
                 categoryId = Convert.ToInt32(dgvConferenceCategories.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                categoryName = dgvConferenceCategories.Rows[e.RowIndex].Cells["Category"].Value.ToString();
+                FormAddConferenceGeneral.conference.DictionaryConferenceCategoryId = categoryId;
+                FormConferenceSummary.conferenceModel.ConferenceCategory=categoryName;
                 FormAddConferenceGeneral.conferenceModel2.ConferenceCategory = categoryId.ToString();
                 FormAddConferenceGeneral.conferenceModel.ConferenceCategoryId = categoryId;
             }

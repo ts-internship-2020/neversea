@@ -18,6 +18,7 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceCity : Form
     {
         public int locationId = 0;
+        public string locationName;
         private readonly IConferenceCityRepository conferenceCityRepository;
         private readonly IConferenceLocationRepository conferenceLocationRepository;
         List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
@@ -196,11 +197,13 @@ namespace ConferencePlanner.WinUi.View
         private void FormAddConferenceCity_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormAddConferenceGeneral.location.CityId = locationId;
+            FormConferenceSummary.cityName = locationName;
         }
 
         private void dgvCities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+            locationName = dgvCities.Rows[e.RowIndex].Cells["City"].FormattedValue.ToString();
             FormAddConferenceGeneral.location.CityId = locationId;
         }
 

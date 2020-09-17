@@ -271,20 +271,25 @@ namespace ConferencePlanner.WinUi.View
             // in lucru pt validari
             if (tabCount == 1)
             {
-                if (conferenceModel.ConferenceName == null || conferenceModel.ConferenceOrganiserEmail == null || conferenceModel2.ConferenceLocation == null)
+                if (conferenceModel.ConferenceName == "" || conferenceModel.ConferenceOrganiserEmail == null || conferenceModel.ConferenceLocation == "")
                 {
                     this.Alert("Fill in all fields");
                 }
-                else if (Regex.IsMatch(conferenceModel.ConferenceOrganiserEmail, pattern))
+                else if (conferenceModel.ConferenceStartDate > conferenceModel.ConferenceEndDate)
                 {
-                    tabCount++;
-                    switchTabs(tabCount, sender);
-                    
+                    this.Alert("Invalid date");
                 }
-                else
+                else if (!Regex.IsMatch(conferenceModel.ConferenceOrganiserEmail, pattern))
                 {
                     this.Alert("Invalid email");
                 }
+
+                else 
+                {
+                        tabCount++;
+                        switchTabs(tabCount, sender);
+                }
+
             }
             else if (tabCount == 2)
             {
@@ -413,6 +418,8 @@ namespace ConferencePlanner.WinUi.View
             var urlSpeaker = "http://localhost:5000//api/ConferenceXSpeaker/AddSpeakerInConference";
 
             HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);
+            FormConferenceSummary formConferenceSummary = new FormConferenceSummary();
+            formConferenceSummary.Show();
             Console.WriteLine("Added new conference to DB");
         }
 
