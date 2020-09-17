@@ -12,6 +12,7 @@ namespace ConferencePlanner.WinUi.View
 {
     public partial class FormEditConference : Form
     {
+        public int conferenceId;
         public FormEditConference()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace ConferencePlanner.WinUi.View
             dateTimePicker1.Value = updatedConference.ConferenceStartDate;
             dateTimePicker2.Value = updatedConference.ConferenceEndDate;
             comboBox4.SelectedItem = updatedConference.ConferenceCategory;
+            conferenceId = updatedConference.ConferenceId;
         }
         private async void InitializeComboboxes(ConferenceModel updatedConference)
         {
@@ -180,6 +182,21 @@ namespace ConferencePlanner.WinUi.View
             {
                 return;
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            ConferenceModel conferenceUpdated = new ConferenceModel();
+            conferenceUpdated.ConferenceId = conferenceId;
+            conferenceUpdated.ConferenceName = textBox1.Text;
+            conferenceUpdated.ConferenceStartDate = dateTimePicker1.Value;
+            conferenceUpdated.ConferenceEndDate = dateTimePicker2.Value;
+            HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

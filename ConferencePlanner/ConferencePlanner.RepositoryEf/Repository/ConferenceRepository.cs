@@ -328,5 +328,19 @@ namespace ConferencePlanner.Repository.Ef.Repository
                 dbContext.SaveChanges();
             }
         }
+
+        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate)
+        {
+            DateTime _startDate = Convert.ToDateTime(startDate);
+            DateTime _endDate = Convert.ToDateTime(endDate);
+            Conference conferenceEdited = new Conference();
+            conferenceEdited = dbContext.Conference.Find(conferenceId);
+            conferenceEdited.ConferenceName = conferenceName;
+            conferenceEdited.StartDate = _startDate;
+            conferenceEdited.EndDate = _endDate;
+            Console.WriteLine(_startDate);
+            Console.WriteLine(_endDate);
+            dbContext.SaveChanges();
+        }
     }
 }

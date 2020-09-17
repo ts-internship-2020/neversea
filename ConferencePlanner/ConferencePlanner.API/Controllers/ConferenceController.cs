@@ -58,6 +58,17 @@ namespace ConferencePlanner.Api.Controllers
             conferenceRepository.InsertConference(conferenceName, startDate, endDate, organiserEmail, locationId, conferenceTypeId, conferenceCategoryId);
             return Ok();
         }
+        [HttpPost]
+        [Route("update")]
+        public IActionResult updateConference([FromBody] ConferenceModel conference)
+        {
+            string conferenceName = conference.ConferenceName;
+            int conferenceId = conference.ConferenceId;
+            string startDate = conference.ConferenceStartDate.ToString();
+            string endDate = conference.ConferenceEndDate.ToString();
+            conferenceRepository.updateConference(conferenceId, conferenceName, startDate, endDate);
+            return Ok();
+        }
 
         [HttpPost]
         [Route("/Participant/new")]
