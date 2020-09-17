@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Media;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -80,6 +81,8 @@ namespace ConferencePlanner.WinUi.View
             if (tb_email.Text == ""||tb_email==null)
             {
                 this.Alert("Email is empty");
+                errorProvider2.Clear();
+
             }
 
         }
@@ -114,12 +117,11 @@ namespace ConferencePlanner.WinUi.View
             else
             {
                 errorProvider2.SetError(this.tb_email, " Please provide a valid Mail Address");
-
+                SystemSounds.Hand.Play();
                 return;
             }
-            errorProvider2.Clear();
-            {
-                if (tb_email.Text.Trim() == "")
+         
+         if (tb_email.Text.Trim() == "") { 
                     tb_email_SetText();
             }
         }

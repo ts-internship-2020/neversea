@@ -271,7 +271,7 @@ namespace ConferencePlanner.WinUi.View
             // in lucru pt validari
             if (tabCount == 1)
             {
-                if (conferenceModel.ConferenceName == "" || conferenceModel.ConferenceOrganiserEmail == null || conferenceModel.ConferenceLocation == "")
+                if (conferenceModel.ConferenceName == "" || conferenceModel.ConferenceOrganiserEmail == null || conferenceModel2.ConferenceLocation == "")
                 {
                     this.Alert("Fill in all fields");
                 }
@@ -455,5 +455,9 @@ namespace ConferencePlanner.WinUi.View
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        private void btnStep2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
