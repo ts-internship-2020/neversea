@@ -123,6 +123,9 @@ namespace ConferencePlanner.WinUi.View
                 speakerName = dgvSpeakers.Rows[e.RowIndex].Cells["Name"].Value.ToString();
                 FormAddConferenceGeneral.conferenceModel.SpeakerId = speakerId;
                 FormConferenceSummary.conferenceModel.ConferenceMainSpeaker = speakerName;
+                dgvSpeakers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvSpeakers.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
+                dgvSpeakers.DefaultCellStyle.SelectionForeColor = Color.White;
             }
         
         }
