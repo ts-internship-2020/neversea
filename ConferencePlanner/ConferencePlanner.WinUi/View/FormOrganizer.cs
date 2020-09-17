@@ -56,7 +56,7 @@ namespace ConferencePlanner.WinUi.View
 
             conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
             maxrange = conferenceModels.Count;
-            dgvOrganiser.ColumnCount = 8;
+            dgvOrganiser.ColumnCount = 9;
             dgvOrganiser.Columns[0].Name = "Id";
             dgvOrganiser.Columns[1].Name = "Title";
             dgvOrganiser.Columns[2].Name = "StartDate";
@@ -65,7 +65,9 @@ namespace ConferencePlanner.WinUi.View
             dgvOrganiser.Columns[5].Name = "Category";
             dgvOrganiser.Columns[6].Name = "Address";
             dgvOrganiser.Columns[7].Name = "Speaker";
+            dgvOrganiser.Columns[8].Name = "LocationId";
             this.dgvOrganiser.Columns[0].Visible = false;
+            this.dgvOrganiser.Columns[8].Visible = false;
             DataGridViewButtonColumn buttonEditColumn = new DataGridViewButtonColumn
             {   
                 HeaderText = "Edit",
@@ -103,7 +105,8 @@ namespace ConferencePlanner.WinUi.View
                                 conferenceModels[i].ConferenceType,
                                 conferenceModels[i].ConferenceCategory,
                                 conferenceModels[i].ConferenceLocation,
-                                conferenceModels[i].ConferenceMainSpeaker);
+                                conferenceModels[i].ConferenceMainSpeaker,
+                                conferenceModels[i].ConferenceLocationId);
                 }
 
                 if (conferenceModels.Count <= (int)comboBoxPagesNumber.SelectedItem)
@@ -177,7 +180,7 @@ namespace ConferencePlanner.WinUi.View
                 updatedConference.ConferenceCategory = dgvOrganiser.Rows[e.RowIndex].Cells["Category"].FormattedValue.ToString();
                 updatedConference.ConferenceLocation = dgvOrganiser.Rows[e.RowIndex].Cells["Address"].FormattedValue.ToString();
                 updatedConference.ConferenceMainSpeaker = dgvOrganiser.Rows[e.RowIndex].Cells["Speaker"].FormattedValue.ToString();
-
+                updatedConference.ConferenceLocationId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["LocationId"].FormattedValue.ToString());
                 FormEditConference editForm = new FormEditConference(updatedConference);
                 editForm.TopLevel = false;
                 editForm.Dock = DockStyle.Fill;

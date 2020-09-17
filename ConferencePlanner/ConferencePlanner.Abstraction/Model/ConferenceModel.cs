@@ -18,7 +18,7 @@ namespace ConferencePlanner.Abstraction.Model
         public String ConferenceLocation { get; set; }
         public int SpeakerId { get; set; }
         public String ConferenceOrganiserEmail { get; set; }
-
+        public int ConferenceLocationId { get; set; }
 
 
     }

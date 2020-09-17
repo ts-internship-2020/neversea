@@ -35,6 +35,23 @@ namespace ConferencePlanner.WinUi.Utilities
                 return returnedList;
             }
         }
+        public static async Task<T> GetOperationOneElement<T>(string url)
+        {
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(url);
+            T returnedObject = (T)Activator.CreateInstance(typeof(T));
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                var content = httpResponseMessage.Content;
+                var data = await content.ReadAsStringAsync();
+                returnedObject = (T)JsonConvert.DeserializeObject<T>(data);
+                return returnedObject;
+            }
+            else
+            {
+                throw new Exception("Couldn't load " + typeof(T).ToString());
+                return returnedObject;
+            }
+        }
 
         public static async void PutOperation<T>(string url, T obj)
         {
