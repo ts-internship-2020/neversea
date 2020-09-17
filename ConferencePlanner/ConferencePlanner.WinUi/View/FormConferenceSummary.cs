@@ -50,5 +50,10 @@ namespace ConferencePlanner.WinUi.View
         {
             this.Close();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

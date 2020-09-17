@@ -72,7 +72,6 @@ namespace ConferencePlanner.WinUi.View
         }
         private void WireUpDistricts()
         {
-            comboBoxPagesNumber.SelectedIndex = 0;
             dgvDistricts.Rows.Clear();
             for (int i = range; i < step; i++)
             {

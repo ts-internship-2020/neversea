@@ -68,7 +68,7 @@ namespace ConferencePlanner.WinUi.View
         public void WireUpCountries()
         {
             dgvCountries.Rows.Clear();
-            comboBoxPagesNumber.SelectedIndex = 0;
+
 
             for (int i = range; i < step; i++)
             {
