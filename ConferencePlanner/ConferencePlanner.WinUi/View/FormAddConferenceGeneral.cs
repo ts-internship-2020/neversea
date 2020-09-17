@@ -28,7 +28,9 @@ namespace ConferencePlanner.WinUi.View
         public static int countryId = new int();
        // public static int typeId = new int();
         public static LocationModel location = new LocationModel();
-        public static ConferenceModel conferenceModel = new ConferenceModel();
+        public static ConferenceModelDB conferenceModel = new ConferenceModelDB();
+        public static ConferenceModel conferenceModel2 = new ConferenceModel();
+
         public static Conference conference = new Conference();
         private readonly IConferenceRepository conferenceRepository;
         private readonly IConferenceAttendanceRepository conferenceAttendanceRepository;
@@ -332,7 +334,7 @@ namespace ConferencePlanner.WinUi.View
             else if (tabCount == 5)
             {
 
-                if (conference.DictionaryConferenceTypeId == 0)
+                if (conferenceModel.ConferenceTypeId == 0)
                 {
 
                     this.Alert("Select a Type");
@@ -345,7 +347,7 @@ namespace ConferencePlanner.WinUi.View
             }
             else if (tabCount == 6)
             {
-                if (conference.DictionaryConferenceCategoryId == 0)
+                if (conferenceModel.ConferenceCategoryId == 0)
                 {
 
                     this.Alert("Select a Category");
@@ -386,23 +388,25 @@ namespace ConferencePlanner.WinUi.View
         {
             var urlLocation = "http://localhost:5000/location/new";
 
-            Location locationModel = new Location{ DictionaryCityId = location.CityId, LocationAddress = locationAddress };
+            LocationModel locationModel = new LocationModel(){ CityId = location.CityId, Address = locationAddress };
 
-            HttpClientOperations.PostOperation<Location>(urlLocation, locationModel);
+            HttpClientOperations.PostOperation(urlLocation, locationModel);
 
-            locId = await GetLocationId(location.CityId, conferenceModel.ConferenceLocation);
+            locId = await GetLocationId(locationModel.CityId, locationModel.Address);
 
             var urlConference = "http://localhost:5000/api/Conference/new";
 
-            Conference conferenceToAdd = new Conference
-            { ConferenceId = conferenceModel.ConferenceId,
+            ConferenceModelDB conferenceToAdd = new ConferenceModelDB
+            {// ConferenceId = 40,
+            //conferenceModel.ConferenceId,
               ConferenceName = conferenceModel.ConferenceName, 
-              StartDate = conferenceModel.ConferenceStartDate, 
-              EndDate = conferenceModel.ConferenceEndDate, 
-              OrganiserEmail = conferenceModel.ConferenceOrganiserEmail, 
-              LocationId = locId, 
-              DictionaryConferenceCategoryId = 1, 
-              DictionaryConferenceTypeId = 1};
+              ConferenceStartDate = conferenceModel.ConferenceStartDate, 
+              ConferenceEndDate = conferenceModel.ConferenceEndDate, 
+              ConferenceOrganiserEmail = conferenceModel.ConferenceOrganiserEmail, 
+              ConferenceLocationId = locId, 
+            ConferenceCategoryId = conferenceModel.ConferenceCategoryId, 
+              ConferenceTypeId = conferenceModel.ConferenceTypeId,
+            ConferenceMainSpeakerId = conferenceModel.ConferenceMainSpeakerId};
 
             HttpClientOperations.PostOperation(urlConference, conferenceToAdd);
 
@@ -416,6 +420,7 @@ namespace ConferencePlanner.WinUi.View
             HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);
             FormConferenceSummary formConferenceSummary = new FormConferenceSummary();
             formConferenceSummary.Show();
+            Console.WriteLine("Added new conference to DB");
         }
 
         private async Task<int> GetLocationId(int cityId, string locationAddress)

@@ -128,6 +128,7 @@ namespace ConferencePlanner.WinUi.View
             this.dgvOrganiser.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvOrganiser.Size = new System.Drawing.Size(900, 474);
             this.dgvOrganiser.TabIndex = 0;
+            this.dgvOrganiser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrganiser_CellContentClick);
             this.dgvOrganiser.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvOrganiser_DataBindingComplete);
             // 
             // comboBoxPagesNumber
@@ -145,7 +146,6 @@ namespace ConferencePlanner.WinUi.View
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 23);
             this.comboBoxPagesNumber.TabIndex = 13;
-            this.comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged_1);
             // 
             // btnFromTo

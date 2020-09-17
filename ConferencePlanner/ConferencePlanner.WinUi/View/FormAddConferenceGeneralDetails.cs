@@ -29,12 +29,12 @@ namespace ConferencePlanner.WinUi.View
             startDate = dtpStart.Value;
             endDate = dtpEnd.Value;
             address = txtLocation.Text.ToString();
-
+            FormAddConferenceGeneral.locationAddress = address;
             FormAddConferenceGeneral.conferenceModel.ConferenceName = title;
             FormAddConferenceGeneral.conferenceModel.ConferenceOrganiserEmail = email;
             FormAddConferenceGeneral.conferenceModel.ConferenceStartDate = startDate;
             FormAddConferenceGeneral.conferenceModel.ConferenceEndDate = endDate;
-            FormAddConferenceGeneral.conferenceModel.ConferenceLocation = address;
+            FormAddConferenceGeneral.conferenceModel2.ConferenceLocation = address;
 
             FormConferenceSummary.conferenceModel.ConferenceName = title;
             FormConferenceSummary.conferenceModel.ConferenceOrganiserEmail = email;
@@ -60,7 +60,7 @@ namespace ConferencePlanner.WinUi.View
         private void txtLocation_TextChanged(object sender, EventArgs e)
         {
             address = txtLocation.Text.ToString();
-            FormAddConferenceGeneral.conferenceModel.ConferenceLocation = address;
+            FormAddConferenceGeneral.conferenceModel2.ConferenceLocation = address;
         }
 
         private void dtpStart_ValueChanged(object sender, EventArgs e)

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Resources\icoane\btnAddConference_48.png" />
+    <None Remove="Resources\icoane\btnCancel_24.png" />
     <None Remove="Resources\icoane\btnConferences_48.png" />
     <None Remove="Resources\icoane\btnExitBlue_24.png" />
     <None Remove="Resources\icoane\btnFromTo_48.png" />
@@ -17,6 +18,7 @@
     <None Remove="Resources\icoane\btnPagesNumber_32.png" />
     <None Remove="Resources\icoane\btnPreviousPage_24.png" />
     <None Remove="Resources\icoane\btnPrevious_48.png" />
+    <None Remove="Resources\icoane\btnSave_24.png" />
     <None Remove="Resources\icoane\btnSave_48.png" />
     <None Remove="Resources\icoane\btnSave_64.png" />
     <None Remove="Resources\icoane\btnSearch_32.png" />
@@ -35,6 +37,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\icoane\btnAddConference_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnCancel_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnConferences_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnExitBlue_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnFromTo_48.png" />
@@ -44,6 +47,7 @@
     <EmbeddedResource Include="Resources\icoane\btnPagesNumber_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnPreviousPage_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnPrevious_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnSave_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnSave_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnSave_64.png" />
     <EmbeddedResource Include="Resources\icoane\btnSearch_32.png" />
