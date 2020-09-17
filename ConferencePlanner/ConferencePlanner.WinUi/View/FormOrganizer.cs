@@ -85,6 +85,7 @@ namespace ConferencePlanner.WinUi.View
         private void WireUpOrganiser()
         {
             dgvOrganiser.Rows.Clear();
+            comboBoxPagesNumber.SelectedIndex = 0;
 
             for (int i = range; i < step; i++)
             {
@@ -178,6 +179,11 @@ namespace ConferencePlanner.WinUi.View
                 updatedConference.ConferenceMainSpeaker = dgvOrganiser.Rows[e.RowIndex].Cells["Speaker"].FormattedValue.ToString();
 
                 FormEditConference editForm = new FormEditConference(updatedConference);
+                editForm.TopLevel = false;
+                editForm.Dock = DockStyle.Fill;
+                this.Controls.Add(editForm);
+                this.Tag = editForm;
+                editForm.BringToFront();
                 editForm.Show();
                 Console.WriteLine("I m in edit mode");
             }
