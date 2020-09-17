@@ -23,6 +23,7 @@
     <None Remove="Resources\icoane\btnSave_64.png" />
     <None Remove="Resources\icoane\btnSearch_32.png" />
     <None Remove="Resources\icoane\btnSpectator_64.png" />
+    <None Remove="Resources\icoane\btnSummary_64.png" />
     <None Remove="Resources\transparent_image.png" />
     <None Remove="View\icoane\btnDeleteSelected_48.png" />
     <None Remove="View\icoane\btnExit_32.png" />
@@ -52,6 +53,7 @@
     <EmbeddedResource Include="Resources\icoane\btnSave_64.png" />
     <EmbeddedResource Include="Resources\icoane\btnSearch_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnSpectator_64.png" />
+    <EmbeddedResource Include="Resources\icoane\btnSummary_64.png" />
     <EmbeddedResource Include="View\icoane\btnDeleteSelected_48.png" />
     <EmbeddedResource Include="View\icoane\btnExit_32.png" />
     <EmbeddedResource Include="View\icoane\btnFromTo_48.png">
