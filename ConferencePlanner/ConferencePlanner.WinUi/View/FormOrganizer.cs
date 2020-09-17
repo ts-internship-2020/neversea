@@ -85,7 +85,7 @@ namespace ConferencePlanner.WinUi.View
         private void WireUpOrganiser()
         {
             dgvOrganiser.Rows.Clear();
-            comboBoxPagesNumber.SelectedIndex = 0;
+            //comboBoxPagesNumber.SelectedIndex = 0;
 
             for (int i = range; i < step; i++)
             {
