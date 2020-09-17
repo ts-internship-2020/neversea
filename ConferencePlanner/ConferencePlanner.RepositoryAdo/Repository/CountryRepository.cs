@@ -25,7 +25,11 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         }
 
-
+        public CountryModel GetConferenceCountryByDistrictId(int districtId)
+        {
+            CountryModel c1 = new CountryModel();
+            return c1;
+        }
 
         public void DeleteCountry(int countryId)
         {

@@ -13,6 +13,7 @@ namespace ConferencePlanner.Abstraction.Repository
         public void InsertCity(string city, int districtId);
         public void DeleteCity(int cityId, int districtId);
         public List<ConferenceCityModel> GetConferenceCities(int districtId, string keyword);
+        public ConferenceCityModel GetConferenceCityByLocationId(int locationId);
 
     }
 }

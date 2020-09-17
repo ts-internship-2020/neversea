@@ -147,6 +147,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                 ConferenceId = m.ConferenceId,
                                                 ConferenceStartDate = m.StartDate,
                                                 ConferenceEndDate = m.EndDate,
+                                                ConferenceLocationId = m.LocationId,
                                                 ConferenceType = m.DictionaryConferenceType.DictionaryConferenceTypeName,
                                                 ConferenceCategory = m.DictionaryConferenceCategory.DictionaryConferenceCategoryName,
                                                 ConferenceMainSpeaker = m.ConferenceXspeaker

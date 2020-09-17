@@ -37,6 +37,14 @@ namespace ConferencePlanner.Api.Controllers
             List<ConferenceCityModel> cityModel = _getCityRepository.GetConferenceCities(districtId, keyword);
             return Ok(cityModel);
         }
+        [HttpGet]
+        [Route("/GetConferenceCityByLocationId")]
+        public IActionResult GetConferenceCityByLocationId(int locationId)
+        {
+            ConferenceCityModel cityModel = _getCityRepository.GetConferenceCityByLocationId(locationId);
+            return Ok(cityModel);
+        }
+
 
         [HttpPost]
         [Route("/InsertCity")]
