@@ -66,5 +66,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             return locationId;
         }
+
+        public void UpdateLocation(int cityId, string address, int newCityId, string newAddress)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

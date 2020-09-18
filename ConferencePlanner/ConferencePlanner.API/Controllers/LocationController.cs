@@ -51,5 +51,15 @@ namespace ConferencePlanner.Api.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        [Route("/location/updateLocation")]
+        public IActionResult UpdateLocation(int cityId, string address, int newCityId, string newAddress)
+        {
+            conferenceLocationRepository.UpdateLocation(cityId, address, newCityId, newAddress);
+
+            return Ok();
+        }
+
+
     }
 }

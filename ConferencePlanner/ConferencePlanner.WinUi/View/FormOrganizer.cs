@@ -66,15 +66,22 @@ namespace ConferencePlanner.WinUi.View
             dgvOrganiser.Columns[6].Name = "Address";
             dgvOrganiser.Columns[7].Name = "Speaker";
             dgvOrganiser.Columns[8].Name = "LocationId";
+            dgvOrganiser.Columns[2].HeaderText = "Start Date";
+            dgvOrganiser.Columns[3].HeaderText = "End Date";
+
             this.dgvOrganiser.Columns[0].Visible = false;
             this.dgvOrganiser.Columns[8].Visible = false;
-            DataGridViewButtonColumn buttonEditColumn = new DataGridViewButtonColumn
+            DataGridViewImageColumn buttonEditColumn = new DataGridViewImageColumn
             {   
                 HeaderText = "Edit",
-                Name = "buttonEditColumn",
-                Text = "Edit",
-                UseColumnTextForButtonValue = true
+                Name = "buttonEditColumn"
+                //Text = "Edit",
+                //UseColumnTextForButtonValue = true
             };
+
+            buttonEditColumn.ToolTipText = "Edit Conference";
+            buttonEditColumn.Image = Properties.Resources.btnEdit_16;
+            buttonEditColumn.Description = "Press to Edit";
             dgvOrganiser.Columns.Add(buttonEditColumn);
             WireUpOrganiser();
         }
@@ -100,8 +107,8 @@ namespace ConferencePlanner.WinUi.View
                 {
                     dgvOrganiser.Rows.Add(conferenceModels[i].ConferenceId,
                                 conferenceModels[i].ConferenceName,
-                                conferenceModels[i].ConferenceStartDate,
-                                conferenceModels[i].ConferenceEndDate,
+                                conferenceModels[i].ConferenceStartDate.ToString("dd/MM/yyyy"),
+                                conferenceModels[i].ConferenceEndDate.ToString("dd/MM/yyyy"),
                                 conferenceModels[i].ConferenceType,
                                 conferenceModels[i].ConferenceCategory,
                                 conferenceModels[i].ConferenceLocation,
@@ -117,6 +124,18 @@ namespace ConferencePlanner.WinUi.View
                 {
                     btnNext.Enabled = true;
                 }
+            }
+
+            for (int i = 0; i < dgvOrganiser.Columns.Count - 1; i++)
+            {
+                dgvOrganiser.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
+            for (int i = 0; i < dgvOrganiser.Columns.Count - 1; i++)
+            {
+                int colw = dgvOrganiser.Columns[i].Width;
+                dgvOrganiser.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dgvOrganiser.Columns[i].Width = colw;
             }
             //dgvOrganiser.Rows[0].Cells[0].Selected = false;
         }

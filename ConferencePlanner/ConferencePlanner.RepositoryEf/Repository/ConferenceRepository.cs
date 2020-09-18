@@ -55,8 +55,8 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                                                          .FirstOrDefault()
                                                                                          .DictionarySpeaker.DictionarySpeakerName,
                                                                 ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
-                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict
-                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
+                                                                                        /*+ ", " + m.Location.DictionaryCity.DictionaryDistrict
+                                                                                        + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName*/
                                                                                         + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryCountry.DictionaryCountryName, 
                                                                 SpeakerId = m.ConferenceXspeaker
                                                                                 .Where(x => x.IsMain)
@@ -112,8 +112,8 @@ namespace ConferencePlanner.Repository.Ef.Repository
                                                                              .Select(x => x.DictionarySpeaker.DictionarySpeakerName)
                                                                              .FirstOrDefault(),
                                                 ConferenceLocation = m.Location.DictionaryCity.DictionaryCityName
-                                                                            + ", " + m.Location.DictionaryCity.DictionaryCityName
-                                                                            + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
+                                                                            //+ ", " + m.Location.DictionaryCity.DictionaryCityName
+                                                                            //+ ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryDistrictName
                                                                             + ", " + m.Location.DictionaryCity.DictionaryDistrict.DictionaryCountry.DictionaryCountryName,
                                                 SpeakerId = m.ConferenceXspeaker
                                                                     .Where(x => x.IsMain)
@@ -328,6 +328,14 @@ namespace ConferencePlanner.Repository.Ef.Repository
                 dbContext.SaveChanges();
             }
         }
+        public int GetLastConferenceId()
+        {
+            List<Conference> conferences = dbContext.Conference.ToList();
+
+            Conference conference = conferences.Last();
+
+            return conference.ConferenceId;
+        }
 
         public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate, int categoryId, int typeId)
         {
@@ -344,6 +352,11 @@ namespace ConferencePlanner.Repository.Ef.Repository
             Console.WriteLine(_endDate);
             Console.WriteLine(conferenceEdited.DictionaryConferenceCategoryId);
             dbContext.SaveChanges();
+        }
+
+        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate)
+        {
+            //implementare
         }
     }
 }

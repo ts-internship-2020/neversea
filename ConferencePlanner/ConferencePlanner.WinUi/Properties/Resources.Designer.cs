@@ -83,9 +83,29 @@ namespace ConferencePlanner.WinUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btnDropDown_cropped_24 {
+        internal static System.Drawing.Bitmap btnDropDown2_cropped_24 {
             get {
-                object obj = ResourceManager.GetObject("btnDropDown_cropped_24", resourceCulture);
+                object obj = ResourceManager.GetObject("btnDropDown2_cropped_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btnEdit_16 {
+            get {
+                object obj = ResourceManager.GetObject("btnEdit_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btnEdit_20 {
+            get {
+                object obj = ResourceManager.GetObject("btnEdit_20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +226,26 @@ namespace ConferencePlanner.WinUi.Properties {
         internal static System.Drawing.Bitmap icons8_facebook_like_48px_1 {
             get {
                 object obj = ResourceManager.GetObject("icons8_facebook_like_48px_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_id_not_verified_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_id_not_verified_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_verified_account_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_verified_account_20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

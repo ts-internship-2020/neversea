@@ -37,6 +37,13 @@ namespace ConferencePlanner.Api.Controllers
             return Ok(districtModel);
         }
         [HttpGet]
+        [Route("GetDistrictByCountryId")]
+        public IActionResult GetDistrictsByCountryId(int key)
+        {
+            List<DistrictModel> districtModel = _getDistrictRepository.GetDistrictsByCountryId(key);
+            return Ok(districtModel);
+        }
+        [HttpGet]
         [Route("/GetConferenceDistrictByCityId")]
         public IActionResult GetConferenceDistrictByCityId(int cityId)
         {

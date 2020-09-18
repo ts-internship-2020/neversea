@@ -129,5 +129,15 @@ namespace ConferencePlanner.Api.Controllers
         }
 
 
+
+        [HttpGet]
+        [Route("getLastConferenceId")]
+        public IActionResult getLastConferenceId()
+        {
+            int conferenceId = conferenceRepository.GetLastConferenceId();
+
+            return Ok(conferenceId);
+        }
+
     }
 }

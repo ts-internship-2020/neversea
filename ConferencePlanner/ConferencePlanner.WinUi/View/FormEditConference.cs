@@ -191,7 +191,11 @@ namespace ConferencePlanner.WinUi.View
                 return;
             }
         }
-
+        public void Alert(string msg)
+        {
+            FormAlert frm = new FormAlert();
+            frm.ShowAlert(msg);
+        }
         private async void btnSave_Click(object sender, EventArgs e)
         {
             ConferenceModel conferenceUpdated = new ConferenceModel();
@@ -206,6 +210,7 @@ namespace ConferencePlanner.WinUi.View
             Console.WriteLine(newSpeaker.DictionarySpeakerId);
             conferenceUpdated.ConferenceId = conferenceId;
             conferenceUpdated.ConferenceName = textBox1.Text;
+            
             conferenceUpdated.ConferenceStartDate = dateTimePicker1.Value;
             conferenceUpdated.ConferenceEndDate = dateTimePicker2.Value;
             conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
@@ -215,6 +220,23 @@ namespace ConferencePlanner.WinUi.View
             newCxs.DictionarySpeakerId = newSpeaker.DictionarySpeakerId;
             newCxs.isMain = true;
 
+            
+            conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
+            conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
+            if (conferenceUpdated.ConferenceName == "" || textBox4.Text=="" || comboBox3.Text==""|| comboBox2.Text == "")
+            {
+                this.Alert("Please, fill in all fields.");
+            }
+            else if (conferenceUpdated.ConferenceStartDate >= conferenceUpdated.ConferenceEndDate)
+            {
+                this.Alert("The dates entered are invalid.");
+            }
+            else
+            {
+                HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
+                HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
+                this.Close(); 
+;            }
             LocationModel newLocation = new LocationModel();
             newLocation.LocationId = locationId;
             newLocation.LocationAddress = textBox4.Text.ToString();
