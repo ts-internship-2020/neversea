@@ -112,7 +112,7 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
-            this.comboBoxPagesNumber.SelectedIndex = 0;
+            comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnDeleteSelected
@@ -134,6 +134,7 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnPreviousPage.Enabled = false;
             this.btnPreviousPage.FlatAppearance.BorderSize = 0;
             this.btnPreviousPage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPreviousPage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
@@ -143,7 +144,6 @@
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(42, 33);
             this.btnPreviousPage.TabIndex = 34;
-            this.btnPreviousPage.Enabled = false;
             this.btnPreviousPage.UseVisualStyleBackColor = true;
             this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 

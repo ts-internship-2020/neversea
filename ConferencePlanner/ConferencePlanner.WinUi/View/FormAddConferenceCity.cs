@@ -205,6 +205,7 @@ namespace ConferencePlanner.WinUi.View
             locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
             locationName = dgvCities.Rows[e.RowIndex].Cells["City"].FormattedValue.ToString();
             FormAddConferenceGeneral.location.CityId = locationId;
+            dgvCities.CellDoubleClick += dgvCities_CellDoubleClick;
             dgvCities.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCities.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
             dgvCities.DefaultCellStyle.SelectionForeColor = Color.White;

@@ -66,7 +66,9 @@ namespace ConferencePlanner.Api.Controllers
             int conferenceId = conference.ConferenceId;
             string startDate = conference.ConferenceStartDate.ToString();
             string endDate = conference.ConferenceEndDate.ToString();
-            conferenceRepository.updateConference(conferenceId, conferenceName, startDate, endDate);
+            int categoryId = conference.ConferenceCategoryId;
+            int typeId = conference.ConferenceTypeId;
+            conferenceRepository.updateConference(conferenceId, conferenceName, startDate, endDate, categoryId, typeId);
             return Ok();
         }
 

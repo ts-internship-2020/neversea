@@ -196,9 +196,11 @@ namespace ConferencePlanner.WinUi.View
 
             typeName = dgvConferenceTypes.Rows[e.RowIndex].Cells["Type"].Value.ToString();
             FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
+            dgvConferenceTypes.CellDoubleClick += dgvConferenceTypes_CellDoubleClick;
             dgvConferenceTypes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvConferenceTypes.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
             dgvConferenceTypes.DefaultCellStyle.SelectionForeColor = Color.White;
+
         }
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)

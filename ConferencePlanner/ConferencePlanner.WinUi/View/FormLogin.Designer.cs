@@ -70,6 +70,7 @@
             this.tb_email.Size = new System.Drawing.Size(251, 31);
             this.tb_email.TabIndex = 4;
             this.tb_email.Text = "admin@admin.com";
+            this.tb_email.TextChanged += new System.EventHandler(this.tb_email_TextChanged_1);
             this.tb_email.Enter += new System.EventHandler(this.tb_email_Enter);
             this.tb_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             this.tb_email.Leave += new System.EventHandler(this.tb_email_Leave);

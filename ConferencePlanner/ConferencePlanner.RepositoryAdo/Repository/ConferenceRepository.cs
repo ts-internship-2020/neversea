@@ -21,7 +21,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             sqlConnection = SqlConnection;
         }
-        public void updateConference(int id, string s1, string s2, string s3)
+        public void updateConference(int id, string s1, string s2, string s3, int i4, int i5)
         {
             return;
         }

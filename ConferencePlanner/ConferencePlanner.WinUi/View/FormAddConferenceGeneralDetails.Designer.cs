@@ -160,6 +160,7 @@
             this.Name = "FormAddConferenceGeneralDetails";
             this.Text = "Conference Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceGeneralDetails_FormClosing);
+            this.Load += new System.EventHandler(this.FormAddConferenceGeneralDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

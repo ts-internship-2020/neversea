@@ -54,8 +54,7 @@ namespace ConferencePlanner.WinUi.View
         private void button1_Click(object sender, EventArgs e)
         {
 
-            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+            string pattern = "^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([A-Za-z]{2,6}(?:\\.[A-Za-z]{2,6})?)$";
             if ((chkb_email.Checked) && (Regex.IsMatch(tb_email.Text, pattern)))
             {
                 Properties.Settings.Default.Email = tb_email.Text;
@@ -107,8 +106,7 @@ namespace ConferencePlanner.WinUi.View
 
         private void tb_email_Leave(object sender, EventArgs e)
         {
-            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+            string pattern = "^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([A-Za-z]{2,6}(?:\\.[A-Za-z]{2,6})?)$";
             if (Regex.IsMatch(tb_email.Text, pattern))
             {
                 errorProvider2.Clear(); 
@@ -152,11 +150,18 @@ namespace ConferencePlanner.WinUi.View
         private void tb_email_TextChanged(object sender, EventArgs e)
         {
             tb_email.Text = "paul.popescu@gmail.com";
+            errorProvider2.Clear();
         }
 
         private void btnExit_MouseClick(object sender, MouseEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void tb_email_TextChanged_1(object sender, EventArgs e)
+        {
+            
+                errorProvider2.Clear();
         }
     }
 }

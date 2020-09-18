@@ -263,8 +263,9 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+            string pattern = "^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([A-Za-z]{2,6}(?:\\.[A-Za-z]{2,6})?)$";
+                //@"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                  // @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
             //tabCount++;
             //switchTabs(tabCount, sender);
 
@@ -275,7 +276,7 @@ namespace ConferencePlanner.WinUi.View
                 {
                     this.Alert("Please, fill in all fields.");
                 }
-                else if (conferenceModel.ConferenceStartDate > conferenceModel.ConferenceEndDate)
+                else if (conferenceModel.ConferenceStartDate >= conferenceModel.ConferenceEndDate)
                 {
                     this.Alert("The dates entered are invalid.");
                 }

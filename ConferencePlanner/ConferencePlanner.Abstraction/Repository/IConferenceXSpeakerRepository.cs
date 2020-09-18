@@ -8,6 +8,6 @@ namespace ConferencePlanner.Abstraction.Repository
     {
 
         public void AddSpeaker(int conferenceId, int speakerId, bool isMain);
-
+        public void updateConferenceXSpeaker(int conferenceId, int speakerId);
     }
 }
