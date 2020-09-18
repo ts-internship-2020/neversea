@@ -37,5 +37,13 @@ namespace ConferencePlanner.Repository.Ef.Repository
             dbContext.Location.Add(location);
             dbContext.SaveChanges();
         }
+        public void updateLocation(int locationId, int cityId, string address)
+        {
+            Location newLocation = new Location();
+            newLocation = dbContext.Location.Find(locationId);
+            newLocation.DictionaryCityId = cityId;
+            newLocation.LocationAddress = address;
+            dbContext.SaveChanges();
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormEditConference : Form
     {
         public int conferenceId;
+        public int locationId;
         public FormEditConference()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace ConferencePlanner.WinUi.View
             dateTimePicker2.Value = updatedConference.ConferenceEndDate;
             comboBox4.SelectedItem = updatedConference.ConferenceCategory;
             conferenceId = updatedConference.ConferenceId;
+            locationId = updatedConference.ConferenceLocationId;
         }
         private async void InitializeComboboxes(ConferenceModel updatedConference)
         {
@@ -67,13 +69,18 @@ namespace ConferencePlanner.WinUi.View
             //Speaker
             url = "http://localhost:5000/GetConferenceSpeakers";
             List<SpeakerModel> conferenceSpeakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
-            foreach (SpeakerModel it in conferenceSpeakers)
-            {
-                comboBox6.Items.Add(it);
-                if (it.DictionarySpeakerName == updatedConference.ConferenceMainSpeaker)
+            if (conferenceSpeakers.Count != 0)
+                foreach (SpeakerModel it in conferenceSpeakers)
                 {
-                    comboBox6.SelectedIndex = conferenceSpeakers.IndexOf(it);
+                    comboBox6.Items.Add(it);
+                    if (it.DictionarySpeakerName == updatedConference.ConferenceMainSpeaker)
+                    {
+                        comboBox6.SelectedIndex = conferenceSpeakers.IndexOf(it);
+                    }
                 }
+            else
+            {
+                comboBox6.Items.Add("");
             }
             //Country 
             url = "http://localhost:5000/GetCountry";
@@ -192,24 +199,28 @@ namespace ConferencePlanner.WinUi.View
             newType = (ConferenceTypeModel)comboBox5.SelectedItem;
             ConferenceCategoryModel newCategory = new ConferenceCategoryModel();
             newCategory = (ConferenceCategoryModel)comboBox4.SelectedItem;
-
+            ConferenceCityModel newCity = (ConferenceCityModel)comboBox3.SelectedItem;
             ConferenceXSpeakerModel newCxs = new ConferenceXSpeakerModel();
             SpeakerModel newSpeaker = new SpeakerModel();
             newSpeaker = (SpeakerModel)comboBox6.SelectedItem;
-
+            Console.WriteLine(newSpeaker.DictionarySpeakerId);
             conferenceUpdated.ConferenceId = conferenceId;
             conferenceUpdated.ConferenceName = textBox1.Text;
             conferenceUpdated.ConferenceStartDate = dateTimePicker1.Value;
             conferenceUpdated.ConferenceEndDate = dateTimePicker2.Value;
+            conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
+            conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
 
             newCxs.conferenceId = conferenceUpdated.ConferenceId;
             newCxs.DictionarySpeakerId = newSpeaker.DictionarySpeakerId;
             newCxs.isMain = true;
 
+            LocationModel newLocation = new LocationModel();
+            newLocation.LocationId = locationId;
+            newLocation.LocationAddress = textBox4.Text.ToString();
+            newLocation.DictionaryCityId = newCity.ConferenceCityId;
+            HttpClientOperations.PutOperation<LocationModel>("http://localhost:5000/location/update", newLocation);
             HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
-
-            conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
-            conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
             HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
 
         }

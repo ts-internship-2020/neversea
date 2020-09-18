@@ -35,19 +35,24 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
         public void updateConferenceXSpeaker(int conferenceId, int speakerId)
         {
-            Console.WriteLine("In update speaker am primit speaker ID " + speakerId.ToString());
-            ConferenceXspeaker editedRow = _dbContext.ConferenceXspeaker.Where(c => c.ConferenceId == conferenceId).FirstOrDefault();
-            Console.WriteLine("Update speaker pentru conferinta nr : " + editedRow.ConferenceId);
-            _dbContext.Remove(editedRow);
-            _dbContext.SaveChanges();
-
-            _dbContext.ConferenceXspeaker.Add(new ConferenceXspeaker
+            try
             {
-                ConferenceId = conferenceId,
-                DictionarySpeakerId = speakerId,
-                IsMain = true
-            });
-            _dbContext.SaveChanges();
+                ConferenceXspeaker editedRow = _dbContext.ConferenceXspeaker.Where(c => c.ConferenceId == conferenceId).FirstOrDefault();
+                _dbContext.Remove(editedRow);
+                _dbContext.SaveChanges();
+
+                _dbContext.ConferenceXspeaker.Add(new ConferenceXspeaker
+                {
+                    ConferenceId = conferenceId,
+                    DictionarySpeakerId = speakerId,
+                    IsMain = true
+                });
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

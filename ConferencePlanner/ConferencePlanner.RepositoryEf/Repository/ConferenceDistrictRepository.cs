@@ -75,7 +75,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             ConferenceCityModel city = new ConferenceCityModel();
             DictionaryCity cityDictionary = new DictionaryCity();
             cityDictionary = _dbContext.DictionaryCity.Where(l => l.DictionaryCityId == cityId).FirstOrDefault();
-            int districtId = cityDictionary.DictionaryCityId;
+            int districtId = cityDictionary.DictionaryDistrictId;
 
             district = _dbContext.DictionaryDistrict.Where(c => c.DictionaryDistrictId == districtId).FirstOrDefault();
             districtModel.DistrictId = district.DictionaryDistrictId;

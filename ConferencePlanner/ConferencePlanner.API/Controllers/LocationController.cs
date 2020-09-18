@@ -43,7 +43,13 @@ namespace ConferencePlanner.Api.Controllers
 
             return Ok(locationId);
         }
-
+        [HttpPost]
+        [Route("/location/update")]
+        public IActionResult updateLocation([FromBody] Location newLocation)
+        {
+            conferenceLocationRepository.updateLocation(newLocation.LocationId, newLocation.DictionaryCityId, newLocation.LocationAddress);
+            return Ok();
+        }
 
     }
 }

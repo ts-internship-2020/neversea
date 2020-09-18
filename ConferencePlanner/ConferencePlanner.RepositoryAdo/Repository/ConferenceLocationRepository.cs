@@ -37,6 +37,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
 
         }
+        public void updateLocation(int i1, int i2, string s1)
+        {
+            return;
+        }
         public int GetLocationId(int CityId, string locationAddress)
         {
             SqlParameter[] parameters = new SqlParameter[2];
