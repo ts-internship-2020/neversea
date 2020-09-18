@@ -8,10 +8,20 @@
 
   <ItemGroup>
     <None Remove="Resources\icoane\btnAddConference_48.png" />
+    <None Remove="Resources\icoane\btnAlert_32.png" />
+    <None Remove="Resources\icoane\btnAlert_48.png" />
     <None Remove="Resources\icoane\btnCancel_24.png" />
+    <None Remove="Resources\icoane\btnCloseDropDown_cropped_24.png" />
     <None Remove="Resources\icoane\btnConferences_48.png" />
+    <None Remove="Resources\icoane\btnDropDown_20.png" />
+    <None Remove="Resources\icoane\btnDropDown_24.png" />
+    <None Remove="Resources\icoane\btnDropDown_cropped_24.png" />
     <None Remove="Resources\icoane\btnExitBlue_24.png" />
+    <None Remove="Resources\icoane\btnExit_white_24.png" />
+    <None Remove="Resources\icoane\btnExit_white_32.png" />
     <None Remove="Resources\icoane\btnFromTo_48.png" />
+    <None Remove="Resources\icoane\btnLogOut_24.png" />
+    <None Remove="Resources\icoane\btnLogOut_32.png" />
     <None Remove="Resources\icoane\btnNextPage_24.png" />
     <None Remove="Resources\icoane\btnNext_48.png" />
     <None Remove="Resources\icoane\btnOrganizer_64.png" />
@@ -38,10 +48,20 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\icoane\btnAddConference_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnAlert_32.png" />
+    <EmbeddedResource Include="Resources\icoane\btnAlert_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnCancel_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnCloseDropDown_cropped_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnConferences_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnDropDown_20.png" />
+    <EmbeddedResource Include="Resources\icoane\btnDropDown_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnDropDown_cropped_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnExitBlue_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnExit_white_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnExit_white_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnFromTo_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnLogOut_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnLogOut_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnNextPage_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnNext_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnOrganizer_64.png" />
