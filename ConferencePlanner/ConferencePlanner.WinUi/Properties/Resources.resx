@@ -163,7 +163,7 @@
   <data name="btnCloseDropDown_cropped_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnCloseDropDown_cropped_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnDropDown_cropped_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="btnDropDown2_cropped_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnDropDown_cropped_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnEdit_20" type="System.Resources.ResXFileRef, System.Windows.Forms">

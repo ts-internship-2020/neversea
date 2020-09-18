@@ -507,5 +507,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             List<ConferenceModel> conferences = new List<ConferenceModel>();
         }
+
+        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate)
+        {
+            //implementare
+        }
     }
 };

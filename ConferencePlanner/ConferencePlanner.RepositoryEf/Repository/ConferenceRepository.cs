@@ -345,5 +345,10 @@ namespace ConferencePlanner.Repository.Ef.Repository
             Console.WriteLine(conferenceEdited.DictionaryConferenceCategoryId);
             dbContext.SaveChanges();
         }
+
+        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate)
+        {
+            //implementare
+        }
     }
 }

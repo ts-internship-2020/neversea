@@ -10,9 +10,8 @@
 
 namespace ConferencePlanner.WinUi.Properties {
     using System;
-    using System.Drawing;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -32,9 +31,7 @@ namespace ConferencePlanner.WinUi.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
-        public static Image btnDropDown_cropped_24 { get; internal set; }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -86,9 +83,9 @@ namespace ConferencePlanner.WinUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btnDropDown_cropped_24 {
+        internal static System.Drawing.Bitmap btnDropDown2_cropped_24 {
             get {
-                object obj = ResourceManager.GetObject("btnDropDown_cropped_24", resourceCulture);
+                object obj = ResourceManager.GetObject("btnDropDown2_cropped_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

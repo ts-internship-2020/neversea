@@ -228,13 +228,13 @@ namespace ConferencePlanner.WinUi.View
             if(panelOrganizerSubmenu.Visible == true)
             {
                 hideSubmenu();
-                this.btnDropDown.Image = Properties.Resources.btnDropDown_cropped_24;
+                this.btnDropDown.Image = Properties.Resources.btnDropDown2_cropped_24;
 
             }
             else
             {
                 showSubmenu(panelOrganizerSubmenu);
-               // this.btnDropDown.Image = Properties.Resources.btnCloseDropDown_cropped_24;
+                this.btnDropDown.Image = Properties.Resources.btnCloseDropDown_cropped_24;
             }
 
         }
