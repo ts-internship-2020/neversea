@@ -234,7 +234,7 @@ namespace ConferencePlanner.WinUi.View
             else
             {
                 showSubmenu(panelOrganizerSubmenu);
-                this.btnDropDown.Image = Properties.Resources.btnCloseDropDown_cropped_24;
+               // this.btnDropDown.Image = Properties.Resources.btnCloseDropDown_cropped_24;
             }
 
         }

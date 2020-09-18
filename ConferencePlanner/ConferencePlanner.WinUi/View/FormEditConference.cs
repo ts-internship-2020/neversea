@@ -184,7 +184,11 @@ namespace ConferencePlanner.WinUi.View
                 return;
             }
         }
-
+        public void Alert(string msg)
+        {
+            FormAlert frm = new FormAlert();
+            frm.ShowAlert(msg);
+        }
         private async void btnSave_Click(object sender, EventArgs e)
         {
             ConferenceModel conferenceUpdated = new ConferenceModel();
@@ -199,6 +203,7 @@ namespace ConferencePlanner.WinUi.View
 
             conferenceUpdated.ConferenceId = conferenceId;
             conferenceUpdated.ConferenceName = textBox1.Text;
+            
             conferenceUpdated.ConferenceStartDate = dateTimePicker1.Value;
             conferenceUpdated.ConferenceEndDate = dateTimePicker2.Value;
 
@@ -206,12 +211,23 @@ namespace ConferencePlanner.WinUi.View
             newCxs.DictionarySpeakerId = newSpeaker.DictionarySpeakerId;
             newCxs.isMain = true;
 
-            HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
-
+            
             conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
             conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
-            HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
-
+            if (conferenceUpdated.ConferenceName == "" || textBox4.Text=="" || comboBox3.Text==""|| comboBox2.Text == "")
+            {
+                this.Alert("Please, fill in all fields.");
+            }
+            else if (conferenceUpdated.ConferenceStartDate >= conferenceUpdated.ConferenceEndDate)
+            {
+                this.Alert("The dates entered are invalid.");
+            }
+            else
+            {
+                HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
+                HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
+                this.Close(); 
+;            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
