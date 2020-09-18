@@ -47,7 +47,7 @@
             this.btn_enterEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
             this.btn_enterEmail.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_enterEmail.ForeColor = System.Drawing.SystemColors.Info;
-            this.btn_enterEmail.Location = new System.Drawing.Point(280, 356);
+            this.btn_enterEmail.Location = new System.Drawing.Point(280, 408);
             this.btn_enterEmail.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btn_enterEmail.MaximumSize = new System.Drawing.Size(207, 45);
             this.btn_enterEmail.MinimumSize = new System.Drawing.Size(207, 45);
@@ -64,12 +64,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_email.BackColor = System.Drawing.SystemColors.Window;
-            this.tb_email.Location = new System.Drawing.Point(348, 245);
+            this.tb_email.Location = new System.Drawing.Point(348, 297);
             this.tb_email.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tb_email.Name = "tb_email";
             this.tb_email.Size = new System.Drawing.Size(251, 31);
             this.tb_email.TabIndex = 4;
             this.tb_email.Text = "admin@admin.com";
+            this.tb_email.TextChanged += new System.EventHandler(this.tb_email_TextChanged_1);
             this.tb_email.Enter += new System.EventHandler(this.tb_email_Enter);
             this.tb_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             this.tb_email.Leave += new System.EventHandler(this.tb_email_Leave);
@@ -85,7 +86,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_email.AutoSize = true;
             this.lb_email.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lb_email.Location = new System.Drawing.Point(181, 248);
+            this.lb_email.Location = new System.Drawing.Point(181, 300);
             this.lb_email.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lb_email.Name = "lb_email";
             this.lb_email.Size = new System.Drawing.Size(134, 22);
@@ -98,7 +99,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkb_email.AutoSize = true;
             this.chkb_email.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.chkb_email.Location = new System.Drawing.Point(463, 287);
+            this.chkb_email.Location = new System.Drawing.Point(463, 339);
             this.chkb_email.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.chkb_email.Name = "chkb_email";
             this.chkb_email.Size = new System.Drawing.Size(137, 24);
@@ -109,7 +110,7 @@
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
-            this.pictureBoxLogo.Location = new System.Drawing.Point(245, 21);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(245, 73);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(286, 212);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

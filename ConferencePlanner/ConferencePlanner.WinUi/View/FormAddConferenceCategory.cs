@@ -176,6 +176,7 @@ namespace ConferencePlanner.WinUi.View
                 FormConferenceSummary.conferenceModel.ConferenceCategory = categoryName;
                 FormAddConferenceGeneral.conferenceModel2.ConferenceCategory = categoryId.ToString();
                 FormAddConferenceGeneral.conferenceModel.ConferenceCategoryId = categoryId;
+                dgvConferenceCategories.CellDoubleClick += dgvConferenceCategories_CellDoubleClick;
                 dgvConferenceCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvConferenceCategories.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
                 dgvConferenceCategories.DefaultCellStyle.SelectionForeColor = Color.White;

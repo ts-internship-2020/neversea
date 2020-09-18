@@ -73,6 +73,26 @@ namespace ConferencePlanner.WinUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btnCloseDropDown_cropped_24 {
+            get {
+                object obj = ResourceManager.GetObject("btnCloseDropDown_cropped_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btnDropDown_cropped_24 {
+            get {
+                object obj = ResourceManager.GetObject("btnDropDown_cropped_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnSearch_32 {
             get {
                 object obj = ResourceManager.GetObject("btnSearch_32", resourceCulture);

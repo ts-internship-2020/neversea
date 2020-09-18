@@ -263,8 +263,9 @@ namespace ConferencePlanner.WinUi.View
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            string pattern = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                   @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+            string pattern = "^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([A-Za-z]{2,6}(?:\\.[A-Za-z]{2,6})?)$";
+                //@"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                  // @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
             //tabCount++;
             //switchTabs(tabCount, sender);
 
@@ -273,15 +274,15 @@ namespace ConferencePlanner.WinUi.View
             {
                 if (conferenceModel.ConferenceName == "" || conferenceModel.ConferenceOrganiserEmail == null || conferenceModel2.ConferenceLocation == "")
                 {
-                    this.Alert("Fill in all fields");
+                    this.Alert("Please, fill in all fields.");
                 }
-                else if (conferenceModel.ConferenceStartDate > conferenceModel.ConferenceEndDate)
+                else if (conferenceModel.ConferenceStartDate >= conferenceModel.ConferenceEndDate)
                 {
-                    this.Alert("Invalid date");
+                    this.Alert("The dates entered are invalid.");
                 }
                 else if (!Regex.IsMatch(conferenceModel.ConferenceOrganiserEmail, pattern))
                 {
-                    this.Alert("Invalid email");
+                    this.Alert("The email entered is invalid.");
                 }
 
                 else 
@@ -296,7 +297,7 @@ namespace ConferencePlanner.WinUi.View
                 if (countryId == 0)
                 {
 
-                    this.Alert("Select a Country");
+                    this.Alert("Please, select a country.");
                 }
                 else
                 {
@@ -309,7 +310,7 @@ namespace ConferencePlanner.WinUi.View
                 if (districtId == 0)
                 {
 
-                    this.Alert("Select a District");
+                    this.Alert("Please, select a district.");
                 }
                 else
                 {
@@ -323,7 +324,7 @@ namespace ConferencePlanner.WinUi.View
                 if (location.CityId== 0)
                 {
 
-                    this.Alert("Select a City");
+                    this.Alert("Please, select a city.");
                 }
                 else
                 {
@@ -337,7 +338,7 @@ namespace ConferencePlanner.WinUi.View
                 if (conferenceModel.ConferenceTypeId == 0)
                 {
 
-                    this.Alert("Select a Type");
+                    this.Alert("Please, select a type.");
                 }
                 else
                 {
@@ -350,7 +351,7 @@ namespace ConferencePlanner.WinUi.View
                 if (conferenceModel.ConferenceCategoryId == 0)
                 {
 
-                    this.Alert("Select a Category");
+                    this.Alert("Please, select a category.");
                 }
                 else
                 {
@@ -363,7 +364,7 @@ namespace ConferencePlanner.WinUi.View
                 if (conferenceModel.SpeakerId == 0)
                 {
 
-                    this.Alert("Select a Speaker");
+                    this.Alert("Please, select a speaker.");
                 }
                 else
                 {

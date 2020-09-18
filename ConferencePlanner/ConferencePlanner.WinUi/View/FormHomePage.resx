@@ -58,6 +58,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="btnLogOut.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DwAACw8BkvkDpQAAAQRJREFUSEu1ld8NgjAQxllDn1xBd3IBXMCR3MMFXEAfQa80Ai94LQc5aik9Qn/J
+        l5j7813a05rFAFWdg2oUqhNImT6yCGOL/SZLArII42mMFlmEkTZI6/kVRR15MDeiUBha8jN2acEBWrdH
+        gOZupLXeUVjE7IC3bk8YLMYCaM+UEjH28wF/5vgZT7CntAjm0Q/wmZuYTa6A+XT9nU/NjW4f1VxjhIu/
+        uCflXpldKAusEnqQt4Xn0g/Y4Ipy9+vMvWwg6ZIHfEPK8nugtAjmsfBDi33PHcZ+d4CBdvIw2vwEc9Bj
+        99rksfOBhYmfa2GDtH7SIBVZhMHCxH/6/ZLBaV4SQFXnP62HBzgOCZkFAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="btnAddNew.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -88,6 +98,16 @@
         KQQjX2tRPJNOp9fjyCcNt5jp+wtusbb0yBjxgAWZ7sqEAqOqYD0ZlTaNEfbfQaNpXWEPaVd/4dI+s5rW
         E3yBp9Ku/kKDr7phA/gi7eor/phgdS7hKgw2Evao6YfLy8vLy8vL658pkfgDlQovdDJGVo0AAAAASUVO
         RK5CYII=
+</value>
+  </data>
+  <data name="btnDropDown.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAALCAYAAAByF90EAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsMAAALDAE/QCLIAAAAB3RJ
+        TUUH5AkSBzs6SfAuXgAAALxJREFUOE+1kLENwjAQRd1QMwBCzIBYAQoKNqCnYYQUbILYA6aAFRBdiH22
+        47NAxhYXEaJTRCLxpF84/u9Ljqiw1o4AMJOAuy5JTnJpRgipca0AQ58kl2beKIUHrtgajXvSP4QQBgr8
+        iRWYSPDH5JD+TZ6HYSxdmhKTc+qSxnMvy0ks3hpiPdf4g8dUb6cwfhbfr5kRMMZPqfYbSrlVFJ+1kYc0
+        bknX3ZDgttUQgN/Q534U2i20dnM6/hMhXvLBczb4m/UeAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="btnOrganizer.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
