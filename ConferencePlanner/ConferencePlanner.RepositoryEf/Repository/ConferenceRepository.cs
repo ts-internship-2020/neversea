@@ -328,6 +328,14 @@ namespace ConferencePlanner.Repository.Ef.Repository
                 dbContext.SaveChanges();
             }
         }
+        public int GetLastConferenceId()
+        {
+            List<Conference> conferences = dbContext.Conference.ToList();
+
+            Conference conference = conferences.Last();
+
+            return conference.ConferenceId;
+        }
 
         public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate, int categoryId, int typeId)
         {

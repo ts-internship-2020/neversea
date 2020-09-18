@@ -247,8 +247,8 @@ namespace ConferencePlanner.WinUi.View
             {
                 int confId = Convert.ToInt32(row.Cells["conferenceId"].FormattedValue.ToString());
 
-                if (!(await IsParticipating(emailCopyFromMainForm, confId)))
-                    row.Cells["buttonJoinColumn"].Style.BackColor = System.Drawing.Color.Khaki;
+                if (await IsParticipating(emailCopyFromMainForm, confId)== false)
+                    row.Cells["buttonJoinColumn"].Value = Properties.Resources.icons8_id_not_verified_20;
             }
             
         }
@@ -321,7 +321,7 @@ namespace ConferencePlanner.WinUi.View
             {
                 From = new MailAddress("ConferencePlannerNeverSea2020@gmail.com"),
                 Subject = "subject",
-                Body = "<h1>Hello there</h1>",
+                Body = "<h1>Hello, below is the code used for joining the conference.</h1>",
                 IsBodyHtml = true,
             };
 
@@ -338,7 +338,7 @@ namespace ConferencePlanner.WinUi.View
             Barcode barcode = new Barcode();
             Color foreColor = Color.Black;
             Color backColor = Color.White;
-            Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 900, 900);
+            Image image = barcode.Encode(TYPE.CODE39, code.ToString(), foreColor, backColor, 400, 400);
             image.Save(@"C:\NeverseaBugs\neversea-develop\neversea-develop\ConferencePlanner\Image.jpeg", ImageFormat.Jpeg);
 
             return image;
@@ -398,15 +398,15 @@ namespace ConferencePlanner.WinUi.View
                     //dgvSpectator.CurrentRow.Selected = true;
                     dgvSpectator.CurrentRow.Selected = false;
 
-
-                    if (DateTime.Now.Minute >= sDate.AddMinutes(-5).Minute && DateTime.Now.Minute <= sDate.Minute)
+//&& DateTime.Now.Minute <= sDate.Minute
+                    if (DateTime.Now.Day == sDate.Day )
                     {
                         WebViewForm webViewForm = new WebViewForm();
                         webViewForm.Show();
                     }
                     else
                     {
-                        MessageBox.Show("You can only join if there are 5 more minutes ");
+                        MessageBox.Show("You can only join if you are in the same day as the conference ");
                     }
                 }
 
@@ -437,7 +437,7 @@ namespace ConferencePlanner.WinUi.View
                                 string conferenceName = dgvSpectator.Rows[e.RowIndex].Cells["conferenceName"].FormattedValue.ToString();
                                 //sendEmail("User", emailCopyFromMainForm, conferenceName + " Participarion Code", conferenceName, 1);
                             }
-                            dgvSpectator.Rows[e.RowIndex].Cells["buttonAttendColumn"].Style.BackColor = System.Drawing.Color.Khaki;
+                            dgvSpectator.Rows[e.RowIndex].Cells["buttonAttendColumn"].Value =Properties.Resources.icons8_verified_account_20;
                         }
                     }
                 }
@@ -463,7 +463,7 @@ namespace ConferencePlanner.WinUi.View
                     {
                         dgvSpectator.CurrentRow.Selected = false;
                         HttpClientOperations.PutAsyncOperation(url, new ConferenceAttendanceModel { ParticipantEmailAddress = emailCopyFromMainForm, ConferenceId = confId, DictionaryParticipantStatusId = 3 });
-                        dgvSpectator.Rows[e.RowIndex].Cells["buttonAttendColumn"].Style.BackColor = System.Drawing.Color.White;
+                        dgvSpectator.Rows[e.RowIndex].Cells["buttonAttendColumn"].Value = Properties.Resources.icons8_xbox_x_20;
                     }
                 }
 

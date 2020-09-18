@@ -233,6 +233,26 @@ namespace ConferencePlanner.WinUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_id_not_verified_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_id_not_verified_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_verified_account_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_verified_account_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_xbox_x_20 {
             get {
                 object obj = ResourceManager.GetObject("icons8_xbox_x_20", resourceCulture);

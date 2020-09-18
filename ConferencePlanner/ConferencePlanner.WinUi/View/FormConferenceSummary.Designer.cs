@@ -300,7 +300,7 @@
             this.btnSave.TabIndex = 21;
             this.btnSave.Text = "SUBMIT";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_ClickAsync);
             // 
             // btnBack
             // 

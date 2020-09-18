@@ -9,6 +9,7 @@ namespace ConferencePlanner.Abstraction.Repository
 
         public void InsertLocation(int CityId, string address);
         public int GetLocationId(int CityId, string locationAddress);
+        public void UpdateLocation(int cityId, string address, int newCityId, string newAddress);
 
     }
 }

@@ -37,5 +37,18 @@ namespace ConferencePlanner.Repository.Ef.Repository
             dbContext.Location.Add(location);
             dbContext.SaveChanges();
         }
+
+        public void UpdateLocation(int cityId, string address, int newCityId, string newAddress)
+        {
+            var conferenceLocation = dbContext.Location.Where(a => a.DictionaryCityId == cityId && a.LocationAddress == address).FirstOrDefault<Location>();
+            if(conferenceLocation != null)
+            {
+                conferenceLocation.DictionaryCityId = newCityId;
+                conferenceLocation.LocationAddress = newAddress;
+                dbContext.SaveChanges();
+
+            }
+
+        }
     }
 }

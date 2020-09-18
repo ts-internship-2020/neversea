@@ -50,6 +50,22 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
             return districtsModel;
         }
+        public List<DistrictModel> GetDistrictsByCountryId(int key)
+        {
+            List<DictionaryDistrict> districts = new List<DictionaryDistrict>();
+            List<DistrictModel> districtsModel = new List<DistrictModel>();
+            districts = _dbContext.DictionaryDistrict.Where(d => d.DictionaryCountryId == key).ToList();
+
+            districtsModel = districts.Select(d => new DistrictModel()
+            {
+                DistrictId = d.DictionaryDistrictId,
+                DistrictName = d.DictionaryDistrictName,
+                DistrictCode = d.DictionaryDistrictCode
+            }).ToList();
+
+
+            return districtsModel;
+        }
         public List<DistrictModel> GetConferenceDistrictByCountryId(int countryId)
         {
             List<DictionaryDistrict> districts = new List<DictionaryDistrict>();
