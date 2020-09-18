@@ -15,6 +15,8 @@ namespace ConferencePlanner.WinUi
         public FormAlert()
         {
             InitializeComponent();
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+
         }
         public enum enmAction
         {
