@@ -11,6 +11,7 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceDistrict : Form
     {
         public int DistrictId;
+        public string DistrictName;
         private readonly IDistrictRepository districtRepository;
         private readonly IConferenceLocationRepository conferenceLocationRepository;
         List<DistrictModel> districts = new List<DistrictModel>();
@@ -72,7 +73,6 @@ namespace ConferencePlanner.WinUi.View
         }
         private void WireUpDistricts()
         {
-            comboBoxPagesNumber.SelectedIndex = 0;
             dgvDistricts.Rows.Clear();
             for (int i = range; i < step; i++)
             {
@@ -195,8 +195,12 @@ namespace ConferencePlanner.WinUi.View
             if (dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
             {
                 DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                DistrictName = dgvDistricts.Rows[e.RowIndex].Cells["District"].FormattedValue.ToString();
                 FormAddConferenceGeneral.districtId = DistrictId;
-                
+                dgvDistricts.CellDoubleClick += dgvDistricts_CellDoubleClick;
+                dgvDistricts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvDistricts.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
+                dgvDistricts.DefaultCellStyle.SelectionForeColor = Color.White;
 
             }
         }
@@ -204,6 +208,7 @@ namespace ConferencePlanner.WinUi.View
         private void FormAddConferenceDistrict_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormAddConferenceGeneral.districtId = DistrictId;
+            FormConferenceSummary.districtName = DistrictName;
         }
         private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
         {

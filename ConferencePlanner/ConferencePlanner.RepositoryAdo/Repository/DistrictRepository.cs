@@ -31,6 +31,16 @@ namespace ConferencePlanner.Repository.Ado.Repository
             sqlCommand.ExecuteNonQuery();
         }
 
+        public DistrictModel GetConferenceDistrictByCityId(int cityId)
+        {
+            DistrictModel d1 = new DistrictModel();
+            return d1;
+        }
+        public List<DistrictModel> GetConferenceDistrictByCountryId(int countryId)
+        {
+            List<DistrictModel> d1 = new List<DistrictModel>();
+            return d1;
+        }
         public List<DistrictModel> GetDistricts()
         {
 

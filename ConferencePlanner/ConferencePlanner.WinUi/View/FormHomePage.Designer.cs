@@ -30,9 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHomePage));
             this.panelSidebarMenu = new System.Windows.Forms.Panel();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.panelOrganizerSubmenu = new System.Windows.Forms.Panel();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.btnConferences = new System.Windows.Forms.Button();
+            this.btnDropDown = new System.Windows.Forms.Button();
             this.btnOrganizer = new System.Windows.Forms.Button();
             this.btnSpectator = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
@@ -53,7 +55,9 @@
             // panelSidebarMenu
             // 
             this.panelSidebarMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(24)))), ((int)(((byte)(158)))));
+            this.panelSidebarMenu.Controls.Add(this.btnLogOut);
             this.panelSidebarMenu.Controls.Add(this.panelOrganizerSubmenu);
+            this.panelSidebarMenu.Controls.Add(this.btnDropDown);
             this.panelSidebarMenu.Controls.Add(this.btnOrganizer);
             this.panelSidebarMenu.Controls.Add(this.btnSpectator);
             this.panelSidebarMenu.Controls.Add(this.panelLogo);
@@ -63,16 +67,38 @@
             this.panelSidebarMenu.Name = "panelSidebarMenu";
             this.panelSidebarMenu.Size = new System.Drawing.Size(248, 610);
             this.panelSidebarMenu.TabIndex = 0;
-            this.panelSidebarMenu.MouseLeave += new System.EventHandler(this.panelSidebarMenu_MouseLeave);
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogOut.FlatAppearance.BorderSize = 0;
+            this.btnLogOut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLogOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogOut.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnLogOut.Image = ((System.Drawing.Image)(resources.GetObject("btnLogOut.Image")));
+            this.btnLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogOut.Location = new System.Drawing.Point(0, 540);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Padding = new System.Windows.Forms.Padding(4, 0, 8, 0);
+            this.btnLogOut.Size = new System.Drawing.Size(248, 70);
+            this.btnLogOut.TabIndex = 2;
+            this.btnLogOut.Text = "   Sign out";
+            this.btnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogOut.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // panelOrganizerSubmenu
             // 
             this.panelOrganizerSubmenu.Controls.Add(this.btnAddNew);
             this.panelOrganizerSubmenu.Controls.Add(this.btnConferences);
             this.panelOrganizerSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelOrganizerSubmenu.Location = new System.Drawing.Point(0, 306);
+            this.panelOrganizerSubmenu.Location = new System.Drawing.Point(0, 314);
             this.panelOrganizerSubmenu.Name = "panelOrganizerSubmenu";
-            this.panelOrganizerSubmenu.Size = new System.Drawing.Size(248, 177);
+            this.panelOrganizerSubmenu.Size = new System.Drawing.Size(248, 176);
             this.panelOrganizerSubmenu.TabIndex = 5;
             // 
             // btnAddNew
@@ -115,10 +141,34 @@
             this.btnConferences.UseVisualStyleBackColor = true;
             this.btnConferences.Click += new System.EventHandler(this.btnConferences_Click);
             // 
+            // btnDropDown
+            // 
+            this.btnDropDown.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDropDown.FlatAppearance.BorderSize = 0;
+            this.btnDropDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnDropDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnDropDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDropDown.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnDropDown.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnDropDown.Image = ((System.Drawing.Image)(resources.GetObject("btnDropDown.Image")));
+            this.btnDropDown.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnDropDown.Location = new System.Drawing.Point(0, 289);
+            this.btnDropDown.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.btnDropDown.Name = "btnDropDown";
+            this.btnDropDown.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.btnDropDown.Size = new System.Drawing.Size(248, 25);
+            this.btnDropDown.TabIndex = 2;
+            this.btnDropDown.Text = "   ";
+            this.btnDropDown.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnDropDown.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDropDown.UseVisualStyleBackColor = true;
+            this.btnDropDown.Click += new System.EventHandler(this.btnDropDown_Click);
+            // 
             // btnOrganizer
             // 
             this.btnOrganizer.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnOrganizer.FlatAppearance.BorderSize = 0;
+            this.btnOrganizer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnOrganizer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnOrganizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrganizer.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -126,16 +176,16 @@
             this.btnOrganizer.Image = ((System.Drawing.Image)(resources.GetObject("btnOrganizer.Image")));
             this.btnOrganizer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrganizer.Location = new System.Drawing.Point(0, 227);
+            this.btnOrganizer.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.btnOrganizer.Name = "btnOrganizer";
             this.btnOrganizer.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.btnOrganizer.Size = new System.Drawing.Size(248, 79);
+            this.btnOrganizer.Size = new System.Drawing.Size(248, 62);
             this.btnOrganizer.TabIndex = 2;
             this.btnOrganizer.Text = "  Organizer";
             this.btnOrganizer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrganizer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOrganizer.UseVisualStyleBackColor = true;
-            this.btnOrganizer.Click += new System.EventHandler(this.btnOrganizer_Click);
-            this.btnOrganizer.MouseHover += new System.EventHandler(this.btnOrganizer_MouseHover);
+            this.btnOrganizer.Click += new System.EventHandler(this.btnDropDown_Click);
             // 
             // btnSpectator
             // 
@@ -305,6 +355,8 @@
         private System.Windows.Forms.Panel panelOrganizerSubmenu;
         private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.Button btnConferences;
+        private System.Windows.Forms.Button btnDropDown;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
 

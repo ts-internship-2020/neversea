@@ -42,14 +42,7 @@ namespace ConferencePlanner.WinUi.View
             List<ConferenceAttendanceModel> conferenceAttendances = new List<ConferenceAttendanceModel>();
             //WireUpOrganiser();
 
-            DataGridViewButtonColumn buttonEditColumn = new DataGridViewButtonColumn
-            {
-                HeaderText = "Edit",
-                Name = "buttonEditColumn",
-                Text = "Edit",
-                UseColumnTextForButtonValue = true
-            };
-            dgvOrganiser.Columns.Add(buttonEditColumn);
+
             LoadConferences();
         }
 
@@ -63,7 +56,7 @@ namespace ConferencePlanner.WinUi.View
 
             conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
             maxrange = conferenceModels.Count;
-            dgvOrganiser.ColumnCount = 8;
+            dgvOrganiser.ColumnCount = 9;
             dgvOrganiser.Columns[0].Name = "Id";
             dgvOrganiser.Columns[1].Name = "Title";
             dgvOrganiser.Columns[2].Name = "StartDate";
@@ -72,10 +65,19 @@ namespace ConferencePlanner.WinUi.View
             dgvOrganiser.Columns[5].Name = "Category";
             dgvOrganiser.Columns[6].Name = "Address";
             dgvOrganiser.Columns[7].Name = "Speaker";
+            dgvOrganiser.Columns[8].Name = "LocationId";
             this.dgvOrganiser.Columns[0].Visible = false;
+            this.dgvOrganiser.Columns[8].Visible = false;
+            DataGridViewButtonColumn buttonEditColumn = new DataGridViewButtonColumn
+            {   
+                HeaderText = "Edit",
+                Name = "buttonEditColumn",
+                Text = "Edit",
+                UseColumnTextForButtonValue = true
+            };
+            dgvOrganiser.Columns.Add(buttonEditColumn);
             WireUpOrganiser();
         }
-
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -85,6 +87,7 @@ namespace ConferencePlanner.WinUi.View
         private void WireUpOrganiser()
         {
             dgvOrganiser.Rows.Clear();
+            //comboBoxPagesNumber.SelectedIndex = 0;
 
             for (int i = range; i < step; i++)
             {
@@ -102,7 +105,8 @@ namespace ConferencePlanner.WinUi.View
                                 conferenceModels[i].ConferenceType,
                                 conferenceModels[i].ConferenceCategory,
                                 conferenceModels[i].ConferenceLocation,
-                                conferenceModels[i].ConferenceMainSpeaker);
+                                conferenceModels[i].ConferenceMainSpeaker,
+                                conferenceModels[i].ConferenceLocationId);
                 }
 
                 if (conferenceModels.Count <= (int)comboBoxPagesNumber.SelectedItem)
@@ -116,7 +120,6 @@ namespace ConferencePlanner.WinUi.View
             }
             //dgvOrganiser.Rows[0].Cells[0].Selected = false;
         }
-
         private void LoadTheme()
         {
             foreach (Control btns in this.Controls)
@@ -130,26 +133,27 @@ namespace ConferencePlanner.WinUi.View
         }
 
 
-        private async void dtpStart_ValueChanged_1(object sender, EventArgs e)
-        {
-            dgvOrganiser.Rows.Clear();
+        //private async void dtpStart_ValueChanged_1(object sender, EventArgs e)
+        //{
+        //    dgvOrganiser.Rows.Clear();
 
-            DateTime _startDate = dtpStart.Value;
-            DateTime _endDate = dtpEnd.Value;
-            string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
-            var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
+        //    DateTime _startDate = dtpStart.Value;
+        //    DateTime _endDate = dtpEnd.Value;
+        //    string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
+        //    Console.WriteLine(encodedEmail);
+        //    var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
 
-            //conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
-            conferenceModels = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, _startDate, _endDate);
-            maxrange = conferenceModels.Count;
-            range = 0;
-            btnPrevious.Enabled = false;
-            step = (int)comboBoxPagesNumber.SelectedItem;
-            shown = (int)comboBoxPagesNumber.SelectedItem;
-            btnPrevious.Enabled = false;
-            Console.WriteLine("Lista dintre " + _startDate.ToString() + " si " + _endDate.ToString() + " are lungimea " + conferenceModels.Count);
-            WireUpOrganiser();
-        }
+        //    //conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
+        //    conferenceModels = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, _startDate, _endDate);
+        //    maxrange = conferenceModels.Count;
+        //    range = 0;
+        //    btnPrevious.Enabled = false;
+        //    step = (int)comboBoxPagesNumber.SelectedItem;
+        //    shown = (int)comboBoxPagesNumber.SelectedItem;
+        //    btnPrevious.Enabled = false;
+        //    Console.WriteLine("Lista dintre " + _startDate.ToString() + " si " + _endDate.ToString() + " are lungimea " + conferenceModels.Count);
+        //    WireUpOrganiser();
+        //}
         private void comboBoxPagesNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvOrganiser.Rows.Clear();
@@ -163,18 +167,28 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvOrganiser_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            Console.WriteLine("Test");
             if (dgvOrganiser.Columns[e.ColumnIndex].Name == "buttonEditColumn")
             {
-                ConferenceModel conf = new ConferenceModel();
-                int confId;
-                string confName;
-
+                ConferenceModel updatedConference = new ConferenceModel();
                 dgvOrganiser.CurrentRow.Selected = true;
-                confId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceId"].FormattedValue.ToString());
-                confName = dgvOrganiser.Rows[e.RowIndex].Cells["ConferenceName"].FormattedValue.ToString();
-                Console.WriteLine(confId);
-                Form2 editConferenceForm = new Form2(_conferenceRepository, conf);
-                editConferenceForm.ShowDialog();
+                updatedConference.ConferenceId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                updatedConference.ConferenceName = dgvOrganiser.Rows[e.RowIndex].Cells["Title"].FormattedValue.ToString();
+                updatedConference.ConferenceStartDate = Convert.ToDateTime(dgvOrganiser.Rows[e.RowIndex].Cells["StartDate"].FormattedValue.ToString());
+                updatedConference.ConferenceEndDate = Convert.ToDateTime(dgvOrganiser.Rows[e.RowIndex].Cells["EndDate"].FormattedValue.ToString());
+                updatedConference.ConferenceType = dgvOrganiser.Rows[e.RowIndex].Cells["Type"].FormattedValue.ToString();
+                updatedConference.ConferenceCategory = dgvOrganiser.Rows[e.RowIndex].Cells["Category"].FormattedValue.ToString();
+                updatedConference.ConferenceLocation = dgvOrganiser.Rows[e.RowIndex].Cells["Address"].FormattedValue.ToString();
+                updatedConference.ConferenceMainSpeaker = dgvOrganiser.Rows[e.RowIndex].Cells["Speaker"].FormattedValue.ToString();
+                updatedConference.ConferenceLocationId = Convert.ToInt32(value: dgvOrganiser.Rows[e.RowIndex].Cells["LocationId"].FormattedValue.ToString());
+                FormEditConference editForm = new FormEditConference(updatedConference);
+                editForm.TopLevel = false;
+                editForm.Dock = DockStyle.Fill;
+                this.Controls.Add(editForm);
+                this.Tag = editForm;
+                editForm.BringToFront();
+                editForm.Show();
+                Console.WriteLine("I m in edit mode");
             }
         }
 
@@ -257,7 +271,7 @@ namespace ConferencePlanner.WinUi.View
             DateTime _endDate = dtpEnd.Value;
             string encodedEmail = HttpUtility.UrlEncode(emailCopyFromMainForm);
             var url = $"http://localhost:5000/api/Conference/all/organizer/{encodedEmail}?startDateStr={_startDate}&endDateStr={_endDate}";
-
+            Console.WriteLine(encodedEmail);
             conferenceModels = await HttpClientOperations.GetOperation<ConferenceModel>(url);
             //conferenceModels = _conferenceRepository.GetConferenceBetweenDates(emailCopyFromMainForm, _startDate, _endDate);
             maxrange = conferenceModels.Count;

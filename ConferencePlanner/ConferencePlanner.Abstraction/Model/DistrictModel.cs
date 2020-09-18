@@ -11,5 +11,9 @@ namespace ConferencePlanner.Abstraction.Model
 
         public string DistrictCode { get; set; }
         public int CountryId { get; set; }
+        public override string ToString()
+        {
+            return DistrictName;
+        }
     }
 }

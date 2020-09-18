@@ -15,6 +15,7 @@ namespace ConferencePlanner.WinUi.View
     public partial class FormAddConferenceCountry : Form
     {
         public int id = 0;
+        public string name;
         private readonly ICountryRepository countryRepository;
         private readonly IConferenceLocationRepository conferenceLocationRepository;
         public List<CountryModel> countries { get; set; }
@@ -67,7 +68,7 @@ namespace ConferencePlanner.WinUi.View
         public void WireUpCountries()
         {
             dgvCountries.Rows.Clear();
-            comboBoxPagesNumber.SelectedIndex = 0;
+
 
             for (int i = range; i < step; i++)
             {
@@ -172,8 +173,8 @@ namespace ConferencePlanner.WinUi.View
                 model.CountryId = countryId;
 
                 HttpClientOperations.DeleteOperation<CountryModel>("http://localhost:5000/DeleteCountry", model);
-                dgvCountries.Rows.Clear();
                 LoadCountries();
+                dgvCountries.Refresh();
             }   
 
         }
@@ -209,10 +210,18 @@ namespace ConferencePlanner.WinUi.View
             }
         }
 
+
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-             id= Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+            id = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+            name = dgvCountries.Rows[e.RowIndex].Cells["Country"].Value.ToString();
             FormAddConferenceGeneral.countryId = id;
+            FormConferenceSummary.countryName = name;
+            dgvCountries.CellDoubleClick += dgvCountries_CellDoubleClick;
+            dgvCountries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCountries.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
+            dgvCountries.DefaultCellStyle.SelectionForeColor = Color.White;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -254,5 +263,6 @@ namespace ConferencePlanner.WinUi.View
             WireUpCountries();
 
         }
+   
     }
 }

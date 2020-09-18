@@ -176,6 +176,7 @@
             this.btnStep2.Text = "2. Country";
             this.btnStep2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStep2.UseVisualStyleBackColor = true;
+            this.btnStep2.Click += new System.EventHandler(this.btnStep2_Click);
             // 
             // btnStep1
             // 

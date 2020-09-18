@@ -87,6 +87,7 @@
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(200, 26);
             this.dtpStart.TabIndex = 4;
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // dtpEnd
             // 
@@ -95,6 +96,7 @@
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(200, 26);
             this.dtpEnd.TabIndex = 5;
+            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
             // 
             // lblStartDate
             // 
@@ -158,6 +160,7 @@
             this.Name = "FormAddConferenceGeneralDetails";
             this.Text = "Conference Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddConferenceGeneralDetails_FormClosing);
+            this.Load += new System.EventHandler(this.FormAddConferenceGeneralDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,6 +1,7 @@
 ﻿using ConferencePlanner.Abstraction.Model;
 using ConferencePlanner.Abstraction.Repository;
 using ConferencePlanner.Repository.Ef.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,23 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
             return citiesModel;
         }
+        public ConferenceCityModel GetConferenceCityByLocationId(int locationId)
+        {
+            ConferenceCityModel cityModel = new ConferenceCityModel();
+            DictionaryCity city = new DictionaryCity();
 
+            LocationModel location = new LocationModel();
+            Location locationDictionary = new Location();
+            locationDictionary = _dbContext.Location.Where(l => l.LocationId == locationId).FirstOrDefault();
+            int cityId = locationDictionary.DictionaryCityId;
+
+            city = _dbContext.DictionaryCity.Where(c => c.DictionaryCityId == cityId).FirstOrDefault();
+            cityModel.ConferenceCityId = city.DictionaryCityId;
+            cityModel.ConferenceCityName = city.DictionaryCityName;
+            cityModel.ConferenceDistrictId = city.DictionaryDistrictId;
+
+            return cityModel;
+        }
         public void UpdateCity(int index, string city, int districtId)
         {
             DictionaryCity cityEdited = _dbContext.DictionaryCity.Find(index);

@@ -21,7 +21,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             sqlConnection = SqlConnection;
         }
-
+        public void updateConference(int id, string s1, string s2, string s3, int i4, int i5)
+        {
+            return;
+        }
         public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId)
         {
 
@@ -122,6 +125,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return conferences;
         } 
 
+        public void updateConference(int id, string name, DateTime d1, DateTime d2)
+        {
+            return;
+        }
         public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate, List<ConferenceAttendanceModel> conferenceAttendances)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();

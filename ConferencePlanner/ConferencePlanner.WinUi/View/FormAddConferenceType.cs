@@ -15,6 +15,7 @@ namespace ConferencePlanner.WinUi.View
     {
 
         public int typeId;
+        public string typeName;
         private readonly IConferenceTypeRepository conferenceTypeRepository;
         private BindingSource bsTypes = new BindingSource();
         public List<ConferenceTypeModel> conferenceTypes { get; set; }
@@ -193,10 +194,19 @@ namespace ConferencePlanner.WinUi.View
             FormAddConferenceGeneral.conferenceModel.ConferenceTypeId = typeId;
             FormAddConferenceGeneral.conferenceModel2.ConferenceType = typeId.ToString();
 
+            typeName = dgvConferenceTypes.Rows[e.RowIndex].Cells["Type"].Value.ToString();
+            FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
+            dgvConferenceTypes.CellDoubleClick += dgvConferenceTypes_CellDoubleClick;
+            dgvConferenceTypes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvConferenceTypes.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
+            dgvConferenceTypes.DefaultCellStyle.SelectionForeColor = Color.White;
+
         }
 
         private void FormAddConferenceType_FormClosing(object sender, FormClosingEventArgs e)
         {
+            FormAddConferenceGeneral.conference.DictionaryConferenceTypeId = typeId;
+            FormConferenceSummary.conferenceModel.ConferenceType = typeName;
             FormAddConferenceGeneral.conferenceModel.ConferenceTypeId = typeId;
             FormAddConferenceGeneral.conferenceModel2.ConferenceType = typeId.ToString();
 

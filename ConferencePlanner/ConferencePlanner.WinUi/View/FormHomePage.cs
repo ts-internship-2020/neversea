@@ -46,6 +46,8 @@ namespace ConferencePlanner.WinUi.View
             emailCopyFromMainForm = emailCopy;
 
             InitializeComponent();
+
+            btnLogOut.Text = $" Sign out from  {emailCopy}  ";
             customizeDesign();
             random = new Random();
             this.Text = string.Empty;
@@ -106,6 +108,10 @@ namespace ConferencePlanner.WinUi.View
                     DisableButton();
                     Color color = SelectThemeColor();
                     currentButton = (Button)btnSender;
+                    if(currentButton.Name == "btnOrganizer" || currentButton.Name == "btnDropDown" || currentButton.Name == "btnLogOut")
+                    {
+                        return;
+                    }
                     currentButton.BackColor = color;
                     currentButton.ForeColor = Color.White;
                     currentButton.Font = new System.Drawing.Font("Century Gothic", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -113,6 +119,7 @@ namespace ConferencePlanner.WinUi.View
                     ThemeColor.PrimaryColor = color;
                     ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.2);
                 }
+
             }
         }
 
@@ -120,8 +127,13 @@ namespace ConferencePlanner.WinUi.View
         {
             foreach (Control previousBtn in panelSidebarMenu.Controls)
             {
+
                 if (previousBtn.GetType() == typeof(Button))
                 {
+                    if(previousBtn.Name == "btnLogOut")
+                    {
+                        continue;
+                    }
                     previousBtn.BackColor = ColorTranslator.FromHtml("#39189E");
                     previousBtn.ForeColor = Color.Gainsboro;
                     previousBtn.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -203,30 +215,36 @@ namespace ConferencePlanner.WinUi.View
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnOrganizer_MouseHover(object sender, EventArgs e)
+        private void btnLogOut_Click(object sender, EventArgs e)
         {
-            showSubmenu(panelOrganizerSubmenu);
+            FormLogin formLogin = new FormLogin(conferenceRepository, countryRepository, conferenceTypeRepository, conferenceCategoryRepository, districtRepository, conferenceCityRepository, conferenceAttendanceRepository, _conferenceLocationRepository, conferenceSpeakerRepository);
+            formLogin.Show();
+            this.Close();
         }
 
-        private void btnOrganizer_Click(object sender, EventArgs e)
+
+        private void btnDropDown_Click(object sender, EventArgs e)
         {
-            showSubmenu(panelOrganizerSubmenu);
+            if(panelOrganizerSubmenu.Visible == true)
+            {
+                hideSubmenu();
+                this.btnDropDown.Image = Properties.Resources.btnDropDown_cropped_24;
+
+            }
+            else
+            {
+                showSubmenu(panelOrganizerSubmenu);
+               // this.btnDropDown.Image = Properties.Resources.btnCloseDropDown_cropped_24;
+            }
+
         }
 
-        private void panelTitleBar_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void panelTitleBar_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
         }
 
-        private void panelSidebarMenu_MouseLeave(object sender, EventArgs e)
-        {
-            hideSubmenu();
-        }
 
         private void FormHomePage_Load(object sender, EventArgs e)
         {
@@ -234,6 +252,7 @@ namespace ConferencePlanner.WinUi.View
 
             OpenChildForm(formSpectator, btnSpectator);
         }
+
     }
 }
 

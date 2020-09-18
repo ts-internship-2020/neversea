@@ -51,11 +51,11 @@
             // 
             this.lb_msgText.AutoSize = true;
             this.lb_msgText.BackColor = System.Drawing.Color.Transparent;
-            this.lb_msgText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_msgText.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lb_msgText.Location = new System.Drawing.Point(55, 18);
+            this.lb_msgText.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_msgText.ForeColor = System.Drawing.Color.White;
+            this.lb_msgText.Location = new System.Drawing.Point(55, 30);
             this.lb_msgText.Name = "lb_msgText";
-            this.lb_msgText.Size = new System.Drawing.Size(130, 24);
+            this.lb_msgText.Size = new System.Drawing.Size(111, 19);
             this.lb_msgText.TabIndex = 1;
             this.lb_msgText.Text = "Message Text";
             // 
@@ -66,9 +66,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(239, 12);
+            this.button1.Location = new System.Drawing.Point(262, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(47, 43);
+            this.button1.Size = new System.Drawing.Size(34, 26);
             this.button1.TabIndex = 2;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -82,9 +82,10 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(37, 37);
+            this.pictureBox1.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -92,8 +93,7 @@
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(298, 68);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);

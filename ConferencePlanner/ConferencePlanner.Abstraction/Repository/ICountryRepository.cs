@@ -13,5 +13,6 @@ namespace ConferencePlanner.Abstraction.Repository
         void DeleteCountry(int countryId);
         void UpdateCountry(int countryId, string countryName, string countryCode, string nationality);
         void InsertCountry(string countryName, string countryCode, string nationality);
+        public CountryModel GetConferenceCountryByDistrictId(int districtId);
     }
 }

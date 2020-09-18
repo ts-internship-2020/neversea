@@ -34,6 +34,24 @@ namespace ConferencePlanner.Repository.Ef.Repository
             return countriesModel;
 
         }
+        public CountryModel GetConferenceCountryByDistrictId(int districtId)
+        {
+            CountryModel countryModel = new CountryModel();
+            DictionaryCountry country = new DictionaryCountry();
+
+            DistrictModel district = new DistrictModel();
+            DictionaryDistrict districtDictionary = new DictionaryDistrict();
+            districtDictionary = _dbContext.DictionaryDistrict.Where(l => l.DictionaryDistrictId == districtId).FirstOrDefault();
+            int countryId = districtDictionary.DictionaryCountryId;
+
+            country = _dbContext.DictionaryCountry.Where(c => c.DictionaryCountryId == countryId).FirstOrDefault();
+            countryModel.CountryCode = country.DictionaryCountryCode;
+            countryModel.CountryId = country.DictionaryCountryId;
+            countryModel.CountryName = country.DictionaryCountryName;
+            countryModel.CountryNationality = country.DictionaryCountryNationality;
+
+            return countryModel;
+        }
         public List<CountryModel> GetCountry(string keyword)
         {
             List<DictionaryCountry> countries = new List<DictionaryCountry>();

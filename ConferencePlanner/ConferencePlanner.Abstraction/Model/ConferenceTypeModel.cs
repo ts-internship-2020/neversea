@@ -36,5 +36,9 @@ namespace ConferencePlanner.Abstraction.Model
             else
                 return 0;
         }
+        public override string ToString()
+        {
+            return conferenceTypeName;
+        }
     }
 }

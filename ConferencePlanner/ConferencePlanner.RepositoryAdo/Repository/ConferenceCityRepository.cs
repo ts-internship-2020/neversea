@@ -16,7 +16,12 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             sqlConnection = SqlConnection;
         }
+        public ConferenceCityModel GetConferenceCityByLocationId(int locationId)
+        {
+            ConferenceCityModel c1 = new ConferenceCityModel();
+            return c1;
 
+        }
         public List<ConferenceCityModel> GetConferenceCities(int districtId)
         {
             List<ConferenceCityModel> cities = new List<ConferenceCityModel>();
@@ -149,5 +154,6 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return cities;
 
         }
+
     }
 }

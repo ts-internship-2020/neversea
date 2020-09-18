@@ -176,7 +176,7 @@ namespace ConferencePlanner.WinUi.View
 
         private async void WireUpSpectator(DateTime _startDate, DateTime _endDate)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
             string startDateStr = _startDate.ToString("yyyy-MM-dd");
             string endDateStr = _endDate.ToString("yyyy-MM-dd");
 
@@ -194,7 +194,7 @@ namespace ConferencePlanner.WinUi.View
             conferenceAttendances = await HttpClientOperations.GetOperation<ConferenceAttendanceModel>(urlGetConferenceAttendance);
 
             //dgvSpectator.Columns.Add(buttonWithdrawColumn);
-            this.dgvSpectator.Cursor = Cursors.Default;
+            Cursor.Current = Cursors.Default;
         }
 
 
@@ -224,10 +224,10 @@ namespace ConferencePlanner.WinUi.View
         {
             dtpStart.Value = DateTime.Now.AddMonths(-1);
             dtpEnd.Value = DateTime.Now.AddMonths(1);
-            this.dgvSpectator.Cursor = Cursors.WaitCursor;
+            //this.dgvSpectator.Cursor = Cursors.WaitCursor;
             Cursor.Current = Cursors.WaitCursor;
             WireUpSpectator(dtpStart.Value, dtpEnd.Value);
-            this.dgvSpectator.Cursor = Cursors.Default;
+            Cursor.Current = Cursors.Default;
             
 
            btnPrevious.Enabled = false;
@@ -529,7 +529,7 @@ namespace ConferencePlanner.WinUi.View
                         if (e.RowIndex == -1) return;
                         dgvSpectator.ShowCellToolTips = true;
                         toolTip1.Show("Click for speaker details", dgvSpectator);
-                        toolTip1.AutoPopDelay = 750;
+                        toolTip1.AutoPopDelay = 1000;
                         
                     }
                     else

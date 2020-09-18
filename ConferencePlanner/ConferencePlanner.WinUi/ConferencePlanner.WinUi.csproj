@@ -8,19 +8,32 @@
 
   <ItemGroup>
     <None Remove="Resources\icoane\btnAddConference_48.png" />
+    <None Remove="Resources\icoane\btnAlert_32.png" />
+    <None Remove="Resources\icoane\btnAlert_48.png" />
+    <None Remove="Resources\icoane\btnCancel_24.png" />
+    <None Remove="Resources\icoane\btnCloseDropDown_cropped_24.png" />
     <None Remove="Resources\icoane\btnConferences_48.png" />
+    <None Remove="Resources\icoane\btnDropDown_20.png" />
+    <None Remove="Resources\icoane\btnDropDown_24.png" />
+    <None Remove="Resources\icoane\btnDropDown_cropped_24.png" />
     <None Remove="Resources\icoane\btnExitBlue_24.png" />
+    <None Remove="Resources\icoane\btnExit_white_24.png" />
+    <None Remove="Resources\icoane\btnExit_white_32.png" />
     <None Remove="Resources\icoane\btnFromTo_48.png" />
+    <None Remove="Resources\icoane\btnLogOut_24.png" />
+    <None Remove="Resources\icoane\btnLogOut_32.png" />
     <None Remove="Resources\icoane\btnNextPage_24.png" />
     <None Remove="Resources\icoane\btnNext_48.png" />
     <None Remove="Resources\icoane\btnOrganizer_64.png" />
     <None Remove="Resources\icoane\btnPagesNumber_32.png" />
     <None Remove="Resources\icoane\btnPreviousPage_24.png" />
     <None Remove="Resources\icoane\btnPrevious_48.png" />
+    <None Remove="Resources\icoane\btnSave_24.png" />
     <None Remove="Resources\icoane\btnSave_48.png" />
     <None Remove="Resources\icoane\btnSave_64.png" />
     <None Remove="Resources\icoane\btnSearch_32.png" />
     <None Remove="Resources\icoane\btnSpectator_64.png" />
+    <None Remove="Resources\icoane\btnSummary_64.png" />
     <None Remove="Resources\transparent_image.png" />
     <None Remove="View\icoane\btnDeleteSelected_48.png" />
     <None Remove="View\icoane\btnExit_32.png" />
@@ -35,19 +48,32 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\icoane\btnAddConference_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnAlert_32.png" />
+    <EmbeddedResource Include="Resources\icoane\btnAlert_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnCancel_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnCloseDropDown_cropped_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnConferences_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnDropDown_20.png" />
+    <EmbeddedResource Include="Resources\icoane\btnDropDown_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnDropDown_cropped_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnExitBlue_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnExit_white_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnExit_white_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnFromTo_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnLogOut_24.png" />
+    <EmbeddedResource Include="Resources\icoane\btnLogOut_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnNextPage_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnNext_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnOrganizer_64.png" />
     <EmbeddedResource Include="Resources\icoane\btnPagesNumber_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnPreviousPage_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnPrevious_48.png" />
+    <EmbeddedResource Include="Resources\icoane\btnSave_24.png" />
     <EmbeddedResource Include="Resources\icoane\btnSave_48.png" />
     <EmbeddedResource Include="Resources\icoane\btnSave_64.png" />
     <EmbeddedResource Include="Resources\icoane\btnSearch_32.png" />
     <EmbeddedResource Include="Resources\icoane\btnSpectator_64.png" />
+    <EmbeddedResource Include="Resources\icoane\btnSummary_64.png" />
     <EmbeddedResource Include="View\icoane\btnDeleteSelected_48.png" />
     <EmbeddedResource Include="View\icoane\btnExit_32.png" />
     <EmbeddedResource Include="View\icoane\btnFromTo_48.png">

@@ -66,6 +66,40 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
             return districtsModel;
         }
+        public List<DistrictModel> GetConferenceDistrictByCountryId(int countryId)
+        {
+            List<DictionaryDistrict> districts = new List<DictionaryDistrict>();
+            List<DistrictModel> districtsModel = new List<DistrictModel>();
+            districts = _dbContext.DictionaryDistrict.Where(d => d.DictionaryCountryId == countryId).ToList();
+
+            districtsModel = districts.Select(d => new DistrictModel()
+            {
+                DistrictId = d.DictionaryDistrictId,
+                DistrictName = d.DictionaryDistrictName,
+                DistrictCode = d.DictionaryDistrictCode,
+                CountryId = d.DictionaryCountryId
+            }).ToList();
+
+
+            return districtsModel;
+        }
+        public DistrictModel GetConferenceDistrictByCityId(int cityId)
+        {
+            DistrictModel districtModel = new DistrictModel();
+            DictionaryDistrict district = new DictionaryDistrict();
+
+            ConferenceCityModel city = new ConferenceCityModel();
+            DictionaryCity cityDictionary = new DictionaryCity();
+            cityDictionary = _dbContext.DictionaryCity.Where(l => l.DictionaryCityId == cityId).FirstOrDefault();
+            int districtId = cityDictionary.DictionaryCityId;
+
+            district = _dbContext.DictionaryDistrict.Where(c => c.DictionaryDistrictId == districtId).FirstOrDefault();
+            districtModel.DistrictId = district.DictionaryDistrictId;
+            districtModel.DistrictName = district.DictionaryDistrictName;
+            districtModel.DistrictCode = district.DictionaryDistrictCode;
+            districtModel.CountryId = district.DictionaryCountryId;
+            return districtModel;
+        }
         public void UpdateDistrict(int districtId, string districtName, string districtCode, int countryId)
         {
             DictionaryDistrict districtEdited = _dbContext.DictionaryDistrict.Find(districtId);

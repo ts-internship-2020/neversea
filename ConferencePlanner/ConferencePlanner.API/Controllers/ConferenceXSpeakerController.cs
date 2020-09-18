@@ -29,6 +29,13 @@ namespace ConferencePlanner.Api.Controllers
             _conferenceXSpeakerRepository.AddSpeaker(conferenceXspeaker.conferenceId, conferenceXspeaker.speakerId, conferenceXspeaker.isMain);
             return Ok();
         }
+        [HttpPost]
+        [Route("updateSpeaker")]
+        public IActionResult updateSpeaker([FromBody] ConferenceXspeaker conferenceXspeaker)
+        {
+            _conferenceXSpeakerRepository.updateConferenceXSpeaker(conferenceXspeaker.ConferenceId, conferenceXspeaker.DictionarySpeakerId);
+            return Ok();
+        }
 
     }
 }

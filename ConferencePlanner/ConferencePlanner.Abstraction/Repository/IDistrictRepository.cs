@@ -9,7 +9,8 @@ namespace ConferencePlanner.Abstraction.Repository
     {
         public List<DistrictModel> GetDistricts();
         public List<DistrictModel> GetDistricts(string keyword);
-
+        public DistrictModel GetConferenceDistrictByCityId(int cityId);
+        public List<DistrictModel> GetConferenceDistrictByCountryId(int countryId);
         public void InsertDistrict(string districtName, string districtCode, int countryId);
         public void UpdateDistrict(int districtId, string districtName, string districtCode, int countryId);
         public void DeleteDistrict(int districtId, int countryId);
