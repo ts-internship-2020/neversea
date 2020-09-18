@@ -386,11 +386,11 @@ namespace ConferencePlanner.WinUi.View
         {
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private async void BtnSave_Click(object sender, EventArgs e)
         {
-            var urlLocation = "http://localhost:5000/location/new";
+           /* var urlLocation = "http://localhost:5000/location/new";
 
-            LocationModel locationModel = new LocationModel(){ CityId = location.CityId, Address = locationAddress };
+            LocationModel locationModel = new LocationModel() { CityId = location2.CityId, Address = FormAddConferenceGeneral.locationAddress };
 
             HttpClientOperations.PostOperation(urlLocation, locationModel);
 
@@ -400,27 +400,30 @@ namespace ConferencePlanner.WinUi.View
 
             ConferenceModelDB conferenceToAdd = new ConferenceModelDB
             {
-              ConferenceName = conferenceModel.ConferenceName, 
-              ConferenceStartDate = conferenceModel.ConferenceStartDate, 
-              ConferenceEndDate = conferenceModel.ConferenceEndDate, 
-              ConferenceOrganiserEmail = conferenceModel.ConferenceOrganiserEmail, 
-              ConferenceLocationId = locId, 
-            ConferenceCategoryId = conferenceModel.ConferenceCategoryId, 
-              ConferenceTypeId = conferenceModel.ConferenceTypeId,
-            ConferenceMainSpeakerId = conferenceModel.ConferenceMainSpeakerId};
+                ConferenceName = conferenceModel.ConferenceName,
+                ConferenceStartDate = conferenceModel.ConferenceStartDate,
+                ConferenceEndDate = conferenceModel.ConferenceEndDate,
+                ConferenceOrganiserEmail = conferenceModel.ConferenceOrganiserEmail,
+                ConferenceLocationId = locId,
+                ConferenceCategoryId = conferenceModel.ConferenceCategoryId,
+                ConferenceTypeId = conferenceModel.ConferenceTypeId,
+                ConferenceMainSpeakerId = conferenceModel.SpeakerId
+            };
 
             HttpClientOperations.PostOperation(urlConference, conferenceToAdd);
 
             confId = await GetLastConferenceId();
 
             ConferenceXspeaker mainSpeakerToAdd = new ConferenceXspeaker
-            { DictionarySpeakerId = conferenceModel.SpeakerId, 
-              ConferenceId = confId, 
-              IsMain = true};
+            {
+                DictionarySpeakerId = conferenceModel.SpeakerId,
+                ConferenceId = confId,
+                IsMain = true
+            };
 
             var urlSpeaker = "http://localhost:5000//api/ConferenceXSpeaker/AddSpeakerInConference";
 
-            HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);
+            HttpClientOperations.PostOperation(urlSpeaker, mainSpeakerToAdd);*/
             FormConferenceSummary formConferenceSummary = new FormConferenceSummary();
             formConferenceSummary.Show();
             Console.WriteLine("Added new conference to DB");
