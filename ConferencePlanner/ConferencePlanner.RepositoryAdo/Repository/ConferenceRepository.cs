@@ -512,5 +512,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             //implementare
         }
+
+        public int GetLastConferenceId()
+        {
+            return 1;
+        }
     }
 };

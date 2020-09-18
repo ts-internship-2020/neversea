@@ -189,7 +189,7 @@ namespace ConferencePlanner.WinUi.View
             FormAlert frm = new FormAlert();
             frm.ShowAlert(msg);
         }
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             ConferenceModel conferenceUpdated = new ConferenceModel();
             ConferenceTypeModel newType = new ConferenceTypeModel();

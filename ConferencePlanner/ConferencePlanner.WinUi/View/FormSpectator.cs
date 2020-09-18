@@ -180,7 +180,7 @@ namespace ConferencePlanner.WinUi.View
             this.dgvSpectator.Columns[8].Name = "SpeakerId";
 
 
-           // this.dgvSpectator.Columns[7].Visible = false;
+            this.dgvSpectator.Columns[5].Visible = false;
             this.dgvSpectator.Columns[9].Visible = false;
             this.dgvSpectator.Columns[1].Visible = false;
             this.dgvSpectator.Columns[8].Visible = false;
