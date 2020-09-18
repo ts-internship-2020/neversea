@@ -276,7 +276,7 @@ namespace ConferencePlanner.WinUi.View
                 {
                     this.Alert("Please, fill in all fields.");
                 }
-                else if (conferenceModel.ConferenceStartDate > conferenceModel.ConferenceEndDate)
+                else if (conferenceModel.ConferenceStartDate >= conferenceModel.ConferenceEndDate)
                 {
                     this.Alert("The dates entered are invalid.");
                 }

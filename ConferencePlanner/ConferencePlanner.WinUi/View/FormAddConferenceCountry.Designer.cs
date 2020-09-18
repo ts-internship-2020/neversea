@@ -112,6 +112,7 @@
             this.comboBoxPagesNumber.Name = "comboBoxPagesNumber";
             this.comboBoxPagesNumber.Size = new System.Drawing.Size(45, 25);
             this.comboBoxPagesNumber.TabIndex = 13;
+            comboBoxPagesNumber.SelectedIndex = 0;
             this.comboBoxPagesNumber.SelectedIndexChanged += new System.EventHandler(this.comboBoxPagesNumber_SelectedIndexChanged);
             // 
             // btnDeleteSelected
