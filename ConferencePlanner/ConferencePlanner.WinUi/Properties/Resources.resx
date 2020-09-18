@@ -166,4 +166,10 @@
   <data name="btnDropDown_cropped_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnDropDown_cropped_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btnEdit_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnEdit_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnEdit_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\126582-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

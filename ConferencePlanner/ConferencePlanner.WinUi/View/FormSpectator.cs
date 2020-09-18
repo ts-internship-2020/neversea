@@ -126,8 +126,8 @@ namespace ConferencePlanner.WinUi.View
                     btnNext.Enabled = true;
                     dgvSpectator.Rows.Add(_conferenceModels[i].ConferenceName,
                             _conferenceModels[i].ConferenceId,
-                            _conferenceModels[i].ConferenceStartDate,
-                            _conferenceModels[i].ConferenceEndDate,
+                            _conferenceModels[i].ConferenceStartDate.ToString("dd/MM/yyyy"),
+                            _conferenceModels[i].ConferenceEndDate.ToString("dd/MM/yyyy"),
                             _conferenceModels[i].ConferenceType,
                             _conferenceModels[i].ConferenceCategory,
                             _conferenceModels[i].ConferenceMainSpeaker,
@@ -136,6 +136,18 @@ namespace ConferencePlanner.WinUi.View
                             _conferenceModels[i].ConferenceOrganiserEmail);
                 }
 
+            }
+
+            for (int i = 0; i < dgvSpectator.Columns.Count - 3; i++)
+            {
+                dgvSpectator.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
+            for (int i = 0; i < dgvSpectator.Columns.Count - 3; i++)
+            {
+                int colw = dgvSpectator.Columns[i].Width;
+                dgvSpectator.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dgvSpectator.Columns[i].Width = colw;
             }
 
             dgvSpectator.Rows[0].Cells[0].Selected = false;
@@ -168,7 +180,7 @@ namespace ConferencePlanner.WinUi.View
             this.dgvSpectator.Columns[8].Name = "SpeakerId";
 
 
-            this.dgvSpectator.Columns[7].Visible = false;
+           // this.dgvSpectator.Columns[7].Visible = false;
             this.dgvSpectator.Columns[9].Visible = false;
             this.dgvSpectator.Columns[1].Visible = false;
             this.dgvSpectator.Columns[8].Visible = false;
