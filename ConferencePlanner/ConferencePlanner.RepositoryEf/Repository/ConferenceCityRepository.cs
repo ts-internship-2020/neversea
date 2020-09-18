@@ -35,6 +35,8 @@ namespace ConferencePlanner.Repository.Ef.Repository
             return citiesModel;
         }
 
+       
+
         public List<ConferenceCityModel> GetConferenceCities(int districtId, string keyword)
         {
             List<DictionaryCity> cities = new List<DictionaryCity>();

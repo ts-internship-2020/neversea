@@ -18,7 +18,7 @@ namespace ConferencePlanner.WinUi.View
         public int step = 4;
         public int shown = 4;
         public int maxrange;
-
+        public int key = FormAddConferenceGeneral.countryId;
         public FormAddConferenceDistrict(IDistrictRepository _districtRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
             conferenceLocationRepository = _conferenceLocationRepository;
@@ -31,13 +31,14 @@ namespace ConferencePlanner.WinUi.View
                     ctrl.BackColor = Color.Transparent;
                 }
             }
-            LoadDistricts();
+            LoadDistricts(key);
         }
 
-        private async void LoadDistricts()
+        private async void LoadDistricts(int key)
         {
-            districts = districtRepository.GetDistricts();
-            var url = "http://localhost:5000/api/District";
+           
+            var url = "http://localhost:5000/api/District/GetDistrictByCountryId?key=" + key;
+            districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
            // districts = await HttpClientOperations.GetOperation<DistrictModel>(url);
             dgvDistricts.ColumnCount = 4;
 
@@ -109,7 +110,7 @@ namespace ConferencePlanner.WinUi.View
             string keyword = txtSearch.Text;
             if (keyword == "")
             {
-                LoadDistricts();
+                LoadDistricts(key);
             }
             else
             {
@@ -157,7 +158,7 @@ namespace ConferencePlanner.WinUi.View
                     HttpClientOperations.PostOperation<DistrictModel>("http://localhost:5000/api/District/insertDistrict", model);
                     // districtRepository.InsertDistrict(districtName, districtCode, 1);
                     dgvDistricts.Rows.Clear();
-                    LoadDistricts();
+                    LoadDistricts(key);
                 }
             }
             catch (Exception ex)
@@ -179,7 +180,7 @@ namespace ConferencePlanner.WinUi.View
                 HttpClientOperations.DeleteOperation<DistrictModel>("http://localhost:5000/api/District/deleteDistrict", model);
                 // districtRepository.DeleteDistrict(districtId, countryId);
                 dgvDistricts.Rows.Clear();
-                LoadDistricts();
+                LoadDistricts(key);
             }
 
         }

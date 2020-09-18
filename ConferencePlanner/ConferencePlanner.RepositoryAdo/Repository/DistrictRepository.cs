@@ -85,6 +85,11 @@ namespace ConferencePlanner.Repository.Ado.Repository
             return districts;
         }
 
+        public List<DistrictModel> GetDistrictsByCountryId(int key)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InsertDistrict(string districtName, string districtCode, int countryId)
         {
             SqlCommand sqlCommandMaxId = sqlConnection.CreateCommand();

@@ -24,9 +24,9 @@ namespace ConferencePlanner.Api.Controllers
 
         [HttpPost]
         [Route("AddSpeakerInConference")]
-        public IActionResult postConferenceXSpeaker([FromBody] ConferenceXspeaker conferenceXspeaker)
+        public IActionResult postConferenceXSpeaker([FromBody] ConferenceXSpeakerModel conferenceXspeaker)
         {
-            _conferenceXSpeakerRepository.AddSpeaker(conferenceXspeaker.ConferenceId, conferenceXspeaker.DictionarySpeakerId, conferenceXspeaker.IsMain);
+            _conferenceXSpeakerRepository.AddSpeaker(conferenceXspeaker.conferenceId, conferenceXspeaker.speakerId, conferenceXspeaker.isMain);
             return Ok();
         }
 

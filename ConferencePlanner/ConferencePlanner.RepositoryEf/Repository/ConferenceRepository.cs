@@ -327,5 +327,13 @@ namespace ConferencePlanner.Repository.Ef.Repository
                 dbContext.SaveChanges();
             }
         }
+        public int GetLastConferenceId()
+        {
+            List<Conference> conferences = dbContext.Conference.ToList();
+
+            Conference conference = conferences.Last();
+
+            return conference.ConferenceId;
+        }
     }
 }

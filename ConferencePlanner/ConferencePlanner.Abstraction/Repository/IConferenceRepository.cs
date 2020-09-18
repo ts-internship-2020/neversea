@@ -31,5 +31,7 @@ namespace ConferencePlanner.Abstraction.Repository
 
         public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId);
 
+
+        public int GetLastConferenceId();
     }
 }

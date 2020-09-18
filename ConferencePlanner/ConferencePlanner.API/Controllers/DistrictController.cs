@@ -36,6 +36,13 @@ namespace ConferencePlanner.Api.Controllers
             List<DistrictModel> districtModel = _getDistrictRepository.GetDistricts(keyword);
             return Ok(districtModel);
         }
+        [HttpGet]
+        [Route("GetDistrictByCountryId")]
+        public IActionResult GetDistrictsByCountryId(int key)
+        {
+            List<DistrictModel> districtModel = _getDistrictRepository.GetDistrictsByCountryId(key);
+            return Ok(districtModel);
+        }
         [HttpPost]
         [Route("insertDistrict")]
         public IActionResult InsertDistrict([FromBody] DistrictModel districtModel)

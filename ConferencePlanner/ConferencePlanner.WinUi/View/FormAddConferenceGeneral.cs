@@ -23,6 +23,7 @@ namespace ConferencePlanner.WinUi.View
     {
         public static int districtId = new int();
         public   int locId = 0;
+        public int confId = 0;
         //public static int locationId = new int();
         public static string locationAddress = new string("");
         public static int countryId = new int();
@@ -388,12 +389,11 @@ namespace ConferencePlanner.WinUi.View
             HttpClientOperations.PostOperation(urlLocation, locationModel);
 
             locId = await GetLocationId(locationModel.CityId, locationModel.Address);
-
+            confId = await GetLastConferenceId();
             var urlConference = "http://localhost:5000/api/Conference/new";
 
             ConferenceModelDB conferenceToAdd = new ConferenceModelDB
-            {// ConferenceId = 40,
-            //conferenceModel.ConferenceId,
+            {
               ConferenceName = conferenceModel.ConferenceName, 
               ConferenceStartDate = conferenceModel.ConferenceStartDate, 
               ConferenceEndDate = conferenceModel.ConferenceEndDate, 
@@ -405,9 +405,11 @@ namespace ConferencePlanner.WinUi.View
 
             HttpClientOperations.PostOperation(urlConference, conferenceToAdd);
 
+            confId = await GetLastConferenceId();
+
             ConferenceXspeaker mainSpeakerToAdd = new ConferenceXspeaker
             { DictionarySpeakerId = conferenceModel.SpeakerId, 
-              ConferenceId = conferenceModel.ConferenceId, 
+              ConferenceId = confId, 
               IsMain = true};
 
             var urlSpeaker = "http://localhost:5000//api/ConferenceXSpeaker/AddSpeakerInConference";
@@ -431,6 +433,22 @@ namespace ConferencePlanner.WinUi.View
             }
 
             return locationId;
+        }
+        private async Task<int> GetLastConferenceId()
+        {
+            int conferenceId = 0;
+            HttpClient httpClient = HttpClientFactory.Create();
+            var url = $"http://localhost:5000/api/Conference/getLastConferenceId";
+            HttpResponseMessage res = await httpClient.GetAsync(url);
+
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                var content = res.Content;
+                var data = await content.ReadAsStringAsync();
+                conferenceId = Convert.ToInt32(JsonConvert.DeserializeObject(data));
+            }
+
+            return conferenceId;
         }
         public void Alert(string msg)
         {

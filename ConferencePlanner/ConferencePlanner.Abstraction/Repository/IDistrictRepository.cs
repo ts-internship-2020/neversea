@@ -13,5 +13,6 @@ namespace ConferencePlanner.Abstraction.Repository
         public void InsertDistrict(string districtName, string districtCode, int countryId);
         public void UpdateDistrict(int districtId, string districtName, string districtCode, int countryId);
         public void DeleteDistrict(int districtId, int countryId);
+        public List<DistrictModel> GetDistrictsByCountryId(int key);
     }
 }

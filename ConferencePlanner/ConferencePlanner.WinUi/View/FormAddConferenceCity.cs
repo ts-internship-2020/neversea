@@ -25,12 +25,14 @@ namespace ConferencePlanner.WinUi.View
         public int step = 4;
         public int shown = 4;
         public int maxrange;
+        public int key = FormAddConferenceGeneral.districtId;
+
         public FormAddConferenceCity(IConferenceCityRepository _conferenceCityRepository, IConferenceLocationRepository _conferenceLocationRepository)
         {
             conferenceLocationRepository = _conferenceLocationRepository;
             conferenceCityRepository = _conferenceCityRepository;
             InitializeComponent();
-            LoadCities(1);
+            LoadCities(key);
         }
 
         private async void LoadCities(int districtId)
@@ -46,10 +48,13 @@ namespace ConferencePlanner.WinUi.View
 
             //    cities = (List<ConferenceCityModel>)JsonConvert.DeserializeObject<IEnumerable<ConferenceCityModel>>(data);
             //}
-            cities = conferenceCityRepository.GetConferenceCities(districtId);
-
+           // cities = conferenceCityRepository.GetConferenceCities(districtId);
             var url = "http://localhost:5000/GetConfereceCitiesById?districtId="
-                + districtId.ToString();
+                + districtId;
+            cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
+
+
+           
 
             //cities = await HttpClientOperations.GetOperation<ConferenceCityModel>(url);
             dgvCities.ColumnCount = 3;

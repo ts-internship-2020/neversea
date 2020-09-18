@@ -500,5 +500,10 @@ namespace ConferencePlanner.Repository.Ado.Repository
         {
             List<ConferenceModel> conferences = new List<ConferenceModel>();
         }
+
+        public int GetLastConferenceId()
+        {
+            throw new NotImplementedException();
+        }
     }
 };
