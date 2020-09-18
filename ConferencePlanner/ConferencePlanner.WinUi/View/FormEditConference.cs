@@ -45,10 +45,11 @@ namespace ConferencePlanner.WinUi.View
             List<ConferenceCategoryModel> conferenceCategories = await HttpClientOperations.GetOperation<ConferenceCategoryModel>(url);
             foreach(ConferenceCategoryModel it in conferenceCategories)
             {
-                comboBox4.Items.Add(it.conferenceCategoryName);
+                comboBox4.Items.Add(it);
                 if(it.conferenceCategoryName == updatedConference.ConferenceCategory)
                 {
                     comboBox4.SelectedIndex = conferenceCategories.IndexOf(it);
+
                 }    
             }
 
@@ -57,7 +58,7 @@ namespace ConferencePlanner.WinUi.View
             List<ConferenceTypeModel> conferenceTypes = await HttpClientOperations.GetOperation<ConferenceTypeModel>(url);
             foreach (ConferenceTypeModel it in conferenceTypes)
             {
-                comboBox5.Items.Add(it.conferenceTypeName);
+                comboBox5.Items.Add(it);
                 if (it.conferenceTypeName == updatedConference.ConferenceType)
                 {
                     comboBox5.SelectedIndex = conferenceTypes.IndexOf(it);
@@ -68,7 +69,7 @@ namespace ConferencePlanner.WinUi.View
             List<SpeakerModel> conferenceSpeakers = await HttpClientOperations.GetOperation<SpeakerModel>(url);
             foreach (SpeakerModel it in conferenceSpeakers)
             {
-                comboBox6.Items.Add(it.DictionarySpeakerName);
+                comboBox6.Items.Add(it);
                 if (it.DictionarySpeakerName == updatedConference.ConferenceMainSpeaker)
                 {
                     comboBox6.SelectedIndex = conferenceSpeakers.IndexOf(it);
@@ -184,14 +185,33 @@ namespace ConferencePlanner.WinUi.View
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             ConferenceModel conferenceUpdated = new ConferenceModel();
+            ConferenceTypeModel newType = new ConferenceTypeModel();
+            newType = (ConferenceTypeModel)comboBox5.SelectedItem;
+            ConferenceCategoryModel newCategory = new ConferenceCategoryModel();
+            newCategory = (ConferenceCategoryModel)comboBox4.SelectedItem;
+
+            ConferenceXSpeakerModel newCxs = new ConferenceXSpeakerModel();
+            SpeakerModel newSpeaker = new SpeakerModel();
+            newSpeaker = (SpeakerModel)comboBox6.SelectedItem;
+
             conferenceUpdated.ConferenceId = conferenceId;
             conferenceUpdated.ConferenceName = textBox1.Text;
             conferenceUpdated.ConferenceStartDate = dateTimePicker1.Value;
             conferenceUpdated.ConferenceEndDate = dateTimePicker2.Value;
+
+            newCxs.conferenceId = conferenceUpdated.ConferenceId;
+            newCxs.DictionarySpeakerId = newSpeaker.DictionarySpeakerId;
+            newCxs.isMain = true;
+
+            HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
+
+            conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
+            conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
             HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

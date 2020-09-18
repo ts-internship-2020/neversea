@@ -15,8 +15,11 @@ namespace ConferencePlanner.Abstraction.Model
             public double DictionarySpeakerRating { get; set; }
 
             public string DictionarySpeakerImage { get; set; }
+            public override string ToString()
+            {
+                return DictionarySpeakerName;
+            }
 
 
-        
     }
 }

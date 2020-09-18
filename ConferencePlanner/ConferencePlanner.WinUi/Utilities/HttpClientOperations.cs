@@ -61,6 +61,15 @@ namespace ConferencePlanner.WinUi.Utilities
 
             res = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
         }
+        public static async void PutOperationSpeaker<T>(string url, T obj)
+        {
+            HttpClient httpClient = HttpClientFactory.Create();
+
+            HttpResponseMessage res;
+
+            res = await httpClient.PostAsync(url, obj, new JsonMediaTypeFormatter());
+        }
+
 
         public static async void PutAsyncOperation<T>(string url, T obj)
         {

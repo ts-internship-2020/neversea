@@ -30,6 +30,6 @@ namespace ConferencePlanner.Abstraction.Repository
         //public List<ConferenceModel> GetConference(string spectatorEmail, DateTime startDate, DateTime endDate);
 
         public void InsertConference(string conferenceName, DateTime startDate, DateTime endDate, string organiserEmail, int locationId, int conferenceTypeId, int conferenceCategoryId);
-        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate);
+        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate, int categoryId, int typeId);
     }
 }

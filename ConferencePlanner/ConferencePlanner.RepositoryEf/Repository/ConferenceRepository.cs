@@ -329,7 +329,7 @@ namespace ConferencePlanner.Repository.Ef.Repository
             }
         }
 
-        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate)
+        public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate, int categoryId, int typeId)
         {
             DateTime _startDate = Convert.ToDateTime(startDate);
             DateTime _endDate = Convert.ToDateTime(endDate);
@@ -338,8 +338,11 @@ namespace ConferencePlanner.Repository.Ef.Repository
             conferenceEdited.ConferenceName = conferenceName;
             conferenceEdited.StartDate = _startDate;
             conferenceEdited.EndDate = _endDate;
+            conferenceEdited.DictionaryConferenceCategoryId = categoryId;
+            conferenceEdited.DictionaryConferenceTypeId = typeId;
             Console.WriteLine(_startDate);
             Console.WriteLine(_endDate);
+            Console.WriteLine(conferenceEdited.DictionaryConferenceCategoryId);
             dbContext.SaveChanges();
         }
     }
