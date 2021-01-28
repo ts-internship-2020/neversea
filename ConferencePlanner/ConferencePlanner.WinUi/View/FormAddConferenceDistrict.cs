@@ -194,14 +194,20 @@ namespace ConferencePlanner.WinUi.View
         {
             if (dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString() != null)
             {
-                DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-                DistrictName = dgvDistricts.Rows[e.RowIndex].Cells["District"].FormattedValue.ToString();
-                FormAddConferenceGeneral.districtId = DistrictId;
-                dgvDistricts.CellDoubleClick += dgvDistricts_CellDoubleClick;
-                dgvDistricts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dgvDistricts.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
-                dgvDistricts.DefaultCellStyle.SelectionForeColor = Color.White;
-
+                try
+                {
+                    DistrictId = Convert.ToInt32(dgvDistricts.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                    DistrictName = dgvDistricts.Rows[e.RowIndex].Cells["District"].FormattedValue.ToString();
+                    FormAddConferenceGeneral.districtId = DistrictId;
+                    dgvDistricts.CellDoubleClick += dgvDistricts_CellDoubleClick;
+                    dgvDistricts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgvDistricts.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
+                    dgvDistricts.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+                catch
+                {
+                    return;
+                }
             }
         }
 

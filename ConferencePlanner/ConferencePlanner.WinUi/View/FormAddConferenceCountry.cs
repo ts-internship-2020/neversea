@@ -213,15 +213,21 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvCountries_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            id = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
-            name = dgvCountries.Rows[e.RowIndex].Cells["Country"].Value.ToString();
-            FormAddConferenceGeneral.countryId = id;
-            FormConferenceSummary.countryName = name;
-            dgvCountries.CellDoubleClick += dgvCountries_CellDoubleClick;
-            dgvCountries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCountries.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
-            dgvCountries.DefaultCellStyle.SelectionForeColor = Color.White;
-
+            try
+            {
+                id = Convert.ToInt32(dgvCountries.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+                name = dgvCountries.Rows[e.RowIndex].Cells["Country"].Value.ToString();
+                FormAddConferenceGeneral.countryId = id;
+                FormConferenceSummary.countryName = name;
+                dgvCountries.CellDoubleClick += dgvCountries_CellDoubleClick;
+                dgvCountries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvCountries.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
+                dgvCountries.DefaultCellStyle.SelectionForeColor = Color.White;
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

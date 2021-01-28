@@ -101,14 +101,22 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
         public void DeleteCity(int cityId,int districtId)
         {
-            
-            DictionaryCity cityDeleted = _dbContext.DictionaryCity
-                            .Where(c => c.DictionaryCityId == cityId)
-                            .Where(c=>c.DictionaryDistrictId==districtId)
-                            .FirstOrDefault();
-            _dbContext.DictionaryCity.Remove(cityDeleted);
+            try
+            {
 
-            _dbContext.SaveChanges();
+
+                DictionaryCity cityDeleted = _dbContext.DictionaryCity
+                                .Where(c => c.DictionaryCityId == cityId)
+                                .Where(c => c.DictionaryDistrictId == districtId)
+                                .FirstOrDefault();
+                _dbContext.DictionaryCity.Remove(cityDeleted);
+
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

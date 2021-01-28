@@ -82,7 +82,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
             sqlCommand.ExecuteNonQuery();
         }
-
+       
         public List<ConferenceModel> GetConferenceBetweenDates(string emailOrganiser, DateTime startDate, DateTime endDate)
         {
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
@@ -511,6 +511,11 @@ namespace ConferencePlanner.Repository.Ado.Repository
         public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate)
         {
             //implementare
+        }
+
+        public int GetLastConferenceId()
+        {
+            throw new NotImplementedException();
         }
     }
 };

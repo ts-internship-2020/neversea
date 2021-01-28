@@ -108,7 +108,7 @@ namespace ConferencePlanner.WinUi.View
                 }
                 catch
                 {
-                    
+                    return;
                 }
             }
         }
@@ -207,13 +207,19 @@ namespace ConferencePlanner.WinUi.View
 
         private void dgvCities_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
-            locationName = dgvCities.Rows[e.RowIndex].Cells["City"].FormattedValue.ToString();
-            FormAddConferenceGeneral.location.CityId = locationId;
-            dgvCities.CellDoubleClick += dgvCities_CellDoubleClick;
-            dgvCities.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCities.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
-            dgvCities.DefaultCellStyle.SelectionForeColor = Color.White;
+            try
+            {
+                locationId = Convert.ToInt32(dgvCities.Rows[e.RowIndex].Cells["Id"].FormattedValue.ToString());
+                locationName = dgvCities.Rows[e.RowIndex].Cells["City"].FormattedValue.ToString();
+                FormAddConferenceGeneral.location.CityId = locationId;
+                dgvCities.CellDoubleClick += dgvCities_CellDoubleClick;
+                dgvCities.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvCities.DefaultCellStyle.SelectionBackColor = Color.MediumSeaGreen;
+                dgvCities.DefaultCellStyle.SelectionForeColor = Color.White;
+            } catch
+            {
+                return;
+            }
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)

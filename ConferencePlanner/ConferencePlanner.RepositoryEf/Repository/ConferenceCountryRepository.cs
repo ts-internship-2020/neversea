@@ -73,38 +73,59 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
         public void DeleteCountry(int countryId)
         {
-            DictionaryCountry countryDeleted = _dbContext.DictionaryCountry
-                            .Where(c => c.DictionaryCountryId == countryId)
-                            .FirstOrDefault();
-            _dbContext.DictionaryCountry.Remove(countryDeleted);
+            try
+            {
+                DictionaryCountry countryDeleted = _dbContext.DictionaryCountry
+                                .Where(c => c.DictionaryCountryId == countryId)
+                                .FirstOrDefault();
+                _dbContext.DictionaryCountry.Remove(countryDeleted);
 
-            _dbContext.SaveChanges();
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
         public void UpdateCountry(int countryId, string countryName, string countryCode, string nationality)
         {
-            DictionaryCountry countryEdited = _dbContext.DictionaryCountry.Find(countryId);
-            countryEdited.DictionaryCountryName = countryName;
-            countryEdited.DictionaryCountryCode = countryCode;
-            countryEdited.DictionaryCountryNationality = nationality;
-            _dbContext.SaveChanges();
+            try
+            {
+                DictionaryCountry countryEdited = _dbContext.DictionaryCountry.Find(countryId);
+                countryEdited.DictionaryCountryName = countryName;
+                countryEdited.DictionaryCountryCode = countryCode;
+                countryEdited.DictionaryCountryNationality = nationality;
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
         public void InsertCountry(string countryName, string countryCode, string nationality)
         {
-            int id = 0;
-            List<DictionaryCountry> countries = new List<DictionaryCountry>();
-            countries = _dbContext.DictionaryCountry.ToList();
-            id = countries.Max(c => c.DictionaryCountryId);
-            id += 1;
-            
-            _dbContext.DictionaryCountry.Add(new DictionaryCountry()
+            try
             {
-                DictionaryCountryId = id,
-                DictionaryCountryName = countryName,
-                DictionaryCountryCode = countryCode,
-                DictionaryCountryNationality = nationality
-            });
+                int id = 0;
+                List<DictionaryCountry> countries = new List<DictionaryCountry>();
+                countries = _dbContext.DictionaryCountry.ToList();
+                id = countries.Max(c => c.DictionaryCountryId);
+                id += 1;
 
-            _dbContext.SaveChanges();
+                _dbContext.DictionaryCountry.Add(new DictionaryCountry()
+                {
+                    DictionaryCountryId = id,
+                    DictionaryCountryName = countryName,
+                    DictionaryCountryCode = countryCode,
+                    DictionaryCountryNationality = nationality
+                });
+
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

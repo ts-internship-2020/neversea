@@ -197,57 +197,68 @@ namespace ConferencePlanner.WinUi.View
             frm.ShowAlert(msg);
         }
         private async void btnSave_Click(object sender, EventArgs e)
-        {
-            ConferenceModel conferenceUpdated = new ConferenceModel();
-            ConferenceTypeModel newType = new ConferenceTypeModel();
-            newType = (ConferenceTypeModel)comboBox5.SelectedItem;
-            ConferenceCategoryModel newCategory = new ConferenceCategoryModel();
-            newCategory = (ConferenceCategoryModel)comboBox4.SelectedItem;
-            ConferenceCityModel newCity = (ConferenceCityModel)comboBox3.SelectedItem;
-            ConferenceXSpeakerModel newCxs = new ConferenceXSpeakerModel();
-            SpeakerModel newSpeaker = new SpeakerModel();
-            newSpeaker = (SpeakerModel)comboBox6.SelectedItem;
-            Console.WriteLine(newSpeaker.DictionarySpeakerId);
-            conferenceUpdated.ConferenceId = conferenceId;
-            conferenceUpdated.ConferenceName = textBox1.Text;
-            
-            conferenceUpdated.ConferenceStartDate = dateTimePicker1.Value;
-            conferenceUpdated.ConferenceEndDate = dateTimePicker2.Value;
-            conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
-            conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
-
-            newCxs.conferenceId = conferenceUpdated.ConferenceId;
-            newCxs.DictionarySpeakerId = newSpeaker.DictionarySpeakerId;
-            newCxs.isMain = true;
-
-            
-            conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
-            conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
-            if (conferenceUpdated.ConferenceName == "" || textBox4.Text=="" || comboBox3.Text==""|| comboBox2.Text == "")
+        {   
+            if(dateTimePicker1.Value > dateTimePicker2.Value)
             {
-                this.Alert("Please, fill in all fields.");
+                this.Alert("Invalid conference dates!");
+            }else
+            {
+                try
+                {
+                    ConferenceModel conferenceUpdated = new ConferenceModel();
+                    ConferenceTypeModel newType = new ConferenceTypeModel();
+                    newType = (ConferenceTypeModel)comboBox5.SelectedItem;
+                    ConferenceCategoryModel newCategory = new ConferenceCategoryModel();
+                    newCategory = (ConferenceCategoryModel)comboBox4.SelectedItem;
+                    ConferenceCityModel newCity = (ConferenceCityModel)comboBox3.SelectedItem;
+                    ConferenceXSpeakerModel newCxs = new ConferenceXSpeakerModel();
+                    SpeakerModel newSpeaker = new SpeakerModel();
+                    newSpeaker = (SpeakerModel)comboBox6.SelectedItem;
+                    Console.WriteLine(newSpeaker.DictionarySpeakerId);
+                    conferenceUpdated.ConferenceId = conferenceId;
+                    conferenceUpdated.ConferenceName = textBox1.Text;
+
+                    conferenceUpdated.ConferenceStartDate = dateTimePicker1.Value;
+                    conferenceUpdated.ConferenceEndDate = dateTimePicker2.Value;
+                    conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
+                    conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
+
+                    newCxs.conferenceId = conferenceUpdated.ConferenceId;
+                    newCxs.DictionarySpeakerId = newSpeaker.DictionarySpeakerId;
+                    newCxs.isMain = true;
+
+                    conferenceUpdated.ConferenceTypeId = newType.conferenceTypeId;
+                    conferenceUpdated.ConferenceCategoryId = newCategory.conferenceCategoryId;
+                    ;
+                    LocationModel newLocation = new LocationModel();
+                    newLocation.LocationId = locationId;
+                    newLocation.LocationAddress = textBox4.Text;
+                    newLocation.DictionaryCityId = newCity.ConferenceCityId;
+                    HttpClientOperations.PutOperation<LocationModel>("http://localhost:5000/location/update", newLocation);
+                    HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
+                    HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
+                    this.Alert("Saved!");
+                    //this.Close();}
+                }
+                catch
+                {
+                    return;
+                }
             }
-            else if (conferenceUpdated.ConferenceStartDate >= conferenceUpdated.ConferenceEndDate)
-            {
-                this.Alert("The dates entered are invalid.");
-            }
-            else
-            {
-                HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
-                HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
-                this.Close(); 
-;            }
-            LocationModel newLocation = new LocationModel();
-            newLocation.LocationId = locationId;
-            newLocation.LocationAddress = textBox4.Text.ToString();
-            newLocation.DictionaryCityId = newCity.ConferenceCityId;
-            HttpClientOperations.PutOperation<LocationModel>("http://localhost:5000/location/update", newLocation);
-            HttpClientOperations.PutOperation<ConferenceXSpeakerModel>("http://localhost:5000/api/ConferenceXSpeaker/updateSpeaker", newCxs);
-            HttpClientOperations.PutOperation<ConferenceModel>("http://localhost:5000/api/Conference/update", conferenceUpdated);
-
+            
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

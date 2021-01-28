@@ -102,55 +102,80 @@ namespace ConferencePlanner.Repository.Ef.Repository
         }
         public void UpdateDistrict(int districtId, string districtName, string districtCode, int countryId)
         {
-            DictionaryDistrict districtEdited = _dbContext.DictionaryDistrict.Find(districtId);
-            districtEdited.DictionaryDistrictName = districtName;
-            districtEdited.DictionaryDistrictCode = districtCode;
-            Console.WriteLine("Vreau sa fac update la countrId " + countryId);
-            districtEdited.DictionaryCountryId = countryId;
-            _dbContext.SaveChanges();
+            try
+            {
+                DictionaryDistrict districtEdited = _dbContext.DictionaryDistrict.Find(districtId);
+                districtEdited.DictionaryDistrictName = districtName;
+                districtEdited.DictionaryDistrictCode = districtCode;
+                Console.WriteLine("Vreau sa fac update la countrId " + countryId);
+                districtEdited.DictionaryCountryId = countryId;
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
         public void InsertDistrict(string districtName, string districtCode, int countryId)
         {
-            int id = 0;
-            List<DictionaryDistrict> districts = new List<DictionaryDistrict>();
-            districts = _dbContext.DictionaryDistrict.ToList();
-            id = districts.Max(d => d.DictionaryDistrictId);
-            id ++;
-
-            _dbContext.DictionaryDistrict.Add(new DictionaryDistrict()
+            try
             {
-                DictionaryDistrictId = id,
-                DictionaryDistrictName = districtName,
-                DictionaryDistrictCode=districtCode,
-                DictionaryCountryId=countryId
-            }) ;
 
-            _dbContext.SaveChanges();
+
+                int id = 0;
+                List<DictionaryDistrict> districts = new List<DictionaryDistrict>();
+                districts = _dbContext.DictionaryDistrict.ToList();
+                id = districts.Max(d => d.DictionaryDistrictId);
+                id++;
+
+                _dbContext.DictionaryDistrict.Add(new DictionaryDistrict()
+                {
+                    DictionaryDistrictId = id,
+                    DictionaryDistrictName = districtName,
+                    DictionaryDistrictCode = districtCode,
+                    DictionaryCountryId = countryId
+                });
+
+                _dbContext.SaveChanges();
+            } 
+            catch
+            {
+                return;
+            }
         }
 
  
         public void DeleteDistrict(int districtId, int countryId)
         {
-            List<DictionaryDistrict> dictionaryDistrict = new List<DictionaryDistrict>();
-
-            dictionaryDistrict = _dbContext.DictionaryDistrict.Select(d => new DictionaryDistrict()
+            try
             {
 
-                DictionaryDistrictId = d.DictionaryDistrictId,
-                DictionaryCountryId = d.DictionaryCountryId
-            }).Where(d => d.DictionaryDistrictId == districtId ).ToList();
-          //  && d.DictionaryCountryId == countryId
-            List<DistrictModel> maxId = dictionaryDistrict.Select(d => new DistrictModel()
 
+                List<DictionaryDistrict> dictionaryDistrict = new List<DictionaryDistrict>();
+
+                dictionaryDistrict = _dbContext.DictionaryDistrict.Select(d => new DictionaryDistrict()
+                {
+
+                    DictionaryDistrictId = d.DictionaryDistrictId,
+                    DictionaryCountryId = d.DictionaryCountryId
+                }).Where(d => d.DictionaryDistrictId == districtId).ToList();
+                //  && d.DictionaryCountryId == countryId
+                List<DistrictModel> maxId = dictionaryDistrict.Select(d => new DistrictModel()
+
+                {
+                    DistrictId = d.DictionaryDistrictId,
+                    DistrictName = d.DictionaryDistrictName
+                }).Where(d => d.DistrictId == districtId).ToList();
+
+                DictionaryDistrict district = new DictionaryDistrict();
+                _dbContext.Remove(dictionaryDistrict[0]);
+
+                _dbContext.SaveChanges();
+            }
+            catch
             {
-                DistrictId = d.DictionaryDistrictId,
-                DistrictName = d.DictionaryDistrictName
-            }).Where(d => d.DistrictId == districtId).ToList();
-
-            DictionaryDistrict district = new DictionaryDistrict();
-            _dbContext.Remove(dictionaryDistrict[0]);
-
-            _dbContext.SaveChanges();
+                return;
+            }
         }
     }
 }

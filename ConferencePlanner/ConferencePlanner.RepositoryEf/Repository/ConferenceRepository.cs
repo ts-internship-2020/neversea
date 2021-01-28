@@ -339,19 +339,26 @@ namespace ConferencePlanner.Repository.Ef.Repository
 
         public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate, int categoryId, int typeId)
         {
-            DateTime _startDate = Convert.ToDateTime(startDate);
-            DateTime _endDate = Convert.ToDateTime(endDate);
-            Conference conferenceEdited = new Conference();
-            conferenceEdited = dbContext.Conference.Find(conferenceId);
-            conferenceEdited.ConferenceName = conferenceName;
-            conferenceEdited.StartDate = _startDate;
-            conferenceEdited.EndDate = _endDate;
-            conferenceEdited.DictionaryConferenceCategoryId = categoryId;
-            conferenceEdited.DictionaryConferenceTypeId = typeId;
-            Console.WriteLine(_startDate);
-            Console.WriteLine(_endDate);
-            Console.WriteLine(conferenceEdited.DictionaryConferenceCategoryId);
-            dbContext.SaveChanges();
+            try
+            {
+                DateTime _startDate = Convert.ToDateTime(startDate);
+                DateTime _endDate = Convert.ToDateTime(endDate);
+                Conference conferenceEdited = new Conference();
+                conferenceEdited = dbContext.Conference.Find(conferenceId);
+                conferenceEdited.ConferenceName = conferenceName;
+                conferenceEdited.StartDate = _startDate;
+                conferenceEdited.EndDate = _endDate;
+                conferenceEdited.DictionaryConferenceCategoryId = categoryId;
+                conferenceEdited.DictionaryConferenceTypeId = typeId;
+                Console.WriteLine(_startDate);
+                Console.WriteLine(_endDate);
+                Console.WriteLine(conferenceEdited.DictionaryConferenceCategoryId);
+                dbContext.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         public void updateConference(int conferenceId, string conferenceName, string startDate, string endDate)
