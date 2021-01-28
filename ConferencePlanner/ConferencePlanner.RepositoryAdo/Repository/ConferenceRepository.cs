@@ -515,7 +515,7 @@ namespace ConferencePlanner.Repository.Ado.Repository
 
         public int GetLastConferenceId()
         {
-            throw new NotImplementedException();
+            return 1;
         }
     }
 };
